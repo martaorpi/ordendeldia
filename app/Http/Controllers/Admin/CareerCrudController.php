@@ -28,7 +28,7 @@ class CareerCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Career::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/career');
-        CRUD::setEntityNameStrings('career', 'careers');
+        CRUD::setEntityNameStrings('carrera', 'carreras');
     }
 
     /**
@@ -39,8 +39,27 @@ class CareerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
+        //CRUD::setFromDb(); // columns
+        CRUD::addColumn([
+            'name'=> 'short_name',
+            'label'=> 'Nombre corto',
+        ]);
+        CRUD::addColumn([
+            'name' => 'amount',
+            'label' => 'Monto'
+        ]);
+        CRUD::addColumn([
+            'name' => 'available_space',
+            'label' => 'Cupo'
+        ]);
+        CRUD::addColumn([
+            'name' => 'duration',
+            'label' => 'Duracion'
+        ]);
+        CRUD::addColumn([
+            'name' => 'status',
+            'label' => 'Estado'
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
