@@ -1,0 +1,70 @@
+models:
+  Models\Student:
+    user_id: id foreign
+    career_id: id foreign
+    nationality_id: id foreign
+    province_id: id foreign
+    location_id: id foreign default:0
+    location_description: string nullable
+    last_name: string
+    first_name: string
+    dni: integer unique
+    year_income: integer
+    address_district: string nullable
+    address_street: string nullable
+    address_number: integer nullable
+    address_flat: integer nullable
+    address_departament: string nullable
+    address_cp: string nullable
+    slug: string unique default:''
+    timestamps:  true
+    softDeletes: true
+    relationships:
+      belongsToMany:  Exam
+
+  Models\Documentation:
+    student_id: id foreign
+    description: string
+    src: string
+    timestamps:  true
+
+  Models\Nationality:
+    description: string
+
+  Models\Province:
+    description: string
+
+  Models\Location:
+    description: string
+
+  Models\Career:
+    title: string
+    short_name: string
+    amount: integer
+    available_space: integer
+    ws_id: integer unique
+    duration: integer
+    status: enum:Abierta,Cerrada
+    slug: string unique default:''
+    timestamps:  true
+    softDeletes: true
+    relationships:
+      belongsToMany: User
+
+  Models\Exam:
+    subject_id: id foreign
+    user_id: id foreign
+    date: date
+    hour: time
+    status: enum:Solicitado,Aprobado,Rechazado
+    timestamps: true
+    softDeletes: true
+
+  Models\Personal:
+    user_id: id foreign
+    last_name: string
+    first_name: string
+    dni: integer unique
+    status: enum:Activo,Inactivo
+    timestamps: true
+    softDeletes: true
