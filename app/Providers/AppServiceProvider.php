@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl) {
             return (new MailMessage)
                 ->subject(Lang::get('Verificación de Email'))
