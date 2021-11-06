@@ -28,8 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl) {
             return (new MailMessage)
-                ->title(Lang::get('Dddddd'))
-
                 ->subject(Lang::get('Verificación de Email'))
                 ->line(Lang::get('Por favor haga click en el botón de abajo para verificar su dirección de correo electrónico.'))
                 ->action(Lang::get('Confirmar Email'), $verificationUrl)
