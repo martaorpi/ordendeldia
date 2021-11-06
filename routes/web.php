@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+    ->middleware('guest')
+    ->name('login');
 
 
 Route::get('/dashboard', function () {
