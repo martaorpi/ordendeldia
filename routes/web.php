@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Controller;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')
@@ -27,5 +28,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::post('formulario-inscripcion', [Controller::class, 'student_update']);
+//Route::post('formulario-inscripcion','Controller@student_update');
 
 

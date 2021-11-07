@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
@@ -25,12 +26,13 @@ class Controller extends BaseController
             $ciclo_academico = date('Y');
         }*/
         $input = $request->all();
-        if($request->nacionalidad_id != 1){
+        //if($request->nationality_id != 1){
             $input['nationality_id'] = 0;
             //$input['id_departamentoNac'] = 0;
             $input['province_id'] = 0;
-            $input['location_id'] = 0;
-        }
+            $input['location_id'] = 2;
+        //}
+        $input['user_id'] = 1;
         if($request->hasFile('files')){
             $files = $request->file('files');
             $carpeta = 'public/uploads/'.$request->dni;
