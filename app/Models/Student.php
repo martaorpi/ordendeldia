@@ -47,6 +47,7 @@ class Student extends Model
         'career_id' => 'integer',
         'nationality_id' => 'integer',
         'province_id' => 'integer',
+        'departament_id' => 'integer',
         'location_id' => 'integer',
     ];
 
@@ -69,6 +70,11 @@ class Student extends Model
     public function province()
     {
         return $this->belongsTo(\App\Models\Models\Province::class);
+    }
+
+    public function departament()
+    {
+        return $this->belongsTo(\App\Models\Models\Departament::class);
     }
 
     public function location()

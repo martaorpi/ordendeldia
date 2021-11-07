@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Student;
+use App\Models\Documentation;
 use Illuminate\Http\Request;
 
 class Controller extends BaseController
@@ -26,13 +27,19 @@ class Controller extends BaseController
             $ciclo_academico = date('Y');
         }*/
         $input = $request->all();
-        //if($request->nationality_id != 1){
-            $input['nationality_id'] = 0;
-            //$input['id_departamentoNac'] = 0;
+        if($request->nationality_id != 1){
             $input['province_id'] = 0;
+            $input['location_id'] = 0;
+            
+        }else{
+            $input['province_id'] = 2;
             $input['location_id'] = 2;
-        //}
-        $input['user_id'] = 1;
+        }
+        $input['slug'] = $request->first_name.' '.$request->last_name;
+        $input['user_id'] = auth()->user()->id;
+        $this->validate($request, $rules);
+        $student = Student::create($input);
+
         if($request->hasFile('files')){
             $files = $request->file('files');
             $carpeta = 'public/uploads/'.$request->dni;
@@ -41,11 +48,13 @@ class Controller extends BaseController
             }
             foreach ($files as $file) {
                 $nombrearchivo  = $file->getClientOriginalName();
-                $file->move(public_path($carpeta."/"),$nombrearchivo);
+                //$file->move(public_path($carpeta."/"),$nombrearchivo);
+                copy($file->getRealPath(),$carpeta."/".$nombrearchivo);
+                $input2['student_id'] = $student->id;
+                $input2['src'] = $carpeta."/".$nombrearchivo;
+                Documentation::create($input2);
             }
         }
-        $this->validate($request, $rules);
-        Student::create($input);
         return redirect()->back();
     }
 }
