@@ -165,7 +165,7 @@
         
                 <div class="form-group row">
                     <div class="col-12">
-                        <hr class="linea_bordo">
+                        <hr class="linea_bordo mb-3">
                         <h6><b>REQUISITOS</b></h6>
                     </div>
                 </div>
@@ -208,30 +208,46 @@
         
                 <div class="form-group row">
                     <div class="col-12">
-                        <b>NOTA: Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del Titulo XII (delitos contra la fe pública) Capitulo III (falsificación de documentos) del Código Penal.</b>
-                    </div>
-                </div>
-        
-                <div class="form-group row">
-                    <div class="col-12">
-                        <b>OBSERVACIONES: También se deja aclarado que los documentos en formato papel, serán requeridos por la institución en fechas a confirmar.</b>
-                    </div>
-                </div>
-        
-                <div class="form-group row">
-                    <div class="col-12">
                         <hr class="linea_bordo">
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <p><b>COMPROMISO CON LA INSTITUCION</b></p>
+                        <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones academicas y diciplinarias de los reglamentos del instituto San Martin de Porres, como asi tambien las condiciones de matriculacion, abono de cuota y otros conceptos. asi como otras resoluciones que emita la  autoridad competente y comprometo a respetarlos estrictamente.</p>
+                        <br>
+                        <p><b>INFORMACION IMPORTATEN A TENER EN CUENTA</b></p>
+                        <P>*La inscripcion sera validada a partir del momento en que se acredite el pago de dichp arancel. sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institucion y la presentacion de la documentacion correspondiente.</P>
+                        <br>
+                        <p>*Por el pago de la inscripcion el ingresante tiene derecho a realizar el taller propedeutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGUN CONCEPTO.</b> El ingresante adquiere la condicion de estudiante regular por el pago de la matricula completa, la realizacion del taller propedeutico y la presentacion de todos los requisitos establecidos por la institucion</p>
+                        <br>
+                        <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo electivo, en caso de que haya una variacion significativa en la estructura de costos internos.</p>
+                        <br>
+                        <p><b>Declaro Bajo Fe de Juramento que la documentacion que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fe publica) Capitulo III (falsificacion de documentos) del Codigo Penal.</b></p>
+                        <br>
+                        <div class="login-horizental cancel-wp pull-left">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="terminos" onchange="toggleCheckbox(this)">
+                                <label class="form-check-label pl-4" for="flexCheckDefault">
+                                    He leido y aceptado de Conformidad
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="pull-right">
+                            <p><b>Anexo 1 de la presente</b></p>
+                            <p><a target="_blank" href="http://synergysoft.host/porres/archivos/ORGANIGRAMA_ISMP.pdf">Organigrama Institucional</a></p>
+                            <p><a target="_blank" href="http://synergysoft.host/porres/archivos/Reglamento_de_los_Estudiantes_ISMP.pdf">Reglamento Institucional</a></p>
+                        </div>
+                    </div>
+                </div>
                 
-                <button type="submit" class="btn btn_bordo text-white btn-block">Enviar</button>
+                <button type="submit" class="btn btn_bordo text-white btn-block" disabled="true" id="btn-actualizar">Enviar</button>
             </form>
         </div>
 
-    
-
-
-
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     $(function() {
         /*if(document.getElementById('nacionalidad').value == 1){
@@ -319,4 +335,13 @@
             });
         });*/
     });
+
+    function toggleCheckbox(element)
+    {
+        if (element.checked) {
+            document.getElementById("btn-actualizar").disabled = false;
+        }else{
+            document.getElementById("btn-actualizar").disabled = true;            
+        }
+    }
 </script>

@@ -19,6 +19,7 @@ class Student extends Model
     protected $fillable = [
         'user_id',
         'career_id',
+        'cycle_id',
         'nationality_id',
         'province_id',
         'location_id',
@@ -33,6 +34,7 @@ class Student extends Model
         'address_flat',
         'address_departament',
         'address_cp',
+        'status',
         'slug',
     ];
 
@@ -45,6 +47,7 @@ class Student extends Model
         'id' => 'integer',
         'user_id' => 'integer',
         'career_id' => 'integer',
+        'cycle_id' => 'integer',
         'nationality_id' => 'integer',
         'province_id' => 'integer',
         'departament_id' => 'integer',
@@ -60,6 +63,11 @@ class Student extends Model
     public function career()
     {
         return $this->belongsTo(\App\Models\Models\Career::class);
+    }
+
+    public function cycle()
+    {
+        return $this->belongsTo(\App\Models\Models\Cycle::class);
     }
 
     public function nacionality()

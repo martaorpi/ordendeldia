@@ -14,7 +14,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function student_update(Request $request)
+    public function student_create(Request $request)
     {
         $rules = [
             'dni' => 'required|max:8|min:7',
@@ -37,6 +37,7 @@ class Controller extends BaseController
         }
         $input['slug'] = $request->first_name.' '.$request->last_name;
         $input['user_id'] = auth()->user()->id;
+        $input['cycle_id'] = 1;
         $this->validate($request, $rules);
         $student = Student::create($input);
 
@@ -55,6 +56,12 @@ class Controller extends BaseController
                 Documentation::create($input2);
             }
         }
+        //return redirect('formulario_update');
+        return redirect()->back();
+    }
+
+    public function student_update(Request $request)
+    {
         return redirect()->back();
     }
 }

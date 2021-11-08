@@ -27,7 +27,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::post('formulario-inscripcion', [Controller::class, 'student_update']);
+Route::post('formulario-inscripcion', [Controller::class, 'student_create']);
+Route::post('formulario-update', [Controller::class, 'student_update']);
 //Route::post('formulario-inscripcion','Controller@student_update');
 
 
