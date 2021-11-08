@@ -10,6 +10,7 @@
                     @if(!empty($formulario))
                         <b class="text-grey h2">Su solicitud está siendo procesada</b>
                         <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
+                        <a href="creatempdf?id=4" target="_blank" class="btn btn-md btn-primary login-submit-cs">Imprimir Formulario de Reinscipción</a>
                     @else
                         @include('pre-inscription')
                     @endif
