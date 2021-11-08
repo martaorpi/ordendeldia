@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\HtmlString;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -28,14 +29,13 @@ class AppServiceProvider extends ServiceProvider
     {
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl) {
             return (new MailMessage)
-                ->greeting("Hola")
+                ->greeting('Hola!')
                 ->subject(Lang::get('Verificación de Email'))
-                ->line(Lang::get('Por favor haga click en el botón de abajo para verificar su dirección de correo electrónico.'))
+                ->line(Lang::get('Por favor hacé click en el botón de abajo para verificar tu dirección de correo electrónico.'))
                 ->action(Lang::get('Confirmar Email'), $verificationUrl)
-                ->line(Lang::get('Si no creó una cuenta, no es necesario realizar ninguna otra acción.'));
-                /*->salutation(new HtmlString(
-                    Lang::get("Saludos.").'<br>' .'<strong>'. Lang::get("ISMP") . '</strong>'
-                ));*/
+                ->line(Lang::get('Si no creaste una cuenta, no es necesario realizar ninguna otra acción.'))
+                ->salutation(new HtmlString('Quedamos a tu disposición,<br><strong>Equipo ISMP</strong>'))
+                ->actionText(new HtmlString('Si tiene problemas para hacer click en el botón "Confirmar Email" , copia y pega la URL a continuación en el navegador:'));
         };
     }
 }
