@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
             ->subject(Lang::get('Restablecimiento de Contraseña'))
             ->line(Lang::get('Recibimos una solicitud de restablecimiento de contraseña para tu cuenta.'))
             ->action(Lang::get('Restablecer Contraseña'), $url)
-            ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+            ->line(Lang::get('Este link expira en :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
             ->line(Lang::get('Si no solicitaste un restablecimiento de contraseña, no es necesario realizar ninguna otra acción.'))
             ->salutation(new HtmlString('Quedamos a tu disposición,<br><strong>Equipo ISMP</strong>'));
         };
