@@ -32,3 +32,11 @@ Route::post('formulario-update', [Controller::class, 'student_update']);
 //Route::post('formulario-inscripcion','Controller@student_update');
 
 
+Route::get("test", function (Request $request) {
+    ini_set('memory_limit', '8192M');
+    $dompdf = App::make("dompdf.wrapper");
+    $dompdf->loadView("ejemplo", [
+        "nombre" => "Luis Cabrera Benito",
+    ]);
+    return $dompdf->stream();
+});
