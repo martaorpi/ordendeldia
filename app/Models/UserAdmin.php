@@ -10,16 +10,14 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;
 
 
-class Backpack extends Authenticatable
+class UserAdmin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use CrudTrait;
     use HasRoles;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
+
+    protected $table = 'users_admin';
+
     protected $fillable = [
         'name',
         'email',
