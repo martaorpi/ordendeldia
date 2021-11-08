@@ -177,6 +177,7 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'having trouble clicking the' => 'problema'
     ],
 
 ];
