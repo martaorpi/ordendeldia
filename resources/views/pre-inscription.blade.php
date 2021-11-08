@@ -41,16 +41,10 @@
     $carreras = App\Models\Career::get();
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
-    $departamentos = App\Models\Departament::get();
+    $departamentos = App\Models\Department::get();
     $localidades = App\Models\Location::get();
 @endphp
 
-<html>
-    <head>
-        <title>Formulario Preinscripcion</title>
-        {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>--}}
-    </head>
-    <body>
         <div class="mx-5 px-5 my-5">
             <h3 class="text-center"><b>FORMULARIO DE PREINSCRIPCIÓN</b></h3><br>
 
@@ -234,10 +228,9 @@
             </form>
         </div>
 
-    </body>
-</html>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 <script>
     $(function() {
