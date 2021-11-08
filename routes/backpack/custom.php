@@ -16,9 +16,7 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('carreras', 'CareerCrudController');
     Route::crud('examenes', 'ExamCrudController');
-    Route::crud('personal', 'PersonalCrudController');
     Route::crud('estudiantes', 'StudentCrudController');
-    Route::crud('menu-item', 'MenuItemCrudController');
 }); // this should be the absolute last line of this file
 
 Route::group(

@@ -39,6 +39,6 @@ class Career extends Model
 
     public function users()
     {
-        return $this->belongsToMany(\App\Models\Models\User::class);
+        return $this->belongsToMany(\App\Models\User::class);
     }
 }

@@ -4,9 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Models\Exam;
-use App\Models\Models\Subject;
-use App\Models\Models\User;
+use App\Models\Exam;
+use App\Models\Subject;
+use App\Models\User;
 
 class ExamFactory extends Factory
 {

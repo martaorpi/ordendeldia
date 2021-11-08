@@ -24,11 +24,14 @@ class CareerCrudController extends CrudController
      * 
      * @return void
      */
+
+
     public function setup()
     {
         CRUD::setModel(\App\Models\Career::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/carreras');
         CRUD::setEntityNameStrings('carrera', 'carreras');
+
     }
 
     /**
@@ -39,6 +42,8 @@ class CareerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->removeButton('create');
+
         //CRUD::setFromDb(); // columns
         CRUD::denyAccess(['show', 'delete']);
 

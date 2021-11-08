@@ -54,46 +54,46 @@ class Student extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     public function career()
     {
-        return $this->belongsTo(\App\Models\Models\Career::class);
+        return $this->belongsTo(\App\Models\Career::class);
     }
 
     public function nacionality()
     {
-        return $this->belongsTo(\App\Models\Models\Nacionality::class);
+        return $this->belongsTo(\App\Models\Nacionality::class);
     }
 
     public function province()
     {
-        return $this->belongsTo(\App\Models\Models\Province::class);
+        return $this->belongsTo(\App\Models\Province::class);
     }
 
     public function departament()
     {
-        return $this->belongsTo(\App\Models\Models\Departament::class);
+        return $this->belongsTo(\App\Models\Departament::class);
     }
 
     public function location()
     {
-        return $this->belongsTo(\App\Models\Models\Location::class);
+        return $this->belongsTo(\App\Models\Location::class);
     }
 
     public function documentation()
     {
-        return $this->belongsTo(\App\Models\Models\Documentation::class);
+        return $this->belongsTo(\App\Models\Documentation::class);
     }
 
     public function nationality()
     {
-        return $this->belongsTo(\App\Models\Models\Nationality::class);
+        return $this->belongsTo(\App\Models\Nationality::class);
     }
 
     public function exams()
     {
-        return $this->belongsToMany(\App\Models\Models\Exam::class);
+        return $this->belongsToMany(\App\Models\Exam::class);
     }
 }

@@ -39,11 +39,11 @@ class Exam extends Model
 
     public function subject()
     {
-        return $this->belongsTo(\App\Models\Models\Subject::class);
+        return $this->belongsTo(\App\Models\Subject::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 }
