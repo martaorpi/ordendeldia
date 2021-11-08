@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2021 a las 14:54:44
+-- Tiempo de generación: 08-11-2021 a las 15:02:43
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -121,7 +121,7 @@ INSERT INTO `departments` (`id`, `description`, `province_id`, `created_at`, `up
 CREATE TABLE `documentations` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `student_id` bigint(20) UNSIGNED NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `src` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1257,7 +1257,7 @@ CREATE TABLE `students` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dni` int(11) NOT NULL,
-  `year_income` int(11) NOT NULL,
+  `year_income` int(11) DEFAULT NULL,
   `address_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_number` int(11) DEFAULT NULL,
@@ -1493,7 +1493,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `documentations`
 --
 ALTER TABLE `documentations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `exams`
@@ -1565,7 +1565,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
