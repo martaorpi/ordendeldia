@@ -4,12 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Models\Career;
-use App\Models\Models\Location;
-use App\Models\Models\Nationality;
-use App\Models\Models\Province;
-use App\Models\Models\Student;
-use App\Models\Models\User;
+use App\Models\Career;
+use App\Models\Location;
+use App\Models\Nationality;
+use App\Models\Province;
+use App\Models\Student;
+use App\Models\User;
 
 class StudentFactory extends Factory
 {

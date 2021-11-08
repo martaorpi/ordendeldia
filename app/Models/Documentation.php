@@ -34,6 +34,6 @@ class Documentation extends Model
 
     public function student()
     {
-        return $this->belongsTo(\App\Models\Models\Student::class);
+        return $this->belongsTo(\App\Models\Student::class);
     }
 }

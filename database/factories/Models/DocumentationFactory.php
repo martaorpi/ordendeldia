@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Models\Documentation;
-use App\Models\Models\Student;
+use App\Models\Documentation;
+use App\Models\Student;
 
 class DocumentationFactory extends Factory
 {
