@@ -34,7 +34,8 @@ class AppServiceProvider extends ServiceProvider
                 ->line(Lang::get('Por favor hacé click en el botón de abajo para verificar tu dirección de correo electrónico.'))
                 ->action(Lang::get('Confirmar Email'), $verificationUrl)
                 ->line(Lang::get('Si no creaste una cuenta, no es necesario realizar ninguna otra acción.'))
-                ->salutation(new HtmlString('Gracias,<br><strong>ISMP</strong>'));
+                ->salutation(new HtmlString('Quedamos a tu disposición,<br><strong>Equipo ISMP</strong>'))
+                ->sybcopy(new HtmlString('Si tiene problemas para hacer click en el botón "Confirmar Email" , copia y pega la URL a continuación en el navegador:'));
         };
     }
 }
