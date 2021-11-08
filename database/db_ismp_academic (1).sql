@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2021 a las 15:02:43
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.4.13
+-- Tiempo de generación: 08-11-2021 a las 16:58:26
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_ismp_academico`
+-- Base de datos: `db_ismp_academic`
 --
 
 -- --------------------------------------------------------
@@ -63,6 +63,29 @@ CREATE TABLE `career_user` (
   `career_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cycles`
+--
+
+CREATE TABLE `cycles` (
+  `id` int(11) NOT NULL,
+  `denomination` varchar(60) NOT NULL,
+  `from_` date NOT NULL,
+  `until_` date NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `type` enum('Ingresantes','Cursantes') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Ingresantes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cycles`
+--
+
+INSERT INTO `cycles` (`id`, `denomination`, `from_`, `until_`, `updated_at`, `created_at`, `type`) VALUES
+(1, '2021 Ingresantes', '2020-01-28', '2021-05-26', '2021-05-29 04:01:23', '2021-05-27 02:57:17', 'Ingresantes');
 
 -- --------------------------------------------------------
 
@@ -121,7 +144,7 @@ INSERT INTO `departments` (`id`, `description`, `province_id`, `created_at`, `up
 CREATE TABLE `documentations` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `student_id` bigint(20) UNSIGNED NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `src` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1019,6 +1042,13 @@ CREATE TABLE `model_has_roles` (
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\UserAdmin', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1135,6 +1165,15 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(3, 'administrar-usuarios', 'web', '2021-03-15 15:56:55', '2021-03-15 15:56:55'),
+(6, 'dd', 'backpack', '2021-05-27 01:30:56', '2021-05-27 01:30:56'),
+(8, 'administracion-de-ingresantes', 'web', '2021-05-30 09:15:32', '2021-05-30 09:15:32');
+
 -- --------------------------------------------------------
 
 --
@@ -1229,6 +1268,13 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Admin de pruebas', 'web', '2021-11-08 18:09:21', '2021-11-08 18:09:21');
+
 -- --------------------------------------------------------
 
 --
@@ -1239,6 +1285,15 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(3, 1),
+(6, 1),
+(8, 1);
 
 -- --------------------------------------------------------
 
@@ -1257,7 +1312,7 @@ CREATE TABLE `students` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dni` int(11) NOT NULL,
-  `year_income` int(11) DEFAULT NULL,
+  `year_income` int(11) NOT NULL,
   `address_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_number` int(11) DEFAULT NULL,
@@ -1268,7 +1323,8 @@ CREATE TABLE `students` (
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `cycle_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1317,7 +1373,9 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IVTF9ipWUs', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
+(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lug3dg7leHyAShhNZnPZbhW2FjTkLRH4uBT5JNAgNI4SgCWfBDfaeEm1V9kb', '2021-11-08 05:34:55', '2021-11-08 05:34:55'),
+(3, 'admin', 'dii.renek@gmail.com', '2021-11-08 15:17:37', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'xbzjXIZJQXMCdN3ERm1e5geYRD6fDzlIsBTfpndLJrwPlaHVUoTH3FfIL6V7', '2021-11-08 18:15:49', '2021-11-08 18:15:49'),
+(4, 'monte daniel hernan', 'monitor@monitor', NULL, '$2y$10$Ia46kp0r05BJBq5oqaStmuppeFqxXrR3Zdpw0Hr6/U9ngXmNAcxgq', NULL, '2021-11-08 18:51:33', '2021-11-08 18:51:33');
 
 --
 -- Índices para tablas volcadas
@@ -1330,6 +1388,12 @@ ALTER TABLE `careers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `careers_ws_id_unique` (`ws_id`),
   ADD UNIQUE KEY `careers_slug_unique` (`slug`);
+
+--
+-- Indices de la tabla `cycles`
+--
+ALTER TABLE `cycles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `departments`
@@ -1457,7 +1521,8 @@ ALTER TABLE `students`
   ADD KEY `students_career_id_foreign` (`career_id`),
   ADD KEY `students_nationality_id_foreign` (`nationality_id`),
   ADD KEY `students_province_id_foreign` (`province_id`),
-  ADD KEY `students_location_id_foreign` (`location_id`);
+  ADD KEY `students_location_id_foreign` (`location_id`),
+  ADD KEY `cycle_id` (`cycle_id`);
 
 --
 -- Indices de la tabla `users`
@@ -1484,6 +1549,12 @@ ALTER TABLE `careers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `cycles`
+--
+ALTER TABLE `cycles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `departments`
 --
 ALTER TABLE `departments`
@@ -1493,7 +1564,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `documentations`
 --
 ALTER TABLE `documentations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `exams`
@@ -1535,7 +1606,7 @@ ALTER TABLE `nationalities`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `personals`
@@ -1559,13 +1630,13 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -1577,7 +1648,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `users_admin`
 --
 ALTER TABLE `users_admin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
