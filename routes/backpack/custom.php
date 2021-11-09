@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 // --------------------------
 // Custom Backpack Routes
@@ -22,7 +23,7 @@ Route::group([
 Route::group(
     [
         'prefix'     => config('backpack.base.route_prefix', 'admin'),
-        'middleware' => ['web', 'admin'],
+        'middleware' => ['web', 'admin', 'can:ddd'],
         'namespace'  => 'App\Http\Controllers\Admin',
     ], function () {
         Route::crud('cycle', 'CycleCrudController');
