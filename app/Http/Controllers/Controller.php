@@ -40,7 +40,7 @@ class Controller extends BaseController
             $input['location_id'] = 0;
         }
         //$input['department_id'] = 7;//$request->department_id;
-        $input['slug'] = $request->first_name.' '.$request->last_name;
+        //$input['slug'] = $request->first_name.' '.$request->last_name;
         $input['user_id'] = auth()->user()->id;
         //$input['created_at']
         //$cycle = Cycle::whereBetween('created_at', [$ageFrom, $ageTo])
