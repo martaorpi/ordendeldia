@@ -81,7 +81,7 @@
         
                 <div class="form-group row">
                     <div class="col-12">
-                        <hr class="linea_bordo">
+                        <hr class="linea_bordo mb-4">
                         <h6><b>DATOS PERSONALES</b></h6>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                 
                 <div class="form-group row">
                     <div class="col-12">
-                        <hr class="linea_bordo">
+                        <hr class="linea_bordo mb-4">
                         <h6><b>DIRECCION</b></h6>
                     </div>
                 </div>
