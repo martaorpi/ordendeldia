@@ -26,7 +26,7 @@ class StudentCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/estudiantes');
         CRUD::setEntityNameStrings('Estudiante', 'Estudiantes');
 
-        $this->crud->setShowView('form_pdf');
+        $this->crud->setShowView('vendor.backpack.student_view');
     }
 
 

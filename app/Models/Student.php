@@ -71,9 +71,9 @@ class Student extends Model
         return $this->belongsTo(\App\Models\Cycle::class);
     }
 
-    public function nacionality()
+    public function nationality()
     {
-        return $this->belongsTo(\App\Models\Nacionality::class);
+        return $this->belongsTo(\App\Models\Nationality::class);
     }
 
     public function province()
@@ -94,11 +94,6 @@ class Student extends Model
     public function documentation()
     {
         return $this->belongsTo(\App\Models\Documentation::class);
-    }
-
-    public function nationality()
-    {
-        return $this->belongsTo(\App\Models\Nationality::class);
     }
 
     public function exams()
