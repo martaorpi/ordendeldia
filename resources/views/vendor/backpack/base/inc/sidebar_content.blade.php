@@ -4,8 +4,8 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('cycle') }}'><i class='nav-icon la la-calendar-o'></i> Ciclos</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('carreras') }}'><i class='nav-icon la la-question'></i> Carreras</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('examenes') }}'><i class='nav-icon la la-question'></i> Examenes</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('estudiantes') }}'><i class='nav-icon la la-question'></i> Estudiantes</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('examenes') }}'><i class='nav-icon la la-question'></i> Examenes</a></li>--}}
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('estudiantes') }}'><i class='nav-icon la la-mortar-board'></i> Estudiantes</a></li>
 <!-- Users, Roles, Permissions -->
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Personal ISMP</a>

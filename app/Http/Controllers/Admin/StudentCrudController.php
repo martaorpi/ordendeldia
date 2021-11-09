@@ -14,38 +14,72 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class StudentCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    /**
-     * Configure the CrudPanel object. Apply settings to all operations.
-     * 
-     * @return void
-     */
+
     public function setup()
     {
         CRUD::setModel(\App\Models\Student::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/student');
-        CRUD::setEntityNameStrings('student', 'students');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/estudiantes');
+        CRUD::setEntityNameStrings('Estudiante', 'Estudiantes');
+
+        $this->crud->setShowView('form_pdf');
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
+
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        $this->crud->enableExportButtons();
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumn([
+            'name'=> 'first_name',
+            'label'=> 'Nombre',
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'last_name',
+            'label'=> 'Apellido',
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'dni',
+            'label'=> 'DNI',
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'career',
+            'label'=> 'Carrera',
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'cycle',
+            'label'=> 'Ciclo',
+        ]);
+
+        /************* FILTROS *************/
+
+        $this->crud->addFilter([
+            'name'  => 'career_id',
+            'type'  => 'select2',
+            'label' => 'Carrera'
+        ], function() {
+            return \App\Models\Career::all()->pluck('short_name', 'id')->toArray();
+        }, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'career_id', $value);
+        });
+
+        $this->crud->addFilter([
+            'name'  => 'cycle_id',
+            'type'  => 'select2',
+            'label' => 'Ciclo'
+        ], function() {
+            return \App\Models\Cycle::all()->pluck('denomination', 'id')->toArray();
+        }, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'cycle_id', $value);
+        });
     }
 
     /**
