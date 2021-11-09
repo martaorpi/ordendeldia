@@ -68,7 +68,7 @@ class Student extends Model
 
     public function cycle()
     {
-        return $this->belongsTo(\App\Models\Models\Cycle::class);
+        return $this->belongsTo(\App\Models\Cycle::class);
     }
 
     public function nacionality()
