@@ -91,7 +91,11 @@
         <table class="tableFila">
             <tr>
               <td class="tdSinEspacio">Nacionalidad: </td>
-              <td class="border-bottom border-dark">{{ $estudiante->nationality->description }}</td>
+              <td class="border-bottom border-dark">
+                @if($estudiante->nationality)
+                    {{ $estudiante->nationality->description }}
+                @endif
+              </td>
             </tr>
         </table>
       </td>
@@ -110,7 +114,11 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Provincia: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->province->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->province)
+                  {{ $estudiante->province->description }}
+              @endif
+            </td>
           </tr>
         </table>
       </td>
@@ -118,7 +126,11 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Departamento: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->department->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->department)
+                  {{ $estudiante->department->description }}
+              @endif
+            </td>
           </tr>
         </table>
       </td>
@@ -131,7 +143,11 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Localidad: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->location->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->location)
+                  {{ $estudiante->location->description }}
+              @endif
+            </td>
           </tr>
         </table>
       </td>

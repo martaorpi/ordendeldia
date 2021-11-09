@@ -31,12 +31,14 @@ class Controller extends BaseController
         $input = $request->all();
         if($request->nationality_id != 1){
             $input['province_id'] = 0;
+            $input['department_id'] = 0;
             $input['location_id'] = 0;
-            
-        }else{
-            $input['province_id'] = 2;
-            $input['location_id'] = 2;
         }
+        if($request->province_id != 1){
+            $input['department_id'] = 0;
+            $input['location_id'] = 0;
+        }
+        //$input['department_id'] = 7;//$request->department_id;
         $input['slug'] = $request->first_name.' '.$request->last_name;
         $input['user_id'] = auth()->user()->id;
         $input['cycle_id'] = 1;
@@ -49,12 +51,14 @@ class Controller extends BaseController
             if (!file_exists($carpeta)) {
                 mkdir($carpeta, 0777, true);
             }
-            foreach ($files as $file) {
+
+            foreach ($files as $clave => $file) {
                 $nombrearchivo  = $file->getClientOriginalName();
                 //$file->move(public_path($carpeta."/"),$nombrearchivo);
                 copy($file->getRealPath(),$carpeta."/".$nombrearchivo);
                 $input2['student_id'] = $student->id;
                 $input2['src'] = $carpeta."/".$nombrearchivo;
+                $input2['description'] = $input['description'.$clave];
                 Documentation::create($input2);
             }
         }
