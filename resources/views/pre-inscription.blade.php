@@ -44,7 +44,7 @@
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
     $departamentos = App\Models\Department::get();
-    $localidades = App\Models\Location::get();
+    //$localidades = App\Models\Location::orderBy('description', 'asc')->get();
 @endphp
 
 <div class="mx-5 px-5 my-5">

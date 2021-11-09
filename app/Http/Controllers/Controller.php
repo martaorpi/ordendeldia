@@ -72,7 +72,7 @@ class Controller extends BaseController
     }
 
     public function getLocalidades($id){
-        $localidades = Location::where('department_id', $id)->get();
+        $localidades = Location::where('department_id', $id)->orderBy('description', 'asc')->get();
         return response()->json($localidades);
     }
 
