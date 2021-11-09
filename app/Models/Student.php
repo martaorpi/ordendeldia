@@ -22,13 +22,14 @@ class Student extends Model
         'cycle_id',
         'nationality_id',
         'province_id',
+        'department_id',
         'location_id',
         'location_description',
         'last_name',
         'first_name',
         'dni',
         'year_income',
-        'address_district',
+        'address',
         'address_street',
         'address_number',
         'address_flat',
@@ -50,7 +51,7 @@ class Student extends Model
         'cycle_id' => 'integer',
         'nationality_id' => 'integer',
         'province_id' => 'integer',
-        'departament_id' => 'integer',
+        'department_id' => 'integer',
         'location_id' => 'integer',
     ];
 
@@ -80,9 +81,9 @@ class Student extends Model
         return $this->belongsTo(\App\Models\Province::class);
     }
 
-    public function departament()
+    public function department()
     {
-        return $this->belongsTo(\App\Models\Departament::class);
+        return $this->belongsTo(\App\Models\Department::class);
     }
 
     public function location()
