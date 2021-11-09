@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+
+
 <style>
 .center {
   margin: auto;
@@ -30,7 +32,10 @@
 <table border="0">
     <tr>
         <td>
-            <img src="images/logo.jpg" width="150">
+
+          <img src="{{ asset('images/logo.jpg') }}" width="150">
+
+
         </td>
         <td>
             <table class="center h6" border="1">
@@ -91,7 +96,10 @@
         <table class="tableFila">
             <tr>
               <td class="tdSinEspacio">Nacionalidad: </td>
-              <td class="border-bottom border-dark">{{ $estudiante->nationality->description }}</td>
+              <td class="border-bottom border-dark">
+                @if ($estudiante->nationality)
+                  {{ $estudiante->nationality->description }}</td>
+                @endif
             </tr>
         </table>
       </td>
@@ -110,7 +118,10 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Provincia: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->province->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->province)
+                {{ $estudiante->province->description }}</td>
+              @endif
           </tr>
         </table>
       </td>
@@ -118,7 +129,12 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Departamento: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->department->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->department)
+                {{ $estudiante->department->description }}
+              @endif
+              
+            </td>
           </tr>
         </table>
       </td>
@@ -131,7 +147,11 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Localidad: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->location->description }}</td>
+            <td class="border-bottom border-dark">
+              @if ($estudiante->location)
+                {{ $estudiante->location->description }}
+              @endif
+            </td>
           </tr>
         </table>
       </td>
