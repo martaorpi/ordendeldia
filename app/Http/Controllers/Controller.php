@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Student;
 use App\Models\Documentation;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class Controller extends BaseController
@@ -63,5 +64,10 @@ class Controller extends BaseController
     public function student_update(Request $request)
     {
         return redirect()->back();
+    }
+
+    public function getLocalidades($id){
+        $localidades = Location::where('department_id', $id)->get();
+        return response()->json($localidades);
     }
 }

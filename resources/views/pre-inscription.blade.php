@@ -149,9 +149,9 @@
                         <label for="localidad">Localidad</label>
                         <select class="form-control selectpicker" data-live-search="true" id="localidad" name="location_id" disabled>
                             <option value="">Seleccione</option>
-                            @foreach ($localidades as $localidad)
+                            {{--@foreach ($localidades as $localidad)
                                 <option value="{{ $localidad->id }}" {{(old('locationt_id')==$localidad->id)? 'selected':''}}>{{ $localidad->description }}</option>
-                            @endforeach
+                            @endforeach--}}
                         </select>
                     </div>
                 </div>
@@ -247,24 +247,26 @@
             </form>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     $(function() {
-        /*if(document.getElementById('nacionalidad').value == 1){
+        if(document.getElementById('nacionalidad').value == 1){
             $("#provincia").attr('disabled',false);
             $('#provincia').selectpicker('refresh');
 
-            $("#departamento").attr('disabled',false);
-            $("#departamento").prop('required',true);
-            $('#departamento').selectpicker('refresh');
+            //$("#departamento").attr('disabled',false);
+            //$("#departamento").prop('required',true);
+            //$('#departamento').selectpicker('refresh');
 
-            $("#localidad").attr('disabled',false);
-            $("#localidad").prop('required',true);
-            $('#localidad').selectpicker('refresh');
+            //$("#localidad").attr('disabled',false);
+            //$("#localidad").prop('required',true);
+            //$('#localidad').selectpicker('refresh');
         }
         
-        if(document.getElementById('provincia').value != 0){
-            $.get("getDptos/"+document.getElementById('provincia').value,function(response,indicador){
+        if(document.getElementById('provincia').value == 1){
+            $("#departamento").attr('disabled',false);
+            $("#departamento").prop('required',true);
+            /*$.get("getDptos/"+document.getElementById('provincia').value,function(response,indicador){
                 $("#departamento").empty();
                 for(i=0; i<response.length; i++){
                     $("#departamento").append("<option value='"+response[i].id_departamento+"'>"+response[i].descripcion+"</option>");
@@ -280,20 +282,21 @@
                         $('#localidad').selectpicker('refresh');
                     });
                 }
-            });   
-        }*/
+            });*/   
+        }
 
         $("#nacionalidad").change( function(event) {
             if ($(this).val() == 1) {
                 $("#provincia").attr('disabled',false);
+                $("#provincia").prop('required',true);
                 //$('#provincia').selectpicker('refresh');
 
-                $("#departamento").attr('disabled',false);
-                $("#departamento").prop('required',true);
+                //$("#departamento").attr('disabled',false);
+                //$("#departamento").prop('required',true);
                 //$('#departamento').selectpicker('refresh');
 
-                $("#localidad").attr('disabled',false);
-                $("#localidad").prop('required',true);
+                //$("#localidad").attr('disabled',false);
+                //$("#localidad").prop('required',true);
                 //$('#localidad').selectpicker('refresh');
             } else {
                 $("#provincia").attr('disabled',true);
@@ -307,8 +310,18 @@
             }
         });
  
-        /*$("#provincia").change(function(event){
-            $.get("getDptos/"+event.target.value,function(response,indicador){
+        $("#provincia").change(function(event){
+            if ($(this).val() == 1) {
+                $("#departamento").attr('disabled',false);
+                $("#departamento").prop('required',true);
+            } else {
+                $("#departamento").attr('disabled',true);
+                $('#departamento').selectpicker('refresh');
+
+                $("#localidad").attr('disabled',true);
+                $('#localidad').selectpicker('refresh');
+            }
+            /*$.get("getDptos/"+event.target.value,function(response,indicador){
                 $("#departamento").empty();
                 for(i=0; i<response.length; i++){
                     $("#departamento").append("<option value='"+response[i].id_departamento+"'>"+response[i].descripcion+"</option>");
@@ -322,18 +335,20 @@
                     }
                     $('#localidad').selectpicker('refresh');
                 });
-            });
+            });*/
         });
 
         $("#departamento").change(function(event){
+            $("#localidad").attr('disabled',false);
+            $("#localidad").prop('required',true);
             $.get("getLocalidades/"+event.target.value,function(response,indicador){
                 $("#localidad").empty();
                 for(i=0; i<response.length; i++){
-                    $("#localidad").append("<option value='"+response[i].id_localidad+"'>"+response[i].descripcion+"</option>");
+                    $("#localidad").append("<option value='"+response[i].id+"'>"+response[i].description+"</option>");
                 }
-                $('#localidad').selectpicker('refresh');
+                //$('#localidad').selectpicker('refresh');
             });
-        });*/
+        });
     });
 
     function toggleCheckbox(element)
