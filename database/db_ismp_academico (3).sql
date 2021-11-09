@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2021 a las 12:50:42
+-- Tiempo de generación: 09-11-2021 a las 14:06:31
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -1234,6 +1234,7 @@ CREATE TABLE `students` (
   `cycle_id` bigint(20) NOT NULL,
   `nationality_id` bigint(20) UNSIGNED NOT NULL,
   `province_id` bigint(20) UNSIGNED NOT NULL,
+  `department_id` bigint(20) NOT NULL,
   `location_id` bigint(20) UNSIGNED NOT NULL,
   `location_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1257,8 +1258,8 @@ CREATE TABLE `students` (
 -- Volcado de datos para la tabla `students`
 --
 
-INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_id`, `province_id`, `location_id`, `location_description`, `last_name`, `first_name`, `dni`, `year_income`, `address`, `address_street`, `address_number`, `address_flat`, `address_departament`, `address_cp`, `status`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(5, 1, 2, 1, 1, 2, 2, NULL, 'Orpi', 'Marta', 29376926, NULL, 'prueba', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'Marta Orpi', NULL, '2021-11-09 14:49:22', '2021-11-09 14:49:22');
+INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_id`, `province_id`, `department_id`, `location_id`, `location_description`, `last_name`, `first_name`, `dni`, `year_income`, `address`, `address_street`, `address_number`, `address_flat`, `address_departament`, `address_cp`, `status`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(5, 1, 2, 1, 1, 2, 7, 2, NULL, 'Orpi', 'Marta', 29376926, NULL, 'prueba', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'Marta Orpi', NULL, '2021-11-09 14:49:22', '2021-11-09 14:49:22');
 
 -- --------------------------------------------------------
 
@@ -1447,7 +1448,8 @@ ALTER TABLE `students`
   ADD KEY `students_nationality_id_foreign` (`nationality_id`),
   ADD KEY `students_province_id_foreign` (`province_id`),
   ADD KEY `students_location_id_foreign` (`location_id`),
-  ADD KEY `cycle_id` (`cycle_id`);
+  ADD KEY `cycle_id` (`cycle_id`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indices de la tabla `users`

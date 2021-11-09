@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\Documentation;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class Controller extends BaseController
 {
@@ -69,5 +70,14 @@ class Controller extends BaseController
     public function getLocalidades($id){
         $localidades = Location::where('department_id', $id)->get();
         return response()->json($localidades);
+    }
+
+    public function form_pdf(Request $request){
+        $input = $request->all();
+        $estudiante = Student::where('user_id', $input['id'])->with(['province','department','nationality'])->get();
+        $pdf = PDF::loadView("form_pdf", [
+            "estudiante" => $estudiante[0],
+        ]);
+        return $pdf->stream('Formulario N° '.$estudiante[0]->dni.'.pdf');
     }
 }
