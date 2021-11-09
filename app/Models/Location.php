@@ -26,5 +26,6 @@ class Location extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'department_id' => 'integer',
     ];
 }
