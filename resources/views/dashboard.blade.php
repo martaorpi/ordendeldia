@@ -11,7 +11,12 @@
                                 <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
                             </div>
                             <div class="col-12 col-lg-5 text-right">
-                                <a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>
+                                <form action="{{url('/form_pdf')}}" method="post" target="_blank">
+                                    @csrf
+                                    <input type="hidden" id="id" name="id" value="{{auth()->user()->id}}"><br><br>
+                                    <input type="submit" value="Formulario de Inscipción" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">
+                                </form>
+                                {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
                             </div>
                         </div>
                     @else

@@ -32,14 +32,17 @@ Route::post('formulario-update', [Controller::class, 'student_update']);
 //Route::post('formulario-inscripcion','Controller@student_update');
 
 
-Route::get("form_pdf", function (Request $request) {
+/*Route::get("form_pdf", function (Request $request) {
     $dompdf = App::make("dompdf.wrapper");
     
     $dompdf->loadView("form_pdf", [
         "estudiante" => auth()->user()->student[0],
     ]);
     return $dompdf->stream('Formulario N° '.auth()->user()->student[0]->dni);
-});
+});*/
+
+
+Route::post('form_pdf', [Controller::class, 'form_pdf']);
 
 Route::get("form_pdf_post", function (Request $request) {
 
