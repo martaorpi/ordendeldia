@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Student;
 use App\Models\Documentation;
 use App\Models\Location;
+use App\Models\Cycle;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -41,6 +42,9 @@ class Controller extends BaseController
         //$input['department_id'] = 7;//$request->department_id;
         $input['slug'] = $request->first_name.' '.$request->last_name;
         $input['user_id'] = auth()->user()->id;
+        //$input['created_at']
+        //$cycle = Cycle::whereBetween('created_at', [$ageFrom, $ageTo])
+        
         $input['cycle_id'] = 1;
         $this->validate($request, $rules);
         $student = Student::create($input);

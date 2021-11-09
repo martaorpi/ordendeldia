@@ -22,7 +22,7 @@ class Cycle extends Model {
   // protected $hidden = [];
   // protected $dates = [];
 
-  protected $fillable = ['denomination', 'from_', 'until_', 'type'];
+  protected $fillable = ['description', 'from_', 'until_', 'type', 'status'];
 
   /*
   |--------------------------------------------------------------------------

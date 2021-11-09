@@ -41,6 +41,7 @@
 
 @php
     $carreras = App\Models\Career::get();
+    $estudiantes_carrera = App\Models\Student::select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
     $departamentos = App\Models\Department::get();
@@ -74,8 +75,20 @@
                 <label for="carrera">Carrera Nivel Superior No Universitario</label>
                 <select class="form-control" id="carrera" name="career_id" required>
                     <option value="">Seleccione</option>
-                    @foreach ($carreras as $carrera)
-                        <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                    @foreach ($carreras as $key => $carrera)
+                        @if ($carrera->status == 'Abierta')
+                            @if (!empty($estudiantes_carrera[$key]))
+                                @if ($estudiantes_carrera[$key]->total < $carrera->cupo)
+                                    <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                                @else
+                                    <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Sin cupo)</i></option>
+                                @endif
+                            @else
+                                <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                            @endif
+                        @else
+                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Cerrada)</i></option>
+                        @endif
                     @endforeach
                 </select>
             </div>
