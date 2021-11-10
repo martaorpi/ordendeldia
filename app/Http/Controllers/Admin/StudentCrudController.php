@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use \App\Models\Log;
 
 /**
  * Class StudentCrudController
@@ -129,10 +130,18 @@ class StudentCrudController extends CrudController
     public function rejected($id, Request $request) 
     {  
         $student = $this->crud->model::find($id);
+        $input = $request->all();
+
+        $log = new Log;
+        $log->user_admin_id = auth()->user()->id;
+        $log->student_id = $id;
+        $log->text = $input['val'];
+        $log->type = 'Rechazados';
+        $log->save();
         
         $student->status = 'Rechazado';
         if($student->save()){
-            return ["status" => 200];
+            return ["status" => $input];
         }else{
             return ["status" => 400];
         }
