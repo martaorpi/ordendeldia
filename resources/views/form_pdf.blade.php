@@ -35,7 +35,7 @@
         <td>
             <table class="center h6" border="1">
                 <tr>
-                    <th colspan="3" class="text-center h5 negrita" >Solicitud de Inscripcion {{ Date('Y') }}</td>
+                    <th colspan="3" class="text-center h5 negrita" >Solicitud de Inscripcion {{ $estudiante->cycle->description }}</td>
                 </tr>
                 <tr>
                     <td class="text-center" id="formFecha">{{ date('d/m/Y',strtotime($estudiante->created_at)) }}</td>
