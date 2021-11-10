@@ -111,4 +111,9 @@ class Student extends Model
     {
         return $this->belongsToMany(\App\Models\Exam::class);
     }
+    
+    public function log()
+    {
+        return $this->hasMany(\App\Models\Log::class);
+    }
 }

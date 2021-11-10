@@ -43,4 +43,10 @@ class UserAdmin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+    public function log()
+    {
+        return $this->hasMany(\App\Models\Log::class);
+    }
 }
