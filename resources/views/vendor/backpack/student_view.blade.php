@@ -6,7 +6,7 @@
       <!-- Breadcrumb-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">Panel</li>
-        <li class="breadcrumb-item"><a href="{{ backpack_url('estudiantes') }}">Estudiantes</a></li>
+        <li class="breadcrumb-item"><a href="{{ backpack_url('student?cycle_id=1&status=Solicitado') }}">Pre-inscriptos</a></li>
         <li class="breadcrumb-item active">{{$entry->last_name}}, {{$entry->first_name}}</li>
       </ol>
       <div class="container-fluid">
