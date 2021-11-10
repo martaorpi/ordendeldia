@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\StudentRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -125,7 +126,7 @@ class StudentCrudController extends CrudController
 
     /******************************************** FUNCIONES EXTRAS ********************************************/        
 
-    public function rejected($id) 
+    public function rejected($id, Request $request) 
     {  
         $student = $this->crud->model::find($id);
         
