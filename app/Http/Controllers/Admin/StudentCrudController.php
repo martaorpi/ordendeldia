@@ -76,10 +76,21 @@ class StudentCrudController extends CrudController
             'type'  => 'select2',
             'label' => 'Ciclo'
         ], function() {
-            return \App\Models\Cycle::all()->pluck('denomination', 'id')->toArray();
+            return \App\Models\Cycle::all()->pluck('description', 'id')->toArray();
         }, function($value) { // if the filter is active
             $this->crud->addClause('where', 'cycle_id', $value);
         });
+
+        $this->crud->addFilter([
+            'name'  => 'status',
+            'type'  => 'dropdown',
+            'label' => 'Estado'
+        ], [
+            'Solicitado' => 'Solicitado',
+            'Aprobado'=> 'Aprobado',
+            'Inscripto' => 'Inscripto',
+            'Rechazado' => 'Rechazado',
+        ]);
     }
 
     /**
