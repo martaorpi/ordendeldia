@@ -169,9 +169,9 @@ class StudentCrudController extends CrudController
     
     public function signUp($id){
         $student = $this->crud->model::find($id);
-        //$user_dni = "$student->dni";
-        //$pass_dni = $user_dni[2].$user_dni[3].$user_dni[4].$user_dni[5].$user_dni[6].$user_dni[7];
-        $email_destino = 'martich82@gmail.com';
+        $email_destino = $student->user->email;
+        $user_dni = "$student->dni";
+        $pass_dni = $user_dni[2].$user_dni[3].$user_dni[4].$user_dni[5].$user_dni[6].$user_dni[7];
         $cuerpo = '<style>
         .footer-copyright-area {
             background: linear-gradient(178deg, #e12503 0%, #85060c 100%);
@@ -210,14 +210,10 @@ class StudentCrudController extends CrudController
             </head>
             <body style="margin: 0; padding: 0;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="500">
-                    <tr>
-                        <td align="center" bgcolor="#70bbd9">
-                            <img src="http://synergysoft.host/porres/img/cabecera_mail.jpeg" width="100%" height="35%" style="display: block;" />
-                        </td>
-                    </tr>
+                    
                     <tr style="padding-bottom:0">
                         <td align="left" bgcolor="#fff" style="border-left: 1px solid grey;border-right: 1px solid grey;">
-                            <img src="http://synergysoft.host/porres/img/instituto.jpg" width="150" style="margin-bottom:0"/>
+                            <img src="https://devweb.com.ar/ismp.academico/images/logo.jpg" width="150" style="margin-bottom:0"/>
                         </td>
                     </tr>
                     <tr>
@@ -249,7 +245,7 @@ class StudentCrudController extends CrudController
                                 <tr>
                                     <td>
                                         <b style="color:#a52929">INGRESA AL <a href="http://190.105.227.212/consultas/Account/Login" class="link">SISTEMA DE PAGO</a><br>
-                                        Tu usuario es <b>29376926</b> y tu clave es <b></b><br>
+                                        Tu usuario es <b>'.$user_dni.'</b> y tu clave es <b>'.$pass_dni.'</b><br>
                                         Imprimí el cupón y pagalo en Sol Pago o Banco Santiago</b>
                                     </td>
                                 </tr>
@@ -274,7 +270,6 @@ class StudentCrudController extends CrudController
         </html>';
 
         $this->sendMail($email_destino,$cuerpo);
-        return 200;
     }
 
     public function signUp2($id) 
