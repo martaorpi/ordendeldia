@@ -19,7 +19,7 @@ Route::group([
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
-    'middleware' => ['web', 'admin', 'can:configurar'],
+    'middleware' => ['web', 'admin', 'can:configuracion'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('carreras', 'CareerCrudController');
