@@ -136,7 +136,7 @@
         });
     });
 
-    $( "#btnRejected" ).click(function() {
+    /*$( "#btnRejected" ).click(function() {
       $.post("rejected")
         .done(function (result, status, xhr) {
           console.log(result)
@@ -144,7 +144,27 @@
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
         });
+    });*/
+
+
+    $( "#btnRejected" ).click(function() {
+      swal("Write something here:", {
+        content: "input",
+      })
+      .then((value) => {
+        $.post("rejected",{
+          val: value
+        })
+        .done(function (result, status, xhr) {
+          console.log(result)
+        })
+        .fail(function (xhr, status, error) {
+          console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        });
+
+      });
     });
+
   </script>
 
 @endsection

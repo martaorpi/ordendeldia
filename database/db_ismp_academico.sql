@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2021 a las 14:06:31
+-- Tiempo de generación: 10-11-2021 a las 15:24:26
 -- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.4.13
+-- Versión de PHP: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,11 +47,11 @@ CREATE TABLE `careers` (
 --
 
 INSERT INTO `careers` (`id`, `title`, `short_name`, `amount`, `available_space`, `ws_id`, `duration`, `status`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Trabajo Social', 'Trabajo Social', 8000, 4, 1, 4, 'Abierta', 'Trabajo-Social', NULL, NULL, NULL),
-(2, 'Técnico Superior en Hemoterapia', 'Hemoterapia', 8000, 30, 2, 3, 'Abierta', 'Hemoterapia', NULL, NULL, NULL),
-(3, 'Técnico Superior en Laboratorio', 'Laboratorio', 8000, 40, 3, 3, 'Abierta', 'Laboratorio', NULL, NULL, NULL),
-(4, 'Técnico Superior en Instrumentación Quirúrgica', 'Instrumentación Quirúrgica', 9000, 50, 4, 3, 'Abierta', 'Instrumentación-Quirúrgica', NULL, NULL, NULL),
-(5, 'Técnico Superior en Radiología', 'Radiología', 9000, 60, 5, 3, 'Abierta', 'Radiologia', NULL, NULL, NULL);
+(1, 'Trabajo Social', 'Trabajo Social', 13000, 30, 1, 4, 'Abierta', 'Trabajo-Social', NULL, NULL, '2021-11-10 00:46:31'),
+(2, 'Técnico Superior en Hemoterapia', 'Hemoterapia', 13000, 30, 2, 3, 'Abierta', 'Hemoterapia', NULL, NULL, '2021-11-09 14:45:18'),
+(3, 'Técnico Superior en Laboratorio', 'Laboratorio', 13000, 30, 3, 3, 'Abierta', 'Laboratorio', NULL, NULL, '2021-11-10 01:41:44'),
+(4, 'Técnico Superior en Instrumentación Quirúrgica', 'Instrumentación Quirúrgica', 16000, 30, 4, 3, 'Abierta', 'Instrumentación-Quirúrgica', NULL, NULL, '2021-11-10 01:42:07'),
+(5, 'Técnico Superior en Radiología', 'Radiología', 16000, 30, 5, 3, 'Abierta', 'Radiologia', NULL, NULL, '2021-11-10 01:41:56');
 
 -- --------------------------------------------------------
 
@@ -63,6 +63,29 @@ CREATE TABLE `career_user` (
   `career_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cycles`
+--
+
+CREATE TABLE `cycles` (
+  `id` int(11) NOT NULL,
+  `description` varchar(60) NOT NULL,
+  `from_` date NOT NULL,
+  `until_` date NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `type` enum('Ingresantes','Cursantes') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Ingresantes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cycles`
+--
+
+INSERT INTO `cycles` (`id`, `description`, `from_`, `until_`, `updated_at`, `created_at`, `type`) VALUES
+(1, '2022', '2020-01-28', '2021-05-26', '2021-05-29 04:01:23', '2021-05-27 02:57:17', 'Ingresantes');
 
 -- --------------------------------------------------------
 
@@ -132,9 +155,42 @@ CREATE TABLE `documentations` (
 --
 
 INSERT INTO `documentations` (`id`, `student_id`, `description`, `src`, `created_at`, `updated_at`) VALUES
-(7, 5, NULL, 'public/uploads/29376926/DEVWEB-ISMP.pdf', '2021-11-09 14:49:22', '2021-11-09 14:49:22'),
-(8, 5, NULL, 'public/uploads/29376926/sin-sonido.png', '2021-11-09 14:49:22', '2021-11-09 14:49:22'),
-(9, 5, NULL, 'public/uploads/29376926/party-popper.png', '2021-11-09 14:49:22', '2021-11-09 14:49:22');
+(1, 18, 'Certificado de Estudios', 'public/uploads/26640748/Certificado Analítico.pdf', '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
+(2, 18, 'Fotocopia de DNI', 'public/uploads/26640748/Fotocopia DNI.pdf', '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
+(3, 18, 'Foto Carnet', 'public/uploads/26640748/Foto Carnet.pdf', '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
+(4, 19, 'Certificado de Estudios', 'public/uploads/26640749/Certificado Analítico.pdf', '2021-11-10 01:17:41', '2021-11-10 01:17:41'),
+(5, 19, 'Fotocopia de DNI', 'public/uploads/26640749/Fotocopia DNI.pdf', '2021-11-10 01:17:41', '2021-11-10 01:17:41'),
+(6, 19, 'Foto Carnet', 'public/uploads/26640749/Foto Carnet.pdf', '2021-11-10 01:17:41', '2021-11-10 01:17:41'),
+(7, 20, 'Certificado de Estudios', 'public/uploads/40527810/20211110_075828.jpg', '2021-11-10 10:57:30', '2021-11-10 10:57:30'),
+(8, 20, 'Fotocopia de DNI', 'public/uploads/40527810/20211110_075755.jpg', '2021-11-10 10:57:30', '2021-11-10 10:57:30'),
+(9, 20, 'Foto Carnet', 'public/uploads/40527810/20211110_075734.jpg', '2021-11-10 10:57:30', '2021-11-10 10:57:30'),
+(10, 21, 'Certificado de Estudios', 'public/uploads/38555526/16365439650553218177737484479922.jpg', '2021-11-10 11:36:21', '2021-11-10 11:36:21'),
+(11, 21, 'Fotocopia de DNI', 'public/uploads/38555526/16365440223622754307344508926514.jpg', '2021-11-10 11:36:21', '2021-11-10 11:36:21'),
+(12, 21, 'Foto Carnet', 'public/uploads/38555526/16365440457576544276579311332493.jpg', '2021-11-10 11:36:21', '2021-11-10 11:36:21'),
+(13, 22, 'Certificado de Estudios', 'public/uploads/43497739/20211110_082533.jpg', '2021-11-10 11:57:35', '2021-11-10 11:57:35'),
+(14, 22, 'Fotocopia de DNI', 'public/uploads/43497739/16365453216598553565324027128729.jpg', '2021-11-10 11:57:35', '2021-11-10 11:57:35'),
+(15, 22, 'Foto Carnet', 'public/uploads/43497739/IMG-20210912-WA0020.jpg', '2021-11-10 11:57:35', '2021-11-10 11:57:35'),
+(16, 23, 'Certificado de Estudios', 'public/uploads/44704752/Imagen (2).jpg', '2021-11-10 12:01:56', '2021-11-10 12:01:56'),
+(17, 23, 'Fotocopia de DNI', 'public/uploads/44704752/Imagen (9).jpg', '2021-11-10 12:01:56', '2021-11-10 12:01:56'),
+(18, 23, 'Foto Carnet', 'public/uploads/44704752/Imagen (11).jpg', '2021-11-10 12:01:56', '2021-11-10 12:01:56'),
+(19, 24, 'Certificado de Estudios', 'public/uploads/45158654/16365464775803406058297808816688.jpg', '2021-11-10 12:16:12', '2021-11-10 12:16:12'),
+(20, 24, 'Fotocopia de DNI', 'public/uploads/45158654/16365464173903253969588048304428.jpg', '2021-11-10 12:16:12', '2021-11-10 12:16:12'),
+(21, 24, 'Foto Carnet', 'public/uploads/45158654/16365464353318794555464043186716.jpg', '2021-11-10 12:16:12', '2021-11-10 12:16:12'),
+(22, 25, 'Certificado de Estudios', 'public/uploads/34695822/CamScanner 11-10-2021 09.12.jpg', '2021-11-10 12:18:05', '2021-11-10 12:18:05'),
+(23, 25, 'Fotocopia de DNI', 'public/uploads/34695822/20211110_091050.jpg', '2021-11-10 12:18:05', '2021-11-10 12:18:05'),
+(24, 25, 'Foto Carnet', 'public/uploads/34695822/20211110_091457.jpg', '2021-11-10 12:18:05', '2021-11-10 12:18:05'),
+(25, 26, 'Certificado de Estudios', 'public/uploads/42689379/inbound5711335122496595639.pdf', '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
+(26, 26, 'Fotocopia de DNI', 'public/uploads/42689379/inbound1040717509815019890.pdf', '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
+(27, 26, 'Foto Carnet', 'public/uploads/42689379/inbound2626235012276078261.jpg', '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
+(28, 27, 'Certificado de Estudios', 'public/uploads/44704126/WhatsApp Image 2021-11-10 at 09.03.32.jpeg', '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
+(29, 27, 'Fotocopia de DNI', 'public/uploads/44704126/WhatsApp Image 2021-11-10 at 09.04.53.jpeg', '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
+(30, 27, 'Foto Carnet', 'public/uploads/44704126/WhatsApp Image 2021-11-10 at 09.05.19.jpeg', '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
+(31, 28, 'Certificado de Estudios', 'public/uploads/45661209/16365468135812190663072276149818.jpg', '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
+(32, 28, 'Fotocopia de DNI', 'public/uploads/45661209/IMG_20190205_114029435.jpg', '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
+(33, 28, 'Foto Carnet', 'public/uploads/45661209/IMG_20190205_114037509.jpg', '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
+(34, 31, 'Certificado de Estudios', 'public/uploads/40285869/002.jpg', '2021-11-10 16:54:43', '2021-11-10 16:54:43'),
+(35, 31, 'Fotocopia de DNI', 'public/uploads/40285869/70.png', '2021-11-10 16:54:43', '2021-11-10 16:54:43'),
+(36, 31, 'Foto Carnet', 'public/uploads/40285869/beca.png', '2021-11-10 16:54:43', '2021-11-10 16:54:43');
 
 -- --------------------------------------------------------
 
@@ -924,6 +980,22 @@ INSERT INTO `locations` (`id`, `description`, `department_id`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(20) NOT NULL,
+  `user_admin_id` int(20) NOT NULL,
+  `student_id` int(20) NOT NULL,
+  `text` text DEFAULT NULL,
+  `type` enum('Rechazados','Email') NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `menu_items`
 --
 
@@ -999,6 +1071,13 @@ CREATE TABLE `model_has_roles` (
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\UserAdmin', 1);
 
 -- --------------------------------------------------------
 
@@ -1116,6 +1195,15 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(5, 'configuracion', 'backpack', '2021-11-10 03:01:18', '2021-11-10 01:03:06'),
+(6, 'administracion_del_personal', 'backpack', '2021-11-10 03:02:45', '2021-11-10 01:03:44'),
+(7, 'administracion_academica', 'backpack', '2021-11-10 03:06:20', '2021-11-10 03:06:20');
+
 -- --------------------------------------------------------
 
 --
@@ -1210,6 +1298,13 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'backpack', '2021-11-10 03:01:30', '2021-11-10 03:01:30');
+
 -- --------------------------------------------------------
 
 --
@@ -1220,6 +1315,15 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(5, 1),
+(6, 1),
+(7, 1);
 
 -- --------------------------------------------------------
 
@@ -1234,7 +1338,7 @@ CREATE TABLE `students` (
   `cycle_id` bigint(20) NOT NULL,
   `nationality_id` bigint(20) UNSIGNED NOT NULL,
   `province_id` bigint(20) UNSIGNED NOT NULL,
-  `department_id` bigint(20) NOT NULL,
+  `department_id` bigint(20) UNSIGNED NOT NULL,
   `location_id` bigint(20) UNSIGNED NOT NULL,
   `location_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1259,7 +1363,18 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_id`, `province_id`, `department_id`, `location_id`, `location_description`, `last_name`, `first_name`, `dni`, `year_income`, `address`, `address_street`, `address_number`, `address_flat`, `address_departament`, `address_cp`, `status`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(5, 1, 2, 1, 1, 2, 7, 2, NULL, 'Orpi', 'Marta', 29376926, NULL, 'prueba', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'Marta Orpi', NULL, '2021-11-09 14:49:22', '2021-11-09 14:49:22');
+(18, 1, 2, 1, 1, 1, 7, 2, NULL, 'Garcia', 'Victor', 26640748, NULL, 'Castelli\r\n118', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'garcia', NULL, '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
+(19, 2, 3, 1, 1, 1, 5, 137, NULL, 'Garcia', 'Victor', 26640749, NULL, 'RUTA NAC. 34 VIEJA KM 2,3. CALLE PUBLICA S/N LOTE 4-2B, EL POLEAR', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'garcia-1', NULL, '2021-11-10 01:17:41', '2021-11-10 01:17:41'),
+(20, 3, 5, 1, 1, 1, 7, 2, NULL, 'Barrera', 'Lidia Liliana', 40527810, NULL, 'Arenales y defensa N 556 Barrio Parque', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'barrera', NULL, '2021-11-10 10:57:30', '2021-11-10 10:57:30'),
+(21, 8, 5, 1, 1, 1, 7, 2, NULL, 'Valdez', 'Daniela Nerea', 38555526, NULL, 'Barrio 8 de abril \r\nDorrego 506', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'valdez', NULL, '2021-11-10 11:36:21', '2021-11-10 11:36:21'),
+(22, 6, 5, 1, 1, 1, 26, 248, NULL, 'Campos', 'Ayelen milagros', 43497739, NULL, '9 de Julio y urquiza', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'campos', NULL, '2021-11-10 11:57:35', '2021-11-10 11:57:35'),
+(23, 7, 5, 1, 1, 1, 14, 344, NULL, 'Salega', 'Lautaro Ariel', 44704752, NULL, 'Mariano Moreno s/n, entre Mitre y San Martin', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'salega', NULL, '2021-11-10 12:01:56', '2021-11-10 12:01:56'),
+(24, 15, 4, 1, 1, 1, 20, 403, NULL, 'Vivas', 'Tania pamela', 45158654, NULL, 'Calle 9 de julio', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'vivas', NULL, '2021-11-10 12:16:12', '2021-11-10 12:16:12'),
+(25, 12, 5, 1, 1, 1, 7, 2, NULL, 'Ayunta', 'María Florencia', 34695822, NULL, 'Fray Pedro Ramos 1736 barrio independencia', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'ayunta', NULL, '2021-11-10 12:18:05', '2021-11-10 12:18:05'),
+(26, 14, 4, 1, 1, 1, 7, 2, NULL, 'Luna Filippa', 'María de los Milagros', 42689379, NULL, 'Av. Moreno sur 2105. 1er piso', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'luna-filippa', NULL, '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
+(27, 4, 5, 1, 1, 1, 7, 2, NULL, 'Vasquez', 'Javier Leonardo', 44704126, NULL, 'Dr Rene Favaloro 5600-5500. Barrio siglo xx.', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'vasquez', NULL, '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
+(28, 13, 4, 1, 1, 1, 7, 2, NULL, 'Barrer', 'Camila', 45661209, NULL, 'Salta 1033', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'barrer', NULL, '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
+(31, 19, 1, 1, 1, 1, 7, 2, NULL, 'Crespo', 'Ana', 40285869, NULL, 'Av roca Sur 311', NULL, NULL, NULL, NULL, NULL, 'Rechazado', 'crespo', NULL, '2021-11-10 16:54:43', '2021-11-10 17:17:34');
 
 -- --------------------------------------------------------
 
@@ -1283,7 +1398,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Marta orpi', 'martich82@gmail.com', '2021-11-04 22:33:52', '$2y$10$5iyo35wd0HUPrw8JlEqCze249Xvw5W7X4sy6WdhmJsJT6bFhrFi8i', NULL, '2021-11-07 01:28:05', '2021-11-07 01:28:05');
+(1, 'Victor Hugo Garcia', 'vihugarcia@gmail.com', '2021-11-10 01:13:13', '$2y$10$aNnZysn4CmO5KjsbGzZdie27BonsQeAda8/PvTQd7NwXgpcdRoH8a', NULL, '2021-11-10 01:12:55', '2021-11-10 01:13:13'),
+(2, 'Victor Hugo Garcia', 'vihugarcia@hotmail.com', '2021-11-10 01:16:02', '$2y$10$vObmkbqUrp8bPy3mH5Ab7uyiQ4tynB4m1LkHSSjDJPhPVwZxAjuzm', NULL, '2021-11-10 01:15:38', '2021-11-10 01:16:02'),
+(3, 'Lidia Liliana Barrera', 'lilylbarrera12@gmail.com', '2021-11-10 10:47:30', '$2y$10$hAcH/kYQZ7KwCxo4ky1nTOF3D4htRJMJ8wHpb6TqcqgmdzPDg1R/S', NULL, '2021-11-10 10:47:04', '2021-11-10 10:47:30'),
+(4, 'Javier Vasquez', 'ljaviervasquez11@gmail.com', '2021-11-10 11:18:23', '$2y$10$UhL7WlMfhOpJyzc44XvmKuoWoLPEvWepRYApl6N2wQBPHE4kBfqOa', NULL, '2021-11-10 11:17:23', '2021-11-10 11:18:23'),
+(5, 'Nela Constanza Mendoza', 'nelitamendoza22@gmail.com', '2021-11-10 11:28:54', '$2y$10$xU6P6KmtfOLcKFtjVPRbI.OZwLBnLMvLUgQS0/Ur7YRHjHEKK.IWO', NULL, '2021-11-10 11:20:49', '2021-11-10 11:28:54'),
+(6, 'Milagros', 'milcah409@gmail.com', '2021-11-10 11:21:45', '$2y$10$3FymiwOqoJ6NundqP9Ig3OTJ1T/Z3yviqBJTjyXDJ6uhqhpg/ZPXu', NULL, '2021-11-10 11:21:01', '2021-11-10 11:21:45'),
+(7, 'Lautaro Ariel Salega', 'obamillab@gmail.com', '2021-11-10 11:22:31', '$2y$10$wGXstvZBJJjmZts8JIIQFuMsqWypEXksZBncnCVSmnmICA8L5xop2', 'LFkdFAu0p6bDCvnrIK9RuBMW2uDBRCTPA5aTWvQ2m8NrTbEnzkcIwEgbBmJo', '2021-11-10 11:22:02', '2021-11-10 11:22:31'),
+(8, 'Daniela Nerea Valdez', 'Danielavaldez526@gmail.com', '2021-11-10 11:29:17', '$2y$10$8lIWtsc/wsX4mW27fZXfqemEjtWjV9Mo.hgD6WdoEQa4RisJDA1/O', NULL, '2021-11-10 11:28:18', '2021-11-10 11:29:17'),
+(9, 'Érika rocio reichert', 'grinnga.22@gmail.com', '2021-11-10 11:33:54', '$2y$10$ikUnTchBcqXzD6EaTz5btOHybMSyuSxjeduIcxV8iHAz3a1V8FUIG', 'LgqumvFtllCGwI1ab42M5BayDO2XJIOvaHNSXlX9hjv2xy3vZ8M2I6BICz8Q', '2021-11-10 11:33:15', '2021-11-10 11:33:54'),
+(10, 'Ana mariela', 'mariela.alurralde92@gmail.com', NULL, '$2y$10$by6tw1Lbw5e6HmELmkx9s.ES/vhiGm6h7SF.FieMhs4q89ZRMw5Oa', NULL, '2021-11-10 11:53:43', '2021-11-10 11:53:43'),
+(11, 'Daiana micaela diaz', 'mikadiaz367@gmail.com', '2021-11-10 12:06:01', '$2y$10$Fz4qitmkAgxiTljynBJ1gOdq6Nk6HXMmb6uxGSMngqB0iP9PrwLHC', NULL, '2021-11-10 12:04:41', '2021-11-10 12:06:01'),
+(12, 'María Florencia ayunta', 'flopy_20_01@hotmail.com', '2021-11-10 12:08:26', '$2y$10$Yn2u.VU.d6qy4vz7nPuE9.NfKrwPRh6PY.DUcZcBYeFA6Euojx/BO', '5fTXyx3W9qJrroXJse9BCEAtdXBtGRwvZscRUVTIaO7GSOmr0u5iSOb8qkOf', '2021-11-10 12:07:21', '2021-11-10 12:08:26'),
+(13, 'Camila', 'torressiacamila@gmail.com', '2021-11-10 12:08:44', '$2y$10$uMBmx5SPA58BF7Aqe67ktO7UuWxuzpsc5tXXT1Auhuz1hpVvDqErm', NULL, '2021-11-10 12:08:04', '2021-11-10 12:08:44'),
+(14, 'María de los Milagros Luna Filippa', 'milulunafilippa@gmail.com', '2021-11-10 12:10:38', '$2y$10$OrTNjvwSgBSpOZSPlbZRGedt2yIFr0UNG6E3osnnXdkp0LBeABPEW', 'aAr2Si5FvGWsD25YtyZ2Cax4PX0IaDJjPQlg4Vi2d6KPb8xNUckgOHWI8eQg', '2021-11-10 12:10:04', '2021-11-10 12:10:38'),
+(15, 'Tania pamela vivas', 'Pvivas842@gmail.com', '2021-11-10 12:11:54', '$2y$10$D.IkH/IqCfY/FN7uJJAziucb6mLcFkioRP5fqJRRUWQ3U9TL9sOsG', NULL, '2021-11-10 12:11:02', '2021-11-10 12:11:54'),
+(16, 'Agustina Nahir Gomez', 'agustinagomez.0323@gmail.com', '2021-11-10 12:12:58', '$2y$10$xP/WSVEBgtzrWFPVPryq7u0qXSuWXXxfB.8pNmUWCXqBGjjz.YaOe', NULL, '2021-11-10 12:12:26', '2021-11-10 12:12:58'),
+(17, 'Claudia Carolina García', 'claudiacarolina17@gmail.com', NULL, '$2y$10$5q3SPSW44ZHURM07OhdjVe8H0/Dq3VR24x/WtKm9/iBYihmNu9k.G', NULL, '2021-11-10 12:27:32', '2021-11-10 12:27:32'),
+(18, 'Giovana', 'giovanabanegas55@gmail.com', NULL, '$2y$10$O6sxYWDytmbm/1vfiVwGe.pbHaOYJ7f5rXNQ2XsDtYdJ0rmm/eiCO', NULL, '2021-11-10 12:28:32', '2021-11-10 12:28:32'),
+(19, 'Ana Virginia Crespo', 'anavirginiacrespo@gmail.com', '2021-11-10 13:53:40', '$2y$10$5kMQmu8UEDlbAy4dhNkx1Oo5QZzpIDVkSIdafHibOtF9fgms7IX1y', NULL, '2021-11-10 16:51:54', '2021-11-10 16:51:54');
 
 -- --------------------------------------------------------
 
@@ -1307,7 +1440,7 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IVTF9ipWUs', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
+(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BkpZol1Jw1FHnmxrbNPsy5Vu0xmw15ah5MEMXKFLZvxYsvv8ObTSfGJ1T0Sb', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
 
 --
 -- Índices para tablas volcadas
@@ -1320,6 +1453,12 @@ ALTER TABLE `careers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `careers_ws_id_unique` (`ws_id`),
   ADD UNIQUE KEY `careers_slug_unique` (`slug`);
+
+--
+-- Indices de la tabla `cycles`
+--
+ALTER TABLE `cycles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `departments`
@@ -1354,6 +1493,14 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `locations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_admin_id` (`user_admin_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indices de la tabla `menu_items`
@@ -1476,6 +1623,12 @@ ALTER TABLE `careers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `cycles`
+--
+ALTER TABLE `cycles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `departments`
 --
 ALTER TABLE `departments`
@@ -1485,7 +1638,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `documentations`
 --
 ALTER TABLE `documentations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `exams`
@@ -1504,6 +1657,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `locations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=737;
+
+--
+-- AUTO_INCREMENT de la tabla `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_items`
@@ -1527,7 +1686,7 @@ ALTER TABLE `nationalities`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `personals`
@@ -1551,19 +1710,19 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `users_admin`
