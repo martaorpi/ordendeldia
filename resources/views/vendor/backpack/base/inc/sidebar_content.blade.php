@@ -4,7 +4,7 @@
 
 {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('examenes') }}'><i class='nav-icon la la-question'></i> Examenes</a></li>--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Academico</a>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i>Academico</a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Estudiantes</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
@@ -12,7 +12,7 @@
 </li>
 <!-- Users, Roles, Permissions -->
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Personal ISMP</a>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i>Personal ISMP</a>
     <ul class="nav-dropdown-items">
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> <span>Usuarios</span></a></li>
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
@@ -26,3 +26,4 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('cycle') }}'><i class='nav-icon la la-calendar-o'></i> Ciclos</a></li>
     </ul>
 </li>
+

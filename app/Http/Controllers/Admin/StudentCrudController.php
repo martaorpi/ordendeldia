@@ -122,4 +122,92 @@ class StudentCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    /******************************************** FUNCIONES EXTRAS ********************************************/        
+
+    public function rejected($id) 
+    {  
+        $student = $this->crud->model::find($id);
+        
+        $student->status = 'Rechazado';
+        if($student->save()){
+            return ["status" => 200];
+        }else{
+            return ["status" => 400];
+        }
+
+    }
+    public function signUp($id) 
+    {  
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://190.105.227.212/ApiInscripcion/api/token?username=5f069cd8f8a54711bc09&password=8fVHrkjz4P8wruEf0tviB/aWnLDJpz7UpXFjLfpUVFE=",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array(
+            'Content-type: text/plain',
+            'Content-length: 0',
+            "Authorization: Basic MzYzZGNlYzEtYmY1Zi00MGMyLWFmOTgtZWExNThjYjA3ODAwLmlzbXAuZWR1LmFyOlUyQkdCUFBiU2dEVllVTitxU25HMC91eVVrSStDenFoVUxER2x2Q2E0SXc9"
+            ),
+        ));
+
+        $token = json_decode(curl_exec($curl));
+        curl_close($curl);
+
+        $student = $this->crud->model::find($id);
+
+        //==Params==
+        $nrodocumento=$student->dni;
+        $nombre = $student->first_name;
+        $apellido = $student->last_name;
+        $idtipodocumento= 2;
+        $email= $student->user->email;
+        $direccion= $student->address;
+        $sexo= "F";
+
+        $fechanacimiento = Date('1990-01-01');
+        $idcarrera = $student->career->ws_id;
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://190.105.227.212/ApiInscripcion/api/inscripcion/alumno",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\r\n    \"nombre\": \".$nombre.\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n}",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer ".$token,
+                "Content-Type: application/json"
+            ),
+        ));
+        
+        curl_exec($curl);
+        
+        if (!curl_errno($curl)) {
+            switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+                case 200:  
+                    echo 'estudiante dado de alta en el sistema de cobranza con éxito';
+
+                    $student->status = 'Aprobado';
+                    $student->save();
+                break;
+            default:
+                $response = curl_exec($curl);
+                //echo 'Unexpected HTTP code: ', $http_code, "\n";
+                print_r($response);
+            }
+        }
+        
+        curl_close($curl);
+    }
 }

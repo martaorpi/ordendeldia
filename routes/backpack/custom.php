@@ -14,6 +14,10 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('examenes', 'ExamCrudController');
     Route::crud('student', 'StudentCrudController');
+
+    Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
+    Route::post('student/{id}/rejected', 'StudentCrudController@rejected');
+    
 }); // this should be the absolute last line of this file
 
 Route::group([
@@ -24,3 +28,5 @@ Route::group([
     Route::crud('career', 'CareerCrudController');
     Route::crud('cycle', 'CycleCrudController');
 }); // this should be the absolute last line of this file
+
+

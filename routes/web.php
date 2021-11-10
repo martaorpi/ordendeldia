@@ -44,17 +44,6 @@ Route::post('formulario-update', [Controller::class, 'student_update']);
 
 Route::post('form_pdf', [Controller::class, 'form_pdf']);
 
-Route::get("form_pdf_post", function (Request $request) {
 
-    /*$estudiante = \App\Models\Student::where('user_id', $id)->with(['province','department','nationality'])->get();
-
-    $dompdf = App::make("dompdf.wrapper");
-    
-    $dompdf->loadView("form_pdf", [
-        "estudiante" => $estudiante[0],
-    ]);
-    return $dompdf->stream('Formulario N° '.$estudiante[0]->dni);*/
-    return "ssss";
-});
 
 Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);

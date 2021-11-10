@@ -20,8 +20,9 @@
                             <strong>Formulario de Inscripción</strong>
                         </div>
                         <div class="col-sm-6" align="right">
-                            <button class="btn btn-success btn-sm pl-3 pr-3"><i class="nav-icon la la-check"></i> Aceptar</button>
-                            <button class="btn btn-danger btn-sm pl-3 pr-3"><i class="nav-icon la la-close"></i> Rechazar</button>
+                            <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i> Alta Sistema de Cobranza</button>
+
+                            <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i> Rechazar</button>
                         </div>
                     </div>
                 </div>
@@ -120,5 +121,30 @@
       </div>
     </main>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    //alta sistema de cobranza
+    $( "#btnSign_up" ).click(function() {
+      $.post("sign_up")
+        .done(function (result, status, xhr) {
+          alert(result)
+        })
+        .fail(function (xhr, status, error) {
+          console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        });
+    });
+
+    $( "#btnRejected" ).click(function() {
+      $.post("rejected")
+        .done(function (result, status, xhr) {
+          console.log(result)
+        })
+        .fail(function (xhr, status, error) {
+          console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        });
+    });
+  </script>
 
 @endsection
