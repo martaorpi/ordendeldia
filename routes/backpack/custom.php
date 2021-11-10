@@ -12,9 +12,8 @@ Route::group([
     'middleware' => ['web', 'admin', 'can:administracion_academica'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    Route::crud('carreras', 'CareerCrudController');
     Route::crud('examenes', 'ExamCrudController');
-    Route::crud('estudiantes', 'StudentCrudController');
+    Route::crud('student', 'StudentCrudController');
 }); // this should be the absolute last line of this file
 
 Route::group([
@@ -22,6 +21,6 @@ Route::group([
     'middleware' => ['web', 'admin', 'can:configuracion'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    Route::crud('carreras', 'CareerCrudController');
+    Route::crud('career', 'CareerCrudController');
     Route::crud('cycle', 'CycleCrudController');
 }); // this should be the absolute last line of this file

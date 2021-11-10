@@ -29,7 +29,7 @@ class CareerCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Career::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/carreras');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/career');
         CRUD::setEntityNameStrings('carrera', 'carreras');
 
     }

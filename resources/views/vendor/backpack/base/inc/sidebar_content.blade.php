@@ -6,8 +6,8 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Academico</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('estudiantes?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Estudiantes</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('estudiantes?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Estudiantes</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
     </ul>
 </li>
 <!-- Users, Roles, Permissions -->
@@ -22,7 +22,7 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i>Configuracion</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('carreras') }}'><i class='nav-icon la la-question'></i> Carreras</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('career') }}'><i class='nav-icon la la-question'></i> Carreras</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('cycle') }}'><i class='nav-icon la la-calendar-o'></i> Ciclos</a></li>
     </ul>
 </li>
