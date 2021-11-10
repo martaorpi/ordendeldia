@@ -24,8 +24,8 @@ class CycleCrudController extends CrudController {
         //$this->crud->setFromDb();
 
         $this->crud->addColumn([
-            'label' => 'Denominacion',
-            'name' => 'denomination',
+            'label' => 'Descripcion',
+            'name' => 'description',
         ]);
         $this->crud->addColumn([
             'label' => 'Desde',
