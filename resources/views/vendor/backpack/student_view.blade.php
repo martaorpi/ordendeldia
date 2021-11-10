@@ -129,7 +129,7 @@
     $( "#btnSign_up" ).click(function() {
       $.post("sign_up")
         .done(function (result, status, xhr) {
-          alert(result)
+          swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", "success");
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)

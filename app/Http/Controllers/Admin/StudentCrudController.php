@@ -147,7 +147,11 @@ class StudentCrudController extends CrudController
         }
 
     }
-    public function signUp($id) 
+    public function signUp($id)
+    {
+        return '200';
+    }
+    public function signUp2($id) 
     {  
         $curl = curl_init();
 
@@ -206,7 +210,7 @@ class StudentCrudController extends CrudController
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:  
-                    echo 'estudiante dado de alta en el sistema de cobranza con éxito';
+                    echo '200';
 
                     $student->status = 'Aprobado';
                     $student->save();
