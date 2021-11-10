@@ -87,15 +87,8 @@
                     <option value="">Seleccione</option>
                     @foreach ($carreras as $key => $carrera)
                         @if ($carrera->status == 'Abierta')
-                            @if (!empty($estudiantes_carrera[$key]))
-                                @if ($estudiantes_carrera[$key]->total < $carrera->cupo)
-                                    <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
-                                @else
-                                    <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Sin cupo)</i></option>
-                                @endif
-                            @else
-                                <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
-                            @endif
+                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+
                         @else
                             <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Cerrada)</i></option>
                         @endif
