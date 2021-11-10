@@ -17,12 +17,14 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <strong>Formulario de Inscripción</strong>
+                            <strong>Formulario de Inscripción: <label class="text-info">{{ $entry->status }}</label> </strong>
                         </div>
                         <div class="col-sm-6" align="right">
-                            <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i> Alta Sistema de Cobranza</button>
+                            @if($entry->status == 'Solicitado')
+                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i> Alta Sistema de Cobranza</button>
 
-                            <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i> Rechazar</button>
+                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i> Rechazar</button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -129,26 +131,21 @@
     $( "#btnSign_up" ).click(function() {
       $.post("sign_up")
         .done(function (result, status, xhr) {
-          swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", "success");
+            swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", {
+              icon: "success",
+            }).then((value) => {;
+              location.reload();
+            })
+          
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
         });
     });
 
-    /*$( "#btnRejected" ).click(function() {
-      $.post("rejected")
-        .done(function (result, status, xhr) {
-          console.log(result)
-        })
-        .fail(function (xhr, status, error) {
-          console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-        });
-    });*/
-
-
     $( "#btnRejected" ).click(function() {
-      swal("Write something here:", {
+      swal("Mensaje para el pre-inscripto:", {        
+        button: "Enviar",
         content: "input",
       })
       .then((value) => {
@@ -157,6 +154,11 @@
         })
         .done(function (result, status, xhr) {
           console.log(result)
+          swal("Formulario Rechazado!", "Mensaje enviado", {
+            icon: "success",
+          }).then((value) => {;
+            location.reload();
+          })
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
