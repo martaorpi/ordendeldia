@@ -18,6 +18,7 @@ Route::group([
 
     Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
     Route::post('student/{id}/rejected', 'StudentCrudController@rejected');
+    Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');    
     
 }); // this should be the absolute last line of this file
 

@@ -21,9 +21,11 @@
                         </div>
                         <div class="col-sm-6" align="right">
                             @if($entry->status == 'Solicitado')
-                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i> Alta Sistema de Cobranza</button>
+                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
 
-                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i> Rechazar</button>
+                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
+
+                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Rechazar</button>
                             @endif
                         </div>
                     </div>
@@ -128,19 +130,32 @@
   <script>
 
     //alta sistema de cobranza
-    $( "#btnSign_up" ).click(function() {
-      $.post("sign_up")
+
+    $( "#btnStatus" ).click(function() {
+      $.post("check_status")
         .done(function (result, status, xhr) {
-            swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", {
-              icon: "success",
-            }).then((value) => {;
-              location.reload();
-            })
-          
+          console.log(result)
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
         });
+    });
+
+
+    $( "#btnSign_up" ).click(function() {
+      $.post("sign_up")
+      .done(function (result, status, xhr) {
+        console.log(result)
+          swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", {
+            icon: "success",
+          }).then((value) => {;
+            location.reload();
+          })
+        
+      })
+      .fail(function (xhr, status, error) {
+        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+      });
     });
 
     $( "#btnRejected" ).click(function() {

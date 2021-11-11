@@ -127,6 +127,55 @@ class StudentCrudController extends CrudController
 
     /******************************************** FUNCIONES EXTRAS ********************************************/        
 
+    public function checkStatus($id){
+        $student = $this->crud->model::find($id);
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://190.105.227.212/ApiInscripcion/api/token?username=5f069cd8f8a54711bc09&password=8fVHrkjz4P8wruEf0tviB/aWnLDJpz7UpXFjLfpUVFE=",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array(
+            'Content-type: text/plain',
+            'Content-length: 0',
+            "Authorization: Basic MzYzZGNlYzEtYmY1Zi00MGMyLWFmOTgtZWExNThjYjA3ODAwLmlzbXAuZWR1LmFyOlUyQkdCUFBiU2dEVllVTitxU25HMC91eVVrSStDenFoVUxER2x2Q2E0SXc9"
+            ),
+        ));
+
+        $token = json_decode(curl_exec($curl));
+        curl_close($curl);
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'http://190.105.227.212/ApiInscripcion/api/alumnos/tienedeuda?nrodoc='.$student->dni,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$token
+          ),
+        ));
+        
+       
+        curl_exec($curl);
+
+        if (!curl_errno($curl)) {
+            print_r ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE));
+        }
+            /*switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+                case 200:  
+                    echo '200';*/
+        
+    }
     public function rejected($id, Request $request) 
     {  
         $student = $this->crud->model::find($id);
@@ -145,7 +194,6 @@ class StudentCrudController extends CrudController
         }else{
             return ["status" => 400];
         }
-
     }
 
     public function sendMail($email_destino,$cuerpo){
@@ -157,13 +205,6 @@ class StudentCrudController extends CrudController
 
         if($email_destino != ''){
             mail($email_destino, $asunto, $cuerpo, $headers);
-            /*$mail_enviado = new MailsEnviados();
-            $mail_enviado->dni = $model->dni;
-            $mail_enviado->mail_destino = $email_destino;
-            $mail_enviado->tipo = 'Correo Automático de Aprobación de Requisitos';
-            $mail_enviado->date_time = date('Y-m-d H:i:s');
-            $mail_enviado->user_id = Yii::$app->user->identity->id;
-            $mail_enviado->save();*/
         }
     }
 
@@ -226,9 +267,10 @@ class StudentCrudController extends CrudController
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:  
-                    echo '200';
+                    //echo '200';
+                    print_r($response);
 
-                    $student->status = 'Aprobado';
+                    /*$student->status = 'Aprobado';
                     $student->save();
 
                     $email_destino = $student->user->email;
@@ -331,7 +373,7 @@ class StudentCrudController extends CrudController
                         </body>
                     </html>';
 
-                    $this->sendMail($email_destino,$cuerpo);
+                    $this->sendMail($email_destino,$cuerpo);*/
                 break;
             default:
                 $response = curl_exec($curl);
