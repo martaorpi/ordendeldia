@@ -248,14 +248,9 @@ class StudentCrudController extends CrudController
                 </head>
                 <body style="margin: 0; padding: 0;">
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="500">
-                        <tr>
-                            <td align="center" bgcolor="#70bbd9">
-                                <img src="http://synergysoft.host/porres/img/cabecera_mail.jpeg" width="100%" height="35%" style="display: block;" />
-                            </td>
-                        </tr>
                         <tr style="padding-bottom:0">
                             <td align="left" bgcolor="#fff" style="border-left: 1px solid grey;border-right: 1px solid grey;">
-                                <img src="http://synergysoft.host/porres/img/instituto.jpg" width="150" style="margin-bottom:0"/>
+                                <img src="https://devweb.com.ar/ismp.academico/images/logo.jpg" width="150" style="margin-bottom:0"/>
                             </td>
                         </tr>
                         <tr>
