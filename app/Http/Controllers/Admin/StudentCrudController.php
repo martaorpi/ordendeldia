@@ -174,7 +174,26 @@ class StudentCrudController extends CrudController
         curl_exec($curl);
 
         if (!curl_errno($curl)) {
-            print_r ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE));
+            switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+                case 200:
+
+                    print_r($http_code);
+                    break;
+                case 204:
+
+                    $student->status = 'Inscripto';
+                    $student->save();
+
+                    print_r($http_code);
+                    break;
+                case 404:
+                    
+                    print_r($http_code);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
         }
         
     }
@@ -280,7 +299,7 @@ class StudentCrudController extends CrudController
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:
                     //$student->status = 'Aprobado';
-                    $student->save();
+                    //$student->save();
 
                     $email_destino = $student->user->email;
                     $user_dni = "$student->dni";
