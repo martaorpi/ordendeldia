@@ -24,9 +24,9 @@
 
                               <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
 
-                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Rechazar</button>
+                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Enviar Mensaje</button>
 
-                            @else
+                            @elseif($entry->status == 'Aprobado')
 
                             <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
 
@@ -209,7 +209,7 @@
         })
         .done(function (result, status, xhr) {
           console.log(result)
-          swal("Formulario Rechazado!", "Mensaje enviado", {
+          swal("Mensaje enviado!", "Formulario pendiente de modificación", {
             icon: "success",
           }).then((value) => {;
             location.reload();
