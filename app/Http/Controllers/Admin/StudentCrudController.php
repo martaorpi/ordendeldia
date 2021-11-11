@@ -165,15 +165,12 @@ class StudentCrudController extends CrudController
           ),
         ));
         
-       
+    
         curl_exec($curl);
 
         if (!curl_errno($curl)) {
             print_r ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE));
         }
-            /*switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
-                case 200:  
-                    echo '200';*/
         
     }
     public function rejected($id, Request $request) 
@@ -262,15 +259,13 @@ class StudentCrudController extends CrudController
             ),
         ));
         
-        curl_exec($curl);
-        
+        //curl_exec($curl);
+        $response = curl_exec($curl);
+
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
-                case 200:  
-                    //echo '200';
-                    print_r($response);
-
-                    /*$student->status = 'Aprobado';
+                case 200:
+                    //$student->status = 'Aprobado';
                     $student->save();
 
                     $email_destino = $student->user->email;
@@ -373,15 +368,17 @@ class StudentCrudController extends CrudController
                         </body>
                     </html>';
 
-                    $this->sendMail($email_destino,$cuerpo);*/
-                break;
-            default:
-                $response = curl_exec($curl);
-                //echo 'Unexpected HTTP code: ', $http_code, "\n";
-                print_r($response);
+                    $this->sendMail($email_destino,$cuerpo);
+                    print_r($http_code);
+                    break;
+                case 400:
+                    print_r($http_code);                    
+                    break;
+                default:
+                    # code...
+                    break;
             }
         }
-        
         curl_close($curl);
     }
 }
