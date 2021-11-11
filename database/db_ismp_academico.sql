@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2021 a las 15:24:26
+-- Tiempo de generación: 11-11-2021 a las 17:11:47
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -988,10 +988,26 @@ CREATE TABLE `logs` (
   `user_admin_id` int(20) NOT NULL,
   `student_id` int(20) NOT NULL,
   `text` text DEFAULT NULL,
-  `type` enum('Rechazados','Email') NOT NULL,
+  `type` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `logs`
+--
+
+INSERT INTO `logs` (`id`, `user_admin_id`, `student_id`, `text`, `type`, `created_at`, `updated_at`) VALUES
+(4, 1, 31, 'ddd', 'Rechazados', '2021-11-10 17:45:41', '2021-11-10 17:45:41'),
+(5, 1, 31, NULL, 'Rechazados', '2021-11-10 17:46:12', '2021-11-10 17:46:12'),
+(6, 1, 31, NULL, 'Rechazados', '2021-11-10 17:47:24', '2021-11-10 17:47:24'),
+(7, 1, 31, 'button', 'Rechazados', '2021-11-10 18:14:32', '2021-11-10 18:14:32'),
+(8, 1, 31, NULL, 'Rechazados', '2021-11-10 18:14:42', '2021-11-10 18:14:42'),
+(9, 1, 31, 'gggggg', 'Rechazados', '2021-11-10 18:15:27', '2021-11-10 18:15:27'),
+(10, 1, 31, 'ddddddd', 'Rechazados', '2021-11-10 18:16:34', '2021-11-10 18:16:34'),
+(11, 1, 31, 'ggggggg', 'Rechazados', '2021-11-11 17:11:55', '2021-11-11 17:11:55'),
+(12, 1, 31, 'ddddddd', 'Rechazados', '2021-11-11 17:14:09', '2021-11-11 17:14:09'),
+(13, 1, 31, '{\r\n    \"nombre\": \".Ana.\",\r\n    \"apellido\": \"Crespo\",\r\n    \"idtipodocumento\": 2,\r\n    \"nrodocumento\": 40285870,\r\n    \"fechanacimiento\": \"1990-01-01\",\r\n    \"email\": \"anavirginiacrespo@gmail.com\",\r\n    \"direccion\": \"Av roca Sur 311\",\r\n    \"sexo\": \"F\",\r\n    \"idcarrera\": 1\r\n}', 'Alta Sistema Cobranza', '2021-11-11 19:11:24', '2021-11-11 19:11:24');
 
 -- --------------------------------------------------------
 
@@ -1374,7 +1390,7 @@ INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_i
 (26, 14, 4, 1, 1, 1, 7, 2, NULL, 'Luna Filippa', 'María de los Milagros', 42689379, NULL, 'Av. Moreno sur 2105. 1er piso', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'luna-filippa', NULL, '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
 (27, 4, 5, 1, 1, 1, 7, 2, NULL, 'Vasquez', 'Javier Leonardo', 44704126, NULL, 'Dr Rene Favaloro 5600-5500. Barrio siglo xx.', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'vasquez', NULL, '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
 (28, 13, 4, 1, 1, 1, 7, 2, NULL, 'Barrer', 'Camila', 45661209, NULL, 'Salta 1033', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'barrer', NULL, '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
-(31, 19, 1, 1, 1, 1, 7, 2, NULL, 'Crespo', 'Ana', 40285869, NULL, 'Av roca Sur 311', NULL, NULL, NULL, NULL, NULL, 'Rechazado', 'crespo', NULL, '2021-11-10 16:54:43', '2021-11-10 17:17:34');
+(31, 19, 1, 1, 1, 1, 7, 2, NULL, 'Crespo', 'Ana', 40285870, NULL, 'Av roca Sur 311', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'crespo', NULL, '2021-11-10 16:54:43', '2021-11-11 17:14:09');
 
 -- --------------------------------------------------------
 
@@ -1440,7 +1456,7 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BkpZol1Jw1FHnmxrbNPsy5Vu0xmw15ah5MEMXKFLZvxYsvv8ObTSfGJ1T0Sb', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
+(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qHVwVCyuwKPSMubTI56V8vCM6ixFPI4G8WAnd9RAkmN4zs2BzkAuFXKe9xKk', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
 
 --
 -- Índices para tablas volcadas
@@ -1662,7 +1678,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_items`

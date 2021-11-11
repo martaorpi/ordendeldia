@@ -247,6 +247,8 @@ class StudentCrudController extends CrudController
         $fechanacimiento = Date('1990-01-01');
         $idcarrera = $student->career->ws_id;
 
+        $postfields = "{\r\n    \"nombre\": \".$nombre.\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n}";
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://190.105.227.212/ApiInscripcion/api/inscripcion/alumno",
@@ -257,7 +259,7 @@ class StudentCrudController extends CrudController
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS =>"{\r\n    \"nombre\": \".$nombre.\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n}",
+            CURLOPT_POSTFIELDS =>$postfields,
             CURLOPT_HTTPHEADER => array(
                 "Authorization: Bearer ".$token,
                 "Content-Type: application/json"
@@ -266,6 +268,13 @@ class StudentCrudController extends CrudController
         
         //curl_exec($curl);
         $response = curl_exec($curl);
+        
+        $log = new Log;
+        $log->user_admin_id = auth()->user()->id;
+        $log->student_id = $id;
+        $log->text = $postfields;
+        $log->type = 'Alta Sistema Cobranza';
+        $log->save();
 
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
@@ -373,7 +382,7 @@ class StudentCrudController extends CrudController
                         </body>
                     </html>';
 
-                    $this->sendMail($email_destino,$cuerpo);
+                    //$this->sendMail($email_destino,$cuerpo);
                     print_r($http_code);
                     break;
                 case 400:
