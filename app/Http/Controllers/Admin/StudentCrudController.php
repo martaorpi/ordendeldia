@@ -298,8 +298,8 @@ class StudentCrudController extends CrudController
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:
-                    //$student->status = 'Aprobado';
-                    //$student->save();
+                    $student->status = 'Aprobado';
+                    $student->save();
 
                     $email_destino = $student->user->email;
                     $user_dni = "$student->dni";
@@ -401,7 +401,7 @@ class StudentCrudController extends CrudController
                         </body>
                     </html>';
 
-                    $this->sendMail($email_destino,$cuerpo);
+                    //$this->sendMail($email_destino,$cuerpo);
                     print_r($http_code);
                     break;
                 case 400:
