@@ -21,11 +21,15 @@
                         </div>
                         <div class="col-sm-6" align="right">
                             @if($entry->status == 'Solicitado')
-                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
 
                               <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
 
                               <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Rechazar</button>
+
+                            @else
+
+                            <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
+
                             @endif
                         </div>
                     </div>
@@ -137,15 +141,15 @@
         .done(function (result, status, xhr) {
           switch (result) {
             case '200':
-              msg = "Alumno en deuda";
+              msg = "Pendiente de pago";
               type = "error"
               break;
             case '204':
-              msg = "Alumno al día!";
+              msg = "Estudiante al día!";
               type = "success"
               break;
             case '404':
-              msg = "Alumno no encontrado!";
+              msg = "Estudiante no encontrado!";
               type = "error"
               break;
             default:
