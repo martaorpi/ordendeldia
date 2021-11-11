@@ -20,7 +20,7 @@ class Controller extends BaseController
     public function student_create(Request $request)
     {
         $rules = [
-            'dni' => 'required|max:8|min:7',
+            'dni' => 'required|max:8|min:7|unique:students,dni',
         ];
         $this->validate($request, $rules);
 

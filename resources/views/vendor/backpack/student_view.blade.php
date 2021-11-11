@@ -21,11 +21,15 @@
                         </div>
                         <div class="col-sm-6" align="right">
                             @if($entry->status == 'Solicitado')
-                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
 
                               <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
 
-                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Rechazar</button>
+                              <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Enviar Mensaje</button>
+
+                            @elseif($entry->status == 'Aprobado')
+
+                            <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
+
                             @endif
                         </div>
                     </div>
@@ -115,6 +119,19 @@
                             </div>   
                         </div>                            
                     @endforeach
+                    
+                    <div class="col-sm-12">
+                      <hr>
+                    </div>
+                    
+                    <div class="col-12 col-lg-12 text-center">
+                      <form action="{{url('/form_pdf')}}" method="post" target="_blank">
+                          @csrf
+                          <input type="hidden" id="id" name="id" value="{{$entry->user->id}}">
+                          <button type="submit" class="btn btn-md text-white pl-5 pr-5" style="background: #881f1f"><i class="nav-icon la la-file-pdf-o"></i> <b class="h6">Descargar Formulario</b></button>
+                      </form>
+                      {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
+                    </div>
                   </div>
                   <!-- /.row-->
                 </div>
@@ -130,11 +147,34 @@
   <script>
 
     //alta sistema de cobranza
-
+    var msg;
+    var type;
     $( "#btnStatus" ).click(function() {
       $.post("check_status")
         .done(function (result, status, xhr) {
-          console.log(result)
+          switch (result) {
+            case '200':
+              msg = "Pendiente de pago";
+              type = "error"
+              break;
+            case '204':
+              msg = "Estudiante al día!";
+              type = "success"
+              break;
+            case '404':
+              msg = "Estudiante no encontrado!";
+              type = "error"
+              break;
+            default:
+              console.log(result)
+              break;
+          }
+
+          swal(msg, "Sistema de Cobranza", {
+            icon: type,
+          }).then((value) => {;
+            location.reload();
+          })
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -169,7 +209,7 @@
         })
         .done(function (result, status, xhr) {
           console.log(result)
-          swal("Formulario Rechazado!", "Mensaje enviado", {
+          swal("Mensaje enviado!", "Formulario pendiente de modificación", {
             icon: "success",
           }).then((value) => {;
             location.reload();

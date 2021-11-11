@@ -79,7 +79,7 @@
                 <hr class="linea_bordo">
             </div>
         </div>
-
+        
         <div class="form-group row">
             <div class="col-12">
                 <label for="carrera">Carrera Nivel Superior No Universitario</label>
@@ -87,8 +87,15 @@
                     <option value="">Seleccione</option>
                     @foreach ($carreras as $key => $carrera)
                         @if ($carrera->status == 'Abierta')
-                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
-
+                            @foreach ($estudiantes_carrera as $cupo)
+                                @if ($cupo->career_id == $carrera->id)
+                                    @if ($cupo->total < $carrera->available_space)
+                                        <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                                    @else
+                                        <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Sin Cupo)</i></option>
+                                    @endif
+                                @endif
+                            @endforeach
                         @else
                             <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Cerrada)</i></option>
                         @endif
