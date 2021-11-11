@@ -185,9 +185,22 @@
     $( "#btnSign_up" ).click(function() {
       $.post("sign_up")
       .done(function (result, status, xhr) {
+          switch (result) {
+            case '400':
+              msg = "El estudiante ya existe";
+              type = "error"
+              break;
+            case '200':
+              msg = "Estudiante dado de alta con éxito!";
+              type = "success"
+              break;
+            default:
+              console.log(result)
+              break;
+          }
         console.log(result)
-          swal("Formulario Aprobado!", "Estudiante dado de alta en el Sistema de Cobranza", {
-            icon: "success",
+          swal(msg, "Sistema de Cobranza", {
+            icon: type,
           }).then((value) => {;
             location.reload();
           })
