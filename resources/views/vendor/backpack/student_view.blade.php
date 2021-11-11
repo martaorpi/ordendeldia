@@ -130,11 +130,34 @@
   <script>
 
     //alta sistema de cobranza
-
+    var msg;
+    var type;
     $( "#btnStatus" ).click(function() {
       $.post("check_status")
         .done(function (result, status, xhr) {
-          console.log(result)
+          switch (result) {
+            case '200':
+              msg = "Alumno en deuda";
+              type = "error"
+              break;
+            case '204':
+              msg = "Alumno al día!";
+              type = "success"
+              break;
+            case '404':
+              msg = "Alumno no encontrado!";
+              type = "error"
+              break;
+            default:
+              console.log(result)
+              break;
+          }
+
+          swal(msg, "Sistema de Cobranza", {
+            icon: type,
+          }).then((value) => {;
+            location.reload();
+          })
         })
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
