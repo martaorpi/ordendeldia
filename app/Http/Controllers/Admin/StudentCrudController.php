@@ -382,7 +382,7 @@ class StudentCrudController extends CrudController
                         </body>
                     </html>';
 
-                    //$this->sendMail($email_destino,$cuerpo);
+                    $this->sendMail($email_destino,$cuerpo);
                     print_r($http_code);
                     break;
                 case 400:
