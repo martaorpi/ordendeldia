@@ -119,6 +119,19 @@
                             </div>   
                         </div>                            
                     @endforeach
+                    
+                    <div class="col-sm-12">
+                      <hr>
+                    </div>
+                    
+                    <div class="col-12 col-lg-12 text-center">
+                      <form action="{{url('/form_pdf')}}" method="post" target="_blank">
+                          @csrf
+                          <input type="hidden" id="id" name="id" value="{{$entry->user->id}}">
+                          <button type="submit" class="btn btn-md text-white pl-5 pr-5" style="background: #881f1f"><i class="nav-icon la la-file-pdf-o"></i> <b class="h6">Descargar Formulario</b></button>
+                      </form>
+                      {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
+                    </div>
                   </div>
                   <!-- /.row-->
                 </div>
