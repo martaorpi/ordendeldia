@@ -1,6 +1,7 @@
 @extends(backpack_view('blank'))
-
 @section('content')
+
+
 <div class="app-body">
     <main class="main">
       <!-- Breadcrumb-->
@@ -21,14 +22,13 @@
                         </div>
                         <div class="col-sm-6" align="right">
                             @if($entry->status == 'Solicitado')
-
-                              <button class="btn btn-success btn-sm pl-3 pr-3" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
+                              <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
 
                               <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnRejected"><i class="nav-icon la la-close"></i>Enviar Mensaje</button>
 
                             @elseif($entry->status == 'Aprobado')
 
-                            <button class="btn btn-success btn-sm pl-3 pr-3" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
+                            <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
 
                             @endif
                         </div>
@@ -149,7 +149,15 @@
     //alta sistema de cobranza
     var msg;
     var type;
+
+
     $( "#btnStatus" ).click(function() {
+
+      $(this).prop("disabled", true);
+      $(this).html(
+        '<i class="spinner-border spinner-border-sm"></i>'
+      );
+
       $.post("check_status")
         .done(function (result, status, xhr) {
           switch (result) {
@@ -183,6 +191,13 @@
 
 
     $( "#btnSign_up" ).click(function() {
+
+      
+      $(this).prop("disabled", true);
+      $(this).html(
+        '<i class="spinner-border spinner-border-sm"></i>'
+      );
+
       $.post("sign_up")
       .done(function (result, status, xhr) {
           switch (result) {
