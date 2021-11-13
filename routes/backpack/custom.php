@@ -17,8 +17,10 @@ Route::group([
     Route::crud('student', 'StudentCrudController');
 
     Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
+
     Route::post('student/{id}/rejected', 'StudentCrudController@rejected');
     Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');    
+    Route::post('student/{id}/sign_on', 'StudentCrudController@signOn');    
     
 }); // this should be the absolute last line of this file
 

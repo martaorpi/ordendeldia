@@ -130,7 +130,13 @@ class StudentCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    /******************************************** FUNCIONES EXTRAS ********************************************/        
+    /******************************************** FUNCIONES EXTRAS ********************************************/    
+    
+    public function signOn($id){
+        $student = $this->crud->model::find($id);
+        $student->status = 'Inscripto';
+        $student->save();
+    }
 
     public function checkStatus($id){
         $student = $this->crud->model::find($id);
@@ -146,9 +152,9 @@ class StudentCrudController extends CrudController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_HTTPHEADER => array(
-            'Content-type: text/plain',
-            'Content-length: 0',
-            "Authorization: Basic MzYzZGNlYzEtYmY1Zi00MGMyLWFmOTgtZWExNThjYjA3ODAwLmlzbXAuZWR1LmFyOlUyQkdCUFBiU2dEVllVTitxU25HMC91eVVrSStDenFoVUxER2x2Q2E0SXc9"
+                'Content-type: text/plain',
+                'Content-length: 0',
+                "Authorization: Basic MzYzZGNlYzEtYmY1Zi00MGMyLWFmOTgtZWExNThjYjA3ODAwLmlzbXAuZWR1LmFyOlUyQkdCUFBiU2dEVllVTitxU25HMC91eVVrSStDenFoVUxER2x2Q2E0SXc9"
             ),
         ));
 
