@@ -104,7 +104,7 @@ class Student extends Model
 
     public function documentation()
     {
-        return $this->belongsTo(\App\Models\Documentation::class);
+        return $this->hasMany(\App\Models\Documentation::class);
     }
 
     public function exams()

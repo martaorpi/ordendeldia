@@ -55,6 +55,7 @@
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
     $departamentos = App\Models\Department::get();
+    $estudiante = App\Models\Student::where('user_id', auth()->user()->id)->with(['career','province','department','nationality','documentation'])->first();
     //$localidades = App\Models\Location::orderBy('description', 'asc')->get();
 @endphp
 
@@ -90,7 +91,11 @@
                             @foreach ($estudiantes_carrera as $cupo)
                                 @if ($cupo->career_id == $carrera->id)
                                     @if ($cupo->total < $carrera->available_space)
-                                        <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                                        @if ($estudiante)
+                                            <option value="{{ $carrera->id }}" {{($estudiante->career_id==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                                        @else
+                                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
+                                        @endif
                                     @else
                                         <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Sin Cupo)</i></option>
                                     @endif
@@ -114,26 +119,38 @@
         <div class="form-group row">
             <div class="col-12 col-lg-6">
                 <label for="apellido">Apellidos (Completo)</label>
-                <input type="text" class="form-control" id="apellido" name="last_name" value="{{ old('last_name')}}" required>
+                @if ($estudiante)
+                    <input type="text" class="form-control" id="apellido" name="last_name" value="{{ $estudiante->last_name }}" required>
+                @else
+                    <input type="text" class="form-control" id="apellido" name="last_name" value="{{ old('last_name') }}" required>
+                @endif
             </div>
 
             <div class="col-12 col-lg-6">
                 <label for="nombre">Nombres (Completo)</label>
-                <input type="text" class="form-control" id="nombre" name="first_name" value="{{ old('first_name')}}" required>
+                @if ($estudiante)
+                    <input type="text" class="form-control" id="nombre" name="first_name" value="{{ $estudiante->first_name }}" required>
+                @else
+                    <input type="text" class="form-control" id="nombre" name="first_name" value="{{ old('first_name')}}" required>
+                @endif
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-12 col-lg-6">
                 <label for="dni">D.N.I. Nº</label>
-                <input type="number" class="form-control" id="dni" name="dni" value="{{ old('dni')}}" required>
+                @if ($estudiante)
+                    <input type="number" class="form-control" id="dni" name="dni" value="{{ $estudiante->dni }}" required>
+                @else
+                    <input type="number" class="form-control" id="dni" name="dni" value="{{ old('dni')}}" required>
+                @endif
             </div>
         </div>
         
         <div class="form-group row">
             <div class="col-12">
                 <hr class="linea_bordo mb-4">
-                <h6><b>DIRECCION</b></h6>
+                <h6><b>DOMICILIO</b></h6>
             </div>
         </div>
 
@@ -143,7 +160,11 @@
                 <select class="form-control selectpicker" data-live-search="true" id="nacionalidad" name="nationality_id" required>
                     <option value="">Seleccione</option>
                     @foreach ($nacionalidades as $nacionalidad)
-                        <option value="{{ $nacionalidad->id }}" {{(old('nationality_id')==$nacionalidad->id)? 'selected':''}}>{{ $nacionalidad->description }}</option>
+                        @if ($estudiante)
+                            <option value="{{ $nacionalidad->id }}" {{($estudiante->nationality_id==$nacionalidad->id)? 'selected':''}}>{{ $nacionalidad->description }}</option>
+                        @else
+                            <option value="{{ $nacionalidad->id }}" {{(old('nationality_id')==$nacionalidad->id)? 'selected':''}}>{{ $nacionalidad->description }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -153,7 +174,11 @@
                 <select class="form-control selectpicker" data-live-search="true" id="provincia" name="province_id" disabled>
                     <option value="">Seleccione</option>
                     @foreach ($provincias as $provincia)
-                        <option value="{{ $provincia->id }}" {{(old('province_id')==$provincia->id)? 'selected':''}}>{{ $provincia->description }}</option>
+                        @if ($estudiante)
+                            <option value="{{ $provincia->id }}" {{($estudiante->province_id==$provincia->id)? 'selected':''}}>{{ $provincia->description }}</option>
+                        @else
+                            <option value="{{ $provincia->id }}" {{(old('province_id')==$provincia->id)? 'selected':''}}>{{ $provincia->description }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -165,7 +190,11 @@
                 <select class="form-control selectpicker" data-live-search="true" id="departamento" name="department_id" disabled>
                     <option value="">Seleccione</option>
                     @foreach ($departamentos as $departamento)
-                        <option value="{{ $departamento->id }}" {{(old('department_id')==$departamento->id)? 'selected':''}}>{{ $departamento->description }}</option>
+                        @if ($estudiante)
+                            <option value="{{ $departamento->id }}" {{($estudiante->department_id==$departamento->id)? 'selected':''}}>{{ $departamento->description }}</option>
+                        @else
+                            <option value="{{ $departamento->id }}" {{(old('department_id')==$departamento->id)? 'selected':''}}>{{ $departamento->description }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -173,7 +202,11 @@
             <div class="col-12 col-lg-6">
                 <label for="localidad">Localidad</label>
                 <select class="form-control selectpicker" data-live-search="true" id="localidad" name="location_id" disabled>
-                    <option value="">Seleccione</option>
+                    @if ($estudiante)
+                        <option value="{{ $estudiante->location_id }}">{{ $estudiante->location->description }}</option>
+                    @else
+                        <option value="">Seleccione</option>
+                    @endif
                 </select>
             </div>
         </div>
@@ -181,7 +214,11 @@
         <div class="form-group row">
             <div class="col-12">
                 <label for="direccion">Dirección</label>
-                <textarea class="form-control" id="direccion" name="address" required>{{ old('address')}}</textarea>
+                @if ($estudiante)                    
+                    <textarea class="form-control" id="direccion" name="address" required>{{ $estudiante->address }}</textarea>
+                @else
+                    <textarea class="form-control" id="direccion" name="address" required>{{ old('address')}}</textarea>
+                @endif
             </div>
         </div>
 
@@ -202,10 +239,16 @@
             <div class="col-12 col-lg-8">
                 <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label>
             </div>
-
+    
             <div class="col-12 col-lg-4">
-                <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                <input type="hidden" value="Certificado de Estudios" name="description0">
+                @if ($estudiante)
+                    <input type="file" class="form-control-file" name="files[]" multiple>
+                    @php $file = explode('/',$estudiante->documentation[0]->src); @endphp
+                    <a href="{{ $estudiante->documentation[0]->src }}">{{ $file[3] }}</a>
+                @else
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="hidden" value="Certificado de Estudios" name="description0">
+                @endif
             </div>
         </div>
 
@@ -215,8 +258,14 @@
             </div>
 
             <div class="col-12 col-lg-4">
-                <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                <input type="hidden" value="Fotocopia de DNI" name="description1">
+                @if ($estudiante)
+                    <input type="file" class="form-control-file" name="files[]" multiple>
+                    @php $file = explode('/',$estudiante->documentation[1]->src); @endphp
+                    <a href="{{ $estudiante->documentation[1]->src }}">{{ $file[3] }}</a>
+                @else
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="hidden" value="Fotocopia de DNI" name="description1">
+                @endif
             </div>
         </div>
 
@@ -226,8 +275,14 @@
             </div>
 
             <div class="col-12 col-lg-4">
-                <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                <input type="hidden" value="Foto Carnet" name="description2">
+                @if ($estudiante)
+                    <input type="file" class="form-control-file" name="files[]" multiple>
+                    @php $file = explode('/',$estudiante->documentation[2]->src); @endphp
+                    <a href="{{ $estudiante->documentation[2]->src }}">{{ $file[3] }}</a>
+                @else
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="hidden" value="Foto Carnet" name="description2">
+                @endif
             </div>
         </div>
 
@@ -330,7 +385,7 @@
 
         $("#departamento").change(function(event){
             $("#localidad").attr('disabled',false);
-            $("#localidad").prop('required',true);
+            //$("#localidad").prop('required',true);
             $.get("getLocalidades/"+event.target.value,function(response,indicador){
                 $("#localidad").empty();
                 for(i=0; i<response.length; i++){

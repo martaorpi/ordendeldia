@@ -19,59 +19,44 @@ class Controller extends BaseController
 
     public function student_create(Request $request)
     {
-        $rules = [
-            'dni' => 'required|max:8|min:7|unique:students,dni',
-        ];
-        $this->validate($request, $rules);
-
-        /*if(date('m') == 11 || date('m') == 12){
-            $ciclo_academico = date('Y')+1;
-        }else{
-            $ciclo_academico = date('Y');
-        }*/
+        $estudiante = Student::where('user_id', auth()->user()->id)->first();
         $input = $request->all();
-        if($request->nationality_id != 1){
-            $input['province_id'] = 0;
-            $input['department_id'] = 0;
-            $input['location_id'] = 0;
-        }
-        if($request->province_id != 1){
-            $input['department_id'] = 0;
-            $input['location_id'] = 0;
-        }
-        //$input['department_id'] = 7;//$request->department_id;
-        //$input['slug'] = $request->first_name.' '.$request->last_name;
-        $input['user_id'] = auth()->user()->id;
-        //$input['created_at']
-        //$cycle = Cycle::whereBetween('created_at', [$ageFrom, $ageTo])
-        
-        $input['cycle_id'] = 1;
-        $this->validate($request, $rules);
-        $student = Student::create($input);
-
-        if($request->hasFile('files')){
-            $files = $request->file('files');
-            $carpeta = 'public/uploads/'.$request->dni;
-            if (!file_exists($carpeta)) {
-                mkdir($carpeta, 0777, true);
+        if($estudiante){
+            $student = Student::whereId($estudiante->id)->update($request->except(['_token']));
+        }else{
+            $rules = [
+                'dni' => 'required|max:8|min:7|unique:students,dni',
+            ];
+            $this->validate($request, $rules);
+            if($request->nationality_id != 1){
+                $input['province_id'] = 0;
+                $input['department_id'] = 0;
+                $input['location_id'] = 0;
             }
-
-            foreach ($files as $clave => $file) {
-                $nombrearchivo  = $file->getClientOriginalName();
-                //$file->move(public_path($carpeta."/"),$nombrearchivo);
-                copy($file->getRealPath(),$carpeta."/".$nombrearchivo);
-                $input2['student_id'] = $student->id;
-                $input2['src'] = $carpeta."/".$nombrearchivo;
-                $input2['description'] = $input['description'.$clave];
-                Documentation::create($input2);
+            if($request->province_id != 1){
+                $input['department_id'] = 0;
+                $input['location_id'] = 0;
+            }
+            $input['user_id'] = auth()->user()->id;
+            $input['cycle_id'] = 1;
+            $student = Student::create($input);
+            if($request->hasFile('files')){
+                $files = $request->file('files');
+                $carpeta = 'public/uploads/'.$request->dni;
+                if (!file_exists($carpeta)) {
+                    mkdir($carpeta, 0777, true);
+                }
+    
+                foreach ($files as $clave => $file) {
+                    $nombrearchivo  = $file->getClientOriginalName();
+                    copy($file->getRealPath(),$carpeta."/".$nombrearchivo);
+                    $input2['student_id'] = $student->id;
+                    $input2['src'] = $carpeta."/".$nombrearchivo;
+                    $input2['description'] = $input['description'.$clave];
+                    Documentation::create($input2);
+                }
             }
         }
-        //return redirect('formulario_update');
-        return redirect()->back();
-    }
-
-    public function student_update(Request $request)
-    {
         return redirect()->back();
     }
 
