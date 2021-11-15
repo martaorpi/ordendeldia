@@ -17,7 +17,7 @@ class StudentCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     //use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    //use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     //use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -108,9 +108,6 @@ class StudentCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(StudentRequest::class);
-
-        CRUD::setFromDb(); // fields
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -127,7 +124,22 @@ class StudentCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        $this->crud->setValidation(StudentRequest::class);
+        $this->crud->setCreateContentClass('col-md-12 mx-auto mt-3');
+        $this->crud->setEditContentClass('col-md-12 mx-auto mt-3');
+        
+        CRUD::addField([
+            'name'  => 'lastname',
+            'label' => 'Apellido',
+        ]);
+
+        CRUD::addField([
+            'name'  => 'name',
+            'label' => 'Nombre',
+        ]);
+
+
+        
     }
 
     /******************************************** FUNCIONES EXTRAS ********************************************/        
