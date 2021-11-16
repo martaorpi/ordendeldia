@@ -8,11 +8,14 @@ use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Student extends Model
+
+class Student extends Model implements Auditable
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, SoftDeletes, HasSlug;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * The attributes that are mass assignable.

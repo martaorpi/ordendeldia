@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \App\Models\Student::observe(\App\Observers\StudentObserver::class);
+
         VerifyEmail::$toMailCallback = function($notifiable, $verificationUrl) {
             return (new MailMessage)
                 ->greeting('Hola!')

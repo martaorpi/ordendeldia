@@ -125,21 +125,29 @@ class StudentCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->crud->setValidation(StudentRequest::class);
-        $this->crud->setCreateContentClass('col-md-12 mx-auto mt-3');
-        $this->crud->setEditContentClass('col-md-12 mx-auto mt-3');
+        $this->crud->setEditContentClass('col-md-8 mx-auto mt-3');
+
+        CRUD::addField([
+            'name'  => 'career',
+            'label' => 'Apellido',
+        ]);
         
         CRUD::addField([
-            'name'  => 'lastname',
+            'name'  => 'last_name',
             'label' => 'Apellido',
         ]);
 
         CRUD::addField([
-            'name'  => 'name',
+            'name'  => 'first_name',
             'label' => 'Nombre',
         ]);
 
+        CRUD::addField([
+            'name'  => 'status',
+            'label' => 'Nombre',
+            'type' => 'enum'
+        ]);
 
-        
     }
 
     /******************************************** FUNCIONES EXTRAS ********************************************/    
