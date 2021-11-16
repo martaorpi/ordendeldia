@@ -25,7 +25,7 @@ class StudentObserver
      */
     public function updated(Student $student)
     {
-        if($student->status = "Inscripto"){
+        if($student->status == "Inscripto"){
 
             $email = $student->user->email;
 
@@ -122,7 +122,7 @@ class StudentObserver
             $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
             $headers .= "From: ISMP Soporte <info@devweb.com.ar>\r\n"; 
     
-            mail($email, $asunto, $cuerpo, $headers);    
+            mail($email, $asunto, $body, $headers);    
         }
     }
 

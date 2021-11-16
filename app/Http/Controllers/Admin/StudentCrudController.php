@@ -223,7 +223,7 @@ class StudentCrudController extends CrudController
         }
         
     }
-    public function rejected($id, Request $request) 
+    public function customEmail($id, Request $request) 
     {  
         $student = $this->crud->model::find($id);
         $input = $request->all();
