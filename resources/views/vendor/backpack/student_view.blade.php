@@ -103,11 +103,12 @@
                     <div class="col-sm-12">
                         <hr>
                     </div>
-
                     @php
-                        $documentation = \App\Models\Documentation::where('student_id', $entry->id)->get();    
+                        $documentation[0] = $entry->documentation->where('description', 'Certificado de Estudios')->last();
+                        $documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
+                        $documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
                     @endphp
-
+  
                     @foreach ($documentation as $document)
                         <div class="col-sm-4 p-2" align="center">
                             <div class="row">
