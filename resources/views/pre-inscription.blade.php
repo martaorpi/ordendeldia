@@ -243,14 +243,16 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @if (empty($estudiante->documentation))
-                        @php $file = explode('/',$estudiante->documentation[0]->src); @endphp
-                        <a href="{{ $estudiante->documentation[0]->src }}">{{ $file[3] }}</a>
-                    @endif
+                    @php 
+                        $file_calificaion_estudiante = $estudiante->documentation->where('description', 'Certificado de Estudios')->last()->src;
+                        $file = explode('/',$file_calificaion_estudiante);
+                    @endphp
+                    <a href="{{ $file_calificaion_estudiante }}">{{ $file[3] }}</a>
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
-                <input type="hidden" value="Certificado de Estudios" name="description0">
+                    <input type="hidden" value="Certificado de Estudios" name="description0">
+
             </div>
         </div>
 
@@ -262,15 +264,15 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @if (empty($estudiante->documentation))
-                        @php $file = explode('/',$estudiante->documentation[1]->src); @endphp
-                        <a href="{{ $estudiante->documentation[1]->src }}">{{ $file[3] }}</a>
-                    @endif
-
+                    @php 
+                        $file_fotocopia_dni = $estudiante->documentation->where('description', 'Fotocopia de DNI')->last()->src;
+                        $file = explode('/',$file_fotocopia_dni); 
+                    @endphp
+                    <a href="{{ $file_fotocopia_dni }}">{{ $file[3] }}</a>
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
-                <input type="hidden" value="Fotocopia de DNI" name="description1">
+                    <input type="hidden" value="Fotocopia de DNI" name="description1">
             </div>
         </div>
 
@@ -282,17 +284,15 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @if (empty($estudiante->documentation))
-                        @php 
-                            $file = explode('/',$estudiante->documentation[2]->src); 
-                        @endphp
-                        <a href="{{ $estudiante->documentation[2]->src }}">{{ $file[3] }}</a>
-                    @endif
-                @else
+                    @php 
+                        $file_foto_carnet = $estudiante->documentation->where('description', 'Foto Carnet')->last()->src;
+                        $file = explode('/',$file_foto_carnet);
+                    @endphp
+                    <a href="{{ $file_foto_carnet }}">{{ $file[3] }}</a>
+                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
-
-                <input type="hidden" value="Foto Carnet" name="description2">
+                    <input type="hidden" value="Foto Carnet" name="description2">
             </div>
         </div>
 
