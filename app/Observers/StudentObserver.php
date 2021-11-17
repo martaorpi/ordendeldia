@@ -29,8 +29,6 @@ class StudentObserver
 
             $email = $student->user->email;
 
-            $text = 'FELICITACIONES!!! Tu Inscripción ha sido aprobada!
-                Te damos la bienvenida al ISMP.';
             $subtext = 'Pronto te llegarán a tu correo los datos de acceso al Campus para participar del Taller Propedéutico 
                 que comenzará en Diciembre. Es obligatorio completarlo para que adquieras las competencias 
                 necesarias para el cursado.';
@@ -76,7 +74,7 @@ class StudentObserver
                                         <tr>
                                             <td>
                                                 <p class="text-left">
-                                                    <b>'.utf8_decode("Luego de realizar un análisis de la documentación presentada se observa lo siguiente:").'</b>
+                                                    <b>'.utf8_decode("FELICITACIONES!!! Tu Inscripción ha sido aprobada! Te damos la bienvenida al ISMP.").'</b>
                                                 </p>
                                             </td>
                                         </tr>
@@ -87,8 +85,6 @@ class StudentObserver
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p class="text-left" style="padding:0 10% 0 10%" id="observaciones">'.utf8_decode($text).'</p>
-                                                <br>
                                                 <p class="text-left" style="padding:0 10% 0 10%" id="observaciones">'.utf8_decode($subtext).'</p>
                                             </td>
                                         </tr>
@@ -109,7 +105,7 @@ class StudentObserver
                             <tr>
                                 <td>
                                     <div style="background: linear-gradient(178deg, #e12503 0%, #85060c 100%); padding: 20px 0px 10px 0; text-align: center; color: #fff; font-size: 12px;">
-                                        <p>Copyright &copy; '.date("Y").' <b>SinergySoft</b> Todos los derechos reservados.</p>
+                                        <p>Copyright &copy; '.date("Y").' <b>DevWeb</b> Todos los derechos reservados.</p>
                                     </div>
                                 </td>
                             </tr>
