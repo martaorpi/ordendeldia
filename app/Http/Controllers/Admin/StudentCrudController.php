@@ -129,7 +129,7 @@ class StudentCrudController extends CrudController
 
         CRUD::addField([
             'name'  => 'career',
-            'label' => 'Apellido',
+            'label' => 'Carrera',
         ]);
         
         CRUD::addField([
@@ -144,7 +144,7 @@ class StudentCrudController extends CrudController
 
         CRUD::addField([
             'name'  => 'status',
-            'label' => 'Nombre',
+            'label' => 'Estado',
             'type' => 'enum'
         ]);
 

@@ -6,8 +6,9 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-institution"></i>Académico</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Estudiantes</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
     </ul>
 </li>
 <!-- Users, Roles, Permissions -->

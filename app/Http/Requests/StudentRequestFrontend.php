@@ -24,8 +24,8 @@ class StudentRequestFrontend extends FormRequest
     public function rules()
     {
         return [
-            'last_name' => 'required|min:5|max:255',
-            'first_name' => 'required|min:5|max:255',
+            'last_name' => 'required',
+            'first_name' => 'required',
             'dni' => 'required|max:8|min:7|unique:students,dni,'. auth()->user()->student[0]->id 
         ];
     }
