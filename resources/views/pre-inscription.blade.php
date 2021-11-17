@@ -243,12 +243,14 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @php $file = explode('/',$estudiante->documentation[0]->src); @endphp
-                    <a href="{{ $estudiante->documentation[0]->src }}">{{ $file[3] }}</a>
+                    @if (empty($estudiante->documentation))
+                        @php $file = explode('/',$estudiante->documentation[0]->src); @endphp
+                        <a href="{{ $estudiante->documentation[0]->src }}">{{ $file[3] }}</a>
+                    @endif
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                    <input type="hidden" value="Certificado de Estudios" name="description0">
                 @endif
+                <input type="hidden" value="Certificado de Estudios" name="description0">
             </div>
         </div>
 
@@ -260,12 +262,15 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @php $file = explode('/',$estudiante->documentation[1]->src); @endphp
-                    <a href="{{ $estudiante->documentation[1]->src }}">{{ $file[3] }}</a>
+                    @if (empty($estudiante->documentation))
+                        @php $file = explode('/',$estudiante->documentation[1]->src); @endphp
+                        <a href="{{ $estudiante->documentation[1]->src }}">{{ $file[3] }}</a>
+                    @endif
+
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                    <input type="hidden" value="Fotocopia de DNI" name="description1">
                 @endif
+                <input type="hidden" value="Fotocopia de DNI" name="description1">
             </div>
         </div>
 
@@ -277,12 +282,17 @@
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
-                    @php $file = explode('/',$estudiante->documentation[2]->src); @endphp
-                    <a href="{{ $estudiante->documentation[2]->src }}">{{ $file[3] }}</a>
+                    @if (empty($estudiante->documentation))
+                        @php 
+                            $file = explode('/',$estudiante->documentation[2]->src); 
+                        @endphp
+                        <a href="{{ $estudiante->documentation[2]->src }}">{{ $file[3] }}</a>
+                    @endif
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
-                    <input type="hidden" value="Foto Carnet" name="description2">
                 @endif
+
+                <input type="hidden" value="Foto Carnet" name="description2">
             </div>
         </div>
 

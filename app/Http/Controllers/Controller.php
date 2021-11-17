@@ -13,50 +13,54 @@ use App\Models\Cycle;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 
+use App\Http\Requests\StudentRequestFrontend;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function student_create(Request $request)
+    public function studentUpdateOrCreate(StudentRequestFrontend $request)
     {
-        $estudiante = Student::where('user_id', auth()->user()->id)->first();
+        Student::disableAuditing();
+
+        //$estudiante = Student::where('user_id', auth()->user()->id)->first();
         $input = $request->all();
-        if($estudiante){
-            $student = Student::whereId($estudiante->id)->update($request->except(['_token']));
-        }else{
-            $rules = [
-                'dni' => 'required|max:8|min:7|unique:students,dni',
-            ];
-            $this->validate($request, $rules);
-            if($request->nationality_id != 1){
-                $input['province_id'] = 0;
-                $input['department_id'] = 0;
-                $input['location_id'] = 0;
+
+   
+        if($request->nationality_id != 1){
+            $input['province_id'] = 0;
+            $input['department_id'] = 0;
+            $input['location_id'] = 0;
+        }
+        if($request->province_id != 1){
+            $input['department_id'] = 0;
+            $input['location_id'] = 0;
+        }
+        $input['user_id'] = auth()->user()->id;
+        $input['cycle_id'] = 1;
+        
+        $condition = ["user_id" => auth()->user()->id];
+        $student = Student::updateOrCreate($condition,$input);
+
+        if($request->hasFile('files')){
+            $files = $request->file('files');
+            $folder = 'public/uploads/'.$request->dni;
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
             }
-            if($request->province_id != 1){
-                $input['department_id'] = 0;
-                $input['location_id'] = 0;
-            }
-            $input['user_id'] = auth()->user()->id;
-            $input['cycle_id'] = 1;
-            $student = Student::create($input);
-            if($request->hasFile('files')){
-                $files = $request->file('files');
-                $carpeta = 'public/uploads/'.$request->dni;
-                if (!file_exists($carpeta)) {
-                    mkdir($carpeta, 0777, true);
-                }
-    
-                foreach ($files as $clave => $file) {
-                    $nombrearchivo  = $file->getClientOriginalName();
-                    copy($file->getRealPath(),$carpeta."/".$nombrearchivo);
-                    $input2['student_id'] = $student->id;
-                    $input2['src'] = $carpeta."/".$nombrearchivo;
-                    $input2['description'] = $input['description'.$clave];
-                    Documentation::create($input2);
-                }
+
+            foreach ($files as $key => $file) {
+                $filename  = $file->getClientOriginalName();
+                copy($file->getRealPath(),$folder."/".$filename);
+                $inputFile['student_id'] = $student->id;
+                $inputFile['src'] = $folder."/".$filename;
+                $inputFile['description'] = $input['description'.$key];
+
+                Documentation::create($inputFile);
             }
         }
+
+        Student::enableAuditing();
         return redirect()->back();
     }
 
