@@ -23,10 +23,14 @@ class StudentRequestFrontend extends FormRequest
      */
     public function rules()
     {
+        $id = '';
+        if(!empty(auth()->user()->student[0])){
+            $id =  auth()->user()->student[0]->id;
+        }
         return [
             'last_name' => 'required',
             'first_name' => 'required',
-            'dni' => 'required|max:8|min:7|unique:students,dni,'. auth()->user()->student[0]->id 
+            'dni' => 'required|max:8|min:7|unique:students,dni,'. $id 
         ];
     }
 
