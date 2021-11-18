@@ -6,7 +6,7 @@
     margin: 5px;
     padding: 20px 10px;
     background-color: #fff;
-    height: 100px;
+    height: 130px;
     border-radius: 5px;
     transition: .3s linear all;
   }
@@ -18,38 +18,36 @@
     background-color: #ba0101;
     color: #FFF;
   }
-  .card-counter.danger{
-    background-color: #ef5350;
-    color: #FFF;
-  }  
-  .card-counter.success{
-    background-color: #66bb6a;
-    color: #FFF;
-  }  
-  .card-counter.info{
-    background-color: #26c6da;
-    color: #FFF;
-  }  
   .card-counter i{
     font-size: 5em;
     opacity: 0.2;
   }
-  .card-counter .count-numbers{
+  .card-counter .count-numbers2{
     position: absolute;
     right: 35px;
     top: 20px;
+    font-size: 18px;
+    display: block;
+  }
+  .card-counter .count-numbers{
+    position: absolute;
+    left: 35px;
+    top: 15px;
     font-size: 32px;
     display: block;
+  }
+  .card-counter .count-numbers small{
+    font-size: 20px !important;
   }
   .card-counter .count-name{
     position: absolute;
     right: 35px;
-    top: 65px;
+    top: 95px;
     font-style: italic;
     text-transform: capitalize;
-    opacity: 0.5;
+    opacity: 0.6;
     display: block;
-    font-size: 18px;
+    font-size: 23px;
   }
 </style>
 
@@ -64,14 +62,24 @@
         'button_text' => trans('backpack::base.logout'),
     ];*/
     $carreras = App\Models\Career::get();
-    $aprobados = App\Models\Student::where('status','Solicitado')->orWhere('status','Inscripto');
-    $ingresos_carrera = $aprobados->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
 @endphp
 
 <div class="container">
     <div class="row">
         @foreach ($carreras as $carrera)
-            @foreach ($ingresos_carrera as $cupo)
+          @php
+              $aprobados = App\Models\Student::where('career_id',$carrera->id)->whereIn('status', ['Aprobado','Inscripto'])->count();
+              //$ingresos_carrera = $aprobados->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
+          @endphp
+          <div class="col-md-4">
+            <div class="card-counter primary">
+                <i class="fa fa-code-fork"></i>                
+                <span class="count-numbers text-center"><small>Aprobados</small><br>{{ $aprobados }}</span>
+                <span class="count-numbers2 text-center"><small>Disponible</small><br>{{ $carrera->available_space - $aprobados }}</span>
+                <span class="count-name">{{$carrera->short_name}}</span>
+            </div>
+          </div>
+            {{--@foreach ($ingresos_carrera as $cupo)
                 @if ($cupo->career_id == $carrera->id)
                     <div class="col-md-3">
                         <div class="card-counter primary">
@@ -82,32 +90,8 @@
                         </div>
                     </div>
                 @endif
-            @endforeach
+            @endforeach--}}
             
-
-    {{--<div class="col-md-3">
-      <div class="card-counter danger">
-        <i class="fa fa-ticket"></i>
-        <span class="count-numbers">599</span>
-        <span class="count-name">Instances</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter success">
-        <i class="fa fa-database"></i>
-        <span class="count-numbers">6875</span>
-        <span class="count-name">Data</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter info">
-        <i class="fa fa-users"></i>
-        <span class="count-numbers">35</span>
-        <span class="count-name">Users</span>
-      </div>
-    </div>--}}
     @endforeach
   </div>
 </div>
