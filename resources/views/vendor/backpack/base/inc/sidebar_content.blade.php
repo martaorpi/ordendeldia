@@ -1,3 +1,5 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> Inicio</a></li>
 
@@ -7,7 +9,7 @@
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-institution"></i>Académico</a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Pre-inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
     </ul>
 </li>

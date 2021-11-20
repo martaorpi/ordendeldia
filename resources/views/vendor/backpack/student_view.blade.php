@@ -1,13 +1,12 @@
 @extends(backpack_view('blank'))
 @section('content')
 
-
 <div class="app-body">
     <main class="main">
       <!-- Breadcrumb-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">Panel</li>
-        <li class="breadcrumb-item"><a href="{{ backpack_url('student?cycle_id=1&status=Solicitado') }}">Pre-inscriptos</a></li>
+        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Lista de Estudiantes</a></li>
         <li class="breadcrumb-item active">{{$entry->last_name}}, {{$entry->first_name}}</li>
       </ol>
       <div class="container-fluid">
@@ -250,14 +249,20 @@
       });
     });
 
-    $( "#btnCustomEmail" ).click(function() {
-      swal("Mensaje para el pre-inscripto:", {        
-        button: "Enviar",
-        content: "input",
+    $( "#btnCustomEmail" ).click(async function() {
+      const { value: text } = await Swal.fire({
+        input: 'textarea',
+        inputLabel: 'Mensaje para el Solicitante:',
+        inputPlaceholder: 'Ej: la fotocopia del carnet es poco legible...',
+        inputAttributes: {
+          'aria-label': 'Type your message here'
+        },
+        showCancelButton: true
       })
-      .then((value) => {
+
+      if (text) {
         $.post("custom_email",{
-          val: value
+          val: text
         })
         .done(function (result, status, xhr) {
           console.log(result)
@@ -270,8 +275,7 @@
         .fail(function (xhr, status, error) {
           console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
         });
-
-      });
+      }
     });
 
   </script>
