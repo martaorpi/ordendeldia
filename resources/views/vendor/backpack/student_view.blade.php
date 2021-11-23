@@ -138,6 +138,38 @@
                 </div>
               </div>
             </div>
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <strong>Historial de Mensajes:</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                  
+                  <table class="table table-responsive-sm table-sm table-bordered table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Fecha y Hora</th>
+                        <th>Mensaje</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($entry->log as $log)
+                        @if($log->type == 'Observacion enviada')
+                          <tr>
+                            <td> {{ date("d/m/Y H:m:s", strtotime($log->created_at)) }} </td>
+                            <td> {{ $log->text }} </td>
+                          </tr>          
+                        @endif                
+                      @endforeach
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
           </div>
         </div>
       </div>
