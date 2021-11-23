@@ -138,37 +138,39 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12">
-              <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <strong>Historial de Mensajes:</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
+            @if($entry->status != 'Inscripto')
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <strong>Historial de Mensajes:</strong>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
 
-                  <table class="table table-responsive-sm table-sm table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Fecha y Hora</th>
-                        <th>Mensaje</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($entry->message as $message)
-                          <tr>
-                            <td> {{ date("d/m/Y H:m:s", strtotime($message->created_at)) }} </td>
-                            <td> {{ $message->text }} </td>
-                          </tr>                 
-                      @endforeach
-                    </tbody>
-                  </table>
+                    <table class="table table-responsive-sm table-sm table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Fecha y Hora</th>
+                          <th>Mensaje</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($entry->message as $message)
+                            <tr>
+                              <td> {{ date("d/m/Y H:m:s", strtotime($message->created_at)) }} </td>
+                              <td> {{ $message->text }} </td>
+                            </tr>                 
+                        @endforeach
+                      </tbody>
+                    </table>
 
+                  </div>
                 </div>
-              </div>
-          </div>
+            </div>
+            @endif
         </div>
       </div>
     </main>
