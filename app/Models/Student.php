@@ -119,4 +119,8 @@ class Student extends Model implements Auditable
     {
         return $this->hasMany(\App\Models\Log::class);
     }
+    public function message()
+    {
+        return $this->hasMany(\App\Models\Log::class)->where('type', 'Observacion enviada');
+    }
 }

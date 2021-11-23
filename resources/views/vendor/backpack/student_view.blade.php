@@ -157,13 +157,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($entry->log as $log)
-                        @if($log->type == 'Observacion enviada')
+                      @foreach ($entry->message as $message)
                           <tr>
-                            <td> {{ date("d/m/Y H:m:s", strtotime($log->created_at)) }} </td>
-                            <td> {{ $log->text }} </td>
-                          </tr>          
-                        @endif                
+                            <td> {{ date("d/m/Y H:m:s", strtotime($message->created_at)) }} </td>
+                            <td> {{ $message->text }} </td>
+                          </tr>                 
                       @endforeach
                     </tbody>
                   </table>
