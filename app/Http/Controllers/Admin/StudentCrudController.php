@@ -35,6 +35,14 @@ class StudentCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->enableExportButtons();
+        $this->crud->orderBy('id', 'ASC');
+
+        $this->crud->addColumn([
+            'name'=> 'created_at',
+            'label'=> 'Alta',
+            'type'  => 'date',
+            'format'   => 'l',
+        ]);
 
         $this->crud->addColumn([
             'name'=> 'first_name',
@@ -54,6 +62,8 @@ class StudentCrudController extends CrudController
         $this->crud->addColumn([
             'name'=> 'career',
             'label'=> 'Carrera',
+            'type' => "relationship",
+            'attribute' => "short_name",
         ]);
 
         $this->crud->addColumn([
