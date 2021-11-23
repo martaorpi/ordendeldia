@@ -38,6 +38,7 @@ class Controller extends BaseController
         }
         $input['user_id'] = auth()->user()->id;
         $input['cycle_id'] = 1;
+        $input['status'] = 'Solicitado';
         
         $condition = ["user_id" => auth()->user()->id];
         $student = Student::updateOrCreate($condition,$input);

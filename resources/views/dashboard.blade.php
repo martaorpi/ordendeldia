@@ -19,7 +19,7 @@
                                 {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
                             </div>
                         </div>
-                        @if(!empty(auth()->user()->student[0]->status != 'Aprobado'))
+                        @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))
                             @include('pre-inscription')
                         @endif    
                     @else

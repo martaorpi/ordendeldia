@@ -235,12 +235,9 @@ class StudentCrudController extends CrudController
         $log->type = 'Observacion enviada';
         $log->save();
         
-        //$student->status = 'Rechazado';
-        /*if($student->save()){
-            return ["status" => $input];
-        }else{
-            return ["status" => 400];
-        }*/
+        $student->status = 'Revision';
+        $student->save();
+        
         $email_destino = $student->user->email;
 
         $cuerpo = '<style>
@@ -324,6 +321,7 @@ class StudentCrudController extends CrudController
                 </body>
             </html>';
         $this->sendMail($email_destino,$cuerpo);
+        
     }
 
     public function sendMail($email_destino,$cuerpo){
