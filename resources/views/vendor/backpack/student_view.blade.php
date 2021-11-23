@@ -148,8 +148,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                  
-                  <table class="table table-responsive-sm table-sm table-bordered table-striped table-hover">
+
+                  <table class="table table-responsive-sm table-sm table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>Fecha y Hora</th>
