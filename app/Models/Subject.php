@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Exam extends Model
+class Subject extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +20,10 @@ class Exam extends Model
      * @var array
      */
     protected $fillable = [
-        'subject_id',
-        'user_id',
-        'date',
-        'hour',
-        'status',
+        'career_id',
+        'quarter',
+        'name',
+        'slug',
     ];
 
     /**
@@ -31,19 +33,21 @@ class Exam extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'subject_id' => 'integer',
-        'user_id' => 'integer',
-        'date' => 'date',
+        'career_id' => 'integer',
     ];
 
-
-    public function subject()
+    public function getSlugOptions() : SlugOptions
     {
-        return $this->belongsTo(\App\Models\Subject::class);
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->usingSeparator('-');
     }
 
-    public function teachers()
+
+    public function career()
     {
-        return $this->belongsToMany(\App\Models\Teacher::class, 'exam_teacher');
+        return $this->belongsTo(\App\Models\Career::class);
     }
+
 }

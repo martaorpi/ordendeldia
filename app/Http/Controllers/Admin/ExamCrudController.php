@@ -58,13 +58,29 @@ class ExamCrudController extends CrudController
     {
         CRUD::setValidation(ExamRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::addField(['name' => 'subject', 'label' =>'Materia', 'type' => 'relationship']);
+        CRUD::addField(['name' => 'date', 'label' =>'Fecha Examen', 'type' => 'date']);
+        CRUD::addField(['name' => 'hour', 'label' =>'Hora Examen', 'type' => 'time']);
+        
+        CRUD::addField([
+            'name' => 'teachers',
+            'label' =>'Profesores', 
+            'type' => 'select2_multiple'
+        ]);
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+    }
+
+    protected function setupShowOperation()
+    {
+        CRUD::addColumn(['name' => 'subject', 'label' =>'Materia', 'type' => 'relationship']);
+        CRUD::addColumn(['name' => 'date', 'label' =>'Fecha Examen', 'type' => 'date']);
+        CRUD::addColumn(['name' => 'hour', 'label' =>'Hora Examen', 'type' => 'time']);
+        
+        CRUD::addColumn([
+            'name' => 'teachers',
+            'label' =>'Profesores', 
+        ]);
+
     }
 
     /**

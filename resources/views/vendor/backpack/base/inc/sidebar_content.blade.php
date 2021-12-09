@@ -14,6 +14,12 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Revision') }}'><i class='nav-icon la la-mortar-board'></i> En Revisión</a></li>
     </ul>
 </li>
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-group"></i>Examenes</a>
+    <ul class="nav-dropdown-items">
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('exam') }}"><i class="nav-icon la la-user"></i> <span>Mesa de examen</span></a></li>
+    </ul>
+</li>
 <!-- Users, Roles, Permissions -->
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-group"></i>Personal ISMP</a>

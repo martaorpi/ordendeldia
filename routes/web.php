@@ -25,22 +25,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
 
+Route::get('examenes', function () {
+    return view('exam');
+})->middleware(['auth','verified'])->name('examenes');
+
+
+
 require __DIR__.'/auth.php';
 
 Route::post('formulario-inscripcion', [Controller::class, 'studentUpdateOrCreate']);
-//Route::post('formulario-update', [Controller::class, 'student_update']);
-//Route::post('formulario-inscripcion','Controller@student_update');
-
-
-/*Route::get("form_pdf", function (Request $request) {
-    $dompdf = App::make("dompdf.wrapper");
-    
-    $dompdf->loadView("form_pdf", [
-        "estudiante" => auth()->user()->student[0],
-    ]);
-    return $dompdf->stream('Formulario N° '.auth()->user()->student[0]->dni);
-});*/
-
 
 Route::post('form_pdf', [Controller::class, 'form_pdf']);
 

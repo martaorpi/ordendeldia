@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Exam extends Model
+class Teacher extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, SoftDeletes;
@@ -17,11 +17,10 @@ class Exam extends Model
      * @var array
      */
     protected $fillable = [
-        'subject_id',
-        'user_id',
-        'date',
-        'hour',
-        'status',
+        'user_admin_id',
+        'titel',
+        'name',
+        'dni',
     ];
 
     /**
@@ -31,19 +30,15 @@ class Exam extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'subject_id' => 'integer',
-        'user_id' => 'integer',
-        'date' => 'date',
+        'user_admin_id' => 'integer',
     ];
 
-
-    public function subject()
+    /*public function getSlugOptions() : SlugOptions
     {
-        return $this->belongsTo(\App\Models\Subject::class);
-    }
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->usingSeparator('-');
+    }*/
 
-    public function teachers()
-    {
-        return $this->belongsToMany(\App\Models\Teacher::class, 'exam_teacher');
-    }
 }
