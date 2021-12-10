@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2021 a las 17:11:47
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.0
+-- Tiempo de generación: 10-12-2021 a las 14:55:01
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_ismp_academico`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `audits`
+--
+
+CREATE TABLE `audits` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_id` bigint(20) UNSIGNED NOT NULL,
+  `old_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `new_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` varchar(1023) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -190,7 +213,10 @@ INSERT INTO `documentations` (`id`, `student_id`, `description`, `src`, `created
 (33, 28, 'Foto Carnet', 'public/uploads/45661209/IMG_20190205_114037509.jpg', '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
 (34, 31, 'Certificado de Estudios', 'public/uploads/40285869/002.jpg', '2021-11-10 16:54:43', '2021-11-10 16:54:43'),
 (35, 31, 'Fotocopia de DNI', 'public/uploads/40285869/70.png', '2021-11-10 16:54:43', '2021-11-10 16:54:43'),
-(36, 31, 'Foto Carnet', 'public/uploads/40285869/beca.png', '2021-11-10 16:54:43', '2021-11-10 16:54:43');
+(36, 31, 'Foto Carnet', 'public/uploads/40285869/beca.png', '2021-11-10 16:54:43', '2021-11-10 16:54:43'),
+(37, 33, 'Certificado de Estudios', 'public/uploads/29376926/DEVWEB-ISMP.pdf', '2021-11-15 15:43:02', '2021-11-15 15:43:02'),
+(38, 33, 'Fotocopia de DNI', 'public/uploads/29376926/instagram (3).png', '2021-11-15 15:43:02', '2021-11-15 15:43:02'),
+(39, 33, 'Foto Carnet', 'public/uploads/29376926/party-popper.png', '2021-11-15 15:43:02', '2021-11-15 15:43:02');
 
 -- --------------------------------------------------------
 
@@ -201,14 +227,21 @@ INSERT INTO `documentations` (`id`, `student_id`, `description`, `src`, `created
 CREATE TABLE `exams` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `subject_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
   `date` date NOT NULL,
   `hour` time NOT NULL,
-  `status` enum('Solicitado','Aprobado','Rechazado') COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `exams`
+--
+
+INSERT INTO `exams` (`id`, `subject_id`, `date`, `hour`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, '2021-12-09', '10:00:00', '2021-12-09 17:58:27', '2021-12-09 17:57:46', '2021-12-09 17:58:27'),
+(2, 1, '2021-12-09', '10:00:00', '2021-12-09 17:58:25', '2021-12-09 17:58:10', '2021-12-09 17:58:25'),
+(3, 1, '2021-12-09', '10:00:00', NULL, '2021-12-09 17:58:50', '2021-12-09 17:58:50');
 
 -- --------------------------------------------------------
 
@@ -218,8 +251,36 @@ CREATE TABLE `exams` (
 
 CREATE TABLE `exam_student` (
   `exam_id` bigint(20) UNSIGNED NOT NULL,
-  `student_id` bigint(20) UNSIGNED NOT NULL
+  `student_id` bigint(20) UNSIGNED NOT NULL,
+  `qualification_oral` int(11) DEFAULT NULL,
+  `qualification_written` int(11) DEFAULT NULL,
+  `condition_exam` enum('Regular','Libre') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Solicitado','Cancelado','Aprobado_Tesorero','Inscripto','Aprobado','Desaprobado','Ausente') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `exam_teacher`
+--
+
+CREATE TABLE `exam_teacher` (
+  `exam_id` bigint(20) UNSIGNED NOT NULL,
+  `teacher_id` bigint(20) UNSIGNED NOT NULL,
+  `category` enum('Presidente','Vocal') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `exam_teacher`
+--
+
+INSERT INTO `exam_teacher` (`exam_id`, `teacher_id`, `category`) VALUES
+(2, 1, 'Presidente'),
+(2, 2, 'Presidente'),
+(3, 1, 'Presidente'),
+(3, 2, 'Presidente');
 
 -- --------------------------------------------------------
 
@@ -988,26 +1049,10 @@ CREATE TABLE `logs` (
   `user_admin_id` int(20) NOT NULL,
   `student_id` int(20) NOT NULL,
   `text` text DEFAULT NULL,
-  `type` varchar(50) NOT NULL,
+  `type` enum('Rechazados','Email') NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `logs`
---
-
-INSERT INTO `logs` (`id`, `user_admin_id`, `student_id`, `text`, `type`, `created_at`, `updated_at`) VALUES
-(4, 1, 31, 'ddd', 'Rechazados', '2021-11-10 17:45:41', '2021-11-10 17:45:41'),
-(5, 1, 31, NULL, 'Rechazados', '2021-11-10 17:46:12', '2021-11-10 17:46:12'),
-(6, 1, 31, NULL, 'Rechazados', '2021-11-10 17:47:24', '2021-11-10 17:47:24'),
-(7, 1, 31, 'button', 'Rechazados', '2021-11-10 18:14:32', '2021-11-10 18:14:32'),
-(8, 1, 31, NULL, 'Rechazados', '2021-11-10 18:14:42', '2021-11-10 18:14:42'),
-(9, 1, 31, 'gggggg', 'Rechazados', '2021-11-10 18:15:27', '2021-11-10 18:15:27'),
-(10, 1, 31, 'ddddddd', 'Rechazados', '2021-11-10 18:16:34', '2021-11-10 18:16:34'),
-(11, 1, 31, 'ggggggg', 'Rechazados', '2021-11-11 17:11:55', '2021-11-11 17:11:55'),
-(12, 1, 31, 'ddddddd', 'Rechazados', '2021-11-11 17:14:09', '2021-11-11 17:14:09'),
-(13, 1, 31, '{\r\n    \"nombre\": \".Ana.\",\r\n    \"apellido\": \"Crespo\",\r\n    \"idtipodocumento\": 2,\r\n    \"nrodocumento\": 40285870,\r\n    \"fechanacimiento\": \"1990-01-01\",\r\n    \"email\": \"anavirginiacrespo@gmail.com\",\r\n    \"direccion\": \"Av roca Sur 311\",\r\n    \"sexo\": \"F\",\r\n    \"idcarrera\": 1\r\n}', 'Alta Sistema Cobranza', '2021-11-11 19:11:24', '2021-11-11 19:11:24');
 
 -- --------------------------------------------------------
 
@@ -1062,7 +1107,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2021_11_03_145333_create_exams_table', 1),
 (14, '2021_11_03_145334_create_personals_table', 1),
 (15, '2021_11_03_145335_create_exam_student_table', 1),
-(16, '2021_11_03_145336_create_career_user_table', 1);
+(16, '2021_11_03_145336_create_career_user_table', 1),
+(17, '2020_03_31_114745_remove_backpackuser_model', 2),
+(18, '2021_11_16_153250_create_audits_table', 2);
 
 -- --------------------------------------------------------
 
@@ -1379,7 +1426,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_id`, `province_id`, `department_id`, `location_id`, `location_description`, `last_name`, `first_name`, `dni`, `year_income`, `address`, `address_street`, `address_number`, `address_flat`, `address_departament`, `address_cp`, `status`, `slug`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(18, 1, 2, 1, 1, 1, 7, 2, NULL, 'Garcia', 'Victor', 26640748, NULL, 'Castelli\r\n118', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'garcia', NULL, '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
+(18, 1, 2, 1, 1, 1, 7, 2, NULL, 'Garcia', 'Victor', 26640748, NULL, 'Castelli\r\n118', NULL, NULL, NULL, NULL, NULL, 'Inscripto', 'garcia', NULL, '2021-11-10 01:14:25', '2021-11-10 01:14:25'),
 (19, 2, 3, 1, 1, 1, 5, 137, NULL, 'Garcia', 'Victor', 26640749, NULL, 'RUTA NAC. 34 VIEJA KM 2,3. CALLE PUBLICA S/N LOTE 4-2B, EL POLEAR', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'garcia-1', NULL, '2021-11-10 01:17:41', '2021-11-10 01:17:41'),
 (20, 3, 5, 1, 1, 1, 7, 2, NULL, 'Barrera', 'Lidia Liliana', 40527810, NULL, 'Arenales y defensa N 556 Barrio Parque', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'barrera', NULL, '2021-11-10 10:57:30', '2021-11-10 10:57:30'),
 (21, 8, 5, 1, 1, 1, 7, 2, NULL, 'Valdez', 'Daniela Nerea', 38555526, NULL, 'Barrio 8 de abril \r\nDorrego 506', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'valdez', NULL, '2021-11-10 11:36:21', '2021-11-10 11:36:21'),
@@ -1390,7 +1437,58 @@ INSERT INTO `students` (`id`, `user_id`, `career_id`, `cycle_id`, `nationality_i
 (26, 14, 4, 1, 1, 1, 7, 2, NULL, 'Luna Filippa', 'María de los Milagros', 42689379, NULL, 'Av. Moreno sur 2105. 1er piso', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'luna-filippa', NULL, '2021-11-10 12:18:14', '2021-11-10 12:18:14'),
 (27, 4, 5, 1, 1, 1, 7, 2, NULL, 'Vasquez', 'Javier Leonardo', 44704126, NULL, 'Dr Rene Favaloro 5600-5500. Barrio siglo xx.', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'vasquez', NULL, '2021-11-10 12:20:53', '2021-11-10 12:20:53'),
 (28, 13, 4, 1, 1, 1, 7, 2, NULL, 'Barrer', 'Camila', 45661209, NULL, 'Salta 1033', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'barrer', NULL, '2021-11-10 12:21:52', '2021-11-10 12:21:52'),
-(31, 19, 1, 1, 1, 1, 7, 2, NULL, 'Crespo', 'Ana', 40285870, NULL, 'Av roca Sur 311', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'crespo', NULL, '2021-11-10 16:54:43', '2021-11-11 17:14:09');
+(31, 19, 1, 1, 1, 1, 7, 2, NULL, 'Crespo', 'Ana', 40285869, NULL, 'Av roca Sur 311', NULL, NULL, NULL, NULL, NULL, 'Aprobado', 'crespo', NULL, '2021-11-10 16:54:43', '2021-11-10 17:17:34'),
+(33, 20, 3, 1, 4, 1, 7, 2, NULL, 'Orpi', 'Marta2', 29376926, NULL, 'Prueba', NULL, NULL, NULL, NULL, NULL, 'Solicitado', 'orpi', NULL, '2021-11-15 15:43:02', '2021-11-16 16:57:09');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(11) UNSIGNED NOT NULL,
+  `career_id` bigint(11) UNSIGNED NOT NULL,
+  `quarter` int(1) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `career_id`, `quarter`, `name`, `slug`, `created_at`, `deleted_at`, `updated_at`) VALUES
+(1, 1, 1, 'materia1', 'materia1', NULL, NULL, NULL),
+(2, 1, 1, 'materia2', 'materia2', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` bigint(11) UNSIGNED NOT NULL,
+  `user_admin_id` bigint(11) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `dni` bigint(20) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `user_admin_id`, `name`, `dni`, `title`, `created_at`, `deleted_at`, `updated_at`) VALUES
+(1, 1, 'docente1', 2222222, NULL, NULL, NULL, NULL),
+(2, 2, 'docente2', 33333333, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1432,7 +1530,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (16, 'Agustina Nahir Gomez', 'agustinagomez.0323@gmail.com', '2021-11-10 12:12:58', '$2y$10$xP/WSVEBgtzrWFPVPryq7u0qXSuWXXxfB.8pNmUWCXqBGjjz.YaOe', NULL, '2021-11-10 12:12:26', '2021-11-10 12:12:58'),
 (17, 'Claudia Carolina García', 'claudiacarolina17@gmail.com', NULL, '$2y$10$5q3SPSW44ZHURM07OhdjVe8H0/Dq3VR24x/WtKm9/iBYihmNu9k.G', NULL, '2021-11-10 12:27:32', '2021-11-10 12:27:32'),
 (18, 'Giovana', 'giovanabanegas55@gmail.com', NULL, '$2y$10$O6sxYWDytmbm/1vfiVwGe.pbHaOYJ7f5rXNQ2XsDtYdJ0rmm/eiCO', NULL, '2021-11-10 12:28:32', '2021-11-10 12:28:32'),
-(19, 'Ana Virginia Crespo', 'anavirginiacrespo@gmail.com', '2021-11-10 13:53:40', '$2y$10$5kMQmu8UEDlbAy4dhNkx1Oo5QZzpIDVkSIdafHibOtF9fgms7IX1y', NULL, '2021-11-10 16:51:54', '2021-11-10 16:51:54');
+(19, 'Ana Virginia Crespo', 'anavirginiacrespo@gmail.com', '2021-11-10 13:53:40', '$2y$10$5kMQmu8UEDlbAy4dhNkx1Oo5QZzpIDVkSIdafHibOtF9fgms7IX1y', NULL, '2021-11-10 16:51:54', '2021-11-10 16:51:54'),
+(20, 'Marta Orpi', 'martich82@gmail.com', '2021-11-10 13:01:46', '$2y$10$Dp4ESie1ggY0s3xm4Mfip..wCwK0mOX8qB1/0TaGWPtu.dOojqs.e', NULL, '2021-11-11 15:59:57', '2021-11-11 15:59:57');
 
 -- --------------------------------------------------------
 
@@ -1456,11 +1555,19 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qHVwVCyuwKPSMubTI56V8vCM6ixFPI4G8WAnd9RAkmN4zs2BzkAuFXKe9xKk', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
+(1, 'admin', 'admin@admin.com', '2021-11-08 05:34:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BkpZol1Jw1FHnmxrbNPsy5Vu0xmw15ah5MEMXKFLZvxYsvv8ObTSfGJ1T0Sb', '2021-11-08 05:34:55', '2021-11-08 05:34:55');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `audits`
+--
+ALTER TABLE `audits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `audits_auditable_type_auditable_id_index` (`auditable_type`,`auditable_id`),
+  ADD KEY `audits_user_id_user_type_index` (`user_id`,`user_type`);
 
 --
 -- Indices de la tabla `careers`
@@ -1494,8 +1601,19 @@ ALTER TABLE `documentations`
 --
 ALTER TABLE `exams`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `exams_subject_id_foreign` (`subject_id`),
-  ADD KEY `exams_user_id_foreign` (`user_id`);
+  ADD KEY `exams_subject_id_foreign` (`subject_id`);
+
+--
+-- Indices de la tabla `exam_student`
+--
+ALTER TABLE `exam_student`
+  ADD PRIMARY KEY (`exam_id`,`student_id`) USING BTREE;
+
+--
+-- Indices de la tabla `exam_teacher`
+--
+ALTER TABLE `exam_teacher`
+  ADD PRIMARY KEY (`exam_id`,`teacher_id`) USING BTREE;
 
 --
 -- Indices de la tabla `failed_jobs`
@@ -1615,6 +1733,20 @@ ALTER TABLE `students`
   ADD KEY `department_id` (`department_id`);
 
 --
+-- Indices de la tabla `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `career_id` (`career_id`);
+
+--
+-- Indices de la tabla `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_admin_id` (`user_admin_id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -1631,6 +1763,12 @@ ALTER TABLE `users_admin`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `audits`
+--
+ALTER TABLE `audits`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `careers`
@@ -1654,13 +1792,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `documentations`
 --
 ALTER TABLE `documentations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -1678,7 +1816,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_items`
@@ -1690,7 +1828,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `nationalities`
@@ -1732,13 +1870,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `users_admin`
