@@ -76,6 +76,12 @@ class StudentCrudController extends CrudController
             'label'=> 'Estado',
         ]);
 
+        $this->crud->addColumn([
+            'name'=> 'user_id',
+            'label'=> 'Correo',
+            'attribute' => 'email',
+        ]);
+
         /************* FILTROS *************/
 
         $this->crud->addFilter([
