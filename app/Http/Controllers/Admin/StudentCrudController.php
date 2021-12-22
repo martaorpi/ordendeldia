@@ -109,11 +109,11 @@ class StudentCrudController extends CrudController
             'type'  => 'dropdown',
             'label' => 'Estado'
         ], [
-            'Solicitados' => 'Solicitado',
-            'Aprobados'=> 'Aprobado',
-            'Inscriptos' => 'Inscripto',
-            'Rechazados' => 'Rechazado',
-            'Cancelados' => 'Cancelado',
+            'Solicitado' => 'Solicitado',
+            'Aprobado'=> 'Aprobado',
+            'Inscripto' => 'Inscripto',
+            'Rechazado' => 'Rechazado',
+            'Cancelado' => 'Cancelado',
         ]);
     }
 
