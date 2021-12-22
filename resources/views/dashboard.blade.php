@@ -1,14 +1,12 @@
 <x-app-layout>
     <x-slot name="header"></x-slot>
 
-    @php
-        $student = auth()->user()->student[0];
-    @endphp
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if(!empty($student))
+                    @if(!empty(auth()->user()->student[0]))
                         <div class="row">
                             <div class="col-12 col-lg-7 text-left">
                                 <b class="text-grey h2">Su solicitud está siendo procesada</b>
@@ -23,7 +21,7 @@
                                 {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
                             </div>
                         </div>
-                        @if(!empty($student->status == 'Solicitado') || !empty($student->status == 'Revision'))
+                        @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))
                             @include('pre-inscription')
                         @endif
                     @else
