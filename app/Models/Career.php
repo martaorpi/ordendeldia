@@ -36,6 +36,10 @@ class Career extends Model
         'id' => 'integer',
     ];
 
+    public function students_with_space()
+    {
+        return $this->hasMany(\App\Models\Student::class)->whereIn('status', ['Aprobado', 'Inscripto']);
+    }
 
     public function users()
     {

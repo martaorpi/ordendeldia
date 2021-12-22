@@ -50,8 +50,8 @@
 </style>
 
 @php
-    $carreras = App\Models\Career::get();
-    $estudiantes_carrera = App\Models\Student::select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
+    $careers = App\Models\Career::with('students_with_space')->get();
+    
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
     $departamentos = App\Models\Department::get();
@@ -80,29 +80,26 @@
                 <hr class="linea_bordo">
             </div>
         </div>
-        
+       
         <div class="form-group row">
             <div class="col-12">
                 <label for="carrera">Carrera Nivel Superior No Universitario</label>
                 <select class="form-control" id="carrera" name="career_id" required>
                     <option value="">Seleccione</option>
-                    @foreach ($carreras as $key => $carrera)
-                        @if ($carrera->status == 'Abierta')
-                            @foreach ($estudiantes_carrera as $cupo)
-                                @if ($cupo->career_id == $carrera->id)
-                                    @if ($cupo->total < $carrera->available_space)
-                                        @if ($estudiante)
-                                            <option value="{{ $carrera->id }}" {{($estudiante->career_id==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
-                                        @else
-                                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}}>{{ $carrera->title }}</option>
-                                        @endif
-                                    @else
-                                        <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Sin Cupo)</i></option>
-                                    @endif
+                    @foreach ($careers as $key => $career)
+                        {{$career}}
+                        @if ($career->status == 'Abierta')
+                            @if ($career->available_space > $career->students_with_space->count())
+                                @if ($estudiante)
+                                    <option value="{{ $career->id }}" {{($estudiante->career_id==$career->id)? 'selected':''}}>{{ $career->title }}</option>
+                                @else
+                                    <option value="{{ $career->id }}">{{ $career->title }} </option>
                                 @endif
-                            @endforeach
+                            @else
+                                <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} {{$career->available_space}} <i>(Sin Cupo)</i></option>
+                            @endif
                         @else
-                            <option value="{{ $carrera->id }}" {{(old('career_id')==$carrera->id)? 'selected':''}} disabled>{{ $carrera->title }} <i>(Cerrada)</i></option>
+                            <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} <i>(Cerrada)</i></option>
                         @endif
                     @endforeach
                 </select>
