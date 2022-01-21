@@ -56,6 +56,12 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
+                        <label for="name">Correo</label>
+                        <input class="form-control" type="text" value=" {{ $entry->user->email }} " disabled>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
                         <label for="name">Dirección</label>
                         <input class="form-control" type="text" value=" {{ $entry->address }} " disabled>
                       </div>
