@@ -84,7 +84,32 @@ class CareerCrudController extends CrudController
     {
         CRUD::setValidation(CareerRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::addField(
+        [   // Enum
+            'name'  => 'short_name',
+            'label' => 'Nombre Corto',
+        ]);
+
+        CRUD::addField(
+        [   // Enum
+            'name'  => 'amount',
+            'label' => 'Monto',
+        ]);
+
+        CRUD::addField(
+        [   // Enum
+            'name'  => 'available_space',
+            'label' => 'Cupos',
+        ]);
+
+        CRUD::addField(
+        [   // Enum
+            'name'  => 'status',
+            'label' => 'Estado',
+            'type'  => 'enum'
+        ]);
+
+        //CRUD::setFromDb(); // fields
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
