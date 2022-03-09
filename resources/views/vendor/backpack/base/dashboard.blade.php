@@ -68,13 +68,13 @@
     <div class="row">
         @foreach ($carreras as $carrera)
           @php
-              $aprobados = App\Models\Student::where('career_id',$carrera->id)->whereIn('status', ['Aprobado','Inscripto'])->count();
+              $aprobados = App\Models\Student::where('career_id',$carrera->id)->whereIn('status', ['Inscripto','Inscripto'])->count();
               //$ingresos_carrera = $aprobados->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
           @endphp
           <div class="col-md-4">
             <div class="card-counter primary">
                 <i class="fa fa-code-fork"></i>                
-                <span class="count-numbers text-center"><small>Aprobados</small><br>{{ $aprobados }}</span>
+                <span class="count-numbers text-center"><small>Inscriptos</small><br>{{ $aprobados }}</span>
                 <span class="count-numbers2 text-center"><small>Disponible</small><br>{{ $carrera->available_space - $aprobados }}</span>
                 <span class="count-name">{{$carrera->short_name}}</span>
             </div>
