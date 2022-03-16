@@ -237,7 +237,7 @@
                 <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label>
             </div>
     
-            <div class="col-12 col-lg-4">
+            <!--<div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple>
                     @php 
@@ -250,7 +250,7 @@
                 @endif
                     <input type="hidden" value="Certificado de Estudios" name="description0">
 
-            </div>
+            </div>-->
         </div>
 
         <div class="form-group row">
