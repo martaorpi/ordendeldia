@@ -246,7 +246,7 @@
                     @endphp
                     <a href="{{ $file_calificaion_estudiante }}">{{ $file[3] }}</a>
                 @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
                 @endif
                     <input type="hidden" value="Certificado de Estudios" name="description0">
 
@@ -267,7 +267,7 @@
                     @endphp
                     <a href="{{ $file_fotocopia_dni }}">{{ $file[3] }}</a>
                 @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
                 @endif
                     <input type="hidden" value="Fotocopia de DNI" name="description1">
             </div>
@@ -287,7 +287,7 @@
                     @endphp
                     <a href="{{ $file_foto_carnet }}">{{ $file[3] }}</a>
                  @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
                 @endif
                     <input type="hidden" value="Foto Carnet" name="description2">
             </div>
