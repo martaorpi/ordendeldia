@@ -89,15 +89,15 @@
                     @foreach ($careers as $key => $career)
                         {{$career}}
                         @if ($career->status == 'Abierta')
-                            {{--@if ($career->available_space > $career->students_with_space->count())--}}
+                            @if ($career->available_space > $career->students_with_space->count())
                                 @if ($estudiante)
                                     <option value="{{ $career->id }}" {{($estudiante->career_id==$career->id)? 'selected':''}}>{{ $career->title }}</option>
                                 @else
                                     <option value="{{ $career->id }}">{{ $career->title }} </option>
                                 @endif
-                            {{--@else
+                            @else
                                 <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} {{$career->available_space}} <i>(Sin Cupo)</i></option>
-                            @endif--}}
+                            @endif
                         @else
                             <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} <i>(Cerrada)</i></option>
                         @endif
@@ -232,7 +232,7 @@
             </div>
         </div>
 
-        <!--<div class="form-group row">
+        <div class="form-group row">
             <div class="col-12 col-lg-8">
                 <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label>
             </div>
@@ -246,7 +246,7 @@
                     @endphp
                     <a href="{{ $file_calificaion_estudiante }}">{{ $file[3] }}</a>
                 @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
                     <input type="hidden" value="Certificado de Estudios" name="description0">
 
@@ -267,7 +267,7 @@
                     @endphp
                     <a href="{{ $file_fotocopia_dni }}">{{ $file[3] }}</a>
                 @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
                     <input type="hidden" value="Fotocopia de DNI" name="description1">
             </div>
@@ -287,11 +287,11 @@
                     @endphp
                     <a href="{{ $file_foto_carnet }}">{{ $file[3] }}</a>
                  @else
-                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" >
+                    <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif
                     <input type="hidden" value="Foto Carnet" name="description2">
             </div>
-        </div>-->
+        </div>
 
         <div class="form-group row">
             <div class="col-12">
