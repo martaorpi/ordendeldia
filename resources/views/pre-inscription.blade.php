@@ -89,15 +89,15 @@
                     @foreach ($careers as $key => $career)
                         {{$career}}
                         @if ($career->status == 'Abierta')
-                            @if ($career->available_space > $career->students_with_space->count())
+                            {{--@if ($career->available_space > $career->students_with_space->count())--}}
                                 @if ($estudiante)
                                     <option value="{{ $career->id }}" {{($estudiante->career_id==$career->id)? 'selected':''}}>{{ $career->title }}</option>
                                 @else
                                     <option value="{{ $career->id }}">{{ $career->title }} </option>
                                 @endif
-                            @else
+                            {{--@else
                                 <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} {{$career->available_space}} <i>(Sin Cupo)</i></option>
-                            @endif
+                            @endif--}}
                         @else
                             <option value="{{ $career->id }}" {{(old('career_id')==$career->id)? 'selected':''}} disabled>{{ $career->title }} <i>(Cerrada)</i></option>
                         @endif

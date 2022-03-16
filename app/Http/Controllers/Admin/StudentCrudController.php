@@ -382,15 +382,20 @@ class StudentCrudController extends CrudController
         $nrodocumento=$student->dni;
         $nombre = $student->first_name;
         $apellido = $student->last_name;
-        $idtipodocumento= 2;
+        $idtipodocumento= 1;
         $email= $student->user->email;
         $direccion= $student->address;
         $sexo= "F";
+        if(date('m') > 10){
+            $ciclolectivo = 2023;
+        }else{
+            $ciclolectivo = 2022;
+        }
 
         $fechanacimiento = Date('1990-01-01');
         $idcarrera = $student->career->ws_id;
 
-        $postfields = "{\r\n    \"nombre\": \".$nombre.\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n}";
+        $postfields = "{\r\n    \"nombre\": \"".$nombre."\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n    \"ciclolectivo\": ".$ciclolectivo."\r\n}";
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
