@@ -22,8 +22,8 @@ Route::group([
     Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');    
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn');    
     
+    Route::crud('subject', 'SubjectCrudController');
 }); // this should be the absolute last line of this file
-
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', 'admin', 'can:configuracion'],
@@ -32,5 +32,4 @@ Route::group([
     Route::crud('career', 'CareerCrudController');
     Route::crud('cycle', 'CycleCrudController');
 }); // this should be the absolute last line of this file
-
 
