@@ -28,7 +28,7 @@ class SubjectCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Subject::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/subject');
-        CRUD::setEntityNameStrings('subject', 'subjects');
+        CRUD::setEntityNameStrings('Asignatura', 'Asignaturas');
     }
 
     /**
@@ -39,23 +39,59 @@ class SubjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('career_id');
-        CRUD::column('four_month_period');
-        CRUD::column('semester');
-        CRUD::column('code');
-        CRUD::column('description');
-        CRUD::column('docente');
-        CRUD::column('campo');
-        CRUD::column('ch_docente');
-        CRUD::column('ch_materia');
-        CRUD::column('hours');
+        CRUD::enableResponsiveTable();
+        CRUD::enableExportButtons();
+        
+        CRUD::addColumn([
+            'label' => 'Carrera',
+            'type' => 'relationship',
+            'name' => 'career_id', // the method that defines the relationship in your Model
+            'entity' => 'career', // the method that defines the relationship in your Model
+            'attribute' => 'short_name',
+        ]);
+        CRUD::column('description')->label('Descripcion');
+        CRUD::column('four_month_period')->label('Cuatrimestre');
+        CRUD::column('semester')->label('Semestre');
+        CRUD::column('hours')->label('Horas');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+        CRUD::addFilter([
+            'name'  => 'career_id',
+            'type'  => 'select2',
+            'label' => 'Carrera'
+        ],
+            function() {
+                return \App\Models\Career::select()->distinct()->get()->pluck('short_name', 'id')->toArray();
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'career_id', $value);
+            }
+        );
+        CRUD::addFilter([
+            'name'  => 'four_month_period',
+            'type'  => 'select2',
+            'label' => 'Cuatrimestre'
+        ],
+            function() {
+                return [
+                  '1' => '1',
+                  '2' => '2',
+                  '3' => '3',
+                  '4' => '4',
+                  '5' => '5',
+                  '6' => '6',
+                  '7' => '7',
+                  '8' => '8',
+                ];
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'four_month_period', $value);
+            }
+        );
     }
 
     /**
@@ -68,23 +104,63 @@ class SubjectCrudController extends CrudController
     {
         CRUD::setValidation(SubjectRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('career_id');
-        CRUD::field('four_month_period');
-        CRUD::field('semester');
-        CRUD::field('code');
-        CRUD::field('description');
-        CRUD::field('docente');
-        CRUD::field('campo');
-        CRUD::field('ch_docente');
-        CRUD::field('ch_materia');
-        CRUD::field('hours');
-
+        CRUD::addField([
+            'label' => 'Carrera',
+            'type' => 'relationship',
+            'name' => 'career_id', // the method that defines the relationship in your Model
+            'entity' => 'career', // the method that defines the relationship in your Model
+            'attribute' => 'short_name', // foreign key attribute that is shown to user
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Descripción',
+            'type' => 'text',
+            'name' => 'description', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-9'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Cuatrimestre',
+            'type' => 'number',
+            'name' => 'four_month_period', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3 mt-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Semestre',
+            'type' => 'number',
+            'name' => 'semester', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3 mt-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Código',
+            'type' => 'number',
+            'name' => 'code', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3 mt-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Horas',
+            'type' => 'number',
+            'name' => 'hours', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3 mt-3'
+            ],
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+        CRUD::setCreateContentClass('col-12 mx-auto mt-3');
+        CRUD::setEditContentClass('col-12 mx-auto mt-3');
     }
 
     /**

@@ -32,4 +32,5 @@
 </li>
 
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('subject') }}'><i class='nav-icon la la-question'></i> Subjects</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('subject') }}'><i class='nav-icon la la-question'></i> Asignaturas</a></li>
+<!--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff') }}'><i class='nav-icon la la-question'></i> Personal</a></li>-->

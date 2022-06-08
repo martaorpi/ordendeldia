@@ -23,6 +23,7 @@ Route::group([
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn');    
     
     Route::crud('subject', 'SubjectCrudController');
+    Route::crud('staff', 'StaffCrudController');
 }); // this should be the absolute last line of this file
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),

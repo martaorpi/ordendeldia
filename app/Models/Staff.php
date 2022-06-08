@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Staff extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Subject extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'subjects';
+    protected $table = 'staff';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,10 +34,7 @@ class Subject extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function career()
-    {
-        return $this->belongsTo(\App\Models\Career::class);
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
