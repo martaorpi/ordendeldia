@@ -53,7 +53,13 @@ class SubjectCrudController extends CrudController
         CRUD::column('four_month_period')->label('Cuatrimestre');
         CRUD::column('semester')->label('Semestre');
         CRUD::column('hours')->label('Horas');
-
+        CRUD::addColumn([
+            'label' => 'Docente/s',
+            'type' => 'relationship',
+            'name' => 'staff', // the method that defines the relationship in your Model
+            'entity' => 'staff', // the method that defines the relationship in your Model
+            'attribute' => 'name',
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -154,6 +160,16 @@ class SubjectCrudController extends CrudController
                 'class' => 'form-group col-12 col-lg-3 mt-3'
             ],
         ]);
+        CRUD::addField([
+            'label' => 'Docente/s',
+            'type' => 'select2_multiple',
+            'name' => 'staff', // the method that defines the relationship in your Model
+            //'entity' => 'staffs', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+            'inline_create' => ['entity' => 'staff'],
+            'ajax' => true,
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
@@ -189,6 +205,13 @@ class SubjectCrudController extends CrudController
         CRUD::column('four_month_period')->label('Cuatrimestre');
         CRUD::column('semester')->label('Semestre');
         CRUD::column('hours')->label('Horas');
+        CRUD::addColumn([
+            'label' => 'Docente/s',
+            'type' => 'relationship',
+            'name' => 'staff', // the method that defines the relationship in your Model
+            'entity' => 'staff', // the method that defines the relationship in your Model
+            'attribute' => 'name',
+        ]);
 
         CRUD::setShowContentClass('col-12 mx-auto mt-3');
     }

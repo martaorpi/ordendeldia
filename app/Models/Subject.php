@@ -38,6 +38,10 @@ class Subject extends Model
     {
         return $this->belongsTo(\App\Models\Career::class);
     }
+    public function staff()
+    {
+        return $this->belongsToMany(\App\Models\Staff::class, 'staff_subjects');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
