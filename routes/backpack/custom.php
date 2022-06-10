@@ -24,6 +24,7 @@ Route::group([
     
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('staff', 'StaffCrudController');
+    Route::get('staff/export', 'StaffCrudController@exportExcel');
 }); // this should be the absolute last line of this file
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),

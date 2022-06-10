@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StaffRequest;
+use App\Models\Staff;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -40,7 +41,8 @@ class StaffCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::enableResponsiveTable();
-        CRUD::enableExportButtons();
+        //CRUD::enableExportButtons();
+        CRUD::addButtonFromView('top', 'exportStaff', 'exportStaff', 'end');
 
         CRUD::column('name')->label('Apellido y Nombre');
         CRUD::addColumn([
@@ -340,5 +342,21 @@ class StaffCrudController extends CrudController
         CRUD::column('observations')->label('Observaciones');
 
         CRUD::setShowContentClass('col-12 mx-auto mt-3');
+    }
+
+    public function exportExcel() 
+    {
+        /*$staf = Staff::where('job_id', 19)->get();
+        return $staf;*/
+        $table ='
+            <table border="1">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </td>
+            </tr>
+        ';
+        return $table;
     }
 }
