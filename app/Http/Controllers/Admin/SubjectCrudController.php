@@ -173,4 +173,23 @@ class SubjectCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    protected function setupShowOperation()
+    {   
+        CRUD::set('show.setFromDb', false);
+
+        CRUD::addColumn([
+            'label' => 'Carrera',
+            'type' => 'relationship',
+            'name' => 'career_id', // the method that defines the relationship in your Model
+            'entity' => 'career', // the method that defines the relationship in your Model
+            'attribute' => 'short_name',
+        ]);
+        CRUD::column('description')->label('Descripcion');
+        CRUD::column('four_month_period')->label('Cuatrimestre');
+        CRUD::column('semester')->label('Semestre');
+        CRUD::column('hours')->label('Horas');
+
+        CRUD::setShowContentClass('col-12 mx-auto mt-3');
+    }
 }

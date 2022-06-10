@@ -34,7 +34,18 @@ class Staff extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function location()
+    {
+        return $this->belongsTo(\App\Models\Location::class);
+    }
+    public function job()
+    {
+        return $this->belongsTo(\App\Models\Job::class);
+    }
+    public function subjects()
+    {
+        return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

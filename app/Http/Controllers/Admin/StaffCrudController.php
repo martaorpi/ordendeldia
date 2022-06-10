@@ -28,7 +28,7 @@ class StaffCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Staff::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/staff');
-        CRUD::setEntityNameStrings('staff', 'staff');
+        CRUD::setEntityNameStrings('personal', 'personal');
     }
 
     /**
@@ -39,32 +39,105 @@ class StaffCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('name');
-        CRUD::column('cuil');
-        CRUD::column('docket');
-        CRUD::column('sex');
-        CRUD::column('date_birth');
-        CRUD::column('address');
-        CRUD::column('location_id');
-        CRUD::column('landline');
-        CRUD::column('cell_phone');
-        CRUD::column('personal_mail');
-        CRUD::column('institutional_mail');
-        CRUD::column('job_id');
-        CRUD::column('start_date');
-        CRUD::column('weekly_hours');
-        CRUD::column('type_time');
-        CRUD::column('status');
-        CRUD::column('observations');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        CRUD::enableResponsiveTable();
+        CRUD::enableExportButtons();
+
+        CRUD::column('name')->label('Apellido y Nombre');
+        CRUD::addColumn([
+            'label' => 'Función',
+            'type' => 'relationship',
+            'name' => 'job_id', // the method that defines the relationship in your Model
+            'entity' => 'job', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('cuil')->label('Cuil');
+        CRUD::column('docket')->label('Legajo');
+        CRUD::column('sex')->label('Sexo');
+        CRUD::column('date_birth')->label('Fecha Nac.');
+        CRUD::column('address')->label('Dirección');
+        CRUD::addColumn([
+            'label' => 'Localidad',
+            'type' => 'relationship',
+            'name' => 'location_id', // the method that defines the relationship in your Model
+            'entity' => 'location', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('landline')->label('Tel. Fijo');
+        CRUD::column('cell_phone')->label('Tel. Celular');
+        CRUD::column('personal_mail')->label('Correo Personal');
+        CRUD::column('institutional_mail')->label('Correo Institucional');
+        CRUD::column('start_date')->label('Fecha Alta');
+        CRUD::column('weekly_hours')->label('Horas semanales');
+        CRUD::addColumn([
+            'label' => 'Asignaturas',
+            'type' => 'relationship',
+            'name' => 'subjects', // the method that defines the relationship in your Model
+            'entity' => 'subjects', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('status')->label('Estado');
+        CRUD::column('observations')->label('Observaciones');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+        CRUD::addFilter([
+            'name'  => 'job_id',
+            'type'  => 'select2',
+            'label' => 'Función'
+        ],
+            function() {
+                return \App\Models\Job::select()->distinct()->get()->pluck('description', 'id')->toArray();
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'job_id', $value);
+            }
+        );
+        CRUD::addFilter([
+            'name'  => 'sex',
+            'type'  => 'select2',
+            'label' => 'Sexo'
+        ],
+            function() {
+                return [
+                  'f' => 'Femenino',
+                  'm' => 'Masculino',
+                  'x' => 'No Binario',
+                ];
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'sex', $value);
+            }
+        );
+        CRUD::addFilter([
+            'name'  => 'location_id',
+            'type'  => 'select2',
+            'label' => 'Localidad'
+        ],
+            function() {
+                return \App\Models\Location::select()->distinct()->get()->pluck('description', 'id')->toArray();
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'location_id', $value);
+            }
+        );
+        CRUD::addFilter([
+            'name'  => 'status',
+            'type'  => 'select2',
+            'label' => 'Estado'
+        ],
+            function() {
+                return [
+                  'Activo' => 'Activo',
+                  'Bloqueado' => 'Bloqueado',
+                ];
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'status', $value);
+            }
+        );
     }
 
     /**
@@ -77,32 +150,142 @@ class StaffCrudController extends CrudController
     {
         CRUD::setValidation(StaffRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('name');
-        CRUD::field('cuil');
-        CRUD::field('docket');
-        CRUD::field('sex');
-        CRUD::field('date_birth');
-        CRUD::field('address');
-        CRUD::field('location_id');
-        CRUD::field('landline');
-        CRUD::field('cell_phone');
-        CRUD::field('personal_mail');
-        CRUD::field('institutional_mail');
-        CRUD::field('job_id');
-        CRUD::field('start_date');
-        CRUD::field('weekly_hours');
-        CRUD::field('type_time');
-        CRUD::field('status');
-        CRUD::field('observations');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+        CRUD::addField([
+            'label' => 'Apellido y Nombre',
+            'type' => 'text',
+            'name' => 'name', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Cuil',
+            'type' => 'text',
+            'name' => 'cuil', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Legajo',
+            'type' => 'number',
+            'name' => 'docket', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'sex',
+            'label' => 'Sexo',
+            'type' => 'enum',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'date_birth',
+            'label' => 'Fecha Nacimiento',
+            'type' => 'date',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::field('address')->label('Dirección');
+        CRUD::addField([
+            'label' => 'Localidad',
+            'type' => 'relationship',
+            'name' => 'location_id', // the method that defines the relationship in your Model
+            'entity' => 'location', // the method that defines the relationship in your Model
+            'attribute' => 'description', // foreign key attribute that is shown to user
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'landline',
+            'label' => 'Tel. Fijo',
+            'type' => 'text',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'cell_phone',
+            'label' => 'Tel. Celular',
+            'type' => 'text',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'personal_mail',
+            'label' => 'Correo Personal',
+            'type' => 'text',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-6'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'institutional_mail',
+            'label' => 'Correo Institucional',
+            'type' => 'text',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-6'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Función',
+            'type' => 'relationship',
+            'name' => 'job_id', // the method that defines the relationship in your Model
+            'entity' => 'job', // the method that defines the relationship in your Model
+            'attribute' => 'description', // foreign key attribute that is shown to user
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'start_date',
+            'label' => 'Fecha Alta',
+            'type' => 'date',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::addField([
+            'name'  => 'weekly_hours',
+            'label' => 'Horas Semanales',
+            'type' => 'number',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-2'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Asignaturas',
+            'type' => 'select2_multiple',
+            'name' => 'subjects', // the method that defines the relationship in your Model
+            //'entity' => 'staffs', // the method that defines the relationship in your Model
+            'attribute' => 'description', // foreign key attribute that is shown to user
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+            'inline_create' => ['entity' => 'subject'],
+            'ajax' => true,
+        ]);
+        CRUD::addField([
+            'name'  => 'status',
+            'label' => 'Estado',
+            'type' => 'enum',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+        ]);
+        CRUD::field('observations')->label('Observaciones');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+        CRUD::setCreateContentClass('col-12 mx-auto mt-3');
+        CRUD::setEditContentClass('col-12 mx-auto mt-3');
     }
 
     /**
@@ -114,5 +297,48 @@ class StaffCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {   
+        CRUD::set('show.setFromDb', false);
+        
+        CRUD::column('name')->label('Apellido y Nombre');
+        CRUD::addColumn([
+            'label' => 'Función',
+            'type' => 'relationship',
+            'name' => 'job_id', // the method that defines the relationship in your Model
+            'entity' => 'job', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('cuil')->label('Cuil');
+        CRUD::column('docket')->label('Legajo');
+        CRUD::column('sex')->label('Sexo');
+        CRUD::column('date_birth')->label('Fecha Nac.');
+        CRUD::column('address')->label('Dirección');
+        CRUD::addColumn([
+            'label' => 'Localidad',
+            'type' => 'relationship',
+            'name' => 'location_id', // the method that defines the relationship in your Model
+            'entity' => 'location', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('landline')->label('Tel. Fijo');
+        CRUD::column('cell_phone')->label('Tel. Celular');
+        CRUD::column('personal_mail')->label('Correo Personal');
+        CRUD::column('institutional_mail')->label('Correo Institucional');
+        CRUD::column('start_date')->label('Fecha Alta');
+        CRUD::column('weekly_hours')->label('Horas semanales');
+        CRUD::addColumn([
+            'label' => 'Asignaturas',
+            'type' => 'relationship',
+            'name' => 'subjects', // the method that defines the relationship in your Model
+            'entity' => 'subjects', // the method that defines the relationship in your Model
+            'attribute' => 'description',
+        ]);
+        CRUD::column('status')->label('Estado');
+        CRUD::column('observations')->label('Observaciones');
+
+        CRUD::setShowContentClass('col-12 mx-auto mt-3');
     }
 }
