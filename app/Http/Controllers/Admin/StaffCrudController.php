@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StaffRequest;
 use App\Models\Staff;
+use App\Exports\StaffExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -344,19 +346,7 @@ class StaffCrudController extends CrudController
         CRUD::setShowContentClass('col-12 mx-auto mt-3');
     }
 
-    public function exportExcel() 
-    {
-        /*$staf = Staff::where('job_id', 19)->get();
-        return $staf;*/
-        $table ='
-            <table border="1">
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                </td>
-            </tr>
-        ';
-        return $table;
+    public function exportExcel(){
+        return Excel::download(new StaffExport, 'staff.xlsx');
     }
 }
