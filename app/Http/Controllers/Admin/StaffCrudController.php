@@ -347,6 +347,6 @@ class StaffCrudController extends CrudController
     }
 
     public function exportExcel(){
-        return Excel::download(new StaffExport, 'staff.xlsx');
+        return Excel::download(new StaffExport, 'novedades.xlsx');
     }
 }
