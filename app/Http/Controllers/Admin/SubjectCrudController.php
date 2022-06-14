@@ -133,7 +133,15 @@ class SubjectCrudController extends CrudController
             'type' => 'number',
             'name' => 'four_month_period', // the method that defines the relationship in your Model
             'wrapper'   => [
-                'class' => 'form-group col-12 col-lg-3 mt-3'
+                'class' => 'form-group col-12 col-lg-2 mt-3'
+            ],
+        ]);
+        CRUD::addField([
+            'label' => 'Año',
+            'type' => 'number',
+            'name' => 'annual_period', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-2 mt-3'
             ],
         ]);
         CRUD::addField([
@@ -141,7 +149,7 @@ class SubjectCrudController extends CrudController
             'type' => 'number',
             'name' => 'semester', // the method that defines the relationship in your Model
             'wrapper'   => [
-                'class' => 'form-group col-12 col-lg-3 mt-3'
+                'class' => 'form-group col-12 col-lg-2 mt-3'
             ],
         ]);
         CRUD::addField([
