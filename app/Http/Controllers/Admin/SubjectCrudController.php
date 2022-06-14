@@ -51,6 +51,7 @@ class SubjectCrudController extends CrudController
         ]);
         CRUD::column('description')->label('Descripcion');
         CRUD::column('four_month_period')->label('Cuatrimestre');
+        CRUD::column('annual_period')->label('Año');
         CRUD::column('semester')->label('Semestre');
         CRUD::column('hours')->label('Horas');
         CRUD::addColumn([
