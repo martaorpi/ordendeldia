@@ -41,6 +41,7 @@ class SubjectCrudController extends CrudController
     {
         CRUD::enableResponsiveTable();
         CRUD::enableExportButtons();
+        CRUD::addClause('where', 'id','<>', 0);
         
         CRUD::addColumn([
             'label' => 'Carrera',
