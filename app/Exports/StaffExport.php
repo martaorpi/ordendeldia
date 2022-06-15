@@ -38,17 +38,6 @@ class StaffExport implements FromCollection,WithHeadings
                     ->orderBy('staff.name','ASC')
                     ->get();
 
-        /*$staff = DB::table('staff')
-                    ->join('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
-                    ->join('jobs', 'jobs.id', '=', 'staff.job_id')
-                    ->select('staff_subjects.plant_mode', 'staff_subjects.plant_type', 'staff.name', 'jobs.description as description1', 'staff_subjects.time_type', 'staff_subjects.weekly_hours', 
-                            'staff_subjects.subject_id', 'staff_subjects.observations')
-                    ->where('staff_subjects.subject_id', 0)
-                    ->orderBy('staff.name','ASC')
-                    ->get();*/
-        /*foreach ($subjects as $subject) {
-            
-        }*/
         return $staff;
 
     }

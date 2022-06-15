@@ -45,6 +45,7 @@ class StaffCrudController extends CrudController
         CRUD::enableResponsiveTable();
         //CRUD::enableExportButtons();
         CRUD::addButtonFromView('top', 'exportStaff', 'exportStaff', 'end');
+        CRUD::addButtonFromView('line', 'licenseStaff', 'licenseStaff', 'beginning');
 
         CRUD::column('name')->label('Apellido y Nombre');
         CRUD::addColumn([
