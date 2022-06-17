@@ -23,7 +23,7 @@
                         '<div class="row" align="left">'+
                             '<div class="col-12">'+
                                 '<div class="form-group">'+
-                                '<label for="name">Tipo de Licencia <label class="text-danger">*</label></label>'+
+                                '<label for="name">Articulo <label class="text-danger">*</label></label>'+
                                 //licenseSelectHTML('tipo', ['Legal','Transitorio'])+
                                 '<input class="form-control" type="number" id="licencse"></input>'+
                                 '</div>'+
