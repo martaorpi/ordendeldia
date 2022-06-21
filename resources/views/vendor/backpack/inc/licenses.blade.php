@@ -6,17 +6,17 @@
           <button class="btn mb-1 btn-info btn-sm" type="button" onclick="additemLicense({{ $staff_id}})"><i class="la la-plus"></i>&nbsp;Añadir Licencia</button>          
     </div>
     <br> 
-    <div class="row">  
+    {{--<div class="row">  
       <div class="col-12" id="response_licenses">
         @include('vendor.backpack.inc.licenses_items', ['licenses' => $licenses])
       </div>
-    </div>
+    </div>--}}
 </div>  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    function additemLicense() {
+    /*function additemLicense() {
       const wrapper = document.createElement('div');      
 
       wrapper.innerHTML = '<hr>'+ 
@@ -101,6 +101,67 @@
 
       return '<select class="form-control" id="'+id+'">'+_options+'</select>'
     }*/
+
+
+  const wrapper = document.createElement('div');      
+  function addItem() {
+    swal({
+      title: "Asignatura",
+      buttons: ["Cancelar", "Añadir"],
+      content: wrapper,     
+    }).then((value) => {
+      /*if (value) {
+        $.post('subjects', {
+          "subject_id": $('#subject').val(),  
+        }).done(function(data){
+          swal("Agregado con exito", {
+            icon: "success",
+          }).then((value) => {;
+
+            $('#response_subjects').html(data)
+          })
+        }).fail(function(error){
+          swal("Completar todos los campos obligatorios", {
+            icon: "error",
+          }).then((value) => {;
+            //$('#response_antecedentes_familiares').html(data)
+          })
+            console.log(error)
+        })
+      }*/           
+    })
+  }
+    const getSubjects = async () =>{
+      try {
+        const url = "get_subjects";
+        const response = await fetch (url);
+        const result = await response.json();
+
+        return result
+      }catch ( error ){
+        console.log( error );
+        return categories;
+      }
+    }
+
+    getSubjects().then( data => {
+      let optionsHTML = ""
+      data.map(element => {
+        optionsHTML += '<option value="'+element.id+'">'+element.description+'</option>'
+      });
+
+      wrapper.innerHTML =
+        `<div class="row" align="left">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="name">Articulo <label class="text-danger">*</label></label>
+              <select class="form-select">
+                ${optionsHTML}
+              </select>
+            </div>
+          </div>
+        </div>`;
+    });
 
 </script>
   
