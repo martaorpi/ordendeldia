@@ -10,6 +10,7 @@
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
                 <th>Estado</th>
+                <th>Observaciones</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                     <td>{{ $license->start_date }}</td>
                     <td>{{ $license->end_date }}</td>
                     <td>{{ $license->status }}</td>
+                    <td>{{ $license->observations }}</td>
                     <td>
                         {{--<button class="btn mb-1" type="button" onclick="visualizardomicilio('{{$license->license_id}}', '{{$license->requested_days}}', '{{$license->application_date}}','{{$license->authorized_date}}', '{{$license->start_date}}','{{$license->end_date}}')"><i class="la la-eye la-lg text-info"></i></button>--}}
                         <button class="btn mb-1" type="button" onclick="deleteLicense({{$license->id}})"><i class="la la-trash la-lg text-danger"></i></button>

@@ -19,7 +19,7 @@ class StaffCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
 
@@ -34,6 +34,7 @@ class StaffCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/staff');
         CRUD::setEntityNameStrings('personal', 'personal');
         CRUD::setEditView('vendor/backpack/licenses_in_staff/show');
+        CRUD::setShowView('vendor/backpack/staff/show');
     }
 
     /**

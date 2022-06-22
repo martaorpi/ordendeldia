@@ -31,6 +31,7 @@
             "start_date": $('#fecha_inicio').val(),
             "end_date": $('#fecha_fin').val(),
             "status": "En curso",
+            "observations": $('#obs').val(),
         }).done(function(data){
           swal("Agregado con exito", {
             icon: "success",
@@ -112,6 +113,13 @@
             <div class="form-group">
               <label for="name">Fecha Fin <label class="text-danger">*</label></label>
               <input class="form-control" type="date" id="fecha_fin"></input>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="name">Observaciones <label class="text-danger">*</label></label>
+              <textarea class="form-control" id="obs"></textarea>
             </div>
           </div>
 
