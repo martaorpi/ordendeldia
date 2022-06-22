@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use \App\Models\StaffLicense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class StaffLicenseCrudController
@@ -99,10 +100,11 @@ class StaffLicenseCrudController extends CrudController
     protected function storeLicenses($id ,Request $request){
         if(isset($request)){
             $input = $request->all();
-            //$input['staff_id'] = $id;
+            $input['staff_id'] = $id;
+            $input['user_id'] = Auth::id();
             
             if(StaffLicense::create($input)){
-                return view('vendor.backpack.inc.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('licenses')->get()]);
+                return view('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('license')->get()]);
             }
         }
     }
@@ -110,7 +112,26 @@ class StaffLicenseCrudController extends CrudController
     protected function deleteLicenses($id ,Request $request){
         $license = StaffLicense::where('id', '=', $request->id)->first();
         if($license->delete()){
-            return view('vendor.backpack.inc.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('licenses')->get()]);
+            return view('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('license')->get()]);
+        }
+    }
+
+    protected function storeLicenses2($id ,Request $request){
+        if(isset($request)){
+            $input = $request->all();
+            $input['license_id'] = $id;
+            $input['user_id'] = Auth::id();
+            
+            if(StaffLicense::create($input)){
+                return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
+            }
+        }
+    }
+
+    protected function deleteStaff($id ,Request $request){
+        $staff = StaffLicense::where('id', '=', $request->id)->first();
+        if($staff->delete()){
+            return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
         }
     }
 }

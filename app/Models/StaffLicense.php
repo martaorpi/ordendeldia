@@ -38,6 +38,10 @@ class StaffLicense extends Model
     {
         return $this->belongsTo(\App\Models\License::class);
     }
+    public function staff()
+    {
+        return $this->belongsTo(\App\Models\Staff::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

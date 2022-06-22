@@ -1,17 +1,15 @@
 {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
 
 <div class="col-lg-12">    
-  
   <button class="btn mb-1 btn-info btn-sm" type="button" onclick="additemLicense({{ $staff_id}})"><i class="la la-plus"></i>&nbsp;Añadir Licencia</button>          
 </div>
-@if (count($licenses) > 0)
-  <h5>Licencias</h5>&nbsp;&nbsp;
-  <div class="row">  
-    <div class="col-12" id="response_licenses">
-      @include('vendor.backpack.inc.licenses_items', ['licenses' => $licenses])
-    </div>
-  </div>
-@endif
+
+<div class="col-12" id="response_licenses">
+  @if (count($licenses) > 0)
+    @include('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => $licenses])
+  @endif
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -112,15 +110,13 @@
     }).then((value) => {
       if (value) {
         $.post('licenses', {
-            "license_id": 1,//$('#license').val(),
-            "staff_id": 1,//$('#direccion').val(),
+            "license_id": 1,
             "requested_days": $('#dias_solicitados').val(),
             "application_date": $('#fecha_solicitud').val(),
             "authorized_date": $('#fecha_autorizacion').val(),
             "start_date": $('#fecha_inicio').val(),
             "end_date": $('#fecha_fin').val(),
-            "user_id": 1,//$('#localidad').val(),
-            "status": "En curso",//$('#localidad').val(),
+            "status": "En curso",
         }).done(function(data){
           swal("Agregado con exito", {
             icon: "success",
@@ -132,9 +128,9 @@
           swal("Completar todos los campos obligatorios", {
             icon: "error",
           }).then((value) => {;
-            //$('#response_antecedentes_familiares').html(data)
+            
           })
-            console.log(error)
+          console.log(error)
         })
       }      
     })

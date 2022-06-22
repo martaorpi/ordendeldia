@@ -17,10 +17,10 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class StaffCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    //use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    //use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
 
     /**
@@ -33,7 +33,7 @@ class StaffCrudController extends CrudController
         CRUD::setModel(\App\Models\Staff::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/staff');
         CRUD::setEntityNameStrings('personal', 'personal');
-        $this->crud->setEditView('vendor/backpack/inc/show2');
+        CRUD::setEditView('vendor/backpack/licenses_in_staff/show');
     }
 
     /**
@@ -204,6 +204,7 @@ class StaffCrudController extends CrudController
             'name' => 'location_id', // the method that defines the relationship in your Model
             'entity' => 'location', // the method that defines the relationship in your Model
             'attribute' => 'description', // foreign key attribute that is shown to user
+            'value' => 2,
             'wrapper'   => [
                 'class' => 'form-group col-12 col-lg-4'
             ],
@@ -254,6 +255,7 @@ class StaffCrudController extends CrudController
             'name'  => 'start_date',
             'label' => 'Fecha Alta',
             'type' => 'date',
+            'value' => Now(),
             'wrapper'   => [
                 'class' => 'form-group col-12 col-lg-3'
             ],
@@ -280,6 +282,7 @@ class StaffCrudController extends CrudController
             'name'  => 'status',
             'label' => 'Estado',
             'type' => 'enum',
+            'value' => 'Activo',
             'wrapper'   => [
                 'class' => 'form-group col-12 col-lg-3'
             ],
@@ -354,6 +357,12 @@ class StaffCrudController extends CrudController
     }
     public function exportLicense(){
         return view('license.blade.php');
+    }
+
+    public function getStaff($id)
+    {
+        $staff = \App\Models\Staff::get();
+        return $staff;
     }
 
 }

@@ -28,7 +28,8 @@ class LicenseCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\License::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/license');
-        CRUD::setEntityNameStrings('license', 'licenses');
+        CRUD::setEntityNameStrings('licencia', 'licencias');
+        CRUD::setEditView('vendor/backpack/staff_in_licenses/show');
     }
 
     /**
@@ -39,15 +40,15 @@ class LicenseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('article');
-        CRUD::column('days');
-        CRUD::column('type_days');
-        CRUD::column('extra_days');
-        CRUD::column('observations');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        CRUD::enableResponsiveTable();
+        CRUD::enableExportButtons();
 
+        CRUD::column('article')->label('Artículo');
+        CRUD::column('type_days')->label('Tipo de Días');
+        CRUD::column('days')->label('Cant Días');
+        CRUD::column('extra_days')->label('Días Adicionales');
+        CRUD::column('observations')->label('Observaciones');
+     
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -65,20 +66,51 @@ class LicenseCrudController extends CrudController
     {
         CRUD::setValidation(LicenseRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('article');
-        CRUD::field('days');
-        CRUD::field('type_days');
-        CRUD::field('extra_days');
-        CRUD::field('observations');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+        CRUD::addField([
+            'name'  => 'article',
+            'label' => 'Artículo',
+            'type' => 'text',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+
+        CRUD::addField([
+            'name'  => 'type_days',
+            'label' => 'Tipo de Días',
+            'type' => 'enum',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-4'
+            ],
+        ]);
+
+        CRUD::addField([
+            'name'  => 'days',
+            'label' => 'Cantidad de Días',
+            'type' => 'number',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-2'
+            ],
+        ]);
+        
+        CRUD::addField([
+            'name'  => 'extra_days',
+            'label' => 'Días Adicionales',
+            'type' => 'number',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-2'
+            ],
+        ]);
+    
+        CRUD::field('observations')->label('Observaciones');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+        CRUD::setCreateContentClass('col-12 mx-auto mt-3');
+        CRUD::setEditContentClass('col-12 mx-auto mt-3');
     }
 
     /**
@@ -94,11 +126,7 @@ class LicenseCrudController extends CrudController
 
     public function getLicenses($id)
     {
-        $array_license=[];
         $licenses = \App\Models\License::get();
-        /*foreach ($subjects as $subject) {
-            $array_subject[$subject->id] = $subject->description;
-        }*/
         return $licenses;
     }
 }

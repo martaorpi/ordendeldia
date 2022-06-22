@@ -55,7 +55,7 @@
 				</div>
 		    </div>
 		    @endif
-			@include('vendor.backpack.inc.form_content', ['fields' => $crud->fields(), 'action' => 'edit'])
+			@include('vendor.backpack.licenses_in_staff.form_content', ['fields' => $crud->fields(), 'action' => 'edit'])
             @include('crud::inc.form_save_buttons')
 		  </form>
 	</div>

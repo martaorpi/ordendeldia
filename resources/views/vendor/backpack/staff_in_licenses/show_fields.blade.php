@@ -28,7 +28,7 @@
 <div class="card">
     <div class="card-body row">
     @include('crud::inc.show_fields', ['fields' => $crud->getFieldsWithoutATab()])
-    @include('vendor.backpack.inc.licenses', ['licenses' => \App\Models\StaffLicense::where('staff_id', $entry->id)->get()], ['staff_id' => $entry->id])
+    @include('vendor.backpack.staff_in_licenses.licenses', ['staff' => \App\Models\StaffLicense::where('license_id', $entry->id)->get()], ['license_id' => $entry->id])
     </div>
 </div>
 @else

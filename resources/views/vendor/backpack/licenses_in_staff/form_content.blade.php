@@ -1,7 +1,7 @@
 <input type="hidden" name="http_referrer" value={{ session('referrer_url_override') ?? old('http_referrer') ?? \URL::previous() ?? url($crud->route) }}>
 
 {{-- See if we're using tabs --}}
-      @include('vendor.backpack.inc.show_fields', ['fields' => $crud->fields(), 'action' => $action])
+      @include('vendor.backpack.licenses_in_staff.show_fields', ['fields' => $crud->fields(), 'action' => $action])
       <br>
 
 {{-- Define blade stacks so css and js can be pushed from the fields to these sections. --}}

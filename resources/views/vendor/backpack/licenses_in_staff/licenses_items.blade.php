@@ -1,4 +1,5 @@
 <div class="col-12">
+    <h5 class="mt-4">Licencias</h5>&nbsp;&nbsp;
     <table class="table responsive">
         <thead>
             <tr>
