@@ -21,13 +21,16 @@ Route::group([
     Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
     Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');    
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn');    
-    Route::post('staff/{id}/licenses', [StaffLicenseCrudController::class, 'storeLicenses']);
+    Route::post('staff/{id}/licenses', 'StaffLicenseCrudController@storeLicenses');
     
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('staff', 'StaffCrudController');
     Route::get('staff/export', 'StaffCrudController@exportExcel');
     Route::get('staff/exportLicense', 'StaffCrudController@exportLicense');
     Route::crud('staff-license', 'StaffLicenseCrudController');
+    Route::get('staff/{id}/get_licenses', 'LicenseCrudController@getLicenses');
+    Route::post('staff/{id}/delete_licenses', 'StaffLicenseCrudController@deleteLicenses');
+    Route::crud('license', 'LicenseCrudController');
 }); // this should be the absolute last line of this file
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),

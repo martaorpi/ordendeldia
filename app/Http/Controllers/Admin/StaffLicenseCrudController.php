@@ -6,6 +6,7 @@ use App\Http\Requests\StaffLicenseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use \App\Models\StaffLicense;
+use Illuminate\Http\Request;
 
 /**
  * Class StaffLicenseCrudController
@@ -30,6 +31,7 @@ class StaffLicenseCrudController extends CrudController
         CRUD::setModel(\App\Models\StaffLicense::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/staff-license');
         CRUD::setEntityNameStrings('licencia', 'licencias');
+        //$this->crud->setListView('vendor/backpack/inc/licenses_items');
     }
 
     /**
@@ -97,11 +99,18 @@ class StaffLicenseCrudController extends CrudController
     protected function storeLicenses($id ,Request $request){
         if(isset($request)){
             $input = $request->all();
-            $input['staff_id'] = $id;
+            //$input['staff_id'] = $id;
             
             if(StaffLicense::create($input)){
-                return view('vendor.backpack.inc.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->get()]);
+                return view('vendor.backpack.inc.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('licenses')->get()]);
             }
+        }
+    }
+
+    protected function deleteLicenses($id ,Request $request){
+        $license = StaffLicense::where('id', '=', $request->id)->first();
+        if($license->delete()){
+            return view('vendor.backpack.inc.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('licenses')->get()]);
         }
     }
 }

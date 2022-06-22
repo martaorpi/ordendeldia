@@ -34,7 +34,10 @@ class StaffLicense extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function license()
+    {
+        return $this->belongsTo(\App\Models\License::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

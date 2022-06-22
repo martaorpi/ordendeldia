@@ -1,38 +1,38 @@
 <div class="col-12">
-    <div class="row">
-        @foreach ($licenses as $license)
-        <div class="col-lg-6 col-md-6 col-12">
-            <div class="brand-card">
-                <div class="col-12 pt-2" align="right">
-                    {{--<button class="btn mb-1" type="button" onclick="visualizardomicilio('{{$domicilio->tipo}}', '{{$domicilio->direccion}}', '{{$domicilio->barrio}}','{{$domicilio->provincia}}', '{{$domicilio->departamento}}','{{$domicilio->localidad}}')"><i class="la la-eye la-lg text-info"></i></button>
-                    <button class="btn mb-1" type="button" onclick="eliminardomicilio({{$domicilio->id}})"><i class="la la-trash la-lg text-danger"></i></button>--}}//
-                </div>            
-                <div class="brand-card-body">
-                    {{--<div>
-                        <div class="">
-
-                            <b> {{$domicilio->tipo}} </b>
-                            
-                        </div>
-                        <div class="text-uppercase text-muted small">Tipo</div>
-                    </div>
-                    <div>
-                        <div class="">
-
-                            <b> {{$domicilio->direccion}}, Bº {{$domicilio->barrio}} </b>
-                            
-                        </div>
-                        <div class="text-uppercase text-muted small">Domicilio</div>
-                    </div>--}}
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
+    <table class="table responsive">
+        <thead>
+            <tr>
+                <th>Artículo</th>
+                <th>Días Solicitados</th>
+                <th>Fecha Solicitud</th>
+                <th>Fecha Autorizada</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($licenses as $license)
+                <tr>
+                    <td>{{ $license->license->article }}</td>
+                    <td>{{ $license->requested_days }}</td>
+                    <td>{{ $license->application_date }}</td>
+                    <td>{{ $license->authorized_date }}</td>
+                    <td>{{ $license->start_date }}</td>
+                    <td>{{ $license->end_date }}</td>
+                    <td>{{ $license->status }}</td>
+                    <td>
+                        {{--<button class="btn mb-1" type="button" onclick="visualizardomicilio('{{$license->license_id}}', '{{$license->requested_days}}', '{{$license->application_date}}','{{$license->authorized_date}}', '{{$license->start_date}}','{{$license->end_date}}')"><i class="la la-eye la-lg text-info"></i></button>--}}
+                        <button class="btn mb-1" type="button" onclick="deleteLicense({{$license->id}})"><i class="la la-trash la-lg text-danger"></i></button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 <script>
-    /*function eliminardomicilio(id){
-        
+    function deleteLicense(id){
         swal("Esta seguro que desea eliminar este elemento?", {
             buttons: {
                 cancel: "Cancelar",
@@ -45,14 +45,14 @@
         .then((value) => {
             switch (value) {
                 case "catch":
-                    $.post('delete_domicilios', {
+                    $.post('delete_licenses', {
                         "_token": "{{ csrf_token() }}",
                         "id": id
                     }).done(function(data){
                         swal("Eliminado con Exito", {
                             icon: "success",
                         }).then((value) => {;
-                            $('#response_domicilios').html(data)
+                            $('#response_licenses').html(data)
                         })
                     }).fail(function(data){
                         console.log(data)
@@ -63,7 +63,7 @@
         });             
     }
     
-    function visualizardomicilio(tipo, direccion, barrio, provincia, departamento,  localidad) {
+    /*function visualizardomicilio(tipo, direccion, barrio, provincia, departamento,  localidad) {
         const wrapperD = document.createElement('div');      
         wrapperD.innerHTML =    '<hr><div class="row pl-5 pr-5 pb-5" align="left">'+
             '<div class="col-6"><b>Tipo:</b></div>'+
