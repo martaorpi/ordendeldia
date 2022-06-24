@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StaffRequest;
-use App\Models\Staff;
 use App\Exports\StaffExport;
+use App\Exports\LicenseExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -48,7 +48,7 @@ class StaffCrudController extends CrudController
         CRUD::enableResponsiveTable();
         //CRUD::enableExportButtons();
         CRUD::addButtonFromView('top', 'exportStaff', 'exportStaff', 'end');
-        //CRUD::addButtonFromView('line', 'licenseStaff', 'licenseStaff', 'beginning');
+        CRUD::addButtonFromView('top', 'licenseStaff', 'licenseStaff', 'end');
 
         CRUD::column('name')->label('Apellido y Nombre');
         CRUD::addColumn([
@@ -357,7 +357,8 @@ class StaffCrudController extends CrudController
         return Excel::download(new StaffExport, 'novedades.xlsx');
     }
     public function exportLicense(){
-        return view('license.blade.php');
+        //return view('license.blade.php');
+        return Excel::download(new LicenseExport, 'novedades.xlsx');
     }
 
     public function getStaff($id)

@@ -22,15 +22,16 @@
                                   </tr>
                               </thead>
                               <tbody>
+
                                 @foreach ($staff->subjects as $subject)
                                     <tr>
                                         <td>{{ $subject->description }}</td>
+                                        <td>{{ $subject->pivot->job_id }}</td>
+                                        <td>{{ $subject->pivot->start_date }}</td>
+                                        <td>{{ $subject->pivot->weekly_hours }}</td>
                                         <td></td>
-                                        <td>{{ $subject->start_date }}</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $subject->pivot->plant_type }}</td>
                                         <td></td>
                                     </tr>
                                 @endforeach

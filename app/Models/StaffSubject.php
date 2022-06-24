@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class StaffSubject extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Staff extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'staff';
+    protected $table = 'staff_subjects';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,21 +34,17 @@ class Staff extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function location()
+    public function subject()
     {
-        return $this->belongsTo(\App\Models\Location::class);
+        return $this->belongsTo(\App\Models\Subject::class);
+    }
+    public function staff()
+    {
+        return $this->belongsTo(\App\Models\Staff::class);
     }
     public function job()
     {
         return $this->belongsTo(\App\Models\Job::class);
-    }
-    public function subjects()
-    {
-        return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects')->withPivot('staff_id','start_date','job_id','weekly_hours','plant_type');
-    }
-    public function licenses()
-    {
-        return $this->belongsToMany(\App\Models\License::class, 'staff_licenses');
     }
     /*
     |--------------------------------------------------------------------------

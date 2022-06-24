@@ -8,4 +8,4 @@ if(sizeof($url) > 1){
 }*/
 @endphp
 
-<a href="{{ url()->full().'/export' }} " class="btn btn-xs btn-default"><i class="fa fa-ban"></i> Exportar en Excel</a>
+<a href="{{ url()->full().'/export' }} " class="btn btn-xs btn-default"><i class="fa fa-ban"></i> Listado de Cargos</a>

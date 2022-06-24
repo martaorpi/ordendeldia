@@ -102,6 +102,7 @@
 
 
   const wrapper = document.createElement('div');      
+  let idArticle = 1;
   function additemLicense() {
     swal({
       title: "Licencia",
@@ -110,7 +111,7 @@
     }).then((value) => {
       if (value) {
         $.post('licenses', {
-            "license_id": 1,
+            "license_id": idArticle,
             "requested_days": $('#dias_solicitados').val(),
             "application_date": $('#fecha_solicitud').val(),
             "authorized_date": $('#fecha_autorizacion').val(),
@@ -161,7 +162,7 @@
           <div class="col-6">
             <div class="form-group">
               <label for="name">Artículo <label class="text-danger">*</label></label>
-              <select class="form-control form-select" id="">
+              <select class="form-control form-select" id="getIdArticle(this)">
                 ${optionsHTML}
               </select>
             </div>
@@ -212,7 +213,9 @@
         </div>`;
     });
 
-    
+    function getIdArticle(e){
+      idArticle = e.value
+    }
 
 </script>
   

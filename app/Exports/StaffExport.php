@@ -2,8 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\Staff;
-use App\Models\Subject;
 use DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -30,15 +28,16 @@ class StaffExport implements FromCollection,WithHeadings
     {
 
         $staff = DB::table('staff')
-                    ->join('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
-                    ->join('jobs', 'jobs.id', '=', 'staff.job_id')
-                    ->join('subjects', 'subjects.id', '=', 'staff_subjects.subject_id')
+                    ->leftjoin('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
+                    ->leftjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
+                    ->leftjoin('jobs', 'jobs.id', '=', 'staff.job_id')
+                    ->leftjoin('subjects', 'subjects.id', '=', 'staff_subjects.subject_id')
+                    ->leftjoin('licenses', 'licenses.id', '=', 'staff_licenses.license_id')
                     ->select('staff_subjects.plant_mode', 'staff_subjects.plant_type', 'staff.name', 'jobs.description as description1', 'staff_subjects.time_type', 'staff_subjects.weekly_hours', 
-                            'subjects.description as description2', 'staff_subjects.observations')
+                            'subjects.description as description2', 'staff_subjects.observations', 'licenses.article')
                     ->orderBy('staff.name','ASC')
                     ->get();
 
         return $staff;
-
     }
 }
