@@ -367,4 +367,9 @@ class StaffCrudController extends CrudController
         return $staff;
     }
 
+    public function novedades()
+    {
+        return view('novedades');
+    }
+
 }
