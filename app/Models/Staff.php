@@ -46,6 +46,10 @@ class Staff extends Model
     {
         return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects')->withPivot('staff_id','start_date','job_id','weekly_hours','plant_type');
     }
+    public function subjects2()
+    {
+        return $this->belongsTo(\App\Models\StaffSubject::class);
+    }
     public function licenses()
     {
         return $this->belongsToMany(\App\Models\License::class, 'staff_licenses');
