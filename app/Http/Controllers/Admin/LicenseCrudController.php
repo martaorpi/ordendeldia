@@ -124,6 +124,17 @@ class LicenseCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
+    protected function setupShowOperation()
+    {   
+        CRUD::column('article')->label('Artículo');
+        CRUD::column('type_days')->label('Tipo de Días');
+        CRUD::column('days')->label('Cant Días');
+        CRUD::column('extra_days')->label('Días Adicionales');
+        CRUD::column('observations')->label('Observaciones');
+        
+        CRUD::setShowContentClass('col-12 mx-auto mt-3');
+    }
+
     public function getLicenses($id)
     {
         $licenses = \App\Models\License::get();
