@@ -113,8 +113,10 @@
                         $documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
                         $documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
                     @endphp
+                    <br><br><br><br>
   
                     @foreach ($documentation as $document)
+                      @if ($document)
                         <div class="col-sm-4 p-2" align="center">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -125,6 +127,7 @@
                                 </div>   
                             </div>   
                         </div>                            
+                      @endif
                     @endforeach
                     
                     <div class="col-sm-12">

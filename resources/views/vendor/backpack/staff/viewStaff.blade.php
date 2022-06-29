@@ -24,9 +24,10 @@
                               <tbody>
 
                                 @foreach ($staff->subjects as $subject)
+                                    @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
                                     <tr>
                                         <td>{{ $subject->description }}</td>
-                                        <td>{{ $subject->pivot->job_id }}</td>
+                                        <td>{{ $job->description }}</td>
                                         <td>{{ $subject->pivot->start_date }}</td>
                                         <td>{{ $subject->pivot->weekly_hours }}</td>
                                         <td></td>
@@ -83,39 +84,27 @@
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                          Activo<br><br>
-                          Funcion: Docente Materia 1<br>
-                          <table class="table">
-                              <tr>
-                                  <th>Fecha de alta</th>
-                                  <th>Fecha de baja</th>
-                                  <th>Resolucion nro</th>
-                                  <th>Convenio colectivo de trabajo</th>
-                              </tr> 
-                              <tr>
-                                  <td>a</td>
-                                  <td>b</td>
-                                  <td>c</td>
-                                  <td>d</td>
-                              </tr>   
-                          </table>
-                          <br>
-                          Funcion: Docente Materia 2<br>
-                          <table class="table">
-                              <tr>
-                                  <th>Fecha de alta</th>
-                                  <th>Fecha de baja</th>
-                                  <th>Resolucion nro</th>
-                                  <th>Convenio colectivo de trabajo</th>
-                              </tr> 
-                              <tr>
-                                  <td>d</td>
-                                  <td>e</td>
-                                  <td>f</td>
-                                  <td>g</td>
-                              </tr>   
-                          </table>
-                          <br>
+                          {{ $staff->status }}<br><br>
+                          @foreach ($staff->subjects as $subject)
+                            @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
+                            <b>Función:</b> {{ $job->description }} - <i>"{{ $subject->description }}"</i>
+                            <table class="table">
+                                <tr>
+                                    <th>Fecha de Alta</th>
+                                    <th>Fecha de Baja</th>
+                                    <th>Resolucion nro</th>
+                                    <th>Convenio colectivo de trabajo</th>
+                                </tr> 
+                                <tr>
+                                    <td>{{ $subject->pivot->start_date }}</td>
+                                    <td>{{ $subject->pivot->end_date }}</td>
+                                    <td>{{ $subject->pivot->resolution_number }}</td>
+                                    <td>{{ $subject->pivot->plant_type }}</td>
+                                </tr>   
+                            </table>
+                            <br>
+                          @endforeach
+                          
                           Remuneracion bruta<br>
                           <table class="table">
                               <tr>
@@ -158,7 +147,7 @@
                           <table class="table">
                               <tr>
                                   <th>Vínculo</th>
-                                  <th>Appellido y Nombre</th>
+                                  <th>Apellido y Nombre</th>
                                   <th>Cuil</th>
                                   <th>Edad</th>
                               </tr>

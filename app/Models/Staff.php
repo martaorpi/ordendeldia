@@ -44,7 +44,7 @@ class Staff extends Model
     }
     public function subjects()
     {
-        return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects')->withPivot('staff_id','start_date','job_id','weekly_hours','plant_type');
+        return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects')->withPivot('staff_id','start_date','job_id','weekly_hours','plant_type','end_date','resolution_number');
     }
     public function subjects2()
     {
