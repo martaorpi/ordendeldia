@@ -46,18 +46,18 @@ class Staff extends Model
     {
         return $this->belongsToMany(\App\Models\Subject::class, 'staff_subjects')->withPivot('staff_id','start_date','job_id','weekly_hours','plant_type','end_date','resolution_number');
     }
-    public function subjects2()
+    /*public function subjects2()
     {
         return $this->belongsTo(\App\Models\StaffSubject::class);
-    }
+    }*/
     public function licenses()
     {
         return $this->belongsToMany(\App\Models\License::class, 'staff_licenses')->withPivot('staff_id','start_date','requested_days','end_date');
     }
-    public function family_members()
+    /*public function family_members()
     {
         return $this->hasMany(\App\Models\FamilyMember::class);
-    }
+    }*/
     /*
     |--------------------------------------------------------------------------
     | SCOPES

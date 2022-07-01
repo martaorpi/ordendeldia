@@ -356,6 +356,7 @@ class StaffCrudController extends CrudController
     public function exportExcel(){
         return Excel::download(new StaffExport, 'novedades.xlsx');
     }
+    
     public function exportLicense(){
         //return view('license.blade.php');
         return Excel::download(new LicenseExport, 'novedades.xlsx');
