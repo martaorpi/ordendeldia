@@ -54,10 +54,10 @@ class Staff extends Model
     {
         return $this->belongsToMany(\App\Models\License::class, 'staff_licenses')->withPivot('staff_id','start_date','requested_days','end_date');
     }
-    /*public function family_members()
+    public function family_members()
     {
         return $this->hasMany(\App\Models\FamilyMember::class);
-    }*/
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
