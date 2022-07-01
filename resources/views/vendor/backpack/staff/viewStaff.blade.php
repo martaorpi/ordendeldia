@@ -36,32 +36,13 @@
                                         <td></td>
                                     </tr>
                                 @endforeach
-                                  {{--<tr>
-                                      <td>Anatomía I</td>
-                                      <td>Docente</td>
-                                      <td>02/03/2022</td>
-                                      <td>8 hs catedra</td>
-                                      <td>lunes de 17 a 19 hs<br>martes de 19 a 20 hs</td>
-                                      <td>Aula 1</td>
-                                      <td>Planta Subvencionada</td>
-                                      <td>2 años y 3 meses</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Área de Sistemas</td>
-                                      <td></td>
-                                      <td>02/03/2022</td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td>Planta Privada</td>
-                                      <td>---</td>
-                                  </tr>--}}
                               </tbody>
                           </table>
                       </div>    
                   </div>
               </div>
-              <div class="mx-5">
+              <hr>
+              <div class="mx-5 mt-4">
                   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                       <li class="nav-item">
                           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">SIt. Revista</a>
@@ -72,12 +53,12 @@
                       <li class="nav-item">
                           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Licencias</a>
                       </li>
-                      <li class="nav-item">
+                      {{--<li class="nav-item">
                           <a class="nav-link" id="pills-sanciones-tab" data-toggle="pill" href="#pills-sanciones" role="tab" aria-controls="pills-sanciones" aria-selected="false">Sanciones</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" id="pills-evaluacion-tab" data-toggle="pill" href="#pills-evaluacion" role="tab" aria-controls="pills-evaluacion" aria-selected="false">Evaluación de desempeño</a>
-                      </li>
+                      </li>--}}
                       <li class="nav-item">
                           <a class="nav-link" id="pills-datosacademicos-tab" data-toggle="pill" href="#pills-datosacademicos" role="tab" aria-controls="pills-datosacademicos" aria-selected="false">Datos Académicos</a>
                       </li>
@@ -105,7 +86,7 @@
                             <br>
                           @endforeach
                           
-                          Remuneracion bruta<br>
+                          {{--Remuneracion bruta<br>
                           <table class="table">
                               <tr>
                                   <th>Ene</th>
@@ -141,43 +122,50 @@
                                   <td></td>
                                   <td></td>
                               </tr>
-                          </table>
+                          </table>--}}
                       </div>
                       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                           <table class="table">
                               <tr>
                                   <th>Vínculo</th>
                                   <th>Apellido y Nombre</th>
-                                  <th>Cuil</th>
+                                  <th>DNI</th>
                                   <th>Edad</th>
                               </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                              </tr>
+                              @foreach ($staff->family_members as $family)
+                                @php
+                                $cumpleanos = new DateTime($family->date_birth);
+                                $hoy = new DateTime();
+                                $annos = $hoy->diff($cumpleanos);
+                                @endphp
+                                <tr>
+                                    <td>{{ $family->link }}</td>
+                                    <td>{{ $family->name }}</td>
+                                    <td>{{ $family->dni }}</td>
+                                    <td>{{ $annos->y }}</td>
+                                </tr>
+                              @endforeach
                           </table>
                       </div>
                       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                           <table class="table">
                               <tr>
-                                  <th>Tipo</th>
                                   <th>Art</th>
                                   <th>Cant. Dias</th>
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Fin</th>
                               </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                              </tr>
+                              @foreach ($staff->licenses as $license)
+                                <tr>
+                                    <td>{{ $license->article }}</td>
+                                    <td>{{ $license->pivot->requested_days }}</td>
+                                    <td>{{ $license->pivot->start_date }}</td>
+                                    <td>{{ $license->pivot->end_date }}</td>
+                                </tr>
+                              @endforeach
                           </table>
                       </div>
-                      <div class="tab-pane fade" id="pills-sanciones" role="tabpanel" aria-labelledby="pills-sanciones-tab">
+                      {{--<div class="tab-pane fade" id="pills-sanciones" role="tabpanel" aria-labelledby="pills-sanciones-tab">
                           <table class="table">
                               <tr>
                                   <th>Tipo</th>
@@ -216,7 +204,7 @@
                           evaluacion de estudiantes<br>
                           evaluacion subordinados<br>
                           evaluacion de pares<br>
-                      </div>
+                      </div>--}}
                       <div class="tab-pane fade" id="pills-datosacademicos" role="tabpanel" aria-labelledby="pills-datosacademicos-tab">
                           formacion terciaria (titulo, establecimiento, año)<br>
                           formacion de grado (titulo, establecimiento, año)<br>

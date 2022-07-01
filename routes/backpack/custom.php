@@ -36,6 +36,7 @@ Route::group([
     Route::crud('license', 'LicenseCrudController');
 
     Route::get('novedades', 'StaffCrudController@novedades');
+    Route::crud('family-member', 'FamilyMemberCrudController');
 }); // this should be the absolute last line of this file
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
@@ -45,4 +46,3 @@ Route::group([
     Route::crud('career', 'CareerCrudController');
     Route::crud('cycle', 'CycleCrudController');
 }); // this should be the absolute last line of this file
-

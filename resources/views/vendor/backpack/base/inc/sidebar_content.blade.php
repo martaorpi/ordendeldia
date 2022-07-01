@@ -37,3 +37,5 @@
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
     </ul>
 </li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Family members</a></li>
