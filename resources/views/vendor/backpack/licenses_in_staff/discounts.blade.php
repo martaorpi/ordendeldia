@@ -4,7 +4,7 @@
   <button class="btn mb-1 btn-info btn-sm" type="button" onclick="additemDiscount({{ $staff_id}})"><i class="la la-plus"></i>&nbsp;Añadir Descuento</button>          
 </div>
 
-<div class="col-12" id="response_licenses">
+<div class="col-12" id="response_discounts">
   {{--@if (count($discounts) > 0)
     @include('vendor.backpack.licenses_in_staff.licenses_items', ['discounts' => $discounts])
   @endif--}}
@@ -16,7 +16,7 @@
 <script>
   const wrapper = document.createElement('div');      
   let idArticle = 1;
-  function additemLicense() {
+  function additemDiscount() {
     swal({
       title: "Descuento",
       buttons: ["Cancelar", "Añadir"],
@@ -37,7 +37,7 @@
             icon: "success",
           }).then((value) => {;
 
-            $('#response_licenses').html(data)
+            $('#response_discounts').html(data)
           })
         }).fail(function(error){
           swal("Completar todos los campos obligatorios", {
