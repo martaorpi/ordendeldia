@@ -38,4 +38,6 @@
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Family members</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('discount') }}'><i class='nav-icon la la-question'></i> Discounts</a></li>
