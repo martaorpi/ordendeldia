@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StaffDiscountRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use \App\Models\StaffDiscount;
+use Illuminate\Http\Request;
 
 /**
  * Class StaffDiscountCrudController
@@ -147,5 +149,24 @@ class StaffDiscountCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function storeDiscounts($id ,Request $request){
+        if(isset($request)){
+            $input = $request->all();
+            $input['staff_id'] = $id;
+            //$input['user_id'] = Auth::id();
+            
+            if(StaffDiscount::create($input)){
+                return view('vendor.backpack.licenses_in_staff.discounts_items', ['discounts' => StaffDiscount::where('staff_id', $id)->with('discount')->get()]);
+            }
+        }
+    }
+
+    protected function deleteDiscounts($id ,Request $request){
+        $discount = StaffDiscount::where('id', '=', $request->id)->first();
+        if($discount->delete()){
+            return view('vendor.backpack.licenses_in_staff.discounts_items', ['discounts' => StaffDiscount::where('staff_id', $id)->with('discount')->get()]);
+        }
     }
 }

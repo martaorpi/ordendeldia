@@ -83,4 +83,10 @@ class DiscountCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    public function getDiscounts($id)
+    {
+        $discounts = \App\Models\Discount::get();
+        return $discounts;
+    }
 }

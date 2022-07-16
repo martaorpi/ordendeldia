@@ -14,24 +14,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-  const wrapper = document.createElement('div');      
-  let idArticle = 1;
+  const wrapper2 = document.createElement('div');      
+  //let idArticle = 1;
   function additemDiscount() {
     swal({
       title: "Descuento",
       buttons: ["Cancelar", "Añadir"],
-      content: wrapper,     
+      content: wrapper2,     
     }).then((value) => {
       if (value) {
         $.post('discounts', {
-            /*"license_id": idArticle,
-            "requested_days": $('#dias_solicitados').val(),
-            "application_date": $('#fecha_solicitud').val(),
-            "authorized_date": $('#fecha_autorizacion').val(),
-            "start_date": $('#fecha_inicio').val(),
-            "end_date": $('#fecha_fin').val(),
-            "status": "En curso",
-            "observations": $('#obs').val(),*/
+            "discount_id": 1,
+            "amount": $('#monto').val(),
+            "days": $('#dias').val(),
         }).done(function(data){
           swal("Agregado con exito", {
             icon: "success",
@@ -50,9 +45,9 @@
       }      
     })
   }
-    const getLicenses = async () =>{
+    const getDiscounts = async () =>{
       try {
-        const url = "get_licenses";
+        const url = "get_discounts";
         const response = await fetch (url);
         const result = await response.json();
 
@@ -63,19 +58,19 @@
       }
     }
 
-    getLicenses().then( data => {
+    getDiscounts().then( data => {
       let optionsHTML = ""
       data.map(element => {
-        optionsHTML += '<option value="'+element.id+'">'+element.article+'</option>'
+        optionsHTML += '<option value="'+element.id+'">'+element.description+'</option>'
       });
 
-      wrapper.innerHTML =
+      wrapper2.innerHTML =
         `<div class="row" align="left">
 
           <div class="col-6">
             <div class="form-group">
-              <label for="name">Artículo <label class="text-danger">*</label></label>
-              <select class="form-control form-select" id="getIdArticle(this)">
+              <label for="name">Descuento <label class="text-danger">*</label></label>
+              <select class="form-control form-select" id="">
                 ${optionsHTML}
               </select>
             </div>
@@ -83,52 +78,20 @@
 
           <div class="col-6">
             <div class="form-group">
-              <label for="name">Días Solicitados <label class="text-danger">*</label></label>
-              <input class="form-control" type="number" id="dias_solicitados"></input>
+              <label for="name">Monto</label>
+              <input class="form-control" type="number" id="monto" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"></input>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Días</label>
+              <input class="form-control" type="number" id="dias"></input>
             </div>
           </div>
           
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Fecha de Solicitud <label class="text-danger">*</label></label>
-              <input class="form-control" type="date" id="fecha_solicitud"></input>
-            </div>
-          </div>
-          
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Fecha de Autorización <label class="text-danger">*</label></label>
-              <input class="form-control" type="date" id="fecha_autorizacion"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Fecha Inicio <label class="text-danger">*</label></label>
-              <input class="form-control" type="date" id="fecha_inicio"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Fecha Fin <label class="text-danger">*</label></label>
-              <input class="form-control" type="date" id="fecha_fin"></input>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <div class="form-group">
-              <label for="name">Observaciones <label class="text-danger">*</label></label>
-              <textarea class="form-control" id="obs"></textarea>
-            </div>
-          </div>
-
         </div>`;
     });
-
-    function getIdArticle(e){
-      idArticle = e.value
-    }
 
 </script>
   

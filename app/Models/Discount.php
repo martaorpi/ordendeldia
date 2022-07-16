@@ -34,7 +34,10 @@ class Discount extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function staff()
+    {
+        return $this->belongsToMany(\App\Models\Staff::class, 'staff_discounts');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

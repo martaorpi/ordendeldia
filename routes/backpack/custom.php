@@ -27,6 +27,10 @@ Route::group([
     Route::post('license/{id}/staff-licenses', 'StaffLicenseCrudController@storeLicenses2');
     Route::get('license/{id}/get_staff', 'StaffCrudController@getStaff');
     Route::post('license/{id}/delete_staff', 'StaffLicenseCrudController@deleteStaff');
+
+    Route::post('staff/{id}/discounts', 'StaffDiscountCrudController@storeDiscounts');
+    Route::get('staff/{id}/get_discounts', 'DiscountCrudController@getDiscounts');
+    Route::post('staff/{id}/delete_discounts', 'StaffDiscountCrudController@deleteDiscounts');
     
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('staff', 'StaffCrudController');
