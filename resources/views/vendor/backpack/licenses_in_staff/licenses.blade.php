@@ -25,6 +25,7 @@
       content: wrapper,     
     }).then((value) => {
       if (value) {
+        
         $.post('licenses', {
             "license_id": idLic,
             "requested_days": $('#dias_solicitados').val(),
@@ -130,7 +131,7 @@
     });
 
     function selectLic(){
-      var idLic= $('#articulo').val();
+      return $('#articulo').val();
     }
 
 </script>
