@@ -26,6 +26,7 @@ Route::group([
     Route::post('staff/{id}/delete_licenses', 'StaffLicenseCrudController@deleteLicenses');
     Route::post('license/{id}/staff-licenses', 'StaffLicenseCrudController@storeLicenses2');
     Route::get('license/{id}/get_staff', 'StaffCrudController@getStaff');
+    Route::get('discount/{id}/get_staff', 'StaffCrudController@getStaff');
     Route::post('license/{id}/delete_staff', 'StaffLicenseCrudController@deleteStaff');
 
     Route::post('staff/{id}/discounts', 'StaffDiscountCrudController@storeDiscounts');

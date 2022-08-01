@@ -14,10 +14,10 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class DiscountCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     //use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -28,7 +28,8 @@ class DiscountCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Discount::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/discount');
-        CRUD::setEntityNameStrings('discount', 'discounts');
+        CRUD::setEntityNameStrings('descuento', 'descuentos');
+        CRUD::setEditView('vendor/backpack/staff_in_discounts/show');
     }
 
     /**
@@ -39,11 +40,8 @@ class DiscountCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('description');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
+        CRUD::column('description')->label('Descripción');
+    
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -61,10 +59,7 @@ class DiscountCrudController extends CrudController
     {
         CRUD::setValidation(DiscountRequest::class);
 
-        CRUD::field('id');
         CRUD::field('description');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
