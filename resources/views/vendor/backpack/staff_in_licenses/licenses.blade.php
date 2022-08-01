@@ -15,7 +15,9 @@
 
 <script>
     
-  const wrapper = document.createElement('div');      
+  const wrapper = document.createElement('div');  
+  let staffId = 0;
+
   function additemStaff() {
     swal({
       title: "Datos de la Licencia",
@@ -24,7 +26,7 @@
     }).then((value) => {
       if (value) {
         $.post('staff-licenses', {
-            "staff_id": 1,
+            "staff_id": staffId,
             "requested_days": $('#dias_solicitados').val(),
             "application_date": $('#fecha_solicitud').val(),
             "authorized_date": $('#fecha_autorizacion').val(),
@@ -75,7 +77,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="name">Personal <label class="text-danger">*</label></label>
-              <select class="form-control form-select" id="">
+              <select class="form-control form-select" onchange="selectStaff()" id="staff">
                 ${optionsHTML}
               </select>
             </div>
@@ -125,8 +127,12 @@
 
         </div>`;
     });
-
     
+    function selectStaff(){
+      staffId = document.getElementById("staff").value;
+      console.log(staffId)
+      return $(staffId);
+    }
 
 </script>
   
