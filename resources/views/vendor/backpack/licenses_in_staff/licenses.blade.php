@@ -16,6 +16,7 @@
 <script>
     
   const wrapper = document.createElement('div');      
+  let licenseId = 0;
 
   function additemLicense() {
 
@@ -25,9 +26,8 @@
       content: wrapper,     
     }).then((value) => {
       if (value) {
-        
         $.post('licenses', {
-            "license_id": idLic,
+            "license_id": licenseId,
             "requested_days": $('#dias_solicitados').val(),
             "application_date": $('#fecha_solicitud').val(),
             "authorized_date": $('#fecha_autorizacion').val(),
@@ -67,7 +67,6 @@
     }
 
     getLicenses().then( data => {
-
       let optionsHTML = ""
       data.map(element => {
         optionsHTML += '<option value="'+element.id+'">'+element.article+'</option>'
@@ -131,7 +130,9 @@
     });
 
     function selectLic(){
-      return $('#articulo').val();
+      licenseId = document.getElementById("articulo").value;
+      console.log(licenseId)
+      return $(licenseId);
     }
 
 </script>
