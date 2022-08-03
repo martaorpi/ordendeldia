@@ -20,6 +20,7 @@
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff') }}'><i class='nav-icon la la-question'></i> Personal</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('license') }}'><i class='nav-icon la la-question'></i> Licencias</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>
     </ul>
 </li>
 
@@ -38,6 +39,5 @@
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('discount') }}'><i class='nav-icon la la-question'></i> Discounts</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>--}}
