@@ -85,10 +85,19 @@ class StaffSubjectCrudController extends CrudController
         CRUD::field('hours_score_ismp');
         CRUD::field('start_date');
         CRUD::field('end_date');
-        CRUD::field('resolution_number');
+        //CRUD::field('resolution_number');
         CRUD::field('observations');
         CRUD::field('amount')->label('cantidad');
-        CRUD::field('score')->label('puntaje');
+        
+        CRUD::addField([
+            'label' => 'Puntaje',
+            'type' => 'number',
+            'attributes' => ['step' => 0.01],
+            'name' => 'score', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'col-12 col-lg-4'
+            ],
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
