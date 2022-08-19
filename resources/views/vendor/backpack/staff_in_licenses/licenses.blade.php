@@ -78,6 +78,7 @@
             <div class="form-group">
               <label for="name">Personal <label class="text-danger">*</label></label>
               <select class="form-control form-select" onchange="selectStaff()" id="staff">
+                <option value="">Seleccione el personal</option>
                 ${optionsHTML}
               </select>
             </div>
