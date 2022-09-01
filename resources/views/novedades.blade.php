@@ -184,12 +184,19 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($staff_licenses as $staff_license)
+                                                            @php
+                                                            $prueba = App\Models\StaffSubject::where('staff_id', $staff_license->staff->id)
+                                                                ->first();
+                                                            @endphp
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
                                                                 <td>{{$staff_license->staff->name}}</td>
-                                                                <td>@if($staff_license->staff->subjects[0]->pivot->plant_type == 'PRIVADA') X @endif</td>
+                                                                <td>@php if($prueba){if($prueba->plant_type == 'PRIVADA'){echo 'X';}}@endphp</td>
+                                                                <td>@php if($prueba){if($prueba->plant_type == 'SUPLENTE SPEP'){echo 'X';}}@endphp</td>
+                                                                <td>@php if($prueba){if($prueba->plant_type == 'TITULAR SPEP'){echo 'X';}}@endphp</td>
+                                                                {{--<td>@if($staff_license->staff->subjects[0]->pivot->plant_type == 'PRIVADA') X @endif</td>
                                                                 <td>@if($staff_license->staff->subjects[0]->pivot->plant_type == 'SUPLENTE SPEP') X @endif</td>
-                                                                <td>@if($staff_license->staff->subjects[0]->pivot->plant_type == 'TITULAR SPEP') X @endif</td>
+                                                                <td>@if($staff_license->staff->subjects[0]->pivot->plant_type == 'TITULAR SPEP') X @endif</td>--}}
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
