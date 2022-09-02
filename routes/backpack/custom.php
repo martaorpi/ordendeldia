@@ -48,4 +48,6 @@ Route::group([
     Route::crud('staff-discount', 'StaffDiscountCrudController');
     Route::crud('discount', 'DiscountCrudController');
     Route::crud('staff-subject', 'StaffSubjectCrudController');
+
+    Route::get('staff/calculator', 'StaffCrudController@calculator');
 }); // this should be the absolute last line of this file

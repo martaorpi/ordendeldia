@@ -373,4 +373,9 @@ class StaffCrudController extends CrudController
         return view('novedades');
     }
 
+    public function calculator()
+    {
+        return view('calculator');
+    }
+
 }
