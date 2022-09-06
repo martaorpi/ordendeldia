@@ -93,7 +93,7 @@
         var horas_sec = $("#horas_sec").val() * 12.10;
         var basico = cargo * valor_indice_2022
         var transporte = 0
-        if($("#cargo").children("option:selected").val() == 15.1){
+        if($("#cargo").children("option:selected").val() === 15.1){
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
             var basico = horas_sup * 15.1 * valor_indice_2022
         }
