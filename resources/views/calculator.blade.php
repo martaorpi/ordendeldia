@@ -66,12 +66,12 @@
         
         <div class="col-lg-4 col-12 form-group">
             <label for="exampleFormControlTextarea1">Horas Cátedra Nivel Superior</label>
-            <input class="form-control" id="horas_sup" type="number">
+            <input class="form-control" id="horas_sup" type="number" value="0">
         </div>
         
         <div class="col-lg-4 col-12 form-group">
             <label for="exampleFormControlTextarea1">Horas Cátedra Nivel Secundario</label>
-            <input class="form-control" id="horas_sec" type="number">
+            <input class="form-control" id="horas_sec" type="number" value="0">
         </div>
 
         <div class="col-lg-4 col-12 form-check form-switch ml-3 mb-4">
@@ -107,8 +107,6 @@
             var basico = horas_sup * valor_indice_2022
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
         }else{
-            var horas_sup = 0;
-            var horas_sec = 0;
             var basico = cargo * valor_indice_2022
             var transporte = parseFloat($("#transporte").children("option:selected").val())
         }
