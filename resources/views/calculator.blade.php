@@ -4,14 +4,6 @@
 
 @php
     $jobs = App\Models\Job::where('score', '<>', 0.0)->get();
-    /*$basico = round($jobs->score * $valor_indice_2022, 2);
-    $antig = round($basico * 0.30, 2);
-    $titulo = 15 * $valor_indice_2022;*/
-    //$basico_docente = round((15.1 * 3) * $valor_indice_2022, 2);
-    //$antig_docente = round($basico_docente * 0.40, 2);
-    //$licenses = App\Models\License::whereIn('id', [1, 2, 15, 32, 34, 35])->get();
-    //$staff = App\Models\Staff::where('status', 'Activo')->get();
-    //$jobs = DB::table('staff_subjects')->select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
 @endphp
 
 <div class="container">
@@ -160,6 +152,7 @@
                 '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
                     '<div class="card-body">'+
                         '<h5>Neto: '+neto.toFixed(2)+'</h5>'+
+                        '<small>(Bruto - Desc. de Ley)</small>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
@@ -175,6 +168,7 @@
                 '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
                     '<div class="card-body">'+
                         '<h5>Líquido: '+liquido.toFixed(2)+'</h5>'+
+                        '<small>(Neto + Presentismo + Transp.)</small>'+
                     '</div>'+
                 '</div>'+
             '</div>'

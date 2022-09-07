@@ -55,6 +55,7 @@
             </td>
             <td>
                 <b>Neto: {{ round($neto, 2) }} </b>
+                <br><small>(Bruto - Desc. de Ley)</small>
             </td>
         </tr>
     
@@ -65,6 +66,7 @@
             </td>
             <td>
                 <b>Líquido: {{ round($liquido, 2) }} </b>
+                <br><small>(Neto + Presentismo + Transp.)</small>
             </td>
         </tr>
     </tbody>
