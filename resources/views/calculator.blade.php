@@ -96,8 +96,8 @@
         }
         
         if(cargo == 15.1){
-            var horas_sup = $("#horas_sup").val();
-            var horas_sec = $("#horas_sec").val();
+            var horas_sup = parseFloat($("#horas_sup").val());
+            var horas_sec = parseFloat($("#horas_sec").val());
             var basico = horas_sup * valor_indice_2022
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
         }else{
@@ -110,7 +110,17 @@
         var desc_ley = bruto * 0.235
         var neto = bruto - desc_ley
         var presentismo = neto * 0.0833
-        var TotalpuntajeHC = (horas_sup * 15.10) + horas_sec * 12.10 + cargo_publico
+        if(horas_sup != 0 && horas_sec != 0){
+            var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
+        }else{
+            if(horas_sup == 0){
+                var TotalpuntajeHC = 0 + horas_sec * 12.10 + cargo_publico
+            }else{
+                if(horas_sec == 0){
+                    var TotalpuntajeHC = horas_sup * 15.10 + 0 + cargo_publico
+                }
+            }else{}
+        }
         var liquido = neto + presentismo + transporte
         if(cargo != 'Seleccione' && $("#antig").children("option:selected").val() != 'Seleccione' && $("#titulo").children("option:selected").val() != 'Seleccione' && $("#transporte").children("option:selected").val() != 'Seleccione'){
             $("#result").html(
