@@ -13,7 +13,7 @@
 
     if($cargo == 15.1){
         $horas_sup = $param[4];
-        if(count($param) == 6){$horas_sec = $param[5] * 12.10;}else{$horas_sec = 0;}
+        $horas_sec = $param[5];
         $basico = $horas_sup * $valor_indice_2022;
         $transporte = $transporte * $horas_sup * $valor_indice_2022;
     }else{
@@ -28,7 +28,7 @@
     $desc_ley = $bruto * 0.235;
     $neto = $bruto - $desc_ley;
     $presentismo = $neto * 0.0833;
-    $totalpuntajeHC = ($horas_sup * 15.10) + $horas_sec + $cargo_publico;
+    $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
     $liquido = $neto + $presentismo + $transporte;
 @endphp
 <title>Calculadora</title>
