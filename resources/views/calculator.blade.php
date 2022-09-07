@@ -119,7 +119,7 @@
                 if(horas_sec == 0){
                     var TotalpuntajeHC = horas_sup * 15.10 + 0 + cargo_publico
                 }
-            }else{}
+            }else{var TotalpuntajeHC = 0 + 0 + cargo_publico}
         }
         var liquido = neto + presentismo + transporte
         if(cargo != 'Seleccione' && $("#antig").children("option:selected").val() != 'Seleccione' && $("#titulo").children("option:selected").val() != 'Seleccione' && $("#transporte").children("option:selected").val() != 'Seleccione'){
