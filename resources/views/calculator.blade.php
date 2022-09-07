@@ -73,6 +73,11 @@
             <label for="exampleFormControlTextarea1">Horas Cátedra Nivel Secundario</label>
             <input class="form-control" id="horas_sec" type="number">
         </div>
+
+        <div class="col-lg-4 col-12 form-check form-switch ml-3 mb-4">
+            <input class="form-check-input" type="checkbox" id="cargo_publico" value="362">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Cargo Público</label>
+        </div>
     </div>
     <div class="row"> 
         <div class="col-lg-4 col-12 form-group">
@@ -90,9 +95,15 @@
     function calculation(){
         var valor_indice_2022 = 149.68;
         var cargo = $("#cargo").children("option:selected").val();
+        if ($('#cargo_publico').prop('checked') ) {
+            var cargo_publico = parseFloat($("#cargo_publico").val());    
+        }else{
+            var cargo_publico = 0;
+        }
+        
         if(cargo == 15.1){
             var horas_sup = $("#horas_sup").val();
-            var horas_sec = $("#horas_sec").val() * 12.10;
+            var horas_sec = $("#horas_sec").val();
             var basico = horas_sup * valor_indice_2022
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
         }else{
@@ -107,7 +118,7 @@
         var desc_ley = bruto * 0.235
         var neto = bruto - desc_ley
         var presentismo = neto * 0.0833
-        var TotalpuntajeHC = (horas_sup * 15.10) + horas_sec
+        var TotalpuntajeHC = (horas_sup * 15.10) + horas_sec * 12.10 + cargo_publico
         var liquido = neto + presentismo + transporte
         $("#result").html(
             '<a href="calculator_pdf/'+
@@ -115,8 +126,9 @@
                 '&'+$("#antig").children("option:selected").val()+
                 '&'+$("#titulo").children("option:selected").val()+
                 '&'+$("#transporte").children("option:selected").val()+
-                '&'+horas_sup+'&'
-                +$("#horas_sec").val()+
+                '&'+horas_sup+
+                '&'+horas_sec+
+                '&'+cargo_publico+
             '" target="blank">DESCARGAR PDF</a>'+
             '<div class="row mt-4">'+
                 '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+

@@ -9,6 +9,7 @@
     $antig = $param[1];
     $titulo = $param[2];
     $transporte = $param[3];
+    $cargo_publico = $param[6];
 
     if($cargo == 15.1){
         $horas_sup = $param[4];
@@ -27,10 +28,10 @@
     $desc_ley = $bruto * 0.235;
     $neto = $bruto - $desc_ley;
     $presentismo = $neto * 0.0833;
-    $totalpuntajeHC = ($horas_sup * 15.10) + $horas_sec;
+    $totalpuntajeHC = ($horas_sup * 15.10) + $horas_sec + $cargo_publico;
     $liquido = $neto + $presentismo + $transporte;
 @endphp
-
+<title>Calculadora</title>
 <h2>CALCULADORA</h2>
 <table border="1" width="100%">
     <tbody>
