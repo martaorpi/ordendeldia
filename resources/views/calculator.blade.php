@@ -7,9 +7,11 @@
 @endphp
 
 <div class="container">
+    <h1>Calculadora</h1>
     <div class="row">        
+        <small class="col-12 mb-2 text-primary">Datos Obligatorios *</small>
         <div class="col-lg-4 col-12 form-group">
-            <label for="exampleFormControlSelect1">Cargo</label>
+            <label for="exampleFormControlSelect1">Cargo<span class="text-primary">*</span></label>
             <select class="form-control" id="cargo">
                 <option>Seleccione</option>
                 @foreach ($jobs as $job)
@@ -19,7 +21,7 @@
         </div>
         
         <div class="col-lg-4 col-12 form-group">
-            <label for="exampleFormControlSelect2">Antigüedad</label>
+            <label for="exampleFormControlSelect2">Antigüedad<span class="text-primary">*</span></label>
             <select class="form-control" id="antig">
                 <option>Seleccione</option>
                 <option value="0.10">1</option>
@@ -37,7 +39,7 @@
         </div>
 
         <div class="col-lg-4 col-12 form-group">
-            <label for="exampleFormControlSelect2">Título</label>
+            <label for="exampleFormControlSelect2">Título<span class="text-primary">*</span></label>
             <select class="form-control" id="titulo">
                 <option>Seleccione</option>
                 <option value="15">Habilitante</option>
@@ -46,7 +48,7 @@
         </div>
 
         <div class="col-lg-4 col-12 form-group">
-            <label for="exampleFormControlSelect2">Transporte</label>
+            <label for="exampleFormControlSelect2">Transporte<span class="text-primary">*</span></label>
             <select class="form-control" id="transporte">
                 <option>Seleccione</option>
                 <option value="20">Cargo - Zona A</option>
@@ -110,68 +112,70 @@
         var presentismo = neto * 0.0833
         var TotalpuntajeHC = (horas_sup * 15.10) + horas_sec * 12.10 + cargo_publico
         var liquido = neto + presentismo + transporte
-        $("#result").html(
-            '<a href="calculator_pdf/'+
-                cargo+
-                '&'+$("#antig").children("option:selected").val()+
-                '&'+$("#titulo").children("option:selected").val()+
-                '&'+$("#transporte").children("option:selected").val()+
-                '&'+horas_sup+
-                '&'+horas_sec+
-                '&'+cargo_publico+
-            '" target="blank">DESCARGAR PDF</a>'+
-            '<div class="row mt-4">'+
-                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        'Básico: '+basico.toFixed(2)+
-                        '<br>Antigüedad: '+antig.toFixed(2)+
-                        '<br>Título: '+titulo.toFixed(2)+
+        if(cargo != 'Seleccione' && $("#antig").children("option:selected").val() != 'Seleccione' && $("#titulo").children("option:selected").val() != 'Seleccione' && $("#transporte").children("option:selected").val() != 'Seleccione'){
+            $("#result").html(
+                '<a href="calculator_pdf/'+
+                    cargo+
+                    '&'+$("#antig").children("option:selected").val()+
+                    '&'+$("#titulo").children("option:selected").val()+
+                    '&'+$("#transporte").children("option:selected").val()+
+                    '&'+horas_sup+
+                    '&'+horas_sec+
+                    '&'+cargo_publico+
+                '" target="blank">DESCARGAR PDF</a>'+
+                '<div class="row mt-4">'+
+                    '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            'Básico: '+basico.toFixed(2)+
+                            '<br>Antigüedad: '+antig.toFixed(2)+
+                            '<br>Título: '+titulo.toFixed(2)+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            '<br><h5>Bruto: '+bruto.toFixed(2)+'</h5>'+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="card text-white bg-dark mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            '<br>Total Puntaje HC: '+TotalpuntajeHC.toFixed(2)+
+                        '</div>'+
                     '</div>'+
                 '</div>'+
 
-                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        '<br><h5>Bruto: '+bruto.toFixed(2)+'</h5>'+
+                '<div class="row">'+
+                    '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            'Descuentos de Ley: '+desc_ley.toFixed(2)+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            '<h5>Neto: '+neto.toFixed(2)+'</h5>'+
+                            '<small>(Bruto - Desc. de Ley)</small>'+
+                        '</div>'+
                     '</div>'+
                 '</div>'+
 
-                '<div class="card text-white bg-dark mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        '<br>Total Puntaje HC: '+TotalpuntajeHC.toFixed(2)+
+                '<div class="row">'+
+                    '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            'Presentismo: '+presentismo.toFixed(2)+
+                            '<br>Transporte: '+transporte.toFixed(2)+
+                        '</div>'+
                     '</div>'+
-                '</div>'+
-            '</div>'+
 
-            '<div class="row">'+
-                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        'Descuentos de Ley: '+desc_ley.toFixed(2)+
+                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                        '<div class="card-body">'+
+                            '<h5>Líquido: '+liquido.toFixed(2)+'</h5>'+
+                            '<small>(Neto + Presentismo + Transp.)</small>'+
+                        '</div>'+
                     '</div>'+
-                '</div>'+
-
-                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        '<h5>Neto: '+neto.toFixed(2)+'</h5>'+
-                        '<small>(Bruto - Desc. de Ley)</small>'+
-                    '</div>'+
-                '</div>'+
-            '</div>'+
-
-            '<div class="row">'+
-                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        'Presentismo: '+presentismo.toFixed(2)+
-                        '<br>Transporte: '+transporte.toFixed(2)+
-                    '</div>'+
-                '</div>'+
-
-                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
-                    '<div class="card-body">'+
-                        '<h5>Líquido: '+liquido.toFixed(2)+'</h5>'+
-                        '<small>(Neto + Presentismo + Transp.)</small>'+
-                    '</div>'+
-                '</div>'+
-            '</div>'
-        )  
+                '</div>'
+            )  
+        }else{alert('Debe completar los campos obligatorios *')}
     }
 </script>
