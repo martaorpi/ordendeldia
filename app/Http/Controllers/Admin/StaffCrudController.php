@@ -8,6 +8,7 @@ use App\Exports\LicenseExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Barryvdh\DomPDF\Facade as PDF;
 
 /**
  * Class StaffCrudController
@@ -376,6 +377,13 @@ class StaffCrudController extends CrudController
     public function calculator()
     {
         return view('calculator');
+    }
+
+    public function calculator_pdf($param){
+        $pdf = PDF::loadView("calculator_pdf", [
+            "param" => $param,
+        ]);
+        return $pdf->stream('Calculator.pdf');
     }
 
 }

@@ -55,7 +55,7 @@
 
         <div class="col-lg-4 col-12 form-group">
             <label for="exampleFormControlSelect2">Transporte</label>
-            <select class="form-control" id="titulo">
+            <select class="form-control" id="transporte">
                 <option>Seleccione</option>
                 <option value="20">Cargo - Zona A</option>
                 <option value="50">Cargo - Zona B</option>
@@ -80,7 +80,8 @@
         </div>
     </div>
 
-    <div id="result"><div>
+    <div id="result">    
+    <div>
 </div>
 
 @endsection
@@ -89,13 +90,16 @@
     function calculation(){
         var valor_indice_2022 = 149.68;
         var cargo = $("#cargo").children("option:selected").val();
-        var horas_sup = $("#horas_sup").val() * 15.10;
-        var horas_sec = $("#horas_sec").val() * 12.10;
-        var basico = cargo * valor_indice_2022
-        var transporte = 0
-        if($("#cargo").children("option:selected").val() === 15.1){
+        if(cargo == 15.1){
+            var horas_sup = $("#horas_sup").val();
+            var horas_sec = $("#horas_sec").val() * 12.10;
+            var basico = horas_sup * valor_indice_2022
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
-            var basico = horas_sup * 15.1 * valor_indice_2022
+        }else{
+            var horas_sup = 0;
+            var horas_sec = 0;
+            var basico = cargo * valor_indice_2022
+            var transporte = parseFloat($("#transporte").children("option:selected").val())
         }
         var antig = basico * $("#antig").children("option:selected").val();
         var titulo = valor_indice_2022 * $("#titulo").children("option:selected").val()
@@ -103,19 +107,67 @@
         var desc_ley = bruto * 0.235
         var neto = bruto - desc_ley
         var presentismo = neto * 0.0833
-        var TotalpuntajeHC = horas_sup +horas_sec
+        var TotalpuntajeHC = (horas_sup * 15.10) + horas_sec
         var liquido = neto + presentismo + transporte
         $("#result").html(
-            'Básico: '+basico.toFixed(2)+
-            '<br>Antigüedad: '+antig.toFixed(2)+
-            '<br>Título: '+titulo.toFixed(2)+
-            '<br>Total Bruto: '+bruto.toFixed(2)+
-            '<br>Descuentos de Ley: '+desc_ley.toFixed(2)+
-            '<br>Total Neto: '+neto.toFixed(2)+
-            '<br>Presentismo: '+presentismo.toFixed(2)+
-            '<br>Transporte: '+transporte.toFixed(2)+
-            '<br>Total Líquido: '+liquido.toFixed(2)+
-            '<br><br>Total Puntaje HC: '+TotalpuntajeHC.toFixed(2)
+            '<a href="calculator_pdf/'+
+                cargo+
+                '&'+$("#antig").children("option:selected").val()+
+                '&'+$("#titulo").children("option:selected").val()+
+                '&'+$("#transporte").children("option:selected").val()+
+                '&'+horas_sup+'&'
+                +$("#horas_sec").val()+
+            '" target="blank">DESCARGAR PDF</a>'+
+            '<div class="row mt-4">'+
+                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        'Básico: '+basico.toFixed(2)+
+                        '<br>Antigüedad: '+antig.toFixed(2)+
+                        '<br>Título: '+titulo.toFixed(2)+
+                    '</div>'+
+                '</div>'+
+
+                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        '<br><h5>Bruto: '+bruto.toFixed(2)+'</h5>'+
+                    '</div>'+
+                '</div>'+
+
+                '<div class="card text-white bg-dark mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        '<br>Total Puntaje HC: '+TotalpuntajeHC.toFixed(2)+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+
+            '<div class="row">'+
+                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        'Descuentos de Ley: '+desc_ley.toFixed(2)+
+                    '</div>'+
+                '</div>'+
+
+                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        '<h5>Neto: '+neto.toFixed(2)+'</h5>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+
+            '<div class="row">'+
+                '<div class="card bg-light mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        'Presentismo: '+presentismo.toFixed(2)+
+                        '<br>Transporte: '+transporte.toFixed(2)+
+                    '</div>'+
+                '</div>'+
+
+                '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card-body">'+
+                        '<h5>Líquido: '+liquido.toFixed(2)+'</h5>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'
         )  
     }
 </script>

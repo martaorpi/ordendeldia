@@ -50,4 +50,6 @@ Route::group([
     Route::crud('staff-subject', 'StaffSubjectCrudController');
 
     Route::get('staff/calculator', 'StaffCrudController@calculator');
+
+    Route::get('staff/calculator_pdf/{param}', 'StaffCrudController@calculator_pdf');
 }); // this should be the absolute last line of this file
