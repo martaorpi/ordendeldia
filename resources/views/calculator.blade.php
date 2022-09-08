@@ -114,14 +114,21 @@
             var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
         }else{
             if(horas_sup == 0){
-                var TotalpuntajeHC = 0 + horas_sec * 12.10 + cargo_publico
+                var TotalpuntajeHC = horas_sec * 12.10 + cargo_publico
             }else{
                 if(horas_sec == 0){
-                    var TotalpuntajeHC = horas_sup * 15.10 + 0 + cargo_publico
-                }
-            }else{var TotalpuntajeHC = 0 + 0 + cargo_publico}
+                    var TotalpuntajeHC = horas_sup * 15.10 + cargo_publico
+                }else{var TotalpuntajeHC = cargo_publico}
+            }
         }
         var liquido = neto + presentismo + transporte
+        if(TotalpuntajeHC > 543){
+            var bg = 'bg-primary'
+            var msj = '<small>Supera el máximo por '+ parseFloat(TotalpuntajeHC-543) +' puntos</small>'
+        }else{
+            var bg = 'bg-dark'
+            var msj = ''
+        }
         if(cargo != 'Seleccione' && $("#antig").children("option:selected").val() != 'Seleccione' && $("#titulo").children("option:selected").val() != 'Seleccione' && $("#transporte").children("option:selected").val() != 'Seleccione'){
             $("#result").html(
                 '<a href="calculator_pdf/'+
@@ -142,15 +149,16 @@
                         '</div>'+
                     '</div>'+
 
-                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card bg-secondary mb-3 mx-2 col-12 col-lg-3">'+
                         '<div class="card-body">'+
                             '<br><h5>Bruto: '+bruto.toFixed(2)+'</h5>'+
                         '</div>'+
                     '</div>'+
 
-                    '<div class="card text-white bg-dark mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card text-white '+bg+' mb-3 mx-2 col-12 col-lg-3">'+
                         '<div class="card-body">'+
                             '<br>Total Puntaje HC: '+TotalpuntajeHC.toFixed(2)+
+                            '<br>'+msj+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -162,7 +170,7 @@
                         '</div>'+
                     '</div>'+
 
-                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card bg-secondary mb-3 mx-2 col-12 col-lg-3">'+
                         '<div class="card-body">'+
                             '<h5>Neto: '+neto.toFixed(2)+'</h5>'+
                             '<small>(Bruto - Desc. de Ley)</small>'+
@@ -178,7 +186,7 @@
                         '</div>'+
                     '</div>'+
 
-                    '<div class="card text-white bg-primary mb-3 mx-2 col-12 col-lg-3">'+
+                    '<div class="card bg-secondary mb-3 mx-2 col-12 col-lg-3">'+
                         '<div class="card-body">'+
                             '<h5>Líquido: '+liquido.toFixed(2)+'</h5>'+
                             '<small>(Neto + Presentismo + Transp.)</small>'+

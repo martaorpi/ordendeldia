@@ -28,8 +28,22 @@
     $desc_ley = $bruto * 0.235;
     $neto = $bruto - $desc_ley;
     $presentismo = $neto * 0.0833;
+    if($horas_sup != 0 && $horas_sec != 0){
+        $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
+    }elseif($horas_sup == 0){
+        $totalpuntajeHC = $horas_sec * 12.10 + $cargo_publico;
+    }elseif($horas_sec == 0){
+        $totalpuntajeHC = $horas_sup * 15.10 + $cargo_publico;
+    }else{$totalpuntajeHC = $cargo_publico;}
     $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
     $liquido = $neto + $presentismo + $transporte;
+    if($totalpuntajeHC > 543){
+        $bg = 'bg-primary';
+        $msj = 'Supera el máximo por '.($totalpuntajeHC-543).' puntos';
+    }else{
+        $bg = 'bg-dark';
+        $msj = '';
+    }
 @endphp
 <title>Calculadora</title>
 <h2>CALCULADORA</h2>
@@ -46,6 +60,7 @@
             </td>
             <td rowspan="3">
                 Total Puntaje HC: {{ round($totalpuntajeHC, 2) }}
+                <br><br><small style="color:#ba0000">{{$msj}}</small>
             </td>
         </tr>
     
