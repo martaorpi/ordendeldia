@@ -123,7 +123,7 @@
         var liquido = neto + presentismo + transporte
         if(TotalpuntajeHC > 543){
             var bg = 'bg-primary'
-            var msj = '<small>Supera el máximo por '+ parseFloat(TotalpuntajeHC-543) +' puntos</small>'
+            var msj = '<small>Supera el máximo por '+ parseFloat(TotalpuntajeHC-543) +' ptos</small>'
         }else{
             var bg = 'bg-dark'
             var msj = ''
