@@ -94,7 +94,6 @@
         }else{
             var cargo_publico = 0;
         }
-        
         if(cargo == 15.1){
             var horas_sup = parseFloat($("#horas_sup").val());
             var horas_sec = parseFloat($("#horas_sec").val());
@@ -110,13 +109,13 @@
         var desc_ley = bruto * 0.235
         var neto = bruto - desc_ley
         var presentismo = neto * 0.0833
-        if(horas_sup != 0 && horas_sec != 0){
+        if(horas_sup != undefined && horas_sec != undefined){
             var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
         }else{
-            if(horas_sup == 0){
+            if(horas_sup == undefined && horas_sec != undefined){
                 var TotalpuntajeHC = horas_sec * 12.10 + cargo_publico
             }else{
-                if(horas_sec == 0){
+                if(horas_sec == undefined && horas_sup != undefined){
                     var TotalpuntajeHC = horas_sup * 15.10 + cargo_publico
                 }else{var TotalpuntajeHC = cargo_publico}
             }
