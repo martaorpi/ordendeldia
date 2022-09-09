@@ -23,15 +23,15 @@ class LicenseExport implements FromCollection,WithHeadings
     public function collection()
     {
         $mes_ant = date('m', strtotime('-1 month'));
-        $mes = 05;//date('m');
+        $mes = date('m');
         $mes_sig = date('m', strtotime('+1 month'));
 
         if(date('d') > 20){
-            $date1 = '2022'.$mes.'20';
-            $date2 = '2022'.$mes_sig.'20';
+            $date1 = '2022-'.$mes.'-20';
+            $date2 = '2022-'.$mes_sig.'-20';
         }else{
-            $date1 = '2022'.$mes_ant.'20';
-            $date2 = '2022'.$mes.'20';
+            $date1 = '2022-'.$mes_ant.'-20';
+            $date2 = '2022-'.$mes.'-20';
         }
         
         $staff = DB::table('staff')
@@ -42,6 +42,7 @@ class LicenseExport implements FromCollection,WithHeadings
                     ->leftjoin('licenses', 'licenses.id', '=', 'staff_licenses.license_id')
                     ->select('staff.name', 'licenses.article', 'staff_licenses.requested_days', 'staff_licenses.start_date')
                     ->orderBy('staff.name','ASC')
+                    ->where('staff.status','Activo')
                     ->whereBetween('staff_licenses.start_date', [$date1, $date2])
                     ->get();
 

@@ -4,7 +4,7 @@
 
 @php
     $jobs = App\Models\StaffSubject::select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
-    $licenses = App\Models\License::whereIn('id', [1, 2, 15, 32, 34, 35])->get();
+    $licenses = App\Models\License::whereIn('id', [1, 2, 4, 15, 22, 32, 34, 35])->get();
     $staff = App\Models\Staff::where('status', 'Activo')->get();
     //$jobs = DB::table('staff_subjects')->select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
 @endphp
@@ -137,22 +137,35 @@
                             @php
                             $priv_gral = 0;                                
                             $sup_spep_gral = 0;                                
-                            $tit_spep_gral = 0;                                
+                            $tit_spep_gral = 0;     
+                            $mes_ant = date('m', strtotime('-1 month'));
+                            $mes = date('m');
+                            $mes_sig = date('m', strtotime('+1 month'));
+
+                            if(date('d') > 20){
+                                $date1 = '2022-'.$mes.'-20';
+                                $date2 = '2022-'.$mes_sig.'-20';
+                            }else{
+                                $date1 = '2022-'.$mes_ant.'-20';
+                                $date2 = '2022-'.$mes.'-20';
+                            }                           
                             @endphp
                             @foreach ($licenses as $license)
                                 @php
                                 $staff_licenses = App\Models\StaffLicense::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('license_id', $license->id)
+                                                ->whereBetween('start_date', [$date1, $date2])
                                                 ->get();
                                 $privada = 0;
                                 $sup_spep = 0;
                                 $tit_spep = 0;
                                 foreach ($staff_licenses as $staff_license) {
-                                    foreach ($staff_license->staff->subjects as $subject) {
-                                        if($subject->pivot->plant_type == 'PRIVADA'){$privada++;}
-                                        if($subject->pivot->plant_type == 'SUPLENTE SPEP'){$sup_spep++;}
-                                        if($subject->pivot->plant_type == 'TITULAR SPEP'){$tit_spep++;}
-                                    }
+                                    //$planta = App\Models\Subject::where('staff_id', $staff_license->staff->id)->first();
+                                    //foreach ($staff_license->staff->subjects as $subject) {
+                                        if($staff_license->staff->subjects[0]->pivot->plant_type == 'PRIVADA'){$privada++;}
+                                        if($staff_license->staff->subjects[0]->pivot->plant_type == 'SUPLENTE SPEP'){$sup_spep++;}
+                                        if($staff_license->staff->subjects[0]->pivot->plant_type == 'TITULAR SPEP'){$tit_spep++;}
+                                    //}
                                 }
                                 $priv_gral += $privada;
                                 $sup_spep_gral += $sup_spep;
@@ -185,8 +198,7 @@
                                                     <tbody>
                                                         @foreach ($staff_licenses as $staff_license)
                                                             @php
-                                                            $prueba = App\Models\StaffSubject::where('staff_id', $staff_license->staff->id)
-                                                                ->first();
+                                                            $prueba = App\Models\StaffSubject::where('staff_id', $staff_license->staff->id)->first();
                                                             @endphp
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
