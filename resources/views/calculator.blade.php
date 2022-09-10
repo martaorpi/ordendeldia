@@ -88,9 +88,9 @@
 <script>
     function calculation(){
         var valor_indice_2022 = 149.68;
-        var cargo = $("#cargo").children("option:selected").val();
+        var cargo = parseFloat($("#cargo").children("option:selected").val());
         if ($('#cargo_publico').prop('checked') ) {
-            var cargo_publico = parseFloat($("#cargo_publico").val());    
+            var cargo_publico = 362;    
         }else{
             var cargo_publico = 0;
         }
@@ -99,9 +99,21 @@
             var horas_sec = parseFloat($("#horas_sec").val());
             var basico = horas_sup * valor_indice_2022
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
+            if(horas_sup != undefined && horas_sec != undefined){
+                var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
+            }else{
+                if(horas_sup == undefined && horas_sec != undefined){
+                    var TotalpuntajeHC = horas_sec * 12.10 + cargo_publico
+                }else{
+                    if(horas_sec == undefined && horas_sup != undefined){
+                        var TotalpuntajeHC = horas_sup * 15.10 + cargo_publico
+                    }else{var TotalpuntajeHC = cargo_publico}
+                }
+            }
         }else{
             var basico = cargo * valor_indice_2022
             var transporte = parseFloat($("#transporte").children("option:selected").val())
+            var TotalpuntajeHC = cargo + cargo_publico
         }
         var antig = basico * $("#antig").children("option:selected").val();
         var titulo = valor_indice_2022 * $("#titulo").children("option:selected").val()
@@ -109,17 +121,7 @@
         var desc_ley = bruto * 0.235
         var neto = bruto - desc_ley
         var presentismo = neto * 0.0833
-        if(horas_sup != undefined && horas_sec != undefined){
-            var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
-        }else{
-            if(horas_sup == undefined && horas_sec != undefined){
-                var TotalpuntajeHC = horas_sec * 12.10 + cargo_publico
-            }else{
-                if(horas_sec == undefined && horas_sup != undefined){
-                    var TotalpuntajeHC = horas_sup * 15.10 + cargo_publico
-                }else{var TotalpuntajeHC = cargo_publico}
-            }
-        }
+        
         var liquido = neto + presentismo + transporte
         if(TotalpuntajeHC > 543){
             var bg = 'bg-primary'

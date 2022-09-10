@@ -16,11 +16,19 @@
         $horas_sec = $param[5];
         $basico = $horas_sup * $valor_indice_2022;
         $transporte = $transporte * $horas_sup * $valor_indice_2022;
+        if($horas_sup != 0 && $horas_sec != 0){
+            $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
+        }elseif($horas_sup == 0){
+            $totalpuntajeHC = $horas_sec * 12.10 + $cargo_publico;
+        }elseif($horas_sec == 0){
+            $totalpuntajeHC = $horas_sup * 15.10 + $cargo_publico;
+        }else{$totalpuntajeHC = $cargo_publico;}
     }else{
         $horas_sup = 0;
         $horas_sec = 0;
         $basico = $cargo * $valor_indice_2022;
         $transporte = $transporte;
+        $totalpuntajeHC = $cargo + $cargo_publico;
     }
     $antig = $basico * $antig;
     $titulo = $valor_indice_2022 * $titulo;
@@ -28,14 +36,8 @@
     $desc_ley = $bruto * 0.235;
     $neto = $bruto - $desc_ley;
     $presentismo = $neto * 0.0833;
-    if($horas_sup != 0 && $horas_sec != 0){
-        $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
-    }elseif($horas_sup == 0){
-        $totalpuntajeHC = $horas_sec * 12.10 + $cargo_publico;
-    }elseif($horas_sec == 0){
-        $totalpuntajeHC = $horas_sup * 15.10 + $cargo_publico;
-    }else{$totalpuntajeHC = $cargo_publico;}
-    $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
+    
+    //$totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
     $liquido = $neto + $presentismo + $transporte;
     if($totalpuntajeHC > 543){
         $bg = 'bg-primary';
