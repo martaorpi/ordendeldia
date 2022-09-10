@@ -54,7 +54,7 @@
                 <option value="20">Cargo - Zona A</option>
                 <option value="50">Cargo - Zona B</option>
                 <option value="0.83">HC - Zona A</option>
-                <option value="2.83">HC - Zona b</option>
+                <option value="2.83">HC - Zona B</option>
             </select>
         </div>
         

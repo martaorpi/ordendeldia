@@ -1,5 +1,6 @@
 <style>
     td{padding:20px;}
+    .titulo{margin: 0 auto;}
 </style>
 
 @php
@@ -10,6 +11,42 @@
     $titulo = $param[2];
     $transporte = $param[3];
     $cargo_publico = $param[6];
+
+    $job = App\Models\Job::where('score', '=', $cargo)->first();
+
+    switch($antig){
+        case 0.10: $antig_desc = '1 año'; break;
+        case 0.15: $antig_desc = '2-4 años'; break;
+        case 0.30: $antig_desc = '5-6 años'; break;
+        case 0.40: $antig_desc = '7-9 años'; break;
+        case 0.50: $antig_desc = '10-11 años'; break;
+        case 0.60: $antig_desc = '12-14 años'; break;
+        case 0.70: $antig_desc = '15-16 años'; break;
+        case 0.80: $antig_desc = '17-19 años'; break;
+        case 1.00: $antig_desc = '20-21 años'; break;
+        case 1.10: $antig_desc = '22-23 años'; break;
+        case 1.20: $antig_desc = '24 años'; break;
+    }
+
+    switch($titulo){
+        case 15: $titulo_desc = 'Habilitante'; break;
+        case 40: $titulo_desc = 'Específico'; break;
+    }
+
+    switch($transporte){
+        case 20: $transporte_desc = 'Cargo - Zona A'; break;
+        case 50: $transporte_desc = 'Cargo - Zona B'; break;
+        case 0.83: $transporte_desc = 'HC - Zona A'; break;
+        case 2.83: $transporte_desc = 'HC - Zona B'; break;
+    }
+
+    if($param[4] == 'undefined'){$hs_sup_desc = 0;}else{$hs_sup_desc = $param[4];}
+    if($param[5] == 'undefined'){$hs_sec_desc = 0;}else{$hs_sec_desc = $param[5];}
+
+    switch($cargo_publico){
+        case 0: $cargo_publico_desc = 'No'; break;
+        case 362: $cargo_publico_desc = 'Si'; break;
+    }
 
     if($cargo == 15.1){
         $horas_sup = $param[4];
@@ -47,7 +84,7 @@
         $msj = '';
     }
 @endphp
-<title>Calculadora</title>
+<title class="titulo">Calculadora</title>
 <h2>CALCULADORA</h2>
 <table border="1" width="100%">
     <tbody>
@@ -88,3 +125,12 @@
         </tr>
     </tbody>
 </table>
+<hr>
+<h4>DATOS</h4>
+<b>Cargo: </b>{{ $job->description }} ({{ $param[0] }})<br>
+<b>Antigüedad: </b>{{ $antig_desc }} ({{ $param[1] }})<br>
+<b>Título: </b>{{ $titulo_desc }} ({{ $param[2] }})<br>
+<b>Transporte: </b>{{ $transporte_desc }} ({{ $param[3] }})<br>
+<b>Horas Nivel Sup.: </b>{{ $hs_sup_desc }}<br>
+<b>Horas Nivel Sec.: </b>{{ $hs_sec_desc }}<br>
+<b>Cargo Público: </b>{{ $cargo_publico_desc }} ({{ $param[6] }})<br>
