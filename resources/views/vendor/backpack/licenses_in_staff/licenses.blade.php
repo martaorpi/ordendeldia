@@ -79,6 +79,7 @@
             <div class="form-group">
               <label for="name">Artículo <label class="text-danger">*</label></label>
               <select class="form-control form-select" onchange="selectLic()" id="articulo">
+                '<option value="">Seleccione</option>'
                 ${optionsHTML}
               </select>
             </div>

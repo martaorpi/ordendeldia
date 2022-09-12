@@ -6,6 +6,7 @@ use App\Http\Requests\StaffLicenseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use \App\Models\StaffLicense;
+use \App\Models\StaffDiscount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,8 +103,24 @@ class StaffLicenseCrudController extends CrudController
             $input = $request->all();
             $input['staff_id'] = $id;
             $input['user_id'] = Auth::id();
+            $staff_license = StaffLicense::create($input);
             
-            if(StaffLicense::create($input)){
+            if($staff_license){
+                if(($input['license_id'] < 7 || $input['license_id'] > 12) && 
+                    $input['license_id'] != 14 && 
+                    ($input['license_id'] < 16 || $input['license_id'] > 20) && 
+                    $input['license_id'] != 29 && 
+                    $input['license_id'] != 33 &&
+                    ($input['license_id'] < 38 || $input['license_id'] > 40) &&
+                    ($input['license_id'] < 42 || $input['license_id'] > 47) &&
+                    $input['license_id'] != 50 &&
+                    $input['license_id'] != 54){
+                        $input2['staff_id'] = $id;
+                        $input2['staff_license_id'] = $staff_license->id;
+                        $input2['discount_id'] = 1;//presentismo
+                        $input2['days'] = $input['requested_days'];
+                        StaffDiscount::create($input2);
+                }
                 return view('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('license')->get()]);
             }
         }
@@ -111,7 +128,10 @@ class StaffLicenseCrudController extends CrudController
 
     protected function deleteLicenses($id ,Request $request){
         $license = StaffLicense::where('id', '=', $request->id)->first();
+        $staff_license = $license->id;
         if($license->delete()){
+            $staff_discount = StaffDiscount::where('staff_license_id', '=', $staff_license)->first();
+            $staff_discount->delete();
             return view('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('license')->get()]);
         }
     }
@@ -121,8 +141,24 @@ class StaffLicenseCrudController extends CrudController
             $input = $request->all();
             $input['license_id'] = $id;
             $input['user_id'] = Auth::id();
+            $staff_license = StaffLicense::create($input);
             
-            if(StaffLicense::create($input)){
+            if($staff_license){
+                if(($input['license_id'] < 7 || $input['license_id'] > 12) && 
+                    $input['license_id'] != 14 && 
+                    ($input['license_id'] < 16 || $input['license_id'] > 20) && 
+                    $input['license_id'] != 29 && 
+                    $input['license_id'] != 33 &&
+                    ($input['license_id'] < 38 || $input['license_id'] > 40) &&
+                    ($input['license_id'] < 42 || $input['license_id'] > 47) &&
+                    $input['license_id'] != 50 &&
+                    $input['license_id'] != 54){
+                        $input2['staff_id'] = $id;
+                        $input2['staff_license_id'] = $staff_license->id;
+                        $input2['discount_id'] = 1;//presentismo
+                        $input2['days'] = $input['requested_days'];
+                        StaffDiscount::create($input2);
+                }
                 return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
             }
         }
@@ -130,7 +166,10 @@ class StaffLicenseCrudController extends CrudController
 
     protected function deleteStaff($id ,Request $request){
         $staff = StaffLicense::where('id', '=', $request->id)->first();
+        $staff_license = $staff->id;
         if($staff->delete()){
+            $staff_discount = StaffDiscount::where('staff_license_id', '=', $staff_license)->first();
+            $staff_discount->delete();
             return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
         }
     }

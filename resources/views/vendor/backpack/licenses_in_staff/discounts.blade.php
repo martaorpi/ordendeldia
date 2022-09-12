@@ -15,7 +15,8 @@
 
 <script>
   const wrapper2 = document.createElement('div');      
-  //let idArticle = 1;
+  let discountId = 1;
+
   function additemDiscount() {
     swal({
       title: "Descuento",
@@ -24,9 +25,13 @@
     }).then((value) => {
       if (value) {
         $.post('discounts', {
-            "discount_id": 1,
+            "discount_id": discountId,
             "amount": $('#monto').val(),
             "days": $('#dias').val(),
+            "percentage": $('#porcentaje').val(),
+            "file_number": $('#nro_expte').val(),
+            "date_notification": $('#fecha_notif').val(),
+            "observations": $('#obs').val(),
         }).done(function(data){
           swal("Agregado con exito", {
             icon: "success",
@@ -70,7 +75,8 @@
           <div class="col-6">
             <div class="form-group">
               <label for="name">Descuento <label class="text-danger">*</label></label>
-              <select class="form-control form-select" id="">
+              <select class="form-control form-select" onchange="selectDisc()" id="discount">
+                '<option value="">Seleccione</option>'
                 ${optionsHTML}
               </select>
             </div>
@@ -89,9 +95,42 @@
               <input class="form-control" type="number" id="dias"></input>
             </div>
           </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Porcentaje</label>
+              <input class="form-control" type="number" id="porcentaje" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"></input>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Nro Expediente</label>
+              <input class="form-control" type="text" id="nro_expte"></input>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Fecha de Notificación</label>
+              <input class="form-control" type="date" id="fecha_notif"></input>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="name">Observaciones <label class="text-danger">*</label></label>
+              <textarea class="form-control" id="obs"></textarea>
+            </div>
+          </div>
           
         </div>`;
     });
+    
+    function selectDisc(){
+      discountId = document.getElementById("discount").value;
+      return $(discountId);
+    }
 
 </script>
   
