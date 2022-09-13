@@ -26,7 +26,7 @@ class StaffExport implements FromCollection,WithHeadings
     }
     public function collection()
     {
-        if(date('m') == 4 || date('m') == 8){
+        if(date('m') == 1 || date('m') == 8){
             $staff = DB::table('staff')
                     ->leftjoin('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
                     ->leftjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
@@ -37,8 +37,7 @@ class StaffExport implements FromCollection,WithHeadings
                             'subjects.description as description2', 'staff_subjects.observations', 'licenses.article')
                     ->orderBy('staff.name','ASC')
                     ->get();
-        }
-        if(date('m') > 4 && date('m') < 8){
+        }elseif(date('m') >= 4 && date('m') <= 7){
             $staff = DB::table('staff')
                     ->leftjoin('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
                     ->leftjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
@@ -51,8 +50,7 @@ class StaffExport implements FromCollection,WithHeadings
                     ->where('staff_subjects.plant_mode', '=', '1er Cuatrimestre')
                     ->orWhere('staff_subjects.plant_mode', '=', 'Anual')
                     ->get();
-        }
-        if(date('m') > 8){
+        }else{
             $staff = DB::table('staff')
                     ->leftjoin('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
                     ->leftjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
