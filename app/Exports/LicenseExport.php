@@ -18,6 +18,9 @@ class LicenseExport implements FromCollection,WithHeadings
             'Artículo',
             'Días',
             'Fecha Inicio',
+            'Fecha Fin',
+            'Descuento',
+            'Observaciones',
         ];
     }
     public function collection()
@@ -35,12 +38,11 @@ class LicenseExport implements FromCollection,WithHeadings
         }
         
         $staff = DB::table('staff')
-                    //->leftjoin('staff_subjects', 'staff_subjects.staff_id', '=', 'staff.id')
                     ->rightjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
-                    //->leftjoin('jobs', 'jobs.id', '=', 'staff.job_id')
-                   // ->leftjoin('subjects', 'subjects.id', '=', 'staff_subjects.subject_id')
+                    ->leftjoin('staff_discounts', 'staff_discounts.staff_license_id', '=', 'staff_licenses.id')
+                    ->leftjoin('discounts', 'staff_discounts.discount_id', '=', 'discounts.id')
                     ->leftjoin('licenses', 'licenses.id', '=', 'staff_licenses.license_id')
-                    ->select('staff.name', 'licenses.article', 'staff_licenses.requested_days', 'staff_licenses.start_date')
+                    ->select('staff.name', 'licenses.article', 'staff_licenses.requested_days', 'staff_licenses.start_date', 'staff_licenses.end_date', 'discounts.description', 'staff_licenses.observations')
                     ->orderBy('staff.name','ASC')
                     ->where('staff.status','Activo')
                     ->whereBetween('staff_licenses.start_date', [$date1, $date2])

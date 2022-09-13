@@ -5,9 +5,9 @@
 </div>
 
 <div class="col-12" id="response_discounts">
-  {{--@if (count($discounts) > 0)
-    @include('vendor.backpack.licenses_in_staff.licenses_items', ['discounts' => $discounts])
-  @endif--}}
+  @if (count($discounts) > 0)
+    @include('vendor.backpack.licenses_in_staff.discounts_items', ['discounts' => $discounts])
+  @endif
 </div>
 
 
