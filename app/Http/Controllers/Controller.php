@@ -12,6 +12,8 @@ use App\Models\Location;
 use App\Models\Cycle;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CantPlantaExport;
 
 use App\Http\Requests\StudentRequestFrontend;
 
@@ -77,5 +79,9 @@ class Controller extends BaseController
             "estudiante" => $estudiante[0],
         ]);
         return $pdf->stream('Formulario N° '.$estudiante[0]->dni.'.pdf');
+    }
+
+    public function exportCantPlanta(){
+        return Excel::download(new CantPlantaExport, 'cant_planta.xlsx');
     }
 }

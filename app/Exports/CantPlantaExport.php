@@ -5,8 +5,12 @@ namespace App\Exports;
 use DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use App\Models\StaffSubject;
+use App\Models\License;
+use App\Models\Staff;
+//use Illuminate\Support\Facades\DB::class;
 
-class LicenseExport implements FromCollection,WithHeadings
+class CantPlantaExport implements FromCollection,WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -14,30 +18,23 @@ class LicenseExport implements FromCollection,WithHeadings
     public function headings(): array
     {
         return [
-            'Apellido y Nombre',
-            'Artículo',
-            'Días',
-            'Fecha Inicio',
-            'Fecha Fin',
-            'Descuento',
-            'Observaciones',
+            'Función',
+            'Privada',
+            'Suplente SPEP',
+            'Titular SPEP',
+            'Total General',
         ];
     }
     public function collection()
     {
-        $mes_ant = date('m', strtotime('-1 month'));
-        $mes = date('m');
-        $mes_sig = date('m', strtotime('+1 month'));
-
-        if(date('d') > 20){
-            $date1 = '2022-'.$mes.'-20';
-            $date2 = '2022-'.$mes_sig.'-20';
-        }else{
-            $date1 = '2022-'.$mes_ant.'-20';
-            $date2 = '2022-'.$mes.'-20';
-        }
+        $jobs = StaffSubject::select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
+        $licenses = License::whereIn('id', [1, 2, 4, 15, 22, 32, 34, 35])->get();
+        $staff = Staff::where('status', 'Activo')->get();
+        $priv_gral = 0;                                
+        $sup_spep_gral = 0;                                
+        $tit_spep_gral = 0;
         
-        $staff = DB::table('staff')
+        /*$staff = DB::table('staff')
                     ->rightjoin('staff_licenses', 'staff_licenses.staff_id', '=', 'staff.id')
                     ->leftjoin('staff_discounts', 'staff_discounts.staff_license_id', '=', 'staff_licenses.id')
                     ->leftjoin('discounts', 'staff_discounts.discount_id', '=', 'discounts.id')
@@ -49,6 +46,6 @@ class LicenseExport implements FromCollection,WithHeadings
                     ->orWhere('staff_licenses.end_date', null)
                     ->get();
 
-        return $staff;
+        return $staff;*/
     }
 }

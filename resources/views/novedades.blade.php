@@ -28,6 +28,11 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+                    {{--<a href="/novedades/exportar-cant-planta">exportar</a>--}}
+
+
                     <table class="table table-condensed responsive" style="border-collapse:collapse;">
                         <thead class="table-danger">
                             <tr>
@@ -96,7 +101,11 @@
                                                         @foreach ($staff_jobs as $staff_job)
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
-                                                                <td>{{$staff_job->staff->name}}</td>
+                                                                @if ($staff_job->job_id == 3 || $staff_job->job_id == 6 || $staff_job->job_id == 11 || $staff_job->job_id == 14)
+                                                                    <td>{{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}})</td>
+                                                                @else
+                                                                    <td>{{$staff_job->staff->name}}</td>
+                                                                @endif
                                                                 <td>@if($staff_job->plant_type == 'PRIVADA') X @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') X @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'TITULAR SPEP') X @endif</td>
@@ -138,23 +147,42 @@
                             $priv_gral = 0;                                
                             $sup_spep_gral = 0;                                
                             $tit_spep_gral = 0;     
+
                             $mes_ant = date('m', strtotime('-1 month'));
                             $mes = date('m');
                             $mes_sig = date('m', strtotime('+1 month'));
 
+                            $year_ant = date('Y', strtotime('-1 year'));
+                            $year = date('Y');
+                            $year_sig = date('Y', strtotime('+1 year'));
+
                             if(date('d') > 20){
-                                $date1 = '2022-'.$mes.'-20';
-                                $date2 = '2022-'.$mes_sig.'-20';
+                                if($mes == 12){
+                                    $date1 = $year.$mes.'-20';
+                                    $date2 = $year_sig.'01-20';
+                                }else{
+                                    $date1 = $year.'-'.$mes.'-20';
+                                    $date2 = $year.'-'.$mes_sig.'-20';
+                                }
                             }else{
-                                $date1 = '2022-'.$mes_ant.'-20';
-                                $date2 = '2022-'.$mes.'-20';
-                            }                           
+                                if($mes == 1){
+                                    $date1 = $year_ant.'-12-20';
+                                    $date2 = $year.$mes.'-20';
+                                }else{
+                                    $date1 = $year.'-'.$mes_ant.'-20';
+                                    $date2 = $year.'-'.$mes.'-20';
+                                }
+                            }
+
                             @endphp
                             @foreach ($licenses as $license)
                                 @php
                                 $staff_licenses = App\Models\StaffLicense::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('license_id', $license->id)
-                                                ->whereBetween('start_date', [$date1, $date2])
+                                                ->where(function($q) use ($date1, $date2){
+                                                    $q->whereBetween('start_date', [$date1, $date2])
+                                                    ->orWhere('end_date', null);
+                                                })
                                                 ->get();
                                 $privada = 0;
                                 $sup_spep = 0;
@@ -348,24 +376,34 @@
                                 $privada = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('job_id', $job->job_id)
                                                 ->where('plant_type', 'Privada')
-                                                ->sum('charge_score_ismp');
+                                                ->get();
+                                $privada = count($privada) * $j->score;
+                                                
                                 $sup_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('job_id', $job->job_id)
-                                                ->where('job_id', $job->job_id)->where('plant_type', 'Suplente Spep')
-                                                ->sum('charge_score_ismp');
+                                                ->where('plant_type', 'Suplente Spep')
+                                                ->get();
+                                $sup_spep = count($sup_spep) * $j->score;
+
                                 $tit_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('job_id', $job->job_id)
-                                                ->where('job_id', $job->job_id)->where('plant_type', 'Titular Spep')
-                                                ->sum('charge_score_ismp');
+                                                ->where('plant_type', 'Titular Spep')
+                                                ->get();
+                                $tit_spep = count($tit_spep) * $j->score;
+
                                 $priv_gral += $privada;
                                 $sup_spep_gral += $sup_spep;
                                 $tit_spep_gral += $tit_spep;
-                                $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type')
+                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                 ->where('job_id', $job->job_id)
                                                 ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                ->groupBy(['staff_id', 'plant_type'])
                                                 ->get();
                                 $i=1;
+                                
                                 @endphp
+
                                 <tr data-toggle="collapse" data-target="#demo{{$job->job_id}}" class="accordion-toggle">
                                     <td width="5%">@if($privada + $sup_spep + $tit_spep > 0)<button class="btn btn-default btn-xs py-0 px-2">Ver</button>@endif</td>
                                     <td>{{ $j->description }}</td>
@@ -391,12 +429,16 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($staff_jobs as $staff_job)
+                                                            @php
+                                                            $cant_staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->count();
+                                                            $staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                            @endphp
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
-                                                                <td>{{$staff_job->staff->name}}</td>
-                                                                <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->charge_score_ismp}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->charge_score_ismp}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->charge_score_ismp}} @endif</td>
+                                                                <td>{{$staff_job->staff->name}} ({{$cant_staff}} esp. curr.)</td>
+                                                                <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $cant_staff}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $cant_staff}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $cant_staff}} @endif</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
