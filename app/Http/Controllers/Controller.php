@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CantPlantaExport;
+use Rap2hpoutre\FastExcel\FastExcel;
+use App\Models\StaffSubject;
+use App\Models\Staff;
+use App\Models\Job;
+use DB;
 
 use App\Http\Requests\StudentRequestFrontend;
 
@@ -81,7 +86,57 @@ class Controller extends BaseController
         return $pdf->stream('Formulario N° '.$estudiante[0]->dni.'.pdf');
     }
 
-    public function exportCantPlanta(){
+    /*public function exportCantPlanta(){
         return Excel::download(new CantPlantaExport, 'cant_planta.xlsx');
+    }*/
+
+    public function exportCantPlanta()
+    { 
+        $data = array();
+        $jobs = StaffSubject::select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
+        //$licenses = App\Models\License::whereIn('id', [1, 2, 4, 15, 22, 32, 34, 35])->get();
+        $staff = Staff::where('status', 'Activo')->get();
+
+        $priv_gral = 0;                                
+        $sup_spep_gral = 0;                                
+        $tit_spep_gral = 0;
+
+        foreach($jobs as $job){
+            $j = Job::where('id', $job->job_id)->first();
+            $privada = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                            ->where('job_id', $job->job_id)
+                            ->where('plant_type', 'Privada')
+                            ->count();
+            $sup_spep = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                            ->where('job_id', $job->job_id)
+                            ->where('job_id', $job->job_id)->where('plant_type', 'Suplente Spep')
+                            ->count();
+            $tit_spep = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                            ->where('job_id', $job->job_id)
+                            ->where('job_id', $job->job_id)->where('plant_type', 'Titular Spep')
+                            ->count();
+            $priv_gral += $privada;
+            $sup_spep_gral += $sup_spep;
+            $tit_spep_gral += $tit_spep;
+            $staff_jobs = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                            ->where('job_id', $job->job_id)
+                            ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                            ->get();
+            $i=1;
+            
+            
+                
+
+            array_push($data, [ 
+                "Nro" => $i,
+                "Funcion" => $j->description,
+                "Privada" => $privada,
+                "Suplente SPEP" => $sup_spep,
+                "Titular SPEP" => $tit_spep,
+                "Total General" => $privada + $sup_spep + $tit_spep,
+            ]);
+            
+        }
+        return (new FastExcel($data))->download('general.xlsx');
     }
 }

@@ -31,6 +31,9 @@
 
 
                     {{--<a href="/novedades/exportar-cant-planta">exportar</a>--}}
+                    <a href="{{ url('novedades/exportar-cant-planta') }}" class="btn font-weight-bold" target="_blank">
+                        <i class="far fa-file-excel"></i> Descargar
+                    </a>
 
 
                     <table class="table table-condensed responsive" style="border-collapse:collapse;">

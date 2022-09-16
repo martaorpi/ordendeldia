@@ -424,6 +424,8 @@ class StudentCrudController extends CrudController
         $log->type = 'Alta Sistema Cobranza';
         $log->save();
 
+        return $response;
+
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:

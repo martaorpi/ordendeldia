@@ -46,4 +46,6 @@ Route::post('form_pdf', [Controller::class, 'form_pdf']);
 
 Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);
 
-Route::get('novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
+//Route::get('novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
+
+Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
