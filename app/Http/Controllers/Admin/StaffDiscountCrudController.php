@@ -163,6 +163,18 @@ class StaffDiscountCrudController extends CrudController
         }
     }
 
+    protected function storeDiscounts2($id ,Request $request){
+        if(isset($request)){
+            $input = $request->all();
+            $input['discount_id'] = $id;
+            //$input['user_id'] = Auth::id();
+            
+            if(StaffDiscount::create($input)){
+                return view('vendor.backpack.staff_in_discounts.discounts_items', ['staff' => StaffDiscount::where('discount_id', $id)->with('staff')->get()]);
+            }
+        }
+    }
+
     protected function deleteDiscounts($id ,Request $request){
         $discount = StaffDiscount::where('id', '=', $request->id)->first();
         if($discount->delete()){

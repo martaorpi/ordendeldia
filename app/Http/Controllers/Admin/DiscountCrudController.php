@@ -81,7 +81,7 @@ class DiscountCrudController extends CrudController
 
     public function getDiscounts($id)
     {
-        $discounts = \App\Models\Discount::where('id', '!=', 1)->get();
+        $discounts = \App\Models\Discount::where('id', '=', 3)->orWhere('id', '=', 4)->get();
         return $discounts;
     }
 }

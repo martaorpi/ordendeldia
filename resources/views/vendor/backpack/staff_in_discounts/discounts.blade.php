@@ -25,11 +25,9 @@
       content: wrapper,     
     }).then((value) => {
       if (value) {
-        $.post('staff-licenses', {
+        $.post('staff-discounts', {
             "staff_id": staffId,
             "amount": $('#monto').val(),
-            "days": $('#dias').val(),
-            "percentage": $('#porcentaje').val(),
             "file_number": $('#nro_expte').val(),
             "date_notification": $('#fecha_notif').val(),
             "observations": $('#obs').val(),
@@ -84,22 +82,8 @@
 
           <div class="col-6">
             <div class="form-group">
-              <label for="name">Monto</label>
+              <label for="name">Monto <label class="text-danger">*</label></label>
               <input class="form-control" type="number" id="monto" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Días</label>
-              <input class="form-control" type="number" id="dias"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Porcentaje</label>
-              <input class="form-control" type="number" id="porcentaje" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"></input>
             </div>
           </div>
 
@@ -119,7 +103,7 @@
 
           <div class="col-12">
             <div class="form-group">
-              <label for="name">Observaciones <label class="text-danger">*</label></label>
+              <label for="name">Observaciones</label>
               <textarea class="form-control" id="obs"></textarea>
             </div>
           </div>
@@ -129,7 +113,6 @@
     
     function selectStaff(){
       staffId = document.getElementById("staff").value;
-      console.log(staffId)
       return $(staffId);
     }
 

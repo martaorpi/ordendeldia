@@ -91,20 +91,6 @@
 
           <div class="col-6">
             <div class="form-group">
-              <label for="name">Días</label>
-              <input class="form-control" type="number" id="dias"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
-              <label for="name">Porcentaje</label>
-              <input class="form-control" type="number" id="porcentaje" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"></input>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-group">
               <label for="name">Nro Expediente</label>
               <input class="form-control" type="text" id="nro_expte"></input>
             </div>

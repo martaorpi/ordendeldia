@@ -121,6 +121,13 @@ class StaffLicenseCrudController extends CrudController
                         $input2['days'] = $input['requested_days'];
                         StaffDiscount::create($input2);
                 }
+                if($input['license_id'] == 59 || (date('Y-m-d') >= date('Y').'01-01' && date('Y-m-d') <= date('Y').'01-31')){
+                    $input2['staff_id'] = $id;
+                    $input2['staff_license_id'] = $staff_license->id;
+                    $input2['discount_id'] = 2;//transporte
+                    $input2['days'] = $input['requested_days'];
+                    StaffDiscount::create($input2);
+                }
                 return view('vendor.backpack.licenses_in_staff.licenses_items', ['licenses' => StaffLicense::where('staff_id', $id)->with('license')->get()]);
             }
         }
@@ -158,6 +165,13 @@ class StaffLicenseCrudController extends CrudController
                         $input2['discount_id'] = 1;//presentismo
                         $input2['days'] = $input['requested_days'];
                         StaffDiscount::create($input2);
+                }
+                if($input['license_id'] == 59 || (date('Y-m-d') >= date('Y').'01-01' && date('Y-m-d') <= date('Y').'01-31')){
+                    $input2['staff_id'] = $id;
+                    $input2['staff_license_id'] = $staff_license->id;
+                    $input2['discount_id'] = 2;//transporte
+                    $input2['days'] = $input['requested_days'];
+                    StaffDiscount::create($input2);
                 }
                 return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
             }

@@ -392,36 +392,43 @@ class StudentCrudController extends CrudController
             $ciclolectivo = 2022;
         }
 
-        $fechanacimiento = Date('1990-01-01');
+        $fechanacimiento = "1988/07/28";//Date('1990-01-01');
         $idcarrera = $student->career->ws_id;
 
-        $postfields = "{\r\n    \"nombre\": \"".$nombre."\",\r\n    \"apellido\": \"".$apellido."\",\r\n    \"idtipodocumento\": ".$idtipodocumento.",\r\n    \"nrodocumento\": ".$nrodocumento.",\r\n    \"fechanacimiento\": \"".$fechanacimiento."\",\r\n    \"email\": \"".$email."\",\r\n    \"direccion\": \"".$direccion."\",\r\n    \"sexo\": \"".$sexo."\",\r\n    \"idcarrera\": ".$idcarrera."\r\n    \"ciclolectivo\": ".$ciclolectivo."\r\n}";
-
-        $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://190.105.227.212/ApiInscripcion/api/inscripcion/alumno",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS =>$postfields,
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer ".$token,
-                "Content-Type: application/json"
-            ),
+          CURLOPT_URL => 'http://190.105.227.212/ApiInscripcion/api/inscripcion/alumno',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "Nombre": "'.$nombre.'",
+            "Apellido": "'.$apellido.'",
+            "IdTipoDocumento": "'.$idtipodocumento.'",
+            "NroDocumento": "'.$nrodocumento.'",
+            "FechaNacimiento": "'.$fechanacimiento.'",
+            "EMail": "'.$email.'",
+            "Direccion": "'.$direccion.'",
+            "Sexo": "'.$sexo.'",
+            "IdCarrera": "'.$idcarrera.'",
+            "CicloLectivo" : "'.$ciclolectivo.'"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            "Authorization: Bearer ".$token,
+            'Content-Type: application/json'
+          ),
         ));
         
-        //curl_exec($curl);
         $response = curl_exec($curl);
         
         $log = new Log;
         $log->user_admin_id = auth()->user()->id;
         $log->student_id = $id;
-        $log->text = $postfields;
-        $log->type = 'Alta Sistema Cobranza';
+        $log->text = $response;
+        $log->type = 'respuesta Cobranza';
         $log->save();
 
         if (!curl_errno($curl)) {
