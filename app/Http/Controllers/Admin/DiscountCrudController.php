@@ -60,7 +60,8 @@ class DiscountCrudController extends CrudController
         CRUD::setValidation(DiscountRequest::class);
 
         CRUD::field('description');
-
+        CRUD::setCreateContentClass('col-12 mx-auto mt-3');
+        CRUD::setEditContentClass('col-12 mx-auto mt-3');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

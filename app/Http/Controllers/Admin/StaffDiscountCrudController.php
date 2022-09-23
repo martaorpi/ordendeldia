@@ -181,4 +181,14 @@ class StaffDiscountCrudController extends CrudController
             return view('vendor.backpack.licenses_in_staff.discounts_items', ['discounts' => StaffDiscount::where('staff_id', $id)->with('discount')->get()]);
         }
     }
+
+    protected function deleteStaff($id ,Request $request){
+        $staff = StaffDiscount::where('id', '=', $request->id)->first();
+        $staff_discount = $staff->id;
+        if($staff->delete()){
+            $staff_discount = StaffDiscount::where('staff_discount_id', '=', $staff_discount)->first();
+            $staff_discount->delete();
+            return view('vendor.backpack.staff_in_discounts.discounts_items', ['staff' => StaffDiscount::where('discount_id', $id)->with('staff')->get()]);
+        }
+    }
 }
