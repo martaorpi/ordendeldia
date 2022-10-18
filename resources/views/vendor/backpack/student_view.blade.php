@@ -26,10 +26,7 @@
                               <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnCustomEmail"><i class="nav-icon la la-close"></i>Enviar Mensaje</button>
 
                             @elseif($entry->status == 'Aprobado')
-                            
                               <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnStatus"><i class="nav-icon la la-check"></i>Chequear estado de cuenta</button>
-                              <button class="btn btn-success btn-sm pl-3 pr-3 col-6 mt-2" id="btnSignOn"><i class="nav-icon la la-check"></i>Inscribir</button>
-
                             @endif
                         </div>
                     </div>
