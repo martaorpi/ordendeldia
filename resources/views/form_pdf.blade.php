@@ -11,10 +11,12 @@
   border-color: #000;
 }
 .negrita{font-weight:bold;}
-.tope0{margin-top:50px}
+.tope0{margin-top:40px}
 .tope1{margin-top:30px}
 .tope2{margin-top:12px}
 .tdSinEspacio{width: 15px;}
+.tdSinEspacio1{width: 650px;}
+.tdSinEspacio2{width: 30px; height: 35px;}
 .tableFila{width: 100%; }
 .tableFila2{width: 50%; }
 .tableFila3{width: 33%; }
@@ -26,6 +28,14 @@
     return ucwords(strtolower($str));
   }
 @endphp
+
+<table style="border-collapse:separate">
+  <tr style="border-top:1px solid">
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+</table>
 
 <table border="0">
     <tr>
@@ -78,33 +88,73 @@
 </table>
 
 <table class="tableFila tope2">
-    <tr>
-      <td class="tableFila2">
-        <table class="tableFila">
+  <tr>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio" style="width:70px;" >D.N.I.: </td>
+          <td class="border-bottom border-dark">{{ $estudiante->dni }}</td>
+        </tr>
+      </table>
+    </td>
+    <td class="tableFila2">
+      <table class="tableFila">
           <tr>
-            <td class="tdSinEspacio" style="width:70px;" >D.N.I.: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->dni }}</td>
+            <td class="tdSinEspacio">Fecha_de_Nacimiento: </td>
+            <td class="border-bottom border-dark">
+              @if($estudiante->date_birth)
+                  {{ date('d/m/Y',strtotime($estudiante->date_birth)) }}
+              @endif
+            </td>
           </tr>
-        </table>
-      </td>
-      <td class="tableFila2">
-        <table class="tableFila">
-            <tr>
-              <td class="tdSinEspacio">Nacionalidad: </td>
-              <td class="border-bottom border-dark">
-                @if($estudiante->nationality)
-                    {{ $estudiante->nationality->description }}
-                @endif
-              </td>
-            </tr>
-        </table>
-      </td>
-    </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table class="tableFila tope2">
+  <tr>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio" style="width:70px;" >Tel_Fijo: </td>
+          <td class="border-bottom border-dark">{{ $estudiante->landline }}</td>
+        </tr>
+      </table>
+    </td>
+    <td class="tableFila2">
+      <table class="tableFila">
+          <tr>
+            <td class="tdSinEspacio">Tel_Celular: </td>
+            <td class="border-bottom border-dark">
+              {{ $estudiante->cell_phone }}
+            </td>
+          </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table class="tableFila tope2">
+  <tr>
+    <td class="tableFila2">
+      <table class="tableFila">
+          <tr>
+            <td class="tdSinEspacio">Nacionalidad: </td>
+            <td class="border-bottom border-dark">
+              @if($estudiante->nationality)
+                  {{ $estudiante->nationality->description }}
+              @endif
+            </td>
+          </tr>
+      </table>
+    </td>
+  </tr>
 </table>
 
 <table class="tope1 h6">
     <tr>
-        <td class="border-bottom border-dark negrita"><span>2. Domicilio</span></td>
+        <td class="border-bottom border-dark negrita"><span>2. Domicilio Real</span></td>
     </tr>
 </table>
   
@@ -138,14 +188,74 @@
 </table>
 
 <table class="tableFila tope2">
+  <tr>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio">Localidad: </td>
+          <td class="border-bottom border-dark">
+            @if ($estudiante->location)
+                {{ $estudiante->location->description }}
+            @endif
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio">Dirección: </td>
+          <td class="border-bottom border-dark">{{ $estudiante->address }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table class="tope1 h6">
+  <tr>
+      <td class="border-bottom border-dark negrita"><span>3. Domicilio Legal</span></td>
+  </tr>
+</table>
+
+<table class="tableFila tope2">
+  <tr>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio">Provincia: </td>
+          <td class="border-bottom border-dark">
+            @if ($estudiante->province_legal)
+                {{ $estudiante->province_legal->description }}
+            @endif
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class="tableFila2">
+      <table class="tableFila">
+        <tr>
+          <td class="tdSinEspacio">Departamento: </td>
+          <td class="border-bottom border-dark">
+            @if ($estudiante->department_legal)
+                {{ $estudiante->department_legal->description }}
+            @endif
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table class="tableFila tope2">
     <tr>
       <td class="tableFila2">
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Localidad: </td>
             <td class="border-bottom border-dark">
-              @if ($estudiante->location)
-                  {{ $estudiante->location->description }}
+              @if ($estudiante->location_legal)
+                  {{ $estudiante->location_legal->description }}
               @endif
             </td>
           </tr>
@@ -155,7 +265,7 @@
         <table class="tableFila">
           <tr>
             <td class="tdSinEspacio">Dirección: </td>
-            <td class="border-bottom border-dark">{{ $estudiante->address }}</td>
+            <td class="border-bottom border-dark">{{ $estudiante->address_legal }}</td>
           </tr>
         </table>
       </td>
@@ -163,40 +273,47 @@
 </table>
 <br>
 
-<p class="h7 text-justify">Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los Reglamentos del instituto San Martin de Porres referentes a las disposiciones academicas y diciplinarias a las condiciones de matriculacion abono de cuotas y otros conceptos, asi como otras resoluciones que emita la autoridad competente y comprometo a respetarlos estrictamente.</p>
-<p class="h7 text-justify negrita">EL INGRESANTE ADQUIRIRÁ LA CONDICION DE ESTUDIANTE REGULAR CON LA INSCRIPCIÓN DEFINITIVA QUE COMPRENDE: EL CUMPLIMIENTO DE TODOS LOS REQUISITOS EXIGIDOS Y LA ASISTENCIA AL TALLER PROPEDEUTICO.</p>
-<p class="h7 negrita">INFORMACION IMPORTANTE A TENER EN CUENTA</p>
+<p class="h7 text-justify">Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los Reglamentos del Instituto San Martin de Porres referentes a las disposiciones académicas y disciplinarias a las condiciones de matriculación, abono de cuotas y otros conceptos, así como otras resoluciones que emita la autoridad competente y comprometo a respetarlos estrictamente.</p>
+<p class="h7 text-justify negrita">EL INGRESANTE ADQUIRIRÁ LA CONDICIÓN DE ESTUDIANTE REGULAR CON LA INSCRIPCIÓN DEFINITIVA QUE COMPRENDE: EL CUMPLIMIENTO DE TODOS LOS REQUISITOS EXIGIDOS Y LA ASISTENCIA AL TALLER PROPEDÉUTICO.</p>
+<p class="h7 negrita">INFORMACIÓN IMPORTANTE A TENER EN CUENTA</p>
 
-<p class="h7 text-justify">* La inscripcion sera valida a partir del momento en que se acredite el pago de dicho arancel,
-sea en el instituto o en la entidad financiera correspondeinte, dentro de las fechas establecidas por la institucion y
-la presentacion de la documentacion correspondiente.
+<p class="h7 text-justify">* La inscripción sera valida a partir del momento en que se acredite el pago de dicho arancel,
+sea en el instituto o en la entidad financiera correspondeinte, dentro de las fechas establecidas por la institución y
+la presentación de la documentación correspondiente.
 </p>
 <p class="h7 text-justify">* Por el pago de la inscripcón, el ingresante tiene derecho, a realizar el taller propedéutico, 
-<b class="h7 border-bottom border-dark negrita">NO SIENDO EL MONTO REINTEGRABLE POR NINGUN CONCEPTO.</b> El ingresante adquiere la condicion de estudiante regular por el pago de la matricula completa, 
+<b class="h7 border-bottom border-dark negrita">NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, 
 la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución.</p>
 
 <p class="h7 text-justify">*Los montos fijados para las cuotas mensuales, pueden ser modificadas por el instituto a lo largo del ciclo electivo, 
-en caso de que haya una variacion significativa en la estructura de costos internos.
+en caso de que haya una variación significativa en la estructura de costos internos.
 </p>
 <br><br><br>
 
-<table style="border-bottom:1px solid;border-collapse:separate;border-spacing:-30px;text-align:center;" class="tableFila tope0">
-<tr>
-    <td>Aclaracion de Apellido y Nombre</td>
-    <td>Tipo y N° de Documento</td>
-    <td>Firma del Alumno/a</td>
-</tr>
+{{--<table style="border-bottom:1px solid;border-collapse:separate;border-spacing:-30px;text-align:center;" class="tableFila tope0">--}}
+<table class="tableFila tope0">
+  <tr style="border-top:1px solid;border-collapse:separate;text-align:center;">
+      <td>Aclaracion de Apellido y Nombre</td>
+      <td>Tipo y N° de Documento</td>
+      <td>Firma del Alumno/a</td>
+  </tr>
 </table>
-<br>
 <br>
 <p class="h6 tope1 negrita">CONTROL DE DOCUMENTACION</p>
 <table class="tope2">
 <tr>
-    <td class="h6 tdSinEspacio">1.- Solicitud de Inscripcion Completa. </td>
-    <td class="border border-dark tdSinEspacio"></td>
+    <td class="h6 tdSinEspacio1">1.- Solicitud de Inscripcion Completa. </td>
+    <td class="border border-dark tdSinEspacio2"></td>
 </tr>
 </table>
+
 <table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">2.- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+{{--<table class="tope2">
 <tr>
     <td class="h6 tdSinEspacio">2.- Fotocopia de DNI (actualizado) frente y reverso. </td>
     <td class="border border-dark tdSinEspacio"></td>
@@ -207,12 +324,12 @@ en caso de que haya una variacion significativa en la estructura de costos inter
     <td class="h6 tdSinEspacio">3.- Foto Carnet color (4 x 4). </td>
     <td class="border border-dark tdSinEspacio"></td>
 </tr>
-</table>
+</table>--}}
 <br><br>
 <table class="punteado" >
 <tr>
-    <td class="text-justify px-2"> ATENCION: UNA VEZ PRESENTADA LA FICHA DE INSCRIPCION Y LA DOCUMENTACION CORRESPONDIENTE, 
-    EL PERSONAL DEL ISMP QUE LO ATIENDA, LE ENTREGARA EL CUPON PARA PAGO DE MATRICULA, 
-    EL QUE TENDRA VALIDEZ UNICAMENTE ESE DIA. ELLO CON EL FIN DE PRESERVAR SU CUPO EN LA CARRERA SELECCIONADA</td>
+    <td class="text-justify px-2"> ATENCIÓN: UNA VEZ PRESENTADA LA FICHA DE INSCRIPCIÓN Y LA DOCUMENTACIÓN CORRESPONDIENTE, 
+    EL PERSONAL DEL ISMP QUE LO ATIENDA, LE ENTREGARÁ EL CUPÓN PARA PAGO DE MATRICULA, 
+    EL QUE TENDRÁ VALIDÉZ ÚNICAMENTE ESE DÍA. ELLO CON EL FIN DE PRESERVAR SU CUPO EN LA CARRERA SELECCIONADA</td>
 </tr>
 </table>

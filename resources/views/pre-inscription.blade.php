@@ -356,22 +356,22 @@
         <div class="form-group row">
             <div class="col-lg-12">
                 <p><b>COMPROMISO CON LA INSTITUCION</b></p>
-                <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones academicas y disciplinarias de los reglamentos del instituto San Martin de Porres, como asi tambien las condiciones de matriculacion, abono de cuota y otros conceptos. asi como otras resoluciones que emita la  autoridad competente y comprometo a respetarlos estrictamente.</p>
+                <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones académicas y disciplinarias de los reglamentos del Instituto San Martin de Porres, como así también las condiciones de matriculación, abono de cuota y otros conceptos. asi como otras resoluciones que emita la  autoridad competente y comprometo a respetarlos estrictamente.</p>
                 <br>
                 <p><b>INFORMACION IMPORTATEN A TENER EN CUENTA</b></p>
-                <P>*La inscripcion sera validada a partir del momento en que se acredite el pago de dicho arancel. Sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institucion y la presentacion de la documentacion correspondiente.</P>
+                <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel. Sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
                 <br>
-                <p>*Por el pago de la inscripcion el ingresante tiene derecho a realizar el taller propedeutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGUN CONCEPTO.</b> El ingresante adquiere la condicion de estudiante regular por el pago de la matricula completa, la realizacion del taller propedeutico y la presentacion de todos los requisitos establecidos por la institucion</p>
+                <p>*Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéeutico y la presentación de todos los requisitos establecidos por la institución</p>
                 <br>
-                <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo electivo, en caso de que haya una variacion significativa en la estructura de costos internos.</p>
+                <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo electivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
                 <br>
-                <p><b>Declaro Bajo Fe de Juramento que la documentacion que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fe publica) Capitulo III (falsificacion de documentos) del Codigo Penal.</b></p>
+                <p><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
                 <br>
                 <div class="login-horizental cancel-wp pull-left">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="terminos" onchange="toggleCheckbox(this)">
                         <label class="form-check-label pl-4" for="flexCheckDefault">
-                            He leido y aceptado de Conformidad
+                            He leído y aceptado de Conformidad
                         </label>
                     </div>
                 </div>

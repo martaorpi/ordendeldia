@@ -105,14 +105,29 @@ class Student extends Model implements Auditable
         return $this->belongsTo(\App\Models\Province::class);
     }
 
+    public function province_legal()
+    {
+        return $this->belongsTo(\App\Models\Province::class, 'province_legal_id');
+    }
+    
     public function department()
     {
         return $this->belongsTo(\App\Models\Department::class);
     }
 
+    public function department_legal()
+    {
+        return $this->belongsTo(\App\Models\Department::class, 'department_legal_id');
+    }
+
     public function location()
     {
         return $this->belongsTo(\App\Models\Location::class);
+    }
+
+    public function location_legal()
+    {
+        return $this->belongsTo(\App\Models\Location::class, 'location_legal_id');
     }
 
     public function documentation()
