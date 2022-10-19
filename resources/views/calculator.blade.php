@@ -24,6 +24,7 @@
             <label for="exampleFormControlSelect2">Antigüedad<span class="text-primary">*</span></label>
             <select class="form-control" id="antig">
                 <option>Seleccione</option>
+                <option value="0">0</option>
                 <option value="0.10">1</option>
                 <option value="0.15">2</option>
                 <option value="0.30">5</option>
@@ -42,6 +43,7 @@
             <label for="exampleFormControlSelect2">Título<span class="text-primary">*</span></label>
             <select class="form-control" id="titulo">
                 <option>Seleccione</option>
+                <option value="0">No corresponde</option>
                 <option value="15">Habilitante</option>
                 <option value="40">Específico</option>
             </select>
@@ -97,7 +99,7 @@
         if(cargo == 15.1){
             var horas_sup = parseFloat($("#horas_sup").val());
             var horas_sec = parseFloat($("#horas_sec").val());
-            var basico = horas_sup * valor_indice_2022
+            var basico = horas_sup * valor_indice_2022 * cargo
             var transporte = $("#transporte").children("option:selected").val() * horas_sup * valor_indice_2022
             if(horas_sup != undefined && horas_sec != undefined){
                 var TotalpuntajeHC = horas_sup * 15.10 + horas_sec * 12.10 + cargo_publico
@@ -112,7 +114,7 @@
             }
         }else{
             var basico = cargo * valor_indice_2022
-            var transporte = parseFloat($("#transporte").children("option:selected").val())
+            var transporte = parseFloat($("#transporte").children("option:selected").val()) * valor_indice_2022
             var TotalpuntajeHC = cargo + cargo_publico
         }
         var antig = basico * $("#antig").children("option:selected").val();
