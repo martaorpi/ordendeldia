@@ -169,12 +169,6 @@ class StudentCrudController extends CrudController
 
     /******************************************** FUNCIONES EXTRAS ********************************************/    
     
-    public function signOn($id){
-        $student = $this->crud->model::find($id);
-        $student->status = 'Inscripto';
-        $student->save();
-    }
-
     public function checkStatus($id){
         $student = $this->crud->model::find($id);
         $curl = curl_init();
@@ -213,32 +207,30 @@ class StudentCrudController extends CrudController
           ),
         ));
         
-    
         curl_exec($curl);
 
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:
 
-                    print_r($http_code);
+                    return($http_code);
                     break;
                 case 204:
 
                     $student->status = 'Inscripto';
                     $student->save();
 
-                    print_r($http_code);
+                    return($http_code);
                     break;
                 case 404:
                     
-                    print_r($http_code);
+                    return($http_code);
                     break;
                 default:
                     # code...
                     break;
             }
         }
-        
     }
     public function customEmail($id, Request $request) 
     {  
