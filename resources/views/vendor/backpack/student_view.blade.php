@@ -221,17 +221,19 @@
 
       $.post("check_status")
       .done(function (result, status, xhr) {
-        switch (result) {
-          case '200':
-            msg = "Pendiente de pago";
+
+        //console.log(result['statusCode'])
+        switch (result['statusCode']) {
+          case 200:
+            msg = result['msg'];
             type = "error"
             break;
-          case '204':
-            msg = "Estudiante al día!";
+          case 204:
+            msg = result['msg'];
             type = "success"
             break;
-          case '404':
-            msg = "Estudiante no encontrado!";
+          case 404:
+            msg = result['msg'];
             type = "error"
             break;
           default:

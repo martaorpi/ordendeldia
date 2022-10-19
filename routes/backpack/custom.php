@@ -18,7 +18,8 @@ Route::group([
 
     Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
     Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
-    Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');    
+    Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');
+    Route::get('student/mass_check', 'StudentCrudController@massCheck');
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn'); 
 
     Route::post('staff/{id}/licenses', 'StaffLicenseCrudController@storeLicenses');

@@ -159,15 +159,24 @@ class StudentCrudController extends CrudController
             'label' => 'Nombre',
         ]);
 
-        CRUD::addField([
+        /*CRUD::addField([
             'name'  => 'status',
             'label' => 'Estado',
             'type' => 'enum'
-        ]);
+        ]);*/
 
     }
 
-    /******************************************** FUNCIONES EXTRAS ********************************************/    
+    /******************************************** FUNCIONES EXTRAS ********************************************/
+    public function massCheck(){
+        $students = $this->crud->model::where('status', 'Aprobado')->select('id')->get();
+
+        $msg = "";
+        foreach ($students as $student) {
+            $student->response = $this->checkStatus($student->id);
+        }
+        return $students;
+    }
     
     public function checkStatus($id){
         $student = $this->crud->model::find($id);
@@ -213,18 +222,18 @@ class StudentCrudController extends CrudController
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:
 
-                    return($http_code);
+                    return  ['statusCode'=> $http_code, 'msg' => 'Pendiente de pago' ];
                     break;
                 case 204:
 
                     $student->status = 'Inscripto';
                     $student->save();
 
-                    return($http_code);
+                    return  ['statusCode'=> $http_code, 'msg' => 'Estudiante al día!, e Inscripto' ];
                     break;
                 case 404:
                     
-                    return($http_code);
+                    return  ['statusCode'=> $http_code, 'msg' => 'Estudiante no encontrado!' ];
                     break;
                 default:
                     # code...
