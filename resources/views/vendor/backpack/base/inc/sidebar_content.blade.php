@@ -12,6 +12,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Revision') }}'><i class='nav-icon la la-mortar-board'></i> En Revisión</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student/mass_check') }}'><i class='nav-icon la la-mortar-board'></i> Chequeo Masivo </a></li>
     </ul>
 </li>
 <!-- Users, Roles, Permissions -->
