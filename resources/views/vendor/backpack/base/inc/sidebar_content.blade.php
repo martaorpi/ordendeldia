@@ -8,10 +8,10 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-institution"></i>Ingresantes</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=1') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=1&status=Revision') }}'><i class='nav-icon la la-mortar-board'></i> En Revisión</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=2') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=2') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Revision') }}'><i class='nav-icon la la-mortar-board'></i> En Revisión</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student/mass_check') }}'><i class='nav-icon la la-mortar-board'></i> Chequeo Masivo </a></li>
     </ul>
 </li>

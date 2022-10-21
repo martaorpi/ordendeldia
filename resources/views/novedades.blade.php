@@ -123,12 +123,15 @@
                                                                     </tr>
                                                                 @endforeach
                                                             @else
+                                                                @php
+                                                                $staff_subject = App\Models\StaffSubject::where('staff_id', $staff_job->id)->first();
+                                                                @endphp
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>{{$staff_job->name}}</td>
-                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') X @endif</td>
-                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') X @endif</td>
-                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') X @endif</td>
+                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'PRIVADA'){echo 'X';}}@endphp</td>
+                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'SUPLENTE SPEP'){echo 'X';}}@endphp</td>
+                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'TITULAR SPEP'){echo 'X';}}@endphp</td>
                                                                 </tr>
                                                             @endif
                                                         @endforeach

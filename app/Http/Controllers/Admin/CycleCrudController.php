@@ -48,8 +48,8 @@ class CycleCrudController extends CrudController {
         $this->crud->setValidation(CycleRequest::class);
 
         $this->crud->addField([
-            'name' => 'denomination',
-            'label' => 'Denominacion',
+            'name' => 'description',
+            'label' => 'Descripción',
         ]);
 
         $this->crud->addField([
