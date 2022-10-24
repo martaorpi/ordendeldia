@@ -99,7 +99,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="name">Ciclo</label>
-                        <input class="form-control" type="text" value=" {{ $entry->cycle->denomination }} " disabled>
+                        <input class="form-control" type="text" value=" {{ $entry->cycle_id }} " disabled>
                       </div>
                     </div>
                     <div class="col-sm-12">
