@@ -149,36 +149,6 @@
                                                                 </tr>
                                                             @endforeach
                                                         @endif
-                                                        {{--@foreach ($staff as $staff_job)
-                                                            @php
-                                                            $staff_subjects = App\Models\StaffSubject::where('staff_id', $staff_job->id)
-                                                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                        ->where('job_id', $job->job_id)
-                                                                        ->get();
-                                                            @endphp
-                                                            @if($staff_job->job_id == 6)
-                                                                @foreach ($staff_subjects as $staff_subject)
-                                                                    <tr>
-                                                                        <td>{{ $i++ }}</td>
-                                                                        <td>{{$staff_job->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})</td>
-                                                                        <td>@if($staff_subject->plant_type == 'PRIVADA') X @endif</td>
-                                                                        <td>@if($staff_subject->plant_type == 'SUPLENTE SPEP') X @endif</td>
-                                                                        <td>@if($staff_subject->plant_type == 'TITULAR SPEP') X @endif</td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            @else
-                                                                @php
-                                                                $staff_subject = App\Models\StaffSubject::where('staff_id', $staff_job->id)->first();
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>{{ $i++ }}</td>
-                                                                    <td>{{$staff_job->name}}</td>
-                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'PRIVADA'){echo 'X';}}@endphp</td>
-                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'SUPLENTE SPEP'){echo 'X';}}@endphp</td>
-                                                                    <td>@php if($staff_subject){if($staff_subject->plant_type == 'TITULAR SPEP'){echo 'X';}}@endphp</td>
-                                                                </tr>
-                                                            @endif
-                                                        @endforeach--}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -362,12 +332,6 @@
                                 $priv_gral += $privada;
                                 $sup_spep_gral += $sup_spep;
                                 $tit_spep_gral += $tit_spep;*/
-                                $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                ->where('job_id', $job->job_id)
-                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                ->get();
-                                $i=1;
-
                                 $j = App\Models\Job::where('id', $job->job_id)->first();
                                 $privada = 0;
                                 $sup_spep = 0;
@@ -392,9 +356,9 @@
                                     foreach ($staff as $l) {
                                         $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->get()->unique('staff_id');
                                         foreach ($staff_subjects as $staff_subject) {
-                                            if(App\Models\StaffSubject::where('plant_type', 'Privada')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$privada++;}
-                                            if(App\Models\StaffSubject::where('plant_type', 'Suplente Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$sup_spep++;}
-                                            if(App\Models\StaffSubject::where('plant_type', 'Titular Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$tit_spep++;}
+                                            if(App\Models\StaffSubject::where('plant_type', 'Privada')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$privada += $staff_subject->weekly_hours;}
+                                            if(App\Models\StaffSubject::where('plant_type', 'Suplente Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$sup_spep += $staff_subject->weekly_hours;}
+                                            if(App\Models\StaffSubject::where('plant_type', 'Titular Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$tit_spep += $staff_subject->weekly_hours;}
                                         }   
                                     }
                                     $priv_gral += $privada;
@@ -402,8 +366,11 @@
                                     $tit_spep_gral += $tit_spep;
                                 }
                                 $i=1;
-
-
+                                /*$staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                ->where('job_id', $job->job_id)
+                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                ->get()
+                                                ->unique('staff_id');*/
                                 @endphp
                                 <tr data-toggle="collapse" data-target="#demo{{$job->job_id}}" class="accordion-toggle">
                                     <td width="5%">@if($privada + $sup_spep + $tit_spep > 0)<button class="btn btn-default btn-xs py-0 px-2">Ver</button>@endif</td>
@@ -429,15 +396,42 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($staff_jobs as $staff_job)
-                                                            <tr>
-                                                                <td>{{ $i++ }}</td>
-                                                                <td>{{$staff_job->staff->name}}</td>
-                                                                <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
+                                                        @if($job->job_id ==6 || $job->job_id ==11)
+                                                            @php
+                                                            $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->get();
+                                                            @endphp
+                                                            @foreach ($staff_jobs as $staff_job)
+                                                                <tr>
+                                                                    <td>{{ $i++ }}</td>
+                                                                    <td>{{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}})</td>
+                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
-                                                            </tr>
-                                                        @endforeach
+                                                                </tr>
+                                                            @endforeach
+                                                        @else
+                                                            @php
+                                                            $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->get()
+                                                                    ->unique('staff_id');
+                                                            @endphp
+                                                            @foreach ($staff_jobs as $staff_job)
+                                                                <tr>
+                                                                    <td>{{ $i++ }}</td>
+                                                                    <td>{{$staff_job->staff->name}}</td>
+                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -541,9 +535,9 @@
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
                                                                 <td>{{$staff_job->staff->name}} ({{$cant_staff}} esp. curr.)</td>
-                                                                <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $cant_staff}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $cant_staff}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $cant_staff}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
