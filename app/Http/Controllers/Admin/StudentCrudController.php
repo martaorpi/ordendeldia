@@ -159,19 +159,21 @@ class StudentCrudController extends CrudController
             'label' => 'Nombre',
         ]);
 
-        /*CRUD::addField([
+        CRUD::addField([
             'name'  => 'status',
             'label' => 'Estado',
             'type' => 'enum'
-        ]);*/
+        ]);
 
     }
 
     /******************************************** FUNCIONES EXTRAS ********************************************/
     public function massCheck(){
-        $students = $this->crud->model::where('status', 'Aprobado')->select('id')->get();
+        $students = $this->crud->model::where('status', 'Aprobado')
+            //->where('cycle_id', 2) //TODO:  cambiar a variable
+            ->select('id')
+            ->get();
 
-        $msg = "";
         foreach ($students as $student) {
             $student->response = $this->checkStatus($student->id);
         }
@@ -539,10 +541,10 @@ class StudentCrudController extends CrudController
                     </html>';
 
                     $this->sendMail($email_destino,$cuerpo);
-                    print_r($http_code);
+                    return $http_code;
                     break;
                 case 400:
-                    print_r($http_code);                    
+                    return $http_code;                    
                     break;
                 default:
                     # code...
