@@ -29,14 +29,6 @@
   }
 @endphp
 
-<table style="border-collapse:separate">
-  <tr style="border-top:1px solid">
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-  </tr>
-</table>
-
 <table border="0">
     <tr>
         <td>
@@ -292,7 +284,12 @@ en caso de que haya una variación significativa en la estructura de costos inte
 
 {{--<table style="border-bottom:1px solid;border-collapse:separate;border-spacing:-30px;text-align:center;" class="tableFila tope0">--}}
 <table class="tableFila tope0">
-  <tr style="border-top:1px solid;border-collapse:separate;text-align:center;">
+  <tr style="text-align:center;">
+    <td>__________________________ </td>
+    <td>________________________ </td>
+    <td>________________________ </td>
+  </tr>
+  <tr style="text-align:center;">
       <td>Aclaracion de Apellido y Nombre</td>
       <td>Tipo y N° de Documento</td>
       <td>Firma del Alumno/a</td>
@@ -313,18 +310,20 @@ en caso de que haya una variación significativa en la estructura de costos inte
       <td class="border border-dark tdSinEspacio2"></td>
   </tr>
 </table>
-{{--<table class="tope2">
-<tr>
-    <td class="h6 tdSinEspacio">2.- Fotocopia de DNI (actualizado) frente y reverso. </td>
-    <td class="border border-dark tdSinEspacio"></td>
-</tr>
-</table>
+
 <table class="tope2">
-<tr>
-    <td class="h6 tdSinEspacio">3.- Foto Carnet color (4 x 4). </td>
-    <td class="border border-dark tdSinEspacio"></td>
-</tr>
-</table>--}}
+  <tr>
+      <td class="h6 tdSinEspacio1">3.- Fotocopia de DNI (actualizado) frente y reverso. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">4.- Foto Carnet color (4 x 4). </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
 <br><br>
 <table class="punteado" >
 <tr>

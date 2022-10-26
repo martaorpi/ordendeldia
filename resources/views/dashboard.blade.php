@@ -25,7 +25,8 @@
                                                         -  Formulario de preinscripción.</br>
                                                         -  Fotocopia de DNI.</br>
                                                         -  Dos (2) fotocarnet.</br>
-                                                        -  Certificadado de finalización de estudios.</br>
+                                                        -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
+                                                        adeudar materias.</br>
                                                         -  Carpeta colgante.</br>
                             </div>
                         </div>
