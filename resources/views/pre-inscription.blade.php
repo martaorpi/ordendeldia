@@ -501,7 +501,7 @@
                             '<br>'+
                             ' Con la posibilidad de articular con el cilco complemetario de UNSTA (Universidad del Norte Santo Tomás de Aquino), de 2 años más de duración, para obtener el título de Lic. en Trabajo Social.')
             }else{
-                $('#ts').remove();
+                $('#ts').html('');
             }
         });
     });
