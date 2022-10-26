@@ -15,6 +15,7 @@
     $job = App\Models\Job::where('score', '=', $cargo)->first();
 
     switch($antig){
+        case 0: $antig_desc = '0 año'; break;
         case 0.10: $antig_desc = '1 año'; break;
         case 0.15: $antig_desc = '2-4 años'; break;
         case 0.30: $antig_desc = '5-6 años'; break;
@@ -29,6 +30,7 @@
     }
 
     switch($titulo){
+        case 0: $titulo_desc = 'No corresponde'; break;
         case 15: $titulo_desc = 'Habilitante'; break;
         case 40: $titulo_desc = 'Específico'; break;
     }
@@ -51,7 +53,7 @@
     if($cargo == 15.1){
         $horas_sup = $param[4];
         $horas_sec = $param[5];
-        $basico = $horas_sup * $valor_indice_2022;
+        $basico = $horas_sup * $valor_indice_2022 * $cargo;
         $transporte = $transporte * $horas_sup * $valor_indice_2022;
         if($horas_sup != 0 && $horas_sec != 0){
             $totalpuntajeHC = $horas_sup * 15.10 + $horas_sec * 12.10 + $cargo_publico;
@@ -64,7 +66,7 @@
         $horas_sup = 0;
         $horas_sec = 0;
         $basico = $cargo * $valor_indice_2022;
-        $transporte = $transporte;
+        $transporte = $transporte * $valor_indice_2022;
         $totalpuntajeHC = $cargo + $cargo_publico;
     }
     $antig = $basico * $antig;

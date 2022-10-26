@@ -104,6 +104,7 @@
                     @endforeach
                 </select>
             </div>
+            <div id="ts" class="col-12 text-danger mt-2"></div>
         </div>
 
         <div class="form-group row">
@@ -492,6 +493,16 @@
                     $("#localidadL").append("<option value='"+response[i].id+"'>"+response[i].description+"</option>");
                 }
             });
+        });
+
+        $("#carrera").change(function(event){
+            if ($(this).val() == 1) {
+                $("#ts").html('La carrera de Trabajo Social tiene una duración de 4 años.'+
+                            '<br>'+
+                            ' Con la posibilidad de articular con el cilco complemetario de UNSTA (Universidad del Norte Santo Tomás de Aquino), de 2 años más de duración, para obtener el título de Lic. en Trabajo Social.')
+            }else{
+                $('#ts').html('');
+            }
         });
     });
 

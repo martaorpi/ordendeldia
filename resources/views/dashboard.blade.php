@@ -8,10 +8,22 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if(!empty(auth()->user()->student[0]))
                         <div class="row">
-                            <div class="col-12 col-lg-7 text-left">
-                                <b class="text-grey h2">Su solicitud está siendo procesada</b>
-                                <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
-                            </div>
+                            @if (auth()->user()->student[0]->status == 'Aprobado')
+                                <div class="col-12 col-lg-7 text-left">
+                                    <b class="text-grey h2">Su solicitud ha sido Aprobada</b>
+                                    <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
+                                </div>
+                            @elseif(auth()->user()->student[0]->status == 'Inscripto')
+                                <div class="col-12 col-lg-7 text-left">
+                                    <b class="text-grey h2">Felicitaciones! Se ha completado su proceso de inscripción</b>
+                                    <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
+                                </div>
+                            @else
+                                <div class="col-12 col-lg-7 text-left">
+                                    <b class="text-grey h2">Su solicitud está siendo procesada</b>
+                                    <i class="fas fa-check-circle fa-2x text-success ml-2"></i>
+                                </div>
+                            @endif
                             <div class="col-12 col-lg-5 text-right">
                                 <form action="{{url('/form_pdf')}}" method="post" target="_blank">
                                     @csrf
@@ -19,6 +31,15 @@
                                     <button type="submit" class="btn btn-md login-submit-cs text-white" style="background: #881f1f"><i class="fas fa-file-pdf fa-lg"></i> <b class="h5">Formulario de Inscripción</b></button>
                                 </form>
                                 {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
+                            </div>
+                            <div class="col-12 text-left mt-2">
+                                <b class="text-grey h6">Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </br>
+                                                        -  Formulario de preinscripción.</br>
+                                                        -  Fotocopia de DNI.</br>
+                                                        -  Dos (2) fotocarnet.</br>
+                                                        -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
+                                                        adeudar materias.</br>
+                                                        -  Carpeta colgante.</br>
                             </div>
                         </div>
                         @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))

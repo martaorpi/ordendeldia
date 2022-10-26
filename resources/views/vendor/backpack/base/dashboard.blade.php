@@ -68,7 +68,7 @@
     <div class="row">
         @foreach ($carreras as $carrera)
           @php
-              $inscriptos = App\Models\Student::where('career_id',$carrera->id)->whereIn('status', ['Inscripto','Inscripto'])->count();
+              $inscriptos = App\Models\Student::where('career_id',$carrera->id)->where('cycle_id',2)->whereIn('status', ['Inscripto','Inscripto'])->count();
               //$ingresos_carrera = $inscriptos->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
           @endphp
           <div class="col-md-4">

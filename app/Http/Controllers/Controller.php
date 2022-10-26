@@ -44,7 +44,7 @@ class Controller extends BaseController
             $input['location_id'] = 0;
         }
         $input['user_id'] = auth()->user()->id;
-        $input['cycle_id'] = 1;
+        $input['cycle_id'] = 2;
         $input['status'] = 'Solicitado';
         
         $condition = ["user_id" => auth()->user()->id];
