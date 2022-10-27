@@ -170,7 +170,7 @@ class StudentCrudController extends CrudController
     /******************************************** FUNCIONES EXTRAS ********************************************/
     public function massCheck(){
         $students = $this->crud->model::where('status', 'Aprobado')
-            //->where('cycle_id', 2) //TODO:  cambiar a variable
+            ->where('cycle_id', 2) //TODO:  cambiar a variable
             ->select('id')
             ->get();
 

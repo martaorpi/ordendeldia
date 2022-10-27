@@ -124,7 +124,7 @@ class StudentObserver
             $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
             $headers .= "From: ISMP Soporte <info@devweb.com.ar>\r\n"; 
     
-            //mail($email, $asunto, $body, $headers);
+            //mail($email, $asunto, $body, $headers); //TODO: plan B
         }
     }
 
