@@ -15,12 +15,31 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('examenes', 'ExamCrudController');
     Route::crud('student', 'StudentCrudController');
-
     Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
     Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
     Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');
     Route::get('student/mass_check', 'StudentCrudController@massCheck');
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn'); 
+    Route::crud('subject', 'SubjectCrudController');
+    Route::crud('staff', 'StaffCrudController');
+    Route::crud('career', 'CareerCrudController');
+    Route::crud('cycle', 'CycleCrudController');
+}); 
+
+Route::group([
+    'prefix'     => config('backpack.base.route_prefix', 'admin'),
+    //'middleware' => ['web', 'admin'],
+    'middleware' => ['web', 'admin', 'can:administracion_del_personal'],
+    'namespace'  => 'App\Http\Controllers\Admin',
+], function () { // custom admin routes
+    /*Route::crud('examenes', 'ExamCrudController');
+    Route::crud('student', 'StudentCrudController');
+
+    Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
+    Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
+    Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');
+    Route::get('student/mass_check', 'StudentCrudController@massCheck');
+    Route::post('student/{id}/sign_on', 'StudentCrudController@signOn'); */
 
     Route::post('staff/{id}/licenses', 'StaffLicenseCrudController@storeLicenses');
     Route::get('staff/{id}/get_licenses', 'LicenseCrudController@getLicenses');
@@ -46,8 +65,8 @@ Route::group([
     Route::get('novedades', 'StaffCrudController@novedades');
     Route::crud('family-member', 'FamilyMemberCrudController');
 
-    Route::crud('career', 'CareerCrudController');
-    Route::crud('cycle', 'CycleCrudController');
+    //Route::crud('career', 'CareerCrudController');
+    //Route::crud('cycle', 'CycleCrudController');
     Route::crud('staff-discount', 'StaffDiscountCrudController');
     Route::crud('discount', 'DiscountCrudController');
     Route::crud('staff-subject', 'StaffSubjectCrudController');
@@ -56,3 +75,4 @@ Route::group([
 
     Route::get('staff/calculator_pdf/{param}', 'StaffCrudController@calculator_pdf');
 }); // this should be the absolute last line of this file
+
