@@ -32,15 +32,25 @@
                                 </form>
                                 {{--<a href="form_pdf" target="_blank" class="btn btn-md login-submit-cs text-white" style="background: #881f1f">Formulario de Inscipción</a>--}}
                             </div>
-                            <div class="col-12 text-left mt-2">
-                                <b class="text-grey h6">Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </br>
-                                                        -  Formulario de preinscripción.</br>
-                                                        -  Fotocopia de DNI.</br>
-                                                        -  Dos (2) fotocarnet.</br>
-                                                        -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
-                                                        adeudar materias.</br>
-                                                        -  Carpeta colgante.</br>
-                            </div>
+                            @if (auth()->user()->student[0]->status == 'Aprobado')
+                                <div class="col-12 text-left mt-2">
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                </div>
+                            @elseif(auth()->user()->student[0]->status == 'Inscripto')
+                                <div class="col-12 text-left mt-2">
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                </div>
+                            @else
+                                <div class="col-12 text-left mt-2">
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </br>
+                                                            -  Formulario de preinscripción.</br>
+                                                            -  Fotocopia de DNI.</br>
+                                                            -  Dos (2) fotocarnet.</br>
+                                                            -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
+                                                            adeudar materias.</br>
+                                                            -  Carpeta colgante.</br>
+                                </div>
+                            @endif
                         </div>
                         @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))
                             @include('pre-inscription')
