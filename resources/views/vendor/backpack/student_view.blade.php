@@ -26,6 +26,8 @@
                               @endphp
                               @if ($career->available_space > $career->students_with_space->count())
                                 <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
+                              @else
+                                <b class="text-primary mr-3">No hay cupo en esta carrera</b>
                               @endif
                               <button class="btn btn-danger btn-sm pl-3 pr-3" id="btnCustomEmail"><i class="nav-icon la la-close"></i>Enviar Mensaje</button>
 
