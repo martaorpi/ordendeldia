@@ -7,8 +7,9 @@
     $licenses = App\Models\License::whereIn('id', [1, 2, 4, 15, 22, 32, 34, 35])->get();
     $staff = App\Models\Staff::where('status', 'Activo')->get();
     //$jobs = DB::table('staff_subjects')->select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
+    if(date('m') > 06){$cuatrimestre = '2do';}else{$cuatrimestre = '1er';}
 @endphp
-
+<h3>{{ $cuatrimestre }} Cuatrimestre</h3>
 <div class="container">
     <div class="row">        
         <div class="col-12">
@@ -60,24 +61,68 @@
                                 $sup_spep = 0;
                                 $tit_spep = 0;
                                 if($j->id == 6 || $j->id == 11){
-                                    $privada = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                    if(date('m') > 06){
+                                        $privada = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                     ->where('job_id', $job->job_id)
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
                                                     ->where('plant_type', 'Privada')
                                                     ->count();
-                                    $sup_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                        $sup_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                     ->where('job_id', $job->job_id)
-                                                    ->where('job_id', $job->job_id)->where('plant_type', 'Suplente Spep')
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
+                                                    ->where('plant_type', 'Suplente Spep')
                                                     ->count();
-                                    $tit_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                        $tit_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                     ->where('job_id', $job->job_id)
-                                                    ->where('job_id', $job->job_id)->where('plant_type', 'Titular Spep')
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
+                                                    ->where('plant_type', 'Titular Spep')
                                                     ->count();
+                                    }else{
+                                        $privada = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                    ->where('job_id', $job->job_id)
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
+                                                    ->where('plant_type', 'Privada')
+                                                    ->count();
+                                        $sup_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                    ->where('job_id', $job->job_id)
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
+                                                    ->where('plant_type', 'Suplente Spep')
+                                                    ->count();
+                                        $tit_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                    ->where('job_id', $job->job_id)
+                                                    ->where(function($q) {$q
+                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                        ->orWhere('plant_mode', 'Anual');
+                                                    })
+                                                    ->where('plant_type', 'Titular Spep')
+                                                    ->count();
+                                    }
+                                    
                                     $priv_gral += $privada;
                                     $sup_spep_gral += $sup_spep;
                                     $tit_spep_gral += $tit_spep;
                                 }else{
                                     foreach ($staff as $l) {
-                                        $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->get()->unique('staff_id');
+                                        if(date('m') > 06){
+                                            $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '2do Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
+                                        }else{
+                                            $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '1er Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
+                                        }
                                         foreach ($staff_subjects as $staff_subject) {
                                             if(App\Models\StaffSubject::where('plant_type', 'Privada')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$privada++;}
                                             if(App\Models\StaffSubject::where('plant_type', 'Suplente Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$sup_spep++;}
@@ -117,10 +162,25 @@
                                                     <tbody>
                                                         @if($job->job_id ==6 || $job->job_id ==11)
                                                             @php
-                                                            $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                                    ->where('job_id', $job->job_id)
-                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                    ->get();
+                                                            if(date('m') > 06){
+                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                        ->where('job_id', $job->job_id)
+                                                                        ->where(function($q) {$q
+                                                                            ->where('plant_mode', '2do Cuatrimestre')
+                                                                            ->orWhere('plant_mode', 'Anual');
+                                                                        })
+                                                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                        ->get();
+                                                            }else{
+                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                        ->where('job_id', $job->job_id)
+                                                                        ->where(function($q) {$q
+                                                                            ->where('plant_mode', '1er Cuatrimestre')
+                                                                            ->orWhere('plant_mode', 'Anual');
+                                                                        })
+                                                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                        ->get();
+                                                            }
                                                             @endphp
                                                             @foreach ($staff_subjects as $staff_subject)
                                                                 <tr>

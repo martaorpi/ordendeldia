@@ -109,11 +109,11 @@ class Controller extends BaseController
                             ->count();
             $sup_spep = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                             ->where('job_id', $job->job_id)
-                            ->where('job_id', $job->job_id)->where('plant_type', 'Suplente Spep')
+                            ->where('plant_type', 'Suplente Spep')
                             ->count();
             $tit_spep = StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                             ->where('job_id', $job->job_id)
-                            ->where('job_id', $job->job_id)->where('plant_type', 'Titular Spep')
+                            ->where('plant_type', 'Titular Spep')
                             ->count();
             $priv_gral += $privada;
             $sup_spep_gral += $sup_spep;
@@ -124,9 +124,6 @@ class Controller extends BaseController
                             ->get();
             $i=1;
             
-            
-                
-
             array_push($data, [ 
                 "Nro" => $i,
                 "Funcion" => $j->description,
