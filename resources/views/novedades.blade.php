@@ -193,11 +193,15 @@
                                                             @endforeach
                                                         @else
                                                             @php
-                                                            $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                                    ->where('job_id', $job->job_id)
-                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                    ->get()
-                                                                    ->unique('staff_id');
+                                                            if(date('m') > 06){
+                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                        ->where('job_id', $job->job_id)
+                                                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                        ->get()
+                                                                        ->unique('staff_id');
+                                                            }else{
+                                                            
+                                                            }
                                                             @endphp
                                                             @foreach ($staff_subjects as $staff_subject)
                                                                 <tr>
@@ -229,6 +233,9 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <a href="{{ url('novedades/exportar-lic-planta') }}" class="btn font-weight-bold" target="_blank">
+                        <i class="far fa-file-excel"></i> Descargar
+                    </a>
                     <table class="table responsive">
                         <thead class="table-danger">
                             <tr>

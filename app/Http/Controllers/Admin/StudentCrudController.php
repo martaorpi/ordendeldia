@@ -390,9 +390,9 @@ class StudentCrudController extends CrudController
         $direccion= $student->address;
         $sexo= "F";
         if(date('m') > 10){
-            $ciclolectivo = 2023;
+            $ciclolectivo = date("Y",strtotime(date('Y')."+ 1 year"));
         }else{
-            $ciclolectivo = 2022;
+            $ciclolectivo = date('Y');
         }
 
         $fechanacimiento = "1988/07/28";//Date('1990-01-01');
