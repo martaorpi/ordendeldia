@@ -392,11 +392,11 @@ class StudentCrudController extends CrudController
         $email= $student->user->email;
         $direccion= $student->address;
         $sexo= "F";
-        //if(date('m') > 10){
+        if(date('m') > 10){
             $ciclolectivo = date("Y",strtotime(date('Y')."+ 1 year"));
-        /*}else{
+        }else{
             $ciclolectivo = date('Y');
-        }*/
+        }
 
         $fechanacimiento = "1988/07/28";//Date('1990-01-01');
         $idcarrera = $student->career->ws_id;
