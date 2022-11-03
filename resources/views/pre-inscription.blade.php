@@ -355,28 +355,56 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-lg-12">
-                <p><b>COMPROMISO CON LA INSTITUCION</b></p>
-                <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones académicas y disciplinarias de los reglamentos del Instituto San Martin de Porres, como así también las condiciones de matriculación, abono de cuota y otros conceptos. asi como otras resoluciones que emita la  autoridad competente y comprometo a respetarlos estrictamente.</p>
-                <br>
-                <p><b>INFORMACION IMPORTATEN A TENER EN CUENTA</b></p>
-                <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel. Sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
-                <br>
-                <p>*Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéeutico y la presentación de todos los requisitos establecidos por la institución</p>
-                <br>
-                <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo electivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
-                <br>
-                <p><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
-                <br>
-                <div class="login-horizental cancel-wp pull-left">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="terminos" onchange="toggleCheckbox(this)">
-                        <label class="form-check-label pl-4" for="flexCheckDefault">
-                            He leído y aceptado de Conformidad
-                        </label>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
+                    <div class="modal-body" style="overflow-y: scroll; height:400px;">
+                        <p><b>COMPROMISO CON LA INSTITUCION</b></p>
+                        <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones académicas y disciplinarias de los reglamentos del Instituto San Martin de Porres, como así también las condiciones de matriculación, abono de cuota y otros conceptos. asi como otras resoluciones que emita la  autoridad competente y comprometo a respetarlos estrictamente.</p>
+                        <br>
+                        <p><b>INFORMACION IMPORTATEN A TENER EN CUENTA</b></p>
+                        <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel. Sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
+                        <br>
+                        <p>*Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéeutico y la presentación de todos los requisitos establecidos por la institución</p>
+                        <br>
+                        <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo electivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
+                        <br>
+                        <p><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="terminos" onchange="toggleCheckbox(this)" disabled>
+                            <label class="form-check-label pl-4" for="terminos">
+                               He leído y aceptado de Conformidad
+                               
+                            </label>
+                            
+                        </div>
+                        
+                    </div>
+                  </div>
                 </div>
-                <br>
+            </div>
+
+
+
+
+
+
+           
+            <div class="login-horizental cancel-wp pull-left">
+
+                        <a href = "#" data-toggle="modal" data-target="#exampleModal">
+                            Terminos y condiciones 
+                        </a>
             </div>
         </div>
         
