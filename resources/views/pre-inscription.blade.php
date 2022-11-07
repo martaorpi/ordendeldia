@@ -355,12 +355,11 @@
         </div>
 
         <div class="form-group row">
-
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -384,27 +383,20 @@
                             <input class="form-check-input" type="checkbox" value="" id="terminos" onchange="toggleCheckbox(this)" disabled>
                             <label class="form-check-label pl-4" for="terminos">
                                He leído y aceptado de Conformidad
-                               
                             </label>
-                            
                         </div>
-                        
                     </div>
                   </div>
                 </div>
             </div>
+        </div>
 
-
-
-
-
-
-           
-            <div class="login-horizental cancel-wp pull-left">
-
-                        <a href = "#" data-toggle="modal" data-target="#exampleModal">
-                            Terminos y condiciones 
-                        </a>
+        <div class="form-group row">
+            <div class="col-12">
+                Antes de enviar el formulario por favor lea los 
+                <a href = "#" data-toggle="modal" data-target="#exampleModal">
+                    Terminos y condiciones 
+                </a>
             </div>
         </div>
         
@@ -532,6 +524,21 @@
                 $('#ts').html('');
             }
         });
+
+        /*$(window).on("scroll", function() {
+            var scrollHeight = $(document).height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+            if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                alert("Ha llegado al final de la página");
+            }
+        });*/
+
+        /*$('#exampleModal').on('show.bs.modal', function (e) {
+            alert('ss')
+        })*/
+
+        
+        
     });
 
     function toggleCheckbox(element)
