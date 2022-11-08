@@ -369,7 +369,7 @@
                         <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones académicas y disciplinarias de los reglamentos del Instituto Superior San Martin de Porres, como así también las condiciones de matriculación, abono de cuota y otros conceptos. Así como otras resoluciones que emita la autoridad competente, y me comprometo a respetarlos estrictamente.</p>
                         <br>
                         <p><b>INFORMACIÓN IMPORTATE A TENER EN CUENTA</b></p>
-                        <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel. Sea en el instituto o en la entidad financiera correspondiente, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
+                        <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
                         <br>
                         <p>*Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución</p>
                         <br>
@@ -529,24 +529,16 @@
             }
         });
 
-        /*$(window).on("scroll", function() {
+        $('.modal-body').on("scroll", function() {
             var scrollHeight = $(document).height();
-            var scrollPosition = $(window).height() + $(window).scrollTop();
-            if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-                alert("Ha llegado al final de la página");
+            var scrollPosition = $('.modal-body').height() + $('.modal-body').scrollTop();
+            if ((scrollHeight - scrollPosition) / scrollHeight < 0.46) {
+                document.getElementById("terminos").disabled = false;
             }
-        });*/
-
-        $('#exampleModal').on("scroll", function() {
-            alert()
+            
         });
 
-        /*$('#exampleModal').on('show.bs.modal', function (e) {
-            alert('ss')
-        })*/
 
-        
-        
     });
 
     function toggleCheckbox(element)
