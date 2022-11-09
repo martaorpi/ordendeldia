@@ -534,9 +534,9 @@
         $('.modal-body').on("scroll", function() {
             var scrollHeight = $(document).height();
             var scrollPosition = $('.modal-body').height() + $('.modal-body').scrollTop();
-            if ((scrollHeight - scrollPosition) / scrollHeight === 0.46863636363636363) {
-                //document.getElementById("terminos").disabled = false;
-                alert()
+            if ((scrollHeight - scrollPosition) / scrollHeight < 0.59) {
+                document.getElementById("terminos").disabled = false;
+                //alert((scrollHeight - scrollPosition) / scrollHeight)
             }
            
         });
