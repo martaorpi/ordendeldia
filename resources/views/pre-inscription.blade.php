@@ -62,6 +62,8 @@
 <div class="mx-5 px-5 my-5">
     <h3 class="text-center"><b>FORMULARIO DE PREINSCRIPCIÓN</b></h3><br>
 
+    <p><b>Lea atentamente toda la información brindada. Una vez aceptada y presentada la ficha de preinscripción la misma adquiere el carácter de Declaración Jurada.</b></p>
+
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <p>Corrige los siguientes errores:</p>
@@ -366,18 +368,18 @@
                     </div>
                     <div class="modal-body" style="overflow-y: scroll; height:400px;">
                         <p><b>COMPROMISO CON LA INSTITUCIÓN</b></p>
-                        <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones académicas y disciplinarias de los reglamentos del Instituto Superior San Martin de Porres, como así también las condiciones de matriculación, abono de cuota y otros conceptos. Así como otras resoluciones que emita la autoridad competente, y me comprometo a respetarlos estrictamente.</p>
+                        <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los reglamentos del Instituto Superior San Martin de Porres, referentes a las condiciones académicas, disciplinarias, de matriculación, abono de cuota y otros conceptos. Comprometiéndome de plena conformidad y propia voluntad a respetarlos estrictamente.</p>
                         <br>
                         <p><b>INFORMACIÓN IMPORTATE A TENER EN CUENTA</b></p>
-                        <P>*La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
+                        <P>* La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
                         <br>
-                        <p>*Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución</p>
+                        <p>* Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución.</p>
                         <br>
-                        <p>*Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo lectivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
+                        <p>* Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo lectivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
                         <br>
-                        <p>*Los alumnos que registren deuda de cuotas al momento de rendir exámenes parciales y/o finales, NO PODRÁN INSCRIBIRSE a los mismos hasta tanto no regularicen su situación.</p>
+                        <p>* Los alumnos que registren deuda de cuotas al momento de rendir exámenes parciales y/o finales, NO PODRÁN INSCRIBIRSE a los mismos hasta tanto no regularicen su situación.</p>
                         <br>
-                        <p>*Los alumnos que requieran Certificación de Finalización de Estudios y/o Constancia de Título en trámite, NO PODRÁN solicitarla si registran deuda con el Instituto, hasta tanto no regularicen su situación.</p>
+                        <p>* Los alumnos que requieran Certificación de Finalización de Estudios y/o Constancia de Título en trámite, NO PODRÁN solicitarla si registran deuda con el Instituto, hasta tanto no regularicen su situación.</p>
                         <br>
                         <p><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
                         <br>
@@ -532,10 +534,11 @@
         $('.modal-body').on("scroll", function() {
             var scrollHeight = $(document).height();
             var scrollPosition = $('.modal-body').height() + $('.modal-body').scrollTop();
-            if ((scrollHeight - scrollPosition) / scrollHeight < 0.46) {
-                document.getElementById("terminos").disabled = false;
+            if ((scrollHeight - scrollPosition) / scrollHeight === 0.46863636363636363) {
+                //document.getElementById("terminos").disabled = false;
+                alert()
             }
-            
+           
         });
 
 
