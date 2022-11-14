@@ -44,12 +44,13 @@
                             @else
                                 <div class="col-12 text-left mt-2">
                                     <b class="text-grey h6">Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </br>
-                                                            -  Formulario de preinscripción.</br>
-                                                            -  Fotocopia de DNI.</br>
-                                                            -  Dos (2) fotocarnet.</br>
-                                                            -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
-                                                            adeudar materias.</br>
-                                                            -  Carpeta colgante.</br>
+                                                            -  Formulario virtual impreso.</br>
+                                                            -  Fotocopia del DNI.</br>
+                                                            -  Dos (2) foto carnet 4x4.</br>
+                                                            -  Certificado de finalización de estudios o título secundario.</br>
+                                                            -  Firma del Acuerdo (link).</br>
+                                                            -  Certificado Residencia.</br>
+                                                            -  Carpeta colgante (tipo fichero).</br>
                                 </div>
                             @endif
                         </div>

@@ -358,7 +358,7 @@
 
         <div class="form-group row">
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
@@ -366,23 +366,241 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body" style="overflow-y: scroll; height:400px;">
+                    <div class="modal-body" style="overflow-y: scroll; height:500px;">
+                        <p><b>REGLAMENTO INTERNO DE LOS ESTUDIANTES INSTITUTO DE ESTUDIOS SUPERIORES SAN MARTÍN DE PORRES</b></p>
+                        <p><b>DE LA CALIDAD DE ESTUDIANTE:</b></p>
+                        <p class="text-justify"><b>Artículo 1º: </b>Son estudiantes del Instituto de Estudios Superiores San Martin de
+                            Porres, quienes se encuentren matriculados de acuerdo con las disposiciones
+                            reglamentarias y conserven sus derechos de asistir a clase y rendir exámenes,
+                            conforme lo establecido en el presente Reglamento Interno de Estudiantes
+                            (RIE), Reglamento Académico Marco (RAM) y en Reglamento Académico
+                            Institucional (RAI).
+                        </p>
+                        <p class="text-justify"><b>Artículo 2º: </b>El presente régimen es aplicable a todos los estudiantes por los
+                            actos que realicen en el establecimiento o fuera de éstos, en tanto afecten a la
+                            Institución, con motivo u ocasión del ejercicio de su calidad de estudiantes.
+                        </p>
+                        <p class="text-justify"><b>Artículo 3º: </b>Es propósito de esta Institución que el estudiante:<br>
+                            * Gestione su trayectoria educativa integral, para obtener su titulación.<br>
+                            * Articule la teoría con la práctica profesionalizante, posibilitando la<br>
+                            transferencia de lo aprendido para el desarrollo de competencias
+                            específicas del futuro campo laboral.<br>
+                            * Reflexione críticamente acerca del perfil profesional.<br>
+                            * Participe de la vida institucional, promoviendo los valores formulados en el
+                            PEI (Proyecto Educativo Institucional).<br>
+                            * Asuma un proyecto de vida considerando los principios de la ecología
+                            integral, tanto en su vida cotidiana como en la profesional.
+                        </p>
+                        <p><b>DE LOS DERECHOS Y OBLIGACIONES DEL ESTUDIANTE:</b></p>
+                        <p class="text-justify"><b>Artículo 4º: </b>Son derechos del estudiante, los enunciados en la Ley de
+                            Educación Nacional nº 26.206, Arts.125, 126, los establecidos en la Ley
+                            Provincial de Educación nº 6.876, Ley de Educación Superior nº 24.521, y los
+                            siguientes:<br>
+                            a- recibir una formación técnica integral, profesional y ética, cualificada por
+                            su orientación humanística cristiana, acorde a las características y
+                            necesidades del sistema educativo, competencias profesionales y a la
+                            realidad sociocultural del contexto;<br>
+                            b- acceso a una educación de calidad, inclusiva y plural basada en los
+                            Valores y Principios Pedagógicos del ISMP;<br>
+                            c- conocer los lineamientos y planes de estudio que regulan su trayectoria
+                            académica;<br>
+                            d- tener acceso al conocimiento de los reglamentos y disposiciones de
+                            aplicación en el Instituto y las garantías y procedimientos dispuestos para
+                            la defensa de sus derechos;<br>
+                            e- recibir asistencia, orientación y comunicación asertiva así como un trato
+                            respetuoso, en todo momento;<br>
+                            f- participar de eventos académicos y culturales que enriquezcan su
+                            formación profesional y humana;<br>
+                            g- expresarse y peticionar cortésmente de manera libre, responsable, con
+                            adhesión a las prácticas reglamentadas y principios democráticos;<br>
+                            h- hacer un uso responsable y cuidadoso de los insumos, recursos
+                            materiales, equipamientos y de todas las dependencias físicas y digitales
+                            del Instituto; con especial cuidando de los recursos energéticos, como una
+                            forma de colaborar con el cuidado de la casa común;<br>
+                            i- tener la posibilidad de acceder al beneficio de una beca “Martín de
+                            Porres” siempre y cuando cumpla con los requisitos establecidos en su
+                            reglamentación;<br>
+                            j- al reconocimiento de sus méritos académicos, plasmados en la elección
+                            de portadores de bandera y cuadro de honor del Instituto.
+                        </p>
+                        <p class="text-justify"><b>Artículo 5º: </b>Son deberes de los estudiantes, los establecidos en la Ley de
+                            Educación Nacional 26.206 Art.127, los que se establezcan en la Ley Provincial
+                            de Educación nº 6.876, y los siguientes:<br>
+                            a- conocer y cumplir el presente Reglamento y demás disposiciones de
+                            aplicación en el Instituto referentes al régimen y modalidad de cursado,
+                            planes de estudio, matriculación, pago de cuotas, regularidad de las
+                            materias, inscripción a exámenes, uso del campus virtual, práctica
+                            profesionalizante y toda otra cuestión atinente al desarrollo de su carrera;<br>
+                            b- asumir con autonomía y responsabilidad su trayectoria académica, con
+                            atención al régimen de correlatividad del Plan de estudios vigente;<br>
+                            c- conservar y presentar, cuando sea requerida, la documentación que
+                            acredite trámites de inscripción o pagos de matriculación, cuotas u otros
+                            conceptos, siendo esta documentación el único comprobante válido;<br>
+                            d- dar una información fehaciente y veraz ante los requerimientos de la
+                            Institución. El estudiante es responsable por toda omisión o información
+                            errónea que suministre a la misma;<br>
+                            e- la estudiante embarazada debe comunicar de inmediato, mediante
+                            documentación fehaciente a las autoridades y/o responsables de su
+                            práctica profesionalizante, su estado de gestante, a los efectos de
+                            consensuar con la institución una alternativa para el cursado de la misma.
+                            Ante el incumplimiento de este deber de comunicación, la estudiante se
+                            responsabilizará de cualquier inconveniente en su salud y/o en la de su
+                            hijo, así como en su trayectoria académica, que puedan surgir por esta
+                            omisión;<br>
+                            f- mantener un trato respetuoso con todos los miembros de la comunidad
+                            educativa, fomentando el espíritu de iniciativa, colaboración y solidaridad,
+                            absteniéndose de toda actitud partidaria, discriminatoria, agresiva o
+                            lesiva de la convivencia dentro del Instituto;<br>
+                            g- procurar la mejor formación académica y cultural, haciendo uso activo de
+                            los espacios institucionales y externos dispuestos al efecto;<br>
+                            h- estudiar y esforzarse por conseguir el máximo desarrollo según sus
+                            capacidades y posibilidades;<br>
+                            i- asistir a clases (presenciales o virtuales) regularmente y con puntualidad;<br>
+                            j- participar de todas las actividades formativas y complementarias,
+                            Integrándose activamente a la vida institucional;<br>
+                            k- respetar la libertad de conciencia, las convicciones y la dignidad, la
+                            autoridad legítima, la integridad e intimidad de todos los miembros de la
+                            comunidad educativa;<br>
+                            l- participar y colaborar en la mejora de la convivencia educativa y en la
+                            consecución de un adecuado ámbito de estudio en la Institución;<br>
+                            m-conservar y hacer un buen uso de las instalaciones, equipamientos y
+                            materiales didácticos del establecimiento educativo;<br>
+                            n- completar las “encuestas de control de calidad” al terminar de cursar una
+                            unidad curricular, en el Campus virtual;<br>
+                            o- presentar Carnet de Vacunas establecido por el ministerio de salud de la
+                            nación, priorizando la aplicación de las dosis de BCG, Doble adultos (DT:
+                            Difteria-Tétanos), Hepatitis B, Antigripal (se esperará hasta el inicio de la
+                            campaña anual), y toda otra vacuna que las autoridades educativas y/o
+                            sanitarias provinciales y nacionales establezcan como obligatorias.
+                        </p>
+                        <p><b>DEL INGRESO Y PERMANENCIA DE LOS ESTUDIANTES:</b></p>
+                        <p class="text-justify"><b>Artículo 6º: </b>El Instituto San Martín de Porres tiene derecho de admisión de
+                            acuerdo a las siguientes indicaciones:<br>
+                            a- De admisión a personas que manifiesten no estar de acuerdo con el
+                            ideario de la institución.<br>
+                            b- Se reserva el derecho de admisión o readmisión de aquellos estudiantes
+                            que no reúnan las capacidades físicas o psicológicas imprescindibles para el
+                            desarrollo del perfil profesional consignado en el plan de estudio de cada
+                            carrera, verificado esto por condiciones objetivas o por la incapacidad para
+                            aprobar los exámenes exigibles para acreditar la capacidad profesional según el
+                            Marco de referencia del INET, para cada carrera.<br>
+                            c- Se reserva el derecho de readmisión de los estudiantes que manifiesten
+                            conductas violentas, descontroladas, o que hayan tenido sanciones
+                            disciplinarias.<br>
+                            d- Se reserva el derecho de admisión y/o readmisión de estudiantes que
+                            adeuden cuotas u otros conceptos al momento de producirse la inscripción para
+                            el año lectivo correspondiente.
+                        </p>
+                        <p class="text-justify"><b>Artículo 7º: </b>: El Instituto tiene derecho a:<br>
+                            a- Exigir el cumplimiento del presente reglamento.<br>
+                            b- Exigir la documentación que acredite el pago del servicio educativo
+                            brindado por el instituto, comprende: matrícula anual, cuotas mensuales y
+                            recargos por fuera de términos.
+                        </p>
+                        <p><b>DE LA CONDICIÓN DE ESTUDIANTE:</b></p>
+                        <p class="text-justify"><b>Artículo 8º: </b>La condición de estudiante del Instituto de Estudios Superiores San
+                            Martín de Porres se adquiere con la aceptación de su inscripción en la sede
+                            del mismo.
+                        </p>
+                        <p class="text-justify"><b>Artículo 9º: </b>Para la inscripción de ingresantes se requieren tres pasos:<br>
+                            <p><b>1. Preinscripción:</b></p>
+                            <p class="text-justify">a. Completar la solicitud de inscripción vía web.<br>
+                                b. Adjuntar título de Nivel secundario legalizado y certificado por la
+                                autoridad competente, o bien certificado de título en trámite, que
+                                caduca en el mes de mayo, del año en curso.</p>
+                            <p><b>2. Matricula:</b></p>
+                            <p class="text-justify">a. Pago del arancel correspondiente, que no será reembolsable bajo
+                                ningún concepto.</p>
+                            <p><b>3. Inscripción </b>presentar en la institución en formato papel:</p>
+                            <p class="text-justify">a. Acta de nacimiento legalizada o acta de nacimiento original.<br>
+                                b. Fotocopia de DNI, frente y reverso.<br>
+                                c. Constancia de CUIL (si no figura en el DNI).<br>
+                                d. 2 fotos carnet color.<br>
+                                e. Certificado de antecedentes personales, provincial.<br>
+                                f. Firma de un Acuerdo Específico con el estudiante. Anexo I.<br>
+                                g. Realizar el Taller propedéutico o inicial.<br>
+                                h. Presentación de la ficha de salud psicofísica según especificaciones
+                                de la misma.</p>
+                        </p>
+                        <p class="text-justify"><b>Artículo 10º: </b>Los ingresantes al primer año de todas las carreras del instituto,
+                            deberán cursar un taller propedéutico, el cual estará limitado por el orden de
+                            matriculación y según la disponibilidad de los centros de práctica
+                            profesionalizante de cada carrera. Es facultad de la rectoría establecer la
+                            modalidad y fecha de los mismos, dentro los plazos previstos en el calendario
+                            académico de la jurisdicción.
+                        </p>
+                        <p class="text-justify"><b>Artículo 11º: </b>Los aspirantes que adeuden una o dos materias del nivel medio
+                            pueden inscribirse provisoriamente a través de la página web a una lista de
+                            espera hasta el mes de abril.
+                        </p>
+                        <p class="text-justify"><b>Artículo 12º: </b>La condición de estudiante regular debe ser renovada cada año
+                            lectivo, en las fechas previstas por la Institución, según la modalidad que
+                            establezca la autoridad educativa del instituto.<br>
+                            La inscripción implica conocimiento y aceptación por parte del estudiante, de
+                            cualquier cambio de norma administrativa vigente al momento de hacer efectiva
+                            la misma.
+                        </p>
+                        <p class="text-justify"><b>Artículo 13º: </b>El Instituto San Martín de Porres se reserva el derecho de
+                            admisión, inscripción y readmisión de estudiantes o ex estudiantes, que hayan
+                            incurrido en faltas graves de indisciplina o que adeuden cuotas de años
+                            anteriores.
+                        </p>
+                        <p><b>Artículo 14º: </b>De la matrícula anual del alumno regular:<br>
+                            <p class="text-justify">a- No registrar deuda con el instituto.<br>
+                            b- No tener sanciones disciplinarias graves.<br>
+                            c- Cumplir con el régimen de correlatividades según Plan de estudios vigente.<br>
+                            d- Pago de la matrícula del año en curso.</p>
+                        </p>
+                        <p class="text-justify"><b>Artículo 15º: </b>Todo estudiante matriculado que no cumplimente los requisitos
+                            para ser estudiante regular, solo podrá asistir a las clases de una carrera,
+                            conforme los requisitos de solicitud y las limitaciones dispuestas en el Anexo II
+                            del presente, en calidad de “oyente”.
+                        </p>
+                        <p class="text-justify"><b>Artículo 16º: </b>El estudiante regular deberá tener las cuotas
+                            al día al momento
+                            de inscribirse para las mesas de exámenes, usando el sistema de inscripción
+                            que la institución determine, caso contrario no podrá presentarse a las mismas.
+                            La administración puede dispensar excepcionalmente dicha exigencia previo
+                            análisis del caso en particular.                            
+                        </p>
+                        <p><b>Artículo 17º: </b>La caducidad de la condición de estudiante regular se
+                            <p class="text-justify">a- Manifestación expresa del interesado, dirigida por correo electrónico a
+                                Bedelía, con copia a Coordinador académico de la carrera, conforme modelo de
+                                nota obrante en Anexo III.<br>
+                            b- Falta de cumplimiento del acto registral que se establece en el Artículo 8° y
+                            9°.<br>
+                            c- Por expulsión del establecimiento ante una falta grave, acreditada con el
+                            debido proceso.<br>
+                            d- Por haber egresado de la carrera en la que se encontraba inscripto.</p>
+                        </p>
+
                         <p><b>COMPROMISO CON LA INSTITUCIÓN</b></p>
-                        <p>Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los reglamentos del Instituto Superior San Martin de Porres, referentes a las condiciones académicas, disciplinarias, de matriculación, abono de cuota y otros conceptos. Comprometiéndome de plena conformidad y propia voluntad a respetarlos estrictamente.</p>
+                        <p class="text-justify">Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los reglamentos del Instituto Superior San Martin de Porres, referentes a las condiciones académicas, disciplinarias, de matriculación, abono de cuota y otros conceptos. Comprometiéndome de plena conformidad y propia voluntad a respetarlos estrictamente.</p>
                         <br>
                         <p><b>INFORMACIÓN IMPORTATE A TENER EN CUENTA</b></p>
-                        <P>* La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</P>
                         <br>
-                        <p>* Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución.</p>
+                        <p class="text-justify"><b>USTED ADQUIRIRÁ LA CPMDICIÓN DE ESTUDIANTE REGULAR CON LA INSCRIPCIÓN DEFINITIVA, QUE COMPRENDE: EL CUMPLIMIENTO DE TODOS LOS REQUISITOS EXIGIDOS Y LA ASISTENCIA AL TALELR PROPEDÉUTICO.</b></p>
                         <br>
-                        <p>* Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo lectivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
+                        <P class="text-justify">* La inscripción será validada a partir del día hábil inmediato siguiente al vencimiento del cupón de pago, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente (Ver Anexo I).</P>
                         <br>
-                        <p>* Los alumnos que registren deuda de cuotas al momento de rendir exámenes parciales y/o finales, NO PODRÁN INSCRIBIRSE a los mismos hasta tanto no regularicen su situación.</p>
+                        <p class="text-justify">* Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b></p>
                         <br>
-                        <p>* Los alumnos que requieran Certificación de Finalización de Estudios y/o Constancia de Título en trámite, NO PODRÁN solicitarla si registran deuda con el Instituto, hasta tanto no regularicen su situación.</p>
+                        <p class="text-justify">* Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo lectivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
                         <br>
-                        <p><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
+                        <p class="text-justify">* Los alumnos que registren deuda de cuotas al momento de rendir exámenes parciales y/o finales, NO PODRÁN INSCRIBIRSE a los mismos hasta tanto no regularicen su situación.</p>
                         <br>
+                        <p class="text-justify">* Los alumnos que requieran Certificación de Finalización de Estudios y/o Constancia de Título en trámite, NO PODRÁN solicitarla si registran deuda con el Instituto, hasta tanto no regularicen su situación.</p>
+                        <br>
+                        <p class="text-justify"><b>Declaro Bajo Fe de Juramento que la documentación que acompaño digitalmente es verdadera, conociendo las disposiciones del titulo XII (delitos contra la fé pública) Capítulo III (falsificación de documentos) del Código Penal Argentino.</b></p>
+                        <br>
+                        <p><b>Anexo I</b></p>
+                        -  Formulario virtual impreso.</br>
+                        -  Fotocopia del DNI.</br>
+                        -  Dos (2) foto carnet 4x4.</br>
+                        -  Certificado de finalización de estudios o título secundario.</br>
+                        -  Firma del Acuerdo (link).</br>
+                        -  Certificado Residencia.</br>
+                        -  Carpeta colgante (tipo fichero).</br>
                     </div>
                     <div class="modal-footer">
                         <div class="form-check">
@@ -534,7 +752,7 @@
         $('.modal-body').on("scroll", function() {
             var scrollHeight = $(document).height();
             var scrollPosition = $('.modal-body').height() + $('.modal-body').scrollTop();
-            if ((scrollHeight - scrollPosition) / scrollHeight < 0.59) {
+            if ((scrollHeight - scrollPosition) / scrollHeight < -0.7) {
                 document.getElementById("terminos").disabled = false;
                 //alert((scrollHeight - scrollPosition) / scrollHeight)
             }
