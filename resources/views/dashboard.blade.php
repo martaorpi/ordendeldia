@@ -7,7 +7,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if(!empty(auth()->user()->student[0]))
+                    @if(!empty(auth()->user()->student[0]) && auth()->user()->student[0]->cycle_id == 2)
                         <div class="row">
                             @if (auth()->user()->student[0]->status == 'Aprobado')
                                 <div class="col-12 col-lg-7 text-left">
@@ -59,7 +59,9 @@
                             @endif
                         </div>
                         @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))
-                            @include('pre-inscription')
+                            
+                                @include('pre-inscription')
+                            
                         @endif
                     @else
                         @include('pre-inscription')
