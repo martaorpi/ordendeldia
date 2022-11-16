@@ -53,7 +53,7 @@
                             <td>
                                 <p class="text-left" style="padding:0 10% 0 10%" id="observaciones">
                                     Pronto te llegarán a tu correo los datos de acceso al Campus para participar del Taller Propedéutico 
-                                    que comenzará en Diciembre. Es obligatorio completarlo para que adquieras las competencias 
+                                    que comenzará en Marzo de 2023. Es obligatorio completarlo para que adquieras las competencias 
                                     necesarias para el cursado.
                                 </p>
                             </td>

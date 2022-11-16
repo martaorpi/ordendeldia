@@ -54,13 +54,13 @@
                         <tr>
                             <td>
                                 <p class="text-center" style="padding:0 10% 0 10%">
-                                    -  Formulario virtual impreso.</br>
-                                    -  Fotocopia del DNI.</br>
-                                    -  Dos (2) foto carnet 4x4.</br>
-                                    -  Certificado de finalización de estudios o título secundario.</br>
-                                    -  Firma del Acuerdo (link).</br>
-                                    -  Certificado Residencia.</br>
-                                    -  Carpeta colgante (tipo fichero).</br>
+                                    -  Formulario virtual impreso.<br>
+                                    -  Fotocopia del DNI.<br>
+                                    -  Dos (2) foto carnet 4x4.<br>
+                                    -  Certificado de finalización de estudios o título secundario.<br>
+                                    -  Firma del Acuerdo (https://ismp.edu.ar/files/Acuerdo-ISMP.pdf).<br>
+                                    -  Certificado Residencia.<br>
+                                    -  Carpeta colgante (tipo fichero).<br>
                                 </p>
                             </td>
                         </tr>

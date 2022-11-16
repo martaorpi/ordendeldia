@@ -50,7 +50,7 @@
 </style>
 
 @php
-    $careers = App\Models\Career::with('students_with_space')->get();
+    $careers = App\Models\Career::with('students_with_space', 'students_with_spaceA')->get();
     
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
@@ -91,7 +91,7 @@
                     @foreach ($careers as $key => $career)
                         {{$career}}
                         @if ($career->status == 'Abierta')
-                            @if ($career->available_space > $career->students_with_space->count())
+                            @if ($career->available_space > $career->students_with_space->count() + $career->students_with_spaceA->count())
                                 @if ($estudiante)
                                     <option value="{{ $career->id }}" {{($estudiante->career_id==$career->id)? 'selected':''}}>{{ $career->title }}</option>
                                 @else
