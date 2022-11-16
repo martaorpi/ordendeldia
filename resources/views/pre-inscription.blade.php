@@ -55,7 +55,7 @@
     $nacionalidades = App\Models\Nationality::get();
     $provincias = App\Models\Province::get();
     $departamentos = App\Models\Department::get();
-    $estudiante = App\Models\Student::where('user_id', auth()->user()->id)->with(['career','province','department','nationality','documentation'])->first();
+    $estudiante = App\Models\Student::where('user_id', auth()->user()->id)->where('cycle_id', 2)->with(['career','province','department','nationality','documentation'])->first();
     //$localidades = App\Models\Location::orderBy('description', 'asc')->get();
 @endphp
 
