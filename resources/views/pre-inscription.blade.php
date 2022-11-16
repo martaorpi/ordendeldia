@@ -598,7 +598,7 @@
                         -  Fotocopia del DNI.</br>
                         -  Dos (2) foto carnet 4x4.</br>
                         -  Certificado de finalización de estudios o título secundario.</br>
-                        -  Firma del Acuerdo (link).</br>
+                        -  Firma del Acuerdo (https://ismp.edu.ar/files/Acuerdo-ISMP.pdf).</br>
                         -  Certificado Residencia.</br>
                         -  Carpeta colgante (tipo fichero).</br>
                     </div>
