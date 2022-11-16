@@ -160,9 +160,9 @@
             <div class="col-12 col-lg-6">
                 <label for="fijp">Teléfono Fijo</label>
                 @if ($estudiante)
-                    <input type="text" class="form-control" id="fijp" name="landline" value="{{ $estudiante->landline }}" required>
+                    <input type="text" class="form-control" id="fijp" name="landline" value="{{ $estudiante->landline }}" >
                 @else
-                    <input type="text" class="form-control" id="fijp" name="landline" value="{{ old('landline')}}" required>
+                    <input type="text" class="form-control" id="fijp" name="landline" value="{{ old('landline')}}" >
                 @endif
             </div>
 
