@@ -349,6 +349,27 @@
   </tr>
 </table>
 
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">8.- Ficha de Aptitud Psicofísica. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">9.- Certificado de antecedentes penales (expedido por la policía de la provincia de Santiago del Estero o de la provincia en la que tenga residencia). </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">10.- Acta de nacimiento actualizada y legalizada. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
 <br><br>
 <table class="punteado" >
 <tr>
