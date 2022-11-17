@@ -162,11 +162,11 @@ class StudentCrudController extends CrudController
             'label' => 'Nombre',
         ]);
 
-        /*CRUD::addField([
+        CRUD::addField([
             'name'  => 'status',
             'label' => 'Estado',
             'type' => 'enum'
-        ]);*/
+        ]);
 
     }
 
