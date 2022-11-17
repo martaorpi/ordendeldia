@@ -70,13 +70,13 @@
                                     <hr class="linea">
                                 </td>
                             </tr>
-                            <tr>
+                            {{--<tr>
                                 <td>
-                                    <b style="color:#a52929">INGRESA AL <a href="http://190.105.227.212/consultas/Account/Login" class="link">SISTEMA DE PAGO</a><br>
+                                    <b style="color:#a52929"> <a href="http://190.105.227.212/consultas/Account/Login" class="link">SISTEMA DE PAGO</a><br>
                                     Tu usuario es <b>{{$user_dni}}</b> y tu clave es <b>{{$pass_dni}}</b><br>
                                     Imprimí el cupón y pagalo en Sol Pago o Banco Santiago</b>
                                 </td>
-                            </tr>
+                            </tr>--}}
                             <tr>
                                 <td align="center">
                                     <br><i>Gracias por elegir el ISMP<br>
