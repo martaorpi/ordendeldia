@@ -35,11 +35,11 @@
                             </div>
                             @if (auth()->user()->student[0]->status == 'Aprobado')
                                 <div class="col-12 text-left mt-2">
-                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe realizar el pago de la matrícula, en el mismo día en que genera el cupón de pago.</br>
                                 </div>
                             @elseif(auth()->user()->student[0]->status == 'Inscripto')
                                 <div class="col-12 text-left mt-2">
-                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe realizar el pago de la matrícula, en el mismo día en que genera el cupón de pago.</br>
                                 </div>
                             @else
                                 <div class="col-12 text-left mt-2">
