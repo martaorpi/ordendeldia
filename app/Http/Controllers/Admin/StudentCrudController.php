@@ -226,18 +226,22 @@ class StudentCrudController extends CrudController
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                 case 200:
-
                     return  ['statusCode'=> $http_code, 'msg' => 'Pendiente de pago' ];
                     break;
-                case 204:
 
+                case 204:
+                    //$student->status = 'Inscripto';
+                    //$student->save();
+                    return  ['statusCode'=> $http_code, 'msg' => 'Estudiante al día!' ];
+                    break;
+
+                case 206:
                     $student->status = 'Inscripto';
                     $student->save();
-
-                    return  ['statusCode'=> $http_code, 'msg' => 'Estudiante al día!, e Inscripto' ];
+                    return  ['statusCode'=> $http_code, 'msg' => 'El estudiante pagó la matrícula, está Inscripto' ];
                     break;
+
                 case 404:
-                    
                     return  ['statusCode'=> $http_code, 'msg' => 'Estudiante no encontrado!' ];
                     break;
                 default:
