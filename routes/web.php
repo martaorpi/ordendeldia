@@ -48,7 +48,7 @@ Route::post('formulario-inscripcion', [Controller::class, 'studentUpdateOrCreate
 });*/
 
 
-Route::post('form_pdf', [Controller::class, 'form_pdf']);
+Route::get('form_pdf', [Controller::class, 'form_pdf']);
 
 Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);
 
