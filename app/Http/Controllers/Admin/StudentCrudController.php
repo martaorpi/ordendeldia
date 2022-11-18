@@ -208,7 +208,8 @@ class StudentCrudController extends CrudController
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'http://190.105.227.212/ApiInscripcion/api/alumnos/tienedeuda?nrodoc='.$student->dni,
+          //CURLOPT_URL => 'http://190.105.227.212/ApiInscripcion/api/alumnos/tienedeuda?nrodoc='.$student->dni,
+          CURLOPT_URL => 'http://190.105.227.212/ApiInscripcion/api/alumnos/pagomatricula?nrodoc='.$student->dni,
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -225,7 +226,7 @@ class StudentCrudController extends CrudController
 
         if (!curl_errno($curl)) {
             switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
-                case 200:
+                /*case 200:
                     return  ['statusCode'=> $http_code, 'msg' => 'Pendiente de pago' ];
                     break;
 
@@ -246,6 +247,21 @@ class StudentCrudController extends CrudController
                     break;
                 default:
                     # code...
+                    break;*/
+                case 200:
+                    $student->status = 'Inscripto';
+                    $student->save();
+                    return  ['statusCode'=> $http_code, 'msg' => 'Pagó la matrícula de pre inscripción' ];
+                    break;
+
+                case 204:
+                    return  ['statusCode'=> $http_code, 'msg' => 'No pagó la matrícula de pre inscripción' ];
+                    break;
+
+                case 404:
+                    return  ['statusCode'=> $http_code, 'msg' => 'Alumno no encontrado!' ];
+                    break;
+                default:
                     break;
             }
         }
