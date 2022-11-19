@@ -41,6 +41,11 @@ class Career extends Model
         return $this->hasMany(\App\Models\Student::class)->whereIn('status', ['Inscripto'])->where('cycle_id', 2);
     }
 
+    public function students_with_spaceA()
+    {
+        return $this->hasMany(\App\Models\Student::class)->whereIn('status', ['Aprobado'])->where('cycle_id', 2);
+    }
+
     public function users()
     {
         return $this->belongsToMany(\App\Models\User::class);

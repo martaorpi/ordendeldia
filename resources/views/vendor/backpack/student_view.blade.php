@@ -22,9 +22,9 @@
                         <div class="col-sm-6" align="right">
                             @if($entry->status == 'Solicitado')
                               @php
-                              $career = App\Models\Career::where('id', $entry->career_id)->with('students_with_space')->first();
+                              $career = App\Models\Career::where('id', $entry->career_id)->with('students_with_space', 'students_with_spaceA')->first();
                               @endphp
-                              @if ($career->available_space > $career->students_with_space->count())
+                              @if ($career->available_space > $career->students_with_space->count() + $career->students_with_spaceA->count())
                                 <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>
                               @else
                                 <b class="text-primary mr-3">No hay cupo en esta carrera</b>

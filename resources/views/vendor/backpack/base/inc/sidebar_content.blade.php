@@ -12,8 +12,8 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-institution"></i>Ingresantes</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto&cycle_id=2') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Aprobado&cycle_id=2') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Inscripto') }}'><i class='nav-icon la la-mortar-board'></i> Inscriptos</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Aprobado') }}'><i class='nav-icon la la-mortar-board'></i> Aprobados</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Solicitado') }}'><i class='nav-icon la la-mortar-board'></i> Solicitantes</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?cycle_id=2&status=Revision') }}'><i class='nav-icon la la-mortar-board'></i> En Revisión</a></li>
     </ul>
@@ -45,7 +45,9 @@
     </ul>
 </li>
 
-<li class='nav-item espe'><a class='nav-link ' href='{{ backpack_url('student/mass_check') }}'><i class='nav-icon la la-mortar-board'></i> Sincronización Sistema de Pago </a></li>
+@if(auth()->user()->id == 13 || auth()->user()->id == 110)
+    <li class='nav-item espe'><a class='nav-link ' href='{{ backpack_url('student/mass_check') }}'><i class='nav-icon la la-mortar-board'></i> Sincronización Sistema de Pago </a></li>
+@endif
 
 {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>

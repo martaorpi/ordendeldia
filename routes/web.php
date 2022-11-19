@@ -22,14 +22,14 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-    //return view('errors/403');
+    //return view('dashboard');
+    return view('errors/403');
 })->middleware(['auth','verified'])->name('dashboard');
 
 Route::get('/dashboard-2023', function () {
     return view('dashboard');
     //return view('errors/403');
-})->middleware(['auth','verified'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard-2023');
 
 require __DIR__.'/auth.php';
 

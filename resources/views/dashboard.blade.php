@@ -1,12 +1,13 @@
+<title>PREINSCRIPCIÓN</title>
 <x-app-layout>
     <x-slot name="header"></x-slot>
 
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if(!empty(auth()->user()->student[0]))
+                    @if(!empty(auth()->user()->student[0]) && auth()->user()->student[0]->cycle_id == 2)
                         <div class="row">
                             @if (auth()->user()->student[0]->status == 'Aprobado')
                                 <div class="col-12 col-lg-7 text-left">
@@ -34,26 +35,33 @@
                             </div>
                             @if (auth()->user()->student[0]->status == 'Aprobado')
                                 <div class="col-12 text-left mt-2">
-                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe realizar el pago de la matrícula, en el mismo día en que genera el cupón de pago.</br>
                                 </div>
                             @elseif(auth()->user()->student[0]->status == 'Inscripto')
                                 <div class="col-12 text-left mt-2">
-                                    <b class="text-grey h6">Para completar el proceso de inscripción debe completar el pago de la matrícula, dentro de las 24 horas de generado el cupón de pago.</br>
+                                    <b class="text-grey h6">Para completar el proceso de inscripción debe realizar el pago de la matrícula, en el mismo día en que genera el cupón de pago.</br>
                                 </div>
                             @else
                                 <div class="col-12 text-left mt-2">
-                                    <b class="text-grey h6">Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </br>
-                                                            -  Formulario de preinscripción.</br>
-                                                            -  Fotocopia de DNI.</br>
-                                                            -  Dos (2) fotocarnet.</br>
-                                                            -  Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin
-                                                            adeudar materias.</br>
-                                                            -  Carpeta colgante.</br>
+                                    <b class="text-grey h6"><b>Para completar el proceso de inscripción debe presentarse PERSONALMENTE en el Instituto munido de la siguiente documentación: </b></br>
+                                                            -  Formulario virtual impreso.</br>
+                                                            -  Fotocopia del DNI.</br>
+                                                            -  Dos (2) foto carnet 4x4.</br>
+                                                            -  Certificado de finalización de estudios o título secundario.</br>
+                                                            -  Firma del Acuerdo <a href="https://ismp.edu.ar/files/Acuerdo-ISMP.pdf" target="blank">(Descargar)</a>.</br>
+                                                            -  Certificado Residencia.</br>
+                                                            -  Carpeta colgante (tipo fichero).</br>
+                                                            <b>Hasta el 28 de Abril tienes para presentar la siguiente documentación:</b></br>
+                                                            -  Ficha de Aptitud Psicofísica <a href="https://ismp.edu.ar/files/FichaSalud-ISMP.pdf" target="blank">(Descargar)</a>.</br>
+                                                            -  Certificado de antecedentes penales (expedido por la policía de la provincia de Santiago del Estero o de la provincia en la que tenga residencia).</br>
+                                                            -  Acta de nacimiento actualizada y legalizada.</br>
                                 </div>
                             @endif
                         </div>
                         @if(!empty(auth()->user()->student[0]->status == 'Solicitado') || !empty(auth()->user()->student[0]->status == 'Revision'))
-                            @include('pre-inscription')
+                            
+                                @include('pre-inscription')
+                            
                         @endif
                     @else
                         @include('pre-inscription')

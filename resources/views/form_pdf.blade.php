@@ -141,6 +141,16 @@
           </tr>
       </table>
     </td>
+    <td class="tableFila2">
+      <table class="tableFila">
+          <tr>
+            <td class="tdSinEspacio">Email: </td>
+            <td class="border-bottom border-dark">
+              {{ auth()->user()->email }}
+            </td>
+          </tr>
+      </table>
+    </td>
   </tr>
 </table>
 
@@ -264,23 +274,16 @@
     </tr>
 </table>
 <br>
-
-<p class="h7 text-justify">Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los Reglamentos del Instituto San Martin de Porres referentes a las disposiciones académicas y disciplinarias a las condiciones de matriculación, abono de cuotas y otros conceptos, así como otras resoluciones que emita la autoridad competente y comprometo a respetarlos estrictamente.</p>
-<p class="h7 text-justify negrita">EL INGRESANTE ADQUIRIRÁ LA CONDICIÓN DE ESTUDIANTE REGULAR CON LA INSCRIPCIÓN DEFINITIVA QUE COMPRENDE: EL CUMPLIMIENTO DE TODOS LOS REQUISITOS EXIGIDOS Y LA ASISTENCIA AL TALLER PROPEDÉUTICO.</p>
+<p class="h7 negrita">COMPROMISO CON LA INSTITUCIÓN</p>
+<p class="h7 text-justify">Por medio de la presente, declaro conocer y aceptar todas las disposiciones contenidas en los reglamentos del Instituto Superior San Martin de Porres, referentes a las condiciones académicas, disciplinarias, de matriculación, abono de cuota y otros conceptos. Comprometiéndome de plena conformidad y propia voluntad a respetarlos estrictamente.</p>
 <p class="h7 negrita">INFORMACIÓN IMPORTANTE A TENER EN CUENTA</p>
-
-<p class="h7 text-justify">* La inscripción sera valida a partir del momento en que se acredite el pago de dicho arancel,
-sea en el instituto o en la entidad financiera correspondeinte, dentro de las fechas establecidas por la institución y
-la presentación de la documentación correspondiente.
-</p>
-<p class="h7 text-justify">* Por el pago de la inscripcón, el ingresante tiene derecho, a realizar el taller propedéutico, 
-<b class="h7 border-bottom border-dark negrita">NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</b> El ingresante adquiere la condición de estudiante regular por el pago de la matrícula completa, 
-la realización del taller propedéutico y la presentación de todos los requisitos establecidos por la institución.</p>
-
-<p class="h7 text-justify">*Los montos fijados para las cuotas mensuales, pueden ser modificadas por el instituto a lo largo del ciclo electivo, 
-en caso de que haya una variación significativa en la estructura de costos internos.
-</p>
-<br><br><br>
+<p class="h7 text-justify negrita">USTED ADQUIRIRÁ LA CPMDICIÓN DE ESTUDIANTE REGULAR CON LA INSCRIPCIÓN DEFINITIVA, QUE COMPRENDE: EL CUMPLIMIENTO DE TODOS LOS REQUISITOS EXIGIDOS Y LA ASISTENCIA AL TALELR PROPEDÉUTICO</p>
+<p class="h7 text-justify">* La inscripción será validada a partir del momento en que se acredite el pago de dicho arancel, dentro de las fechas establecidas por la institución y la presentación de la documentación correspondiente.</p>
+<p class="h7 text-justify">* Por el pago de la inscripción el ingresante tiene derecho a realizar el taller propedéutico <b>NO SIENDO EL MONTO REINTEGRABLE POR NINGÚN CONCEPTO.</p>
+<p class="h7 text-justify">* Los montos fijados para las cuotas mensuales pueden ser modificadas por el instituto a lo largo del ciclo lectivo, en caso de que haya una variación significativa en la estructura de costos internos.</p>
+<p class="h7 text-justify">* Los alumnos que registren deuda de cuotas al momento de rendir exámenes parciales y/o finales, NO PODRÁN INSCRIBIRSE a los mismos hasta tanto no regularicen su situación.</p>
+<p class="h7 text-justify">* Los alumnos que requieran Certificación de Finalización de Estudios y/o Constancia de Título en trámite, NO PODRÁN solicitarla si registran deuda con el Instituto, hasta tanto no regularicen su situación.</p>
+<br><br>
 
 {{--<table style="border-bottom:1px solid;border-collapse:separate;border-spacing:-30px;text-align:center;" class="tableFila tope0">--}}
 <table class="tableFila tope0">
@@ -299,31 +302,74 @@ en caso de que haya una variación significativa en la estructura de costos inte
 <p class="h6 tope1 negrita">CONTROL DE DOCUMENTACION</p>
 <table class="tope2">
 <tr>
-    <td class="h6 tdSinEspacio1">1.- Solicitud de Inscripcion Completa. </td>
+    <td class="h6 tdSinEspacio1">1.- Formulario virtual impreso. </td>
     <td class="border border-dark tdSinEspacio2"></td>
 </tr>
 </table>
 
 <table class="tope2">
   <tr>
-      <td class="h6 tdSinEspacio1">2.- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias. </td>
+      <td class="h6 tdSinEspacio1">2.- Certificado de finalización de estudios o título secundario. </td>
       <td class="border border-dark tdSinEspacio2"></td>
   </tr>
 </table>
 
 <table class="tope2">
   <tr>
-      <td class="h6 tdSinEspacio1">3.- Fotocopia de DNI (actualizado) frente y reverso. </td>
+      <td class="h6 tdSinEspacio1">3.- Fotocopia del DNI. </td>
       <td class="border border-dark tdSinEspacio2"></td>
   </tr>
 </table>
 
 <table class="tope2">
   <tr>
-      <td class="h6 tdSinEspacio1">4.- Foto Carnet color (4 x 4). </td>
+      <td class="h6 tdSinEspacio1">4.- Dos (2) foto carnet 4x4. </td>
       <td class="border border-dark tdSinEspacio2"></td>
   </tr>
 </table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">5.- Firma del Acuerdo. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">6.- Certificado Residencia. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">7.- Carpeta colgante. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">8.- Ficha de Aptitud Psicofísica. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">9.- Certificado de antecedentes penales (expedido por la policía de la provincia de Santiago del Estero o de la provincia en la que tenga residencia). </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
+<table class="tope2">
+  <tr>
+      <td class="h6 tdSinEspacio1">10.- Acta de nacimiento actualizada y legalizada. </td>
+      <td class="border border-dark tdSinEspacio2"></td>
+  </tr>
+</table>
+
 <br><br>
 <table class="punteado" >
 <tr>
