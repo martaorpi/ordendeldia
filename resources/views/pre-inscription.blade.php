@@ -331,7 +331,8 @@
 
         <div class="form-group row">
             <div class="col-12 col-lg-8">
-                <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label>
+                <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label><br>
+                <small><b>Adjunte un único archivo</b></small>
             </div>
     
             <div class="col-12 col-lg-4">
