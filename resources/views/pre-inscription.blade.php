@@ -603,7 +603,7 @@
                         -  Certificado Residencia.</br>
                         -  Carpeta colgante (tipo fichero).</br>
                         <b>Hasta el 28 de Abril tienes para presentar la siguiente documentación:</b></br>
-                        -  Ficha de Aptitud Psicofísica <a href="https://ismp.edu.ar/files/FichaSalud-ISMP.pdf" target="blank">(Descargar)</a>.</br>
+                        -  Ficha de Aptitud Psicofísica <a href="https://ismp.edu.ar/files/FichaSalud-ISMP-2023.pdf" target="blank">(Descargar)</a>.</br>
                         -  Certificado de antecedentes penales (expedido por la policía de la provincia de Santiago del Estero o de la provincia en la que tenga residencia).</br>
                         -  Acta de nacimiento actualizada y legalizada.</br>
                     </div>
