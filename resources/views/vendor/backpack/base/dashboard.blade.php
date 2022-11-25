@@ -6,7 +6,7 @@
     margin: 5px;
     padding: 20px 10px;
     background-color: #fff;
-    height: 130px;
+    height: 120px;
     border-radius: 5px;
     transition: .3s linear all;
   }
@@ -42,7 +42,7 @@
   .card-counter .count-name{
     position: absolute;
     right: 35px;
-    top: 95px;
+    top: 85px;
     font-style: italic;
     text-transform: capitalize;
     opacity: 0.6;
@@ -92,6 +92,22 @@
                 @endif
             @endforeach--}}
             
+      @endforeach
+    </div>
+<br><br><br>
+    <div class="row">
+      @foreach ($carreras as $carrera)
+        @php
+            $inscriptos = App\Models\Student::where('career_id',$carrera->id)->where('cycle_id',2)->whereIn('status', ['Aprobado','Solicitado','En Revisión'])->count();
+            //$ingresos_carrera = $inscriptos->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
+        @endphp
+        <div class="col-md-4">
+          <div class="card-counter primary">
+              <i class="fa fa-code-fork"></i>                
+              <span class="count-numbers text-center"><small>Solicitudes</small><br>{{ $inscriptos }}</span>
+              <span class="count-name">{{$carrera->short_name}}</span>
+          </div>
+        </div>
     @endforeach
   </div>
 </div>
