@@ -24,6 +24,26 @@ Route::group([
     Route::crud('staff', 'StaffCrudController');
     Route::crud('career', 'CareerCrudController');
     Route::crud('cycle', 'CycleCrudController');
+
+    Route::crud('study-plan', 'StudyPlanCrudController');
+    Route::crud('educative-offer', 'EducativeOfferCrudController');
+    Route::crud('academic-unit', 'AcademicUnitCrudController');
+    Route::crud('tariff-category', 'TariffCategoryCrudController');
+    Route::crud('correlative', 'CorrelativeCrudController');
+    Route::crud('job', 'JobCrudController');
+    Route::crud('sworn-declaration', 'SwornDeclarationCrudController');
+    Route::crud('exam-inscriptions', 'ExamInscriptionsCrudController');
+    Route::crud('exam-table', 'ExamTableCrudController');
+    Route::get('exam-table/{id}/showExamTable', 'ExamTableCrudController@showExamTable');
+    Route::get('exam-table/{id}/actPDF', 'ExamTableCrudController@actPDF');
+    Route::get('exam-table/act_pdf/{id}', 'ExamTableCrudController@act_pdf');
+    Route::get('exam-table/act_pdf_reg/{id}', 'ExamTableCrudController@act_pdf_reg');
+    Route::crud('exam-shift', 'ExamShiftCrudController');
+    Route::get('sworn-declaration/{id}/get_subjects', 'SwornDeclarationCrudController@getSubjects');
+    Route::post('sworn-declaration/{id}/delete_subject', 'SwornDeclarationCrudController@deleteSubject');
+    Route::crud('regularity', 'RegularityCrudController');
+    Route::post('sworn-declaration/{id}/sworn-declaration-item', 'SwornDeclarationCrudController@storeSwornDeclarationItems');
+    
 }); 
 
 Route::group([
@@ -32,15 +52,6 @@ Route::group([
     'middleware' => ['web', 'admin', 'can:administracion_del_personal'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    /*Route::crud('examenes', 'ExamCrudController');
-    Route::crud('student', 'StudentCrudController');
-
-    Route::post('student/{id}/sign_up', 'StudentCrudController@signUp');
-    Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
-    Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');
-    Route::get('student/mass_check', 'StudentCrudController@massCheck');
-    Route::post('student/{id}/sign_on', 'StudentCrudController@signOn'); */
-
     Route::post('staff/{id}/licenses', 'StaffLicenseCrudController@storeLicenses');
     Route::get('staff/{id}/get_licenses', 'LicenseCrudController@getLicenses');
     Route::post('staff/{id}/delete_licenses', 'StaffLicenseCrudController@deleteLicenses');
@@ -65,8 +76,6 @@ Route::group([
     Route::get('novedades', 'StaffCrudController@novedades');
     Route::crud('family-member', 'FamilyMemberCrudController');
 
-    //Route::crud('career', 'CareerCrudController');
-    //Route::crud('cycle', 'CycleCrudController');
     Route::crud('staff-discount', 'StaffDiscountCrudController');
     Route::crud('discount', 'DiscountCrudController');
     Route::crud('staff-subject', 'StaffSubjectCrudController');

@@ -28,9 +28,38 @@
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('subject') }}'><i class='nav-icon la la-question'></i> Asignaturas</a></li>
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Plan de Estudio</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('study-plan') }}'><i class='nav-icon la la-question'></i> Planes de Estudio</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subject') }}'><i class='nav-icon la la-question'></i> Asignaturas</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('correlative') }}'><i class='nav-icon la la-question'></i> Correlativas</a></li>
+    </ul>
+  </li>
+
+<!--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('subject') }}'><i class='nav-icon la la-question'></i> Asignaturas</a></li>-->
 
 {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-license') }}'><i class='nav-icon la la-question'></i> Staff licenses</a></li>--}}
+
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Estudiantes</a>
+    <ul class="nav-dropdown-items">
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?effective=aspirantes') }}'><i class='nav-icon la la-user'></i> Aspirantes</a></li>
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?effective=estudiantes') }}'><i class='nav-icon la la-user-plus'></i> Estudiantes</a></li>
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sworn-declaration') }}'><i class='nav-icon la la-question'></i> DDJJ</a></li>
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('regularity') }}'><i class='nav-icon la la-question'></i> Regularidades</a></li>
+    </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-calendar"></i> Exámenes</a>
+    <ul class="nav-dropdown-items">
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('exam-shift?type=Turno-Examen') }}'><i class='nav-icon la la-clock'></i> Turnos</a></li>  
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('exam-table') }}'><i class='nav-icon la la-calendar'></i> Mesas</a></li>
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('exam-inscriptions') }}'><i class='nav-icon la la-calendar'></i> Inscriptos</a></li>
+    </ul>
+</li>
+
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('novedades') }}'><i class='nav-icon la la-question'></i> Novedades</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff/calculator') }}'><i class='nav-icon la la-question'></i> Calculadora</a></li>

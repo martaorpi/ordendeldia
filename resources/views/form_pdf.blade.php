@@ -27,6 +27,8 @@
   function mayus($str){
     return ucwords(strtolower($str));
   }
+
+
 @endphp
 
 <table border="0">
@@ -146,7 +148,8 @@
           <tr>
             <td class="tdSinEspacio">Email: </td>
             <td class="border-bottom border-dark">
-              {{ auth()->user()->email }}
+              {{-- auth()->user()->email --}}
+              {{ $estudiante->user->email }}
             </td>
           </tr>
       </table>
