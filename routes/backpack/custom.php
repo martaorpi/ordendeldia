@@ -43,6 +43,10 @@ Route::group([
     Route::post('sworn-declaration/{id}/delete_subject', 'SwornDeclarationCrudController@deleteSubject');
     Route::crud('regularity', 'RegularityCrudController');
     Route::post('sworn-declaration/{id}/sworn-declaration-item', 'SwornDeclarationCrudController@storeSwornDeclarationItems');
+    Route::get('getSubjects/{id}', function ($id) {
+        $subject = App\Models\Subject::where('career_id',$id)->get();
+        return response()->json($subject);
+    });
     
 }); 
 

@@ -29,6 +29,7 @@ class CorrelativeCrudController extends CrudController
         CRUD::setModel(\App\Models\Correlative::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/correlative');
         CRUD::setEntityNameStrings('Correlativa', 'Correlativas');
+        CRUD::setCreateView('vendor/backpack/correlatives/create');
     }
 
     /**
