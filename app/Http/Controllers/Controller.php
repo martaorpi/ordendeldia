@@ -333,4 +333,6 @@ class Controller extends BaseController
         ]);
         return (new FastExcel($data))->download('licencias_por_planta.xlsx');
     }
+
+    
 }

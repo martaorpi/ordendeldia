@@ -151,4 +151,24 @@ class CorrelativeCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    protected function setupShowOperation()
+    {   
+        CRUD::set('show.setFromDb', false);
+
+        CRUD::addColumn([
+            'label' => 'Carrera',
+            'type' => 'relationship',
+            'name' => 'subject_id', // the method that defines the relationship in your Model
+            'entity' => 'career', // the method that defines the relationship in your Model
+            'attribute' => 'short_name',
+        ]);
+        //CRUD::column('subject_id')->label('Asignatura');
+        CRUD::column('correlative_id')->label('Correlativa');
+        CRUD::column('condition')->label('Condición');
+        CRUD::column('correlativity_type')->label('Tipo de Correlativa');
+
+        CRUD::setShowContentClass('col-12 mx-auto mt-3');
+    }
+
 }

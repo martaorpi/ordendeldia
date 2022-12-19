@@ -6,7 +6,7 @@ $careers = App\Models\Career::get();
     <div class="col-12">
       <div class="form-group mx-3">
         <label for="name">Carrera<label class="text-danger">*</label></label>    
-        <select name="" id="career" class="form-control">
+        <select name="career" id="career" class="form-control">
           <option value="">Seleccione la carrera</option>
           @foreach ($careers as $career)
             <option value="{{$career->id}}">{{ $career->short_name}}</option>    
@@ -15,23 +15,20 @@ $careers = App\Models\Career::get();
       </div>
     </div>
 
-
-    <div class="col-12">
+    <div class="col-lg-6 col-12">
       <div class="form-group mx-3">
         <label for="course" class="form-label">Asignatura</label>
         <select class="form-control" name="subject_id" id="subject"></select>
       </div>
     </div>
 
-
     <div class="col-lg-6 col-12">
-      @include('crud::fields.'.$fields['subject_id']['type'], ['field' => $fields['subject_id']])          
+      <div class="form-group mx-3">
+        <label for="course" class="form-label">Correlativa</label>
+        <select class="form-control" name="correlative_id" id="correlative"></select>
+      </div>
     </div>
-    <div class="col-lg-6 col-12">
-      @include('crud::fields.'.$fields['correlative_id']['type'], ['field' => $fields['correlative_id']])
-    </div> 
-  </div>
-  <div class="row">
+
     <div class="col-lg-6 col-12">
       @include('crud::fields.'.$fields['condition']['type'], ['field' => $fields['condition']])          
     </div>
@@ -49,22 +46,27 @@ $careers = App\Models\Career::get();
       var careerID = $(this).val();
       if(careerID) {
           $.ajax({
-              url: '/getSubjects/'+careerID,
+              url: 'getSubjects/'+careerID,
               type: "GET",
               data : {"_token":"{{ csrf_token() }}"},
               dataType: "json",
               success:function(data)
               {
-                /*if(data){
+                if(data){
                     $('#subject').empty();
-                    $('#subject').append('<option hidden>Choose Course</option>'); 
+                    $('#subject').append('<option hidden>Seleccione la Asignatura</option>'); 
                     $.each(data, function(key, subject){
                         $('select[name="subject_id"]').append('<option value="'+ key +'">' + subject.description+ '</option>');
                     });
+
+                    $('#correlative').empty();
+                    $('#correlative').append('<option hidden>Seleccione la Correlativa</option>'); 
+                    $.each(data, function(key, correlative){
+                        $('select[name="correlative_id"]').append('<option value="'+ key +'">' + correlative.description+ '</option>');
+                    });
                 }else{
-                    $('#subject').empty();
-                }*/
-                alert()
+                    $('#correlative').empty();
+                }
             }
           });
       }else{

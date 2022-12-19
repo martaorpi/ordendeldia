@@ -37,6 +37,10 @@ class Correlative extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function career()
+    {
+        return $this->belongsTo(\App\Models\Career::class, 'subject_id');
+    }
     public function subject()
     {
         return $this->belongsTo(\App\Models\Subject::class);
