@@ -21,7 +21,7 @@ class ExamTable extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['full_name'];
+    protected $fillable = ['exam_shift_id','study_plan_id','subject_id','commission','date','hour','max_date','current','previous_table_id','full_name'];
     // protected $hidden = [];
     // protected $dates = [];
 
