@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CorrelativeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
 
 /**
  * Class CorrelativeCrudController
@@ -49,6 +50,20 @@ class CorrelativeCrudController extends CrudController
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+        /*CRUD::addFilter([
+            'name'  => 'subject',
+            'type'  => 'select2',
+            'label' => 'Carrera'
+        ],
+            function() {
+                return \App\Models\Career::select()->distinct()->get()->pluck('short_name', 'id')->toArray();
+            },
+            function($value) { // if the filter is active
+                CRUD::addClause('where', 'subject.career_id', $value);
+                //CRUD::addClause('join', 'career', 'subject.career_id', 'career.id');
+            }
+        );*/
+
         CRUD::addFilter([
             'name'  => 'condition',
             'type'  => 'select2',
