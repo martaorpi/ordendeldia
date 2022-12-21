@@ -65,6 +65,22 @@ class CorrelativeCrudController extends CrudController
         );*/
 
         CRUD::addFilter([
+            'name'  => 'subject_id',
+            'type'  => 'select2',
+            'label' => 'Carrera'
+        ],
+            function() {
+                return \App\Models\Career::select()->distinct()->get()->pluck('short_name', 'id')->toArray();
+            },
+            function($value) { // if the filter is active
+
+                $this->crud->query = $this->crud->query->whereHas('subject.career', function ($query) use ($value) {
+                    $query->where('id', $value);
+                });
+            }
+        );
+
+        CRUD::addFilter([
             'name'  => 'condition',
             'type'  => 'select2',
             'label' => 'Condición'
