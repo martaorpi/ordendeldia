@@ -233,7 +233,7 @@ class SwornDeclarationCrudController extends CrudController
                 ->get();
         }elseif($dj->type == 'Examen Regular'){
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)
-                /*->whereHas('sworn_declaration_item', function ($q){$q
+                ->whereHas('sworn_declaration_item', function ($q){$q
                     ->whereHas('regularity', function ($q){$q
                         ->where('date_from', '<', date('Y-m-d'))
                         ->orWhere('date_to', '>', date('Y-m-d'));
@@ -258,8 +258,8 @@ class SwornDeclarationCrudController extends CrudController
                             ->orWhere('date_to', '>', date('Y-m-d'));
                         });
                     });
-                })*/
-                //->with('exam_table')
+                })
+                ->with('exam_table')
                 ->get();
         }elseif($dj->type == 'Examen Libre'){
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)

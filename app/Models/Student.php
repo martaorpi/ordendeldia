@@ -50,6 +50,7 @@ class Student extends Model implements Auditable
         'cell_phone',
         'status',
         'slug',
+        'full_name'
     ];
 
     /**
@@ -79,6 +80,9 @@ class Student extends Model implements Auditable
             ->usingSeparator('-');
     }
 
+    public function getFullNameAttribute() {
+        return $this->last_name.', '.$this->first_name.' - '.$this->dni;
+    }
 
     public function user()
     {

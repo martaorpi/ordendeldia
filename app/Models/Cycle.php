@@ -22,14 +22,16 @@ class Cycle extends Model {
   // protected $hidden = [];
   // protected $dates = [];
 
-  protected $fillable = ['description', 'from_', 'until_', 'type', 'status'];
+  protected $fillable = ['full_name','description', 'from_', 'until_', 'type', 'status'];
 
   /*
   |--------------------------------------------------------------------------
   | FUNCTIONS
   |--------------------------------------------------------------------------
   */
-
+  public function getFullNameAttribute() {
+    return $this->description.' - '.$this->year;
+  }
   /*
   |--------------------------------------------------------------------------
   | RELATIONS
