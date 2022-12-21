@@ -74,11 +74,11 @@
     </ul>
 </li>
 
-@if(auth()->user()->id == 13 || auth()->user()->id == 110)
+{{--@if(auth()->user()->id == 13 || auth()->user()->id == 110)
     <li class='nav-item espe'><a class='nav-link ' href='{{ backpack_url('student/mass_check') }}'><i class='nav-icon la la-mortar-board'></i> Sincronización Sistema de Pago </a></li>
 @endif
 
-{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('family-member') }}'><i class='nav-icon la la-question'></i> Familiares</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-discount') }}'><i class='nav-icon la la-question'></i> Descuentos</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-subject') }}'><i class='nav-icon la la-question'></i> Staff subjects</a></li>--}}
