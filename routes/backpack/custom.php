@@ -40,7 +40,7 @@ Route::group([
     Route::get('exam-table/act_pdf/{id}', 'ExamTableCrudController@act_pdf');
     Route::get('exam-table/act_pdf_reg/{id}', 'ExamTableCrudController@act_pdf_reg');
     Route::crud('exam-shift', 'ExamShiftCrudController');
-    Route::get('sworn-declaration/{id}/get_subjects', 'SwornDeclarationCrudController@getSubjects');
+    Route::get('sworn-declaration/{id}/get_subjects2', 'SwornDeclarationCrudController@getSubjects');
     Route::post('sworn-declaration/{id}/delete_subject', 'SwornDeclarationCrudController@deleteSubject');
     Route::crud('regularity', 'RegularityCrudController');
     Route::post('sworn-declaration/{id}/sworn-declaration-item', 'SwornDeclarationCrudController@storeSwornDeclarationItems');

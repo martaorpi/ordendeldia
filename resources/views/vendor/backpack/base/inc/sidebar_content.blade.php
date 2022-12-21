@@ -44,8 +44,8 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Estudiantes</a>
     <ul class="nav-dropdown-items">
-      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?effective=aspirantes') }}'><i class='nav-icon la la-user'></i> Aspirantes</a></li>
-      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?effective=estudiantes') }}'><i class='nav-icon la la-user-plus'></i> Estudiantes</a></li>
+      {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?effective=aspirantes') }}'><i class='nav-icon la la-user'></i> Aspirantes</a></li>--}}
+      <li class='nav-item'><a class='nav-link' href='{{ backpack_url('student?status=Inscripto') }}'><i class='nav-icon la la-user-plus'></i> Estudiantes</a></li>
       <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sworn-declaration') }}'><i class='nav-icon la la-question'></i> DDJJ</a></li>
       <li class='nav-item'><a class='nav-link' href='{{ backpack_url('regularity') }}'><i class='nav-icon la la-question'></i> Regularidades</a></li>
     </ul>
