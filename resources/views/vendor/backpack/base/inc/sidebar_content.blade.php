@@ -60,9 +60,9 @@
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('novedades') }}'><i class='nav-icon la la-question'></i> Novedades</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('novedades') }}'><i class='nav-icon la la-question'></i> Novedades</a></li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff/calculator') }}'><i class='nav-icon la la-question'></i> Calculadora</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff/calculator') }}'><i class='nav-icon la la-question'></i> Calculadora</a></li>--}}
 
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cog"></i>Configuración</a>

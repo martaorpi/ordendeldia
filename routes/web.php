@@ -31,6 +31,11 @@ Route::get('/dashboard-2023', function () {
     //return view('errors/403');
 })->middleware(['auth','verified'])->name('dashboard-2023');
 
+Route::get('/pagos', function () {
+    return view('payments');
+    //return view('errors/403');
+})->middleware(['auth','verified'])->name('pagos');
+
 require __DIR__.'/auth.php';
 
 Route::post('formulario-inscripcion', [Controller::class, 'studentUpdateOrCreate']);

@@ -71,7 +71,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>ISMP</b>admin',
+    'project_logo'   => '<b>EPORRES</b>admin',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,

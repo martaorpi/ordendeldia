@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Mi Formulario') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('pagos')" :active="request()->routeIs('payments')">
+                        {{ __('Pagos') }}
+                    </x-nav-link>
                 </div>
             </div>
 
