@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrderCrudController;
 
 // --------------------------
 // Custom Backpack Routes
@@ -48,7 +49,18 @@ Route::group([
         return response()->json($subject);
     });
     
-}); 
+});
+
+Route::group([
+    'namespace'  => 'App\Http\Controllers\Admin',
+    'prefix'     => config('backpack.base.route_prefix', 'admin'),
+    'middleware' => array_merge(
+        (array) config('backpack.base.web_middleware', 'web'),
+        (array) config('backpack.base.middleware_key', 'admin')
+    ),
+], function () { 
+    OrderCrudController::routes();
+});
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
