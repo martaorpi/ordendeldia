@@ -40,7 +40,7 @@ class Regularity extends Model
     }
     public function item()
     {
-        return $this->belongsTo(\App\Models\SwornDeclarationItem::class,'sworn_declaration_item_id')->with('sworn_declaration');
+        return $this->belongsTo(\App\Models\SwornDeclarationItem::class,'sworn_declaration_item_id')->with('sworn_declaration.student');
     }
     /*
     |--------------------------------------------------------------------------

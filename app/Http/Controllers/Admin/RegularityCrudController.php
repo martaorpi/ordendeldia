@@ -43,7 +43,7 @@ class RegularityCrudController extends CrudController
             'label' => 'Estudiante',
             'type' => 'relationship',
             'name' => 'sworn_declaration_item_id', // the method that defines the relationship in your Model
-            'entity' => 'item.sworn_declaration', // the method that defines the relationship in your Model
+            'entity' => 'item.sworn_declaration.student', // the method that defines the relationship in your Model
             'attribute' => 'student_id',
         ]);
         CRUD::column('date_from')->label('Fecha Desde');

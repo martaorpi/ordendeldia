@@ -275,7 +275,7 @@ class Controller extends BaseController
     { 
         $data = array();
         $jobs = StaffSubject::select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
-        $staff = App\Models\Staff::where('status', 'Activo')->get();
+        $staff = Staff::where('status', 'Activo')->get();
         $priv_gral = 0;                                
         $sup_spep_gral = 0;                                
         $tit_spep_gral = 0;  
