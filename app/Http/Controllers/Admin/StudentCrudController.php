@@ -449,6 +449,24 @@ class StudentCrudController extends CrudController
         ));
         
         $response = curl_exec($curl);
+
+        $enviado = "Nombre: ".$nombre.",
+            Apellido: ".$apellido.",
+            IdTipoDocumento: ".$idtipodocumento.",
+            NroDocumento: ".$nrodocumento.",
+            FechaNacimiento: ".$fechanacimiento.",
+            EMail: ".$email.",
+            Direccion: ".$direccion.",
+            Sexo: ".$sexo.",
+            IdCarrera: ".$idcarrera.",
+            CicloLectivo : ".$ciclolectivo."
+
+        $log = new Log;
+        $log->user_admin_id = auth()->user()->id;
+        $log->student_id = $id;
+        $log->text = $enviado;
+        $log->type = 'datos enviados';
+        $log->save();
         
         $log = new Log;
         $log->user_admin_id = auth()->user()->id;
