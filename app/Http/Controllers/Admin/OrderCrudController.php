@@ -96,10 +96,9 @@ class OrderCrudController extends CrudController
     }
 
     public function createOrder($id){
-        return $id;
         try {
             Order::create([
-                'student_id' => Auth::id(),
+                'student_id' => $id,
                 'tariff_account_id' => 1,
                 'amount' => 5000,
             ]);
@@ -110,6 +109,6 @@ class OrderCrudController extends CrudController
 
     public static function routes()
     {
-        Route::get('createOrder/{id}', [self::class, 'createOrder']);
+        Route::post('createOrder/{id}', [self::class, 'createOrder']);
     }
 }
