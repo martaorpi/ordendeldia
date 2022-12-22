@@ -92,6 +92,7 @@
                         {{$career}}
                         @if ($career->status == 'Abierta')
                             @if ($career->available_space > $career->students_with_space->count() + $career->students_with_spaceA->count())
+                            {{--@if ($career->available_space > $career->students_with_space->count())--}}
                                 @if ($estudiante)
                                     <option value="{{ $career->id }}" {{($estudiante->career_id==$career->id)? 'selected':''}}>{{ $career->title }}</option>
                                 @else
