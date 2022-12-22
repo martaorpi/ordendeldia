@@ -52,13 +52,13 @@ class ExamInscriptionsCrudController extends CrudController
             'entity' => 'exam_table.subject', // the method that defines the relationship in your Model
             'attribute' => 'description',
         ]);
-        /*CRUD::addColumn([
+        CRUD::addColumn([
             'label' => 'Estudiante',
             'type' => 'relationship',
             'name' => 'sworn_declaration_item_id', // the method that defines the relationship in your Model
             'entity' => 'sworn_declaration_item.sworn_declaration.student', // the method that defines the relationship in your Model
             'attribute' => 'student_id',
-        ]);*/
+        ]);
 
         CRUD::column('sworn_declaration_item_id')->label('Item DJ');
         CRUD::column('condition_exam')->label('Condición')->type('enum');

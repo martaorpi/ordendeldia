@@ -20,6 +20,7 @@ use App\Models\StaffLicense;
 use App\Models\Staff;
 use App\Models\Job;
 use App\Models\License;
+use App\Models\ExamStudent;
 use DB;
 
 use App\Http\Requests\StudentRequestFrontend;
@@ -338,5 +339,16 @@ class Controller extends BaseController
         return view('estudiantes/examenes');
     }
 
-    
+    public function prueba(){
+        $exam_table = \App\Models\ExamTable::where('subject_id',1)->orderBy('date','DESC')->first();
+        /*$input3['exam_table_id'] = $exam_table->id;
+        $input3['condition_exam'] = 'Regular';
+        ExamStudent::create($input3);*/
+
+        $product = new ExamStudent();
+        $product->exam_table_id = $exam_table->id;
+        $product->condition_exam = 'Regular';
+        $product->sworn_declaration_item_id	 = 13;
+        $product->save();
+    }
 }
