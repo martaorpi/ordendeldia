@@ -198,10 +198,10 @@
 
     $( "#createOrder" ).click(function() {
 
-      /*$(this).prop("disabled", true);
+      $(this).prop("disabled", true);
       $(this).html(
         '<i class="spinner-border spinner-border-sm"></i>'
-      );*/
+      );
 
       id= 5;
 
@@ -210,7 +210,7 @@
           icon: type,
         }).then((value) => {;
           console.log(value);
-          //location.reload();
+          location.reload();
         })
         
       })
