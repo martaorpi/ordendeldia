@@ -343,6 +343,7 @@ class Controller extends BaseController
     public function orders($id){
         return view('estudiantes/orders', ['orders' => Order::where('student_id', $id)->get()]); 
     }
+    
     public function prueba(){
         $exam_table = \App\Models\ExamTable::where('subject_id',1)->orderBy('date','DESC')->first();
         /*$input3['exam_table_id'] = $exam_table->id;
