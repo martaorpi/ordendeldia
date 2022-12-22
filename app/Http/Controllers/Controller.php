@@ -19,6 +19,7 @@ use App\Models\StaffSubject;
 use App\Models\StaffLicense;
 use App\Models\Staff;
 use App\Models\Job;
+use App\Models\Order;
 use App\Models\License;
 use DB;
 
@@ -338,5 +339,8 @@ class Controller extends BaseController
         return view('estudiantes/examenes');
     }
 
+    public function orders($id){
+        return view('estudiantes/orders', ['orders' => Order::where('student_id', $id)->get()]); 
+    }
     
 }
