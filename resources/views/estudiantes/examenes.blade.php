@@ -90,20 +90,7 @@
                             <tr>
                               <th scope="row">1</th>
                               <td>{{ $subject->description }}</td>
-                              <td>{{ $subject->sworn_declaration_item[0]->exam_student[0]->condition_exam }}</td>
-                              <td>{{ $subject->exam_table[0]->date }}</td>
-                              <td>{{ $subject->exam_table[0]->hour }}</td>
-                              <td>{{ $subject->exam_table[0]->max_date }}</td>
-                              <td>
-                                  {{--<form>
-                                      <button type="submit" class="btn btn-primary">Inscribir</button>
-                                  </form>--}}
-                                  @if ($subject->sworn_declaration_item[0]->exam_student[0]->sworn_declaration_item_id == 13)
-                                    <a href="prueba" class="btn btn-primary">Inscribir</a>      
-                                  @else
-                                        <b>Nro de Inscripción: {{$subject->sworn_declaration_item[0]->exam_student[0]->id}}</b>
-                                  @endif
-                              </td>
+                              
                             </tr>
                           @endforeach
                         </tbody>
