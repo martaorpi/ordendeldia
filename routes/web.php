@@ -63,8 +63,8 @@ Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPla
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
 
 Route::get('/estudiantes/examenes', [Controller::class, 'examenes']);
-<<<<<<< HEAD
+
 Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
-=======
+
 Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
->>>>>>> 1dd7fd49d4b930473b4544820aee09a15c83d1d3
+
