@@ -12,15 +12,14 @@
                     {{-- en DJ se debe guardar alumno_id, el cycle_id, cuatrimestre actual, fecha y el tipo (Examen Regular/Examen Libre) --}}
                     {{-- en DJ-Item se debe guardar dj_id, subject_id, status --}}
                     <p class="h3 text-center">ORDENES DE PAGO</p>
-                    
+  
                     <table class="table mt-3">
                         <thead class="thead-dark">
                           <tr>
-                            <th scope="col">#</th>
                             <th scope="col">id</th>
                             <th scope="col">amount</th>
                             <th scope="col">updated_at</th>
-                            <th scope="col">create_at</th>
+                            <th scope="col">created_at</th>
                             <th scope="col">state</th>
                             <th scope="col"></th>
                           </tr>
@@ -28,12 +27,11 @@
                         <tbody>
                           @foreach ($orders as $order)
                             <tr>
-                              <th scope="row">1</th>
-                              <td>{{ $order->id }}</td>
-                              <td>${{ $order->amount }}</td>
+                              <td>#{{ $order->id }}</td>
+                              <td>${{ number_format($order->amount, 2) }}</td>
                               <td>{{ $order->updated_at }}</td>
-                              <td>{{ $order->create_at }}</td>
-                              <td>{{ $order->state }}</td>
+                              <td>{{ $order->created_at }}</td>
+                              <td><span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span></td>
                               <td>
                                   <form>
                                       <button type="submit" class="btn btn-primary">Pagar</button>

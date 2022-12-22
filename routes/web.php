@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPla
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
 
 Route::get('/estudiantes/examenes', [Controller::class, 'examenes']);
-Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
 
 Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
+
+StudentController::routes();

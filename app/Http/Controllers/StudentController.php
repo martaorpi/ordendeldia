@@ -8,8 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
+use DB;
 
-class Controller extends BaseController
+
+class StudentController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -19,6 +21,6 @@ class Controller extends BaseController
 
     public static function routes()
     {
-        Route::post('createOrder/{id}', [self::class, 'createOrder']);
+        Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
     }
 }

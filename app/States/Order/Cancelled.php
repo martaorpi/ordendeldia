@@ -4,6 +4,11 @@ class Cancelled extends OrderState
 {
     public function color(): string
     {
-        return 'red';
+        return 'danger';
+    }
+
+    public function name(): string
+    {
+        return 'Cancelado';
     }
 }

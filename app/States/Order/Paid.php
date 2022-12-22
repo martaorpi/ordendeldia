@@ -5,6 +5,11 @@ class Paid extends OrderState
 {
     public function color(): string
     {
-        return 'green';
+        return 'success';
+    }
+
+    public function name(): string
+    {
+        return 'Pagado';
     }
 }
