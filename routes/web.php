@@ -64,6 +64,12 @@ Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlant
 
 Route::get('/estudiantes/examenes', [Controller::class, 'examenes']);
 
+
+Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
+
+Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
+
+
 Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
 
 Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
