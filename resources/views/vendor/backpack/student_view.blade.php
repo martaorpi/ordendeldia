@@ -26,7 +26,7 @@
                               @endphp
                               @if ($career->available_space > $career->students_with_space->count() + $career->students_with_spaceA->count())
                                 {{--<button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>--}}
-                                <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id=""><i class="nav-icon la la-check"></i>Generar Orden de Pago</button>
+                                <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="createOrder"><i class="nav-icon la la-check"></i>Generar Orden de Pago</button>
                               @else
                                 <b class="text-primary mr-3">No hay cupo en esta carrera</b>
                               @endif
@@ -196,20 +196,21 @@
     var msg;
     var type;
 
-    $( "#btnSignOn" ).click(function() {
+    $( "#createOrder" ).click(function() {
 
-      $(this).prop("disabled", true);
+      /*$(this).prop("disabled", true);
       $(this).html(
         '<i class="spinner-border spinner-border-sm"></i>'
-      );
+      );*/
 
-      $.post("sign_on")
-      .done(function (result, status, xhr) {
+      id= 5;
 
+      $.post(`/admin/createOrder/${id}`).done(function (result, status, xhr) {
         swal("Estudiante inscripto", "ISMP admin", {
           icon: type,
         }).then((value) => {;
-          location.reload();
+          console.log(value);
+          //location.reload();
         })
         
       })
@@ -324,6 +325,8 @@
         });
       }
     });
+
+
 
   </script>
 
