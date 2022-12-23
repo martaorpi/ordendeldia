@@ -6,6 +6,11 @@ class Pending extends OrderState
 {
     public function color(): string
     {
-        return 'green';
+        return 'info';
+    }
+
+    public function name(): string
+    {
+        return 'Pendiente';
     }
 }
