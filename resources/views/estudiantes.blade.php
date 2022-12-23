@@ -1,6 +1,6 @@
 <div class="card-deck">
     <div class="card border-danger mb-3" >
-        <a href="/estudiantes/ordenes/5" class="text-decoration-none">
+        <a href="/estudiantes/ordenes/50" class="text-decoration-none">
             <div class="card-header">PAGOS</div>
             <div class="card-body text-danger">
                 <p class="card-title">Sistema Arancelario</p>                
