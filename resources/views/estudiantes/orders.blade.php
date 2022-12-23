@@ -17,6 +17,7 @@
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">id</th>
+                            <th scope="col">description</th>
                             <th scope="col">amount</th>
                             <th scope="col">updated_at</th>
                             <th scope="col">created_at</th>
@@ -28,6 +29,7 @@
                           @foreach ($orders as $order)
                             <tr>
                               <td>#{{ $order->id }}</td>
+                              <td>{{ $order->description }}</td>
                               <td>${{ number_format($order->amount, 2) }}</td>
                               <td>{{ $order->updated_at }}</td>
                               <td>{{ $order->created_at }}</td>

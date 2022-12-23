@@ -64,21 +64,6 @@ Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPla
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
 
 Route::get('/estudiantes/examenes', [Controller::class, 'examenes']);
-<<<<<<< HEAD
-
 Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
 
 StudentController::routes();
-=======
-
-
-Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
-
-Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
-
-
-Route::get('/estudiantes/ordenes/{id}', [Controller::class, 'orders']);
-
-Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
-
->>>>>>> 1974d8d77bc6677939a2c436810c073976d1ad19
