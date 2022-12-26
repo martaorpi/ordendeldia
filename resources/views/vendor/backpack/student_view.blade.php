@@ -24,6 +24,7 @@
                               @php
                               $career = App\Models\Career::where('id', $entry->career_id)->with('students_with_space', 'students_with_spaceA')->first();
                               @endphp
+                              
                               @if ($career->available_space > $career->students_with_space->count() + $career->students_with_spaceA->count())
                                 {{--<button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="btnSign_up"><i class="nav-icon la la-check"></i>Alta Sistema de Cobranza</button>--}}
                                 <button class="btn btn-success btn-sm pl-3 pr-3 col-6" id="createOrder"><i class="nav-icon la la-check"></i>Generar Orden de Pago</button>
@@ -197,13 +198,13 @@
     var type;
 
     $( "#createOrder" ).click(function() {
-
+      
       $(this).prop("disabled", true);
       $(this).html(
         '<i class="spinner-border spinner-border-sm"></i>'
       );
 
-      id= 5;
+      id= <?= json_encode($entry->id)?>;
 
       $.post(`/admin/createOrder/${id}`).done(function (result, status, xhr) {
         swal("Estudiante inscripto", "ISMP admin", {
