@@ -337,7 +337,11 @@ class Controller extends BaseController
     }
 
     public function examenes(){
-        return view('estudiantes/examenes');
+        return view('estudiantes/exams');
+    }
+
+    public function reinscripciones(){
+        return view('estudiantes/re-registrations');
     }
 
     public function orders($id){
