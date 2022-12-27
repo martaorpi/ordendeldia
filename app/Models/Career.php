@@ -32,6 +32,18 @@ class Career extends Model
      *
      * @var array
      */
+    public function getStudentTuitionAttribut(){
+        return 200;
+    }
+
+    public function getEntrantTuitionAttribut(){
+        return 200;
+    }
+
+    public function getDutyAttribut(){
+        return 200;
+    }
+    
     protected $casts = [
         'id' => 'integer',
     ];
