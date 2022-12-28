@@ -18,6 +18,8 @@ class DropTariffCategoriesTable extends Migration
             $table->dropColumn('category');
             $table->float('amount');
             $table->enum('type', ["Ingreso","Arancel Mensual","Matrícula","Otro"]);
+            $table->integer('reference_id');
+            $table->string('model');
         });
     }
 
@@ -33,6 +35,8 @@ class DropTariffCategoriesTable extends Migration
             $table->string('category');
             $table->dropColumn('amount');
             $table->dropColumn('type');
+            $table->dropColumn('reference_id');
+            $table->dropColumn('model');
         });
     }
 }

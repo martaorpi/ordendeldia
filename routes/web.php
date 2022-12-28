@@ -63,8 +63,4 @@ Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);
 Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
 
-Route::get('/estudiantes/exams', [Controller::class, 'examenes']);
-Route::get('/estudiantes/re-registrations', [Controller::class, 'reinscripciones']);
-Route::get('/estudiantes/prueba', [Controller::class, 'prueba']);
-
 StudentController::routes();

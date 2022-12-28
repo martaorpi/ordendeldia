@@ -1,6 +1,6 @@
 <div class="card-deck">
     <div class="card border-danger mb-3" >
-        <a href="/estudiantes/ordenes/50" class="text-decoration-none">
+        <a href="/estudiantes/ordenes/{{auth()->user()->student[0]->id}}" class="text-decoration-none">
             <div class="card-header">PAGOS</div>
             <div class="card-body text-danger">
                 <p class="card-title">Sistema Arancelario</p>                
@@ -9,7 +9,7 @@
     </div>
 
     <div class="card border-danger mb-3" >
-        <a href="estudiantes/exams" class="text-decoration-none">
+        <a href="/estudiantes/exams" class="text-decoration-none">
             <div class="card-header">INSCRIPCIÓN A EXAMEN</div>
             <div class="card-body text-danger">
                 <p class="card-title">Exámenes Finales</p>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="card border-danger mb-3" >
-        <a href="estudiantes/re-registrations" class="text-decoration-none">
+        <a href="/estudiantes/re-registrations" class="text-decoration-none">
             <div class="card-header">REINSCRIPCIÓN</div>
             <div class="card-body text-danger">
                 <p class="card-text">Texto.</p>

@@ -34,37 +34,50 @@
                     @include('estudiantes')
                     {{-- en DJ se debe guardar alumno_id, el cycle_id, cuatrimestre actual, fecha y el tipo (Examen Regular/Examen Libre) --}}
                     {{-- en DJ-Item se debe guardar dj_id, subject_id, status --}}
-                    <p class="h3 text-center">EXÁMENES</p>
+                    <p class="h3 text-center">REINSCRIPCIONES</p>
                     <table class="table mt-3">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Asignatura</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Hora</th>
-                            <th scope="col">Fecha Cierre</th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
                           @foreach ($subjects as $subject)
                             <tr>
-                              <th scope="row">1</th>
-                              <td>{{ $subject->description }}</td>
-                              <td>{{ $subject->sworn_declaration_item[0]->exam_student[0]->condition_exam }}</td>
-                              <td>{{ $subject->exam_table[0]->date }}</td>
-                              <td>{{ $subject->exam_table[0]->hour }}</td>
-                              <td>{{ $subject->exam_table[0]->max_date }}</td>
+                              <th scope="row">{{ $subject->id }}</th>
+                              @if ($subject->career_id == 1)
+                                @switch($subject->four_month_period)
+                                    @case(1) @php $anno = '1er Año';@endphp @break
+                                    @case(2) @php $anno = '1er Año';@endphp @break
+                                    @case(3) @php $anno = '2do Año';@endphp @break
+                                    @case(4) @php $anno = '2do Año';@endphp @break
+                                    @case(5) @php $anno = '3er Año';@endphp @break
+                                    @case(6) @php $anno = '3er Año';@endphp @break
+                                    @case(7) @php $anno = '4to Año';@endphp @break
+                                    @case(8) @php $anno = '4to Año';@endphp @break
+                                @endswitch
+                                <td>{{ $subject->description }} - {{ $anno }}</td>
+                              @else
+                                @switch($subject->four_month_period)
+                                    @case(1) @php $cuatri = '1er Cuatrimestre';@endphp @break
+                                    @case(2) @php $cuatri = '2do Cuatrimestre';@endphp @break
+                                    @case(3) @php $cuatri = '3er Cuatrimestre';@endphp @break
+                                    @case(4) @php $cuatri = '4to Cuatrimestre';@endphp @break
+                                    @case(5) @php $cuatri = '5to Cuatrimestre';@endphp @break
+                                    @case(6) @php $cuatri = '6to Cuatrimestre';@endphp @break
+                                @endswitch
+                                <td>{{ $subject->description }} - {{ $cuatri }}</td>
+                              @endif
+                              
                               <td>
                                   {{--<form>
                                       <button type="submit" class="btn btn-primary">Inscribir</button>
                                   </form>--}}
-                                  @if ($subject->sworn_declaration_item[0]->exam_student[0]->sworn_declaration_item_id == 13)
+
                                     <a href="prueba" class="btn btn-primary">Inscribir</a>      
-                                  @else
-                                        <b>Nro de Inscripción: {{$subject->sworn_declaration_item[0]->exam_student[0]->id}}</b>
-                                  @endif
+                                  
                               </td>
                             </tr>
                           @endforeach
