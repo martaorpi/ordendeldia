@@ -7,6 +7,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
 use App\Models\Order;
+use App\Models\Student;
+use App\Models\Career;
 
 /**
  * Class OrderCrudController
@@ -95,6 +97,10 @@ class OrderCrudController extends CrudController
 
     public function createOrder($id){
         try {
+            $student = Student::find($id);
+
+
+
             Order::create([
                 'student_id' => $id,
                 'tariff_account_id' => 1,
