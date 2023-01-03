@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Order;
+use App\Models\Student;
 use App\Models\ExamStudent;
 use Illuminate\Support\Facades\Route;
 use DB;
@@ -29,23 +30,47 @@ class StudentController extends BaseController
     }
     
     public function prueba(){
-        $exam_table = \App\Models\ExamTable::where('subject_id',1)->orderBy('date','DESC')->first();
+        try {
+            $id = 695;
+            $student = Student::find($id);
+
+            return $student->career;
+
+
+            Order::create([
+                'student_id' => $student->id,
+                'tariff_account_id' => 1,
+                'amount' => 5000,
+            ]);
+        } catch (\Throwable $th) {
+            return $th;
+        }
+
+
+
+
+        /*$exam_table = \App\Models\ExamTable::where('subject_id',1)->orderBy('date','DESC')->first();
         /*$input3['exam_table_id'] = $exam_table->id;
         $input3['condition_exam'] = 'Regular';
         ExamStudent::create($input3);*/
 
-        $product = new ExamStudent();
+        /*$product = new ExamStudent();
         $product->exam_table_id = $exam_table->id;
         $product->condition_exam = 'Regular';
         $product->sworn_declaration_item_id	 = 13;
-        $product->save();
+        $product->save();*/
     }
 
     public static function routes()
     {
-        Route::get('/estudiantes/ordenes/{id}', [self::class, 'orders']);
-        Route::get('/estudiantes/exams', [self::class, 'examenes']);
-        Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
-        Route::get('/estudiantes/prueba', [self::class, 'prueba']);
+        Route::group([
+            'middleware' => ['auth','verified']
+        ], function () {
+            Route::get('/estudiantes/ordenes/{id}', [self::class, 'orders']);
+            Route::get('/estudiantes/exams', [self::class, 'examenes']);
+            Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
+
+            Route::get('/estudiantes/prueba', [self::class, 'prueba']);
+        });
     }
 }
