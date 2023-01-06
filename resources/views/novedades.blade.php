@@ -9,7 +9,7 @@
     //$jobs = DB::table('staff_subjects')->select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
     if(date('m') > 06){$cuatrimestre = '2do';}else{$cuatrimestre = '1er';}
 @endphp
-<h3>{{ $cuatrimestre }} Cuatrimestre</h3>
+<h3>{{ $id }} Cuatrimestre</h3>
 <div class="container">
     <div class="row">        
         <div class="col-12">

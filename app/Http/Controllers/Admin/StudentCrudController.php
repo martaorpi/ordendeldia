@@ -379,8 +379,7 @@ class StudentCrudController extends CrudController
         }
     }
 
-    public function signUp($id) 
-    {  
+    public function signUp($id){  
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -459,7 +458,7 @@ class StudentCrudController extends CrudController
             Direccion: ".$direccion.",
             Sexo: ".$sexo.",
             IdCarrera: ".$idcarrera.",
-            CicloLectivo : ".$ciclolectivo."
+            CicloLectivo : ".$ciclolectivo;
 
         $log = new Log;
         $log->user_admin_id = auth()->user()->id;
