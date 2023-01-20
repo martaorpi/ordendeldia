@@ -9,7 +9,7 @@
     //$jobs = DB::table('staff_subjects')->select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
     if(date('m') > 06){$cuatrimestre = '2do';}else{$cuatrimestre = '1er';}
 @endphp
-<h3>{{ $id }} Cuatrimestre</h3>
+<h3>{{ $cuatrimestre }} Cuatrimestre</h3>
 <div class="container">
     <div class="row">        
         <div class="col-12">
@@ -118,11 +118,12 @@
                                     $tit_spep_gral += $tit_spep;
                                 }else{
                                     foreach ($staff as $l) {
-                                        if(date('m') > 06){
+                                        /*if(date('m') > 06){
                                             $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '2do Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
                                         }else{
                                             $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '1er Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
-                                        }
+                                        }*/
+                                        $staff_subjects = App\Models\StaffSubject::where('job_id', $job->job_id)->get()->unique('staff_id');
                                         foreach ($staff_subjects as $staff_subject) {
                                             if(App\Models\StaffSubject::where('plant_type', 'Privada')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$privada++;}
                                             if(App\Models\StaffSubject::where('plant_type', 'Suplente Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$sup_spep++;}
