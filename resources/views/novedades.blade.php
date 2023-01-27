@@ -117,19 +117,31 @@
                                     $sup_spep_gral += $sup_spep;
                                     $tit_spep_gral += $tit_spep;
                                 }else{
-                                    foreach ($staff as $l) {
+                                    //foreach ($staff as $l) {
                                         /*if(date('m') > 06){
                                             $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '2do Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
                                         }else{
                                             $staff_subjects = App\Models\StaffSubject::where('staff_id', $l->id)->where(function($q) {$q->where('plant_mode', '1er Cuatrimestre')->orWhere('plant_mode', 'Anual');})->get()->unique('staff_id');
                                         }*/
-                                        $staff_subjects = App\Models\StaffSubject::where('job_id', $job->job_id)->get()->unique('staff_id');
-                                        foreach ($staff_subjects as $staff_subject) {
+                                        //$staff_subjects = App\Models\StaffSubject::where('job_id', $job->job_id)->get()->unique('staff_id');
+                                        /*foreach ($staff_subjects as $staff_subject) {
                                             if(App\Models\StaffSubject::where('plant_type', 'Privada')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$privada++;}
                                             if(App\Models\StaffSubject::where('plant_type', 'Suplente Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$sup_spep++;}
                                             if(App\Models\StaffSubject::where('plant_type', 'Titular Spep')->where('id', $staff_subject->id)->where('job_id', $job->job_id)->first()){$tit_spep++;}
                                         }   
-                                    }
+                                    }*/
+                                    $privada = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                ->where('job_id', $job->job_id)
+                                                ->where('plant_type', 'Privada')
+                                                ->count();
+                                    $sup_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                ->where('job_id', $job->job_id)
+                                                ->where('plant_type', 'Suplente Spep')
+                                                ->count();
+                                    $tit_spep = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                ->where('job_id', $job->job_id)
+                                                ->where('plant_type', 'Titular Spep')
+                                                ->count();
                                     $priv_gral += $privada;
                                     $sup_spep_gral += $sup_spep;
                                     $tit_spep_gral += $tit_spep;
@@ -194,15 +206,11 @@
                                                             @endforeach
                                                         @else
                                                             @php
-                                                            if(date('m') > 06){
-                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                                        ->where('job_id', $job->job_id)
-                                                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                        ->get()
-                                                                        ->unique('staff_id');
-                                                            }else{
-                                                            
-                                                            }
+                                                            $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->get()
+                                                                    ->unique('staff_id');
                                                             @endphp
                                                             @foreach ($staff_subjects as $staff_subject)
                                                                 <tr>
