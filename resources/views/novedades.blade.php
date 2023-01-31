@@ -474,10 +474,16 @@
                                                     <tbody>
                                                         @if($job->job_id ==6 || $job->job_id ==11)
                                                             @php
-                                                            $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                            /*$staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                                     ->where('job_id', $job->job_id)
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                    ->get();
+                                                                    ->get();*/
+                                                            $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                ->where('job_id', $job->job_id)
+                                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                ->get();
                                                             @endphp
                                                             @foreach ($staff_jobs as $staff_job)
                                                                 <tr>
@@ -490,11 +496,17 @@
                                                             @endforeach
                                                         @else
                                                             @php
-                                                            $staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                            /*$staff_jobs = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
                                                                     ->where('job_id', $job->job_id)
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
                                                                     ->get()
-                                                                    ->unique('staff_id');
+                                                                    ->unique('staff_id');*/
+                                                            $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, weekly_hours')
+                                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                ->where('job_id', $job->job_id)
+                                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'weekly_hours'])
+                                                                ->get();
                                                             @endphp
                                                             @foreach ($staff_jobs as $staff_job)
                                                                 <tr>
