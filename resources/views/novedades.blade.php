@@ -176,23 +176,43 @@
                                                         @if($job->job_id ==6 || $job->job_id ==11)
                                                             @php
                                                             if(date('m') > 06){
-                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
+                                                                /*$staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
                                                                         ->where('job_id', $job->job_id)
                                                                         ->where(function($q) {$q
                                                                             ->where('plant_mode', '2do Cuatrimestre')
                                                                             ->orWhere('plant_mode', 'Anual');
                                                                         })
                                                                         ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                        ->get();
+                                                                        ->get();*/
+                                                                $staff_subjects = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
                                                             }else{
-                                                                $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
+                                                                /*$staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
                                                                         ->where('job_id', $job->job_id)
                                                                         ->where(function($q) {$q
                                                                             ->where('plant_mode', '1er Cuatrimestre')
                                                                             ->orWhere('plant_mode', 'Anual');
                                                                         })
                                                                         ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                        ->get();
+                                                                        ->get();*/
+                                                                $staff_subjects = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
                                                             }
                                                             @endphp
                                                             @foreach ($staff_subjects as $staff_subject)
@@ -206,11 +226,17 @@
                                                             @endforeach
                                                         @else
                                                             @php
-                                                            $staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
+                                                            /*$staff_subjects = App\Models\StaffSubject::whereHas('staff', function($q){$q->where('status', 'Activo')->orderBy('name');})
                                                                     ->where('job_id', $job->job_id)
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
                                                                     ->get()
-                                                                    ->unique('staff_id');
+                                                                    ->unique('staff_id');*/
+                                                            $staff_subjects = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                ->where('job_id', $job->job_id)
+                                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                ->get();
                                                             @endphp
                                                             @foreach ($staff_subjects as $staff_subject)
                                                                 <tr>
@@ -478,12 +504,29 @@
                                                                     ->where('job_id', $job->job_id)
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
                                                                     ->get();*/
-                                                            $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
-                                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                                ->where('job_id', $job->job_id)
-                                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
-                                                                ->get();
+                                                            if(date('m') > 06){
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
+                                                            }else{
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
+                                                            }
                                                             @endphp
                                                             @foreach ($staff_jobs as $staff_job)
                                                                 <tr>
@@ -581,14 +624,39 @@
                                 $priv_gral += $privada;
                                 $sup_spep_gral += $sup_spep;
                                 $tit_spep_gral += $tit_spep;
-                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
-                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
-                                                ->where('job_id', $job->job_id)
-                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
-                                                ->get();
                                 $i=1;
-                                
+                                /*if($staff->job->id == 6 || $staff->job->id == 11){
+                                    if(date('m') > 06){
+                                        $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                            ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                            ->where('job_id', $job->job_id)
+                                            ->where(function($q) {$q
+                                                ->where('plant_mode', '2do Cuatrimestre')
+                                                ->orWhere('plant_mode', 'Anual');
+                                            })
+                                            ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                            ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                            ->get();
+                                    }else{
+                                        $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                            ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                            ->where('job_id', $job->job_id)
+                                            ->where(function($q) {$q
+                                                ->where('plant_mode', '1er Cuatrimestre')
+                                                ->orWhere('plant_mode', 'Anual');
+                                            })
+                                            ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                            ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                            ->get();
+                                    }
+                                }else{*/
+                                    $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                        ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                        ->where('job_id', $job->job_id)
+                                        ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                        ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                        ->get();
+                                //}
                                 @endphp
 
                                 <tr data-toggle="collapse" data-target="#demo{{$job->job_id}}" class="accordion-toggle">
@@ -615,50 +683,73 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($staff_jobs as $staff_job)
+                                                        @if($job->job_id ==6 || $job->job_id ==11)
                                                             @php
-                                                            $cant_staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->count();
-                                                            //$staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->first();
-                                                            $staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('job_id', $staff_job->job_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                            if(date('m') > 06){
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '2do Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
+                                                            }else{
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                    ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                    ->where('job_id', $job->job_id)
+                                                                    ->where(function($q) {$q
+                                                                        ->where('plant_mode', '1er Cuatrimestre')
+                                                                        ->orWhere('plant_mode', 'Anual');
+                                                                    })
+                                                                    ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->get();
+                                                            }
                                                             @endphp
-                                                            <tr>
-                                                                <td>{{ $i++ }}</td>
-                                                                <td>
-                                                                    @if($staff->job->id == 6 || $staff->job->id == 11)
-                                                                        {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)
-                                                                    @else
-                                                                        {{$staff_job->staff->name}} ({{$cant_staff}} esp. curr.)
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    @if($staff_job->plant_type == 'PRIVADA') 
-                                                                        @if($staff->job->id == 6 || $staff->job->id == 11)
-                                                                            {{$staff->job->score * $staff->weekly_hours}} 
-                                                                        @else
-                                                                            {{$staff->job->score}}
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    @if($staff_job->plant_type == 'SUPLENTE SPEP') 
-                                                                        @if($staff->job->id == 6 || $staff->job->id == 11)
-                                                                            {{$staff->job->score * $staff->weekly_hours}} 
-                                                                        @else
-                                                                            {{$staff->job->score}}
-                                                                        @endif   
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    @if($staff_job->plant_type == 'TITULAR SPEP') 
-                                                                        @if($staff->job->id == 6 || $staff->job->id == 11)
-                                                                            {{$staff->job->score * $staff->weekly_hours}} 
-                                                                        @else
-                                                                            {{$staff->job->score}}
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                            @foreach ($staff_jobs as $staff_job)
+                                                                @php
+                                                                $cant_staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->count();
+                                                                //$staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                                $staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('job_id', $staff_job->job_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                                @endphp
+                                                                <tr>
+                                                                    <td>{{ $i++ }}</td>
+                                                                    <td>{{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)</td>
+                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @else
+                                                            @php
+                                                            $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, weekly_hours')
+                                                                ->whereHas('staff', function($q){$q->where('status', 'Activo');})
+                                                                ->where('job_id', $job->job_id)
+                                                                ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
+                                                                ->groupBy(['staff_id', 'plant_type', 'job_id', 'weekly_hours'])
+                                                                ->get();
+                                                            @endphp
+                                                            @foreach ($staff_jobs as $staff_job)
+                                                                @php
+                                                                $cant_staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->count();
+                                                                //$staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                                $staff = App\Models\staffSubject::where('staff_id', $staff_job->staff_id)->where('job_id', $staff_job->job_id)->where('plant_type', $staff_job->plant_type)->first();
+                                                                @endphp
+                                                                <tr>
+                                                                    <td>{{ $i++ }}</td>
+                                                                    <td>{{$staff_job->staff->name}}</td>
+                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score}} @endif</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+
+
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
