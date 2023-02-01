@@ -26,7 +26,7 @@
                                 @foreach ($staff->subjects as $subject)
                                     @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
                                     <tr>
-                                        <td>{{ $subject->description }}</td>
+                                        <td>{{ $subject->description }} (Cód {{ $subject->code }})</td>
                                         <td>{{ $job->description }}</td>
                                         <td>{{ $subject->pivot->start_date }}</td>
                                         <td>{{ $subject->pivot->weekly_hours }}</td>
@@ -68,7 +68,7 @@
                           {{ $staff->status }}<br><br>
                           @foreach ($staff->subjects as $subject)
                             @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
-                            <b>Función:</b> {{ $job->description }} - <i>"{{ $subject->description }}"</i>
+                            <b>Función:</b> {{ $job->description }} - <i>"{{ $subject->description }}" (Cód {{ $subject->code }})</i>
                             <table class="table">
                                 <tr>
                                     <th>Fecha de Alta</th>
