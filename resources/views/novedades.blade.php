@@ -218,7 +218,13 @@
                                                             @foreach ($staff_subjects as $staff_subject)
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
-                                                                    <td>{{$staff_subject->staff->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})</td>
+                                                                    <td>
+                                                                        @if($staff_subject->subject->id == 286)    
+                                                                            {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}})
+                                                                        @else
+                                                                            {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})
+                                                                        @endif
+                                                                    </td>
                                                                     <td>@if($staff_subject->plant_type == 'PRIVADA') X @endif</td>
                                                                     <td>@if($staff_subject->plant_type == 'SUPLENTE SPEP') X @endif</td>
                                                                     <td>@if($staff_subject->plant_type == 'TITULAR SPEP') X @endif</td>
@@ -531,7 +537,13 @@
                                                             @foreach ($staff_jobs as $staff_job)
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
-                                                                    <td>{{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}})</td>
+                                                                    <td>
+                                                                        @if($staff_job->subject->id === 286)
+                                                                            {{$staff_job->staff->name}} ({{$staff_job->subject->description}})
+                                                                        @else
+                                                                            {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}})
+                                                                        @endif                                                                        
+                                                                    </td>
                                                                     <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
                                                                 <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
@@ -717,7 +729,13 @@
                                                                 @endphp
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
-                                                                    <td>{{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)</td>
+                                                                    <td>
+                                                                        @if($staff_job->subject->id === 286)
+                                                                            {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff->weekly_hours}} Hs. Cat.)
+                                                                        @else
+                                                                            {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)
+                                                                        @endif
+                                                                    </td>
                                                                     <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
                                                                     <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
                                                                     <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
