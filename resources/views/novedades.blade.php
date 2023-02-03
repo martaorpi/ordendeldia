@@ -511,7 +511,7 @@
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
                                                                     ->get();*/
                                                             if(date('m') > 06){
-                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id, weekly_hours')
                                                                     ->whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                                     ->where('job_id', $job->job_id)
                                                                     ->where(function($q) {$q
@@ -519,10 +519,10 @@
                                                                         ->orWhere('plant_mode', 'Anual');
                                                                     })
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id', 'weekly_hours'])
                                                                     ->get();
                                                             }else{
-                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id')
+                                                                $staff_jobs = App\Models\StaffSubject::selectRaw('staff_id, plant_type, job_id, subject_id, weekly_hours')
                                                                     ->whereHas('staff', function($q){$q->where('status', 'Activo');})
                                                                     ->where('job_id', $job->job_id)
                                                                     ->where(function($q) {$q
@@ -530,9 +530,10 @@
                                                                         ->orWhere('plant_mode', 'Anual');
                                                                     })
                                                                     ->whereIn('plant_type', ['Privada', 'Suplente Spep', 'Titular Spep'])
-                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id'])
+                                                                    ->groupBy(['staff_id', 'plant_type', 'job_id', 'subject_id', 'weekly_hours'])
                                                                     ->get();
                                                             }
+                                                         
                                                             @endphp
                                                             @foreach ($staff_jobs as $staff_job)
                                                                 <tr>
@@ -545,8 +546,8 @@
                                                                         @endif                                                                        
                                                                     </td>
                                                                     <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
                                                                 </tr>
                                                             @endforeach
                                                         @else
@@ -568,8 +569,8 @@
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>{{$staff_job->staff->name}}</td>
                                                                     <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
-                                                                <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
+                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff_job->weekly_hours}} @endif</td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
@@ -736,9 +737,33 @@
                                                                             {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)
                                                                         @endif
                                                                     </td>
-                                                                    <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
-                                                                    <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
-                                                                    <td>@if($staff_job->plant_type == 'TITULAR SPEP') {{$staff->job->score * $staff->weekly_hours}} @endif</td>
+                                                                    <td>
+                                                                        @if($staff_job->plant_type == 'PRIVADA') 
+                                                                            @if($job->job_id ==6)
+                                                                                {{$staff->job->score * $staff->weekly_hours}}
+                                                                            @else
+                                                                                {{$staff->job->score}}
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        @if($staff_job->plant_type == 'SUPLENTE SPEP') 
+                                                                            @if($job->job_id ==6)
+                                                                                {{$staff->job->score * $staff->weekly_hours}}
+                                                                            @else
+                                                                                {{$staff->job->score}}
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        @if($staff_job->plant_type == 'TITULAR SPEP') 
+                                                                            @if($job->job_id ==6)
+                                                                                {{$staff->job->score * $staff->weekly_hours}}
+                                                                            @else
+                                                                                {{$staff->job->score}}
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @else
