@@ -6,7 +6,7 @@
                       <img src="images/user.png" alt="">
                   </div>
                   <div class="col-10">
-                      <h5 class="mt-4">{{ $staff->name }}</h5>
+                      <h5 class="mt-4">{{ $staff->name }} </h5>
                       <div class="table-responsive">
                           <table class="table table-sm">
                               <thead>
@@ -14,6 +14,7 @@
                                       <th scope="col">Cargos/Asignaciones</th>
                                       <th scope="col">Función</th>
                                       <th scope="col">Fecha Alta</th>
+                                      <th scope="col">Fecha Baja</th>
                                       <th scope="col">HR/HC</th>
                                       <th scope="col">Días</th>
                                       <th scope="col">Lugar</th>
@@ -29,10 +30,25 @@
                                         <td>{{ $subject->description }} (Cód {{ $subject->code }})</td>
                                         <td>{{ $job->description }}</td>
                                         <td>{{ $subject->pivot->start_date }}</td>
+                                        <td>{{ $subject->pivot->end_date }}</td>
                                         <td>{{ $subject->pivot->weekly_hours }}</td>
                                         <td></td>
                                         <td></td>
-                                        <td>{{ $subject->pivot->plant_type }}</td>
+                                        <td>
+                                            {{ $subject->pivot->plant_type }}
+                                            @if($subject->pivot->plant_type=='SUPLENTE SPEP')
+                                                @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'TITULAR SPEP')->get(); @endphp
+                                                @foreach ($staff_tit as $s)
+                                                    <br><small>(TITULAR: {{$s->staff->name}})</small>
+                                                @endforeach
+                                            @endif
+                                            @if($subject->pivot->plant_type=='TITULAR SPEP')
+                                                @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'SUPLENTE SPEP')->get(); @endphp
+                                                @foreach ($staff_tit as $s)
+                                                    <br><small>(SUPLENTE: {{$s->staff->name}})</small>
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <td></td>
                                     </tr>
                                 @endforeach
@@ -65,7 +81,7 @@
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                          {{ $staff->status }}<br><br>
+                          {{ $staff->status }} - Alta en el ISMP: {{ $staff->start_date }}<br><br>
                           @foreach ($staff->subjects as $subject)
                             @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
                             <b>Función:</b> {{ $job->description }} - <i>"{{ $subject->description }}" (Cód {{ $subject->code }})</i>
