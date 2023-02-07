@@ -19,7 +19,6 @@
                                       <th scope="col">Días</th>
                                       <th scope="col">Lugar</th>
                                       <th scope="col">Afectacion presupuestaria</th>
-                                      <th scope="col">Tpo estim. jubilación</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -29,27 +28,28 @@
                                     <tr>
                                         <td>{{ $subject->description }} (Cód {{ $subject->code }})</td>
                                         <td>{{ $job->description }}</td>
-                                        <td>{{ $subject->pivot->start_date }}</td>
-                                        <td>{{ $subject->pivot->end_date }}</td>
+                                        <td>@if($subject->pivot->start_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->start_date)) }}@endif</td>
+                                        <td>@if($subject->pivot->end_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->end_date)) }}@endif</td>
                                         <td>{{ $subject->pivot->weekly_hours }}</td>
                                         <td></td>
                                         <td></td>
                                         <td>
                                             {{ $subject->pivot->plant_type }}
-                                            @if($subject->pivot->plant_type=='SUPLENTE SPEP')
-                                                @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'TITULAR SPEP')->get(); @endphp
-                                                @foreach ($staff_tit as $s)
-                                                    <br><small>(TITULAR: {{$s->staff->name}})</small>
-                                                @endforeach
-                                            @endif
-                                            @if($subject->pivot->plant_type=='TITULAR SPEP')
-                                                @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'SUPLENTE SPEP')->get(); @endphp
-                                                @foreach ($staff_tit as $s)
-                                                    <br><small>(SUPLENTE: {{$s->staff->name}})</small>
-                                                @endforeach
+                                            @if($job->id == 6)
+                                                @if($subject->pivot->plant_type=='SUPLENTE SPEP')
+                                                    @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'TITULAR SPEP')->get(); @endphp
+                                                    @foreach ($staff_tit as $s)
+                                                        <br><small>(TITULAR: {{$s->staff->name}})</small>
+                                                    @endforeach
+                                                @endif
+                                                @if($subject->pivot->plant_type=='TITULAR SPEP')
+                                                    @php $staff_tit = App\Models\StaffSubject::where('subject_id', $subject->id)->where('plant_type', 'SUPLENTE SPEP')->get(); @endphp
+                                                    @foreach ($staff_tit as $s)
+                                                        <br><small>(SUPLENTE: {{$s->staff->name}})</small>
+                                                    @endforeach
+                                                @endif
                                             @endif
                                         </td>
-                                        <td></td>
                                     </tr>
                                 @endforeach
                               </tbody>
@@ -81,8 +81,71 @@
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                          {{ $staff->status }} - Alta en el ISMP: {{ $staff->start_date }}<br><br>
-                          @foreach ($staff->subjects as $subject)
+                        <b>{{ $staff->status }}</b><br>
+                        Alta en el ISMP: <b>{{ date("d-m-Y", strtotime($staff->start_date)) }}</b><br>
+                        Tiempo estimado jubilación:
+                        @php
+                            $diff = date_diff(date_create($staff->date_birth), date_create(date("Y-m-d")));
+                            $age = $diff->format('%y');
+
+                            $diff2 = date_diff(date_create($staff->start_contributions), date_create(date("Y-m-d")));
+                            $contributions = $diff2->format('%y');
+
+                            $diff3 = date_diff(date_create($staff->start_date), date_create(date("Y-m-d")));
+                            $date_ismp = $diff3->format('%y');
+                        @endphp
+                        @if($job->id != 6 && $job->id != 7 && $job->id != 8 && $job->id != 9 && $job->id != 11 && $job->id != 16 && $job->id != 17)
+                            @php
+                                if($staff->sex == 'F'){$edad_min = 60;}else{$edad_min = 65;}
+
+                                if($age < $edad_min){
+                                    $jubilacion_x_edad = $edad_min - $age;
+                                }else{$jubilacion_x_edad = 0;}
+
+                                if($contributions < 30){
+                                    $jubilacion_x_aportes = 30 - $contributions;
+                                }else{$jubilacion_x_aportes = 0;}
+
+                                if($jubilacion_x_edad > $jubilacion_x_aportes){
+                                    $jubilacion = $jubilacion_x_edad;
+                                    $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->date_birth)) . " + ".$age+$jubilacion." year"));
+                                }else{
+                                    $jubilacion = $jubilacion_x_aportes;
+                                    if($staff->start_contributions != Null){
+                                        $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->start_contributions))."+".$contributions+$jubilacion." year"));
+                                    }else{
+                                        $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d")."+".$contributions+$jubilacion." year"));;
+                                    }
+                                }
+                            @endphp
+                        @else
+                            @php
+                                if($staff->sex == 'F'){$edad_min = 60;}else{$edad_min = 65;}
+
+                                if($age < $edad_min){
+                                    $jubilacion_x_edad = $edad_min - $age;
+                                }else{$jubilacion_x_edad = 0;}
+
+                                if($contributions < 25){
+                                    $jubilacion_x_aportes = 25 - $contributions;
+                                }else{$jubilacion_x_aportes = 0;}
+
+                                if($jubilacion_x_edad > $jubilacion_x_aportes){
+                                    $jubilacion = $jubilacion_x_edad;
+                                    $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->date_birth))."+".$age+$jubilacion." year"));
+                                }elseif($jubilacion_x_edad < $jubilacion_x_aportes){
+                                    $jubilacion = $jubilacion_x_aportes;
+                                    if($staff->start_contributions != Null){
+                                        $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->start_contributions))."+".$contributions+$jubilacion." year"));
+                                    }else{
+                                        $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d")."+".$contributions+$jubilacion." year"));;
+                                    }
+                                }
+                            @endphp
+                        @endif
+                        {{ $jubilacion }} años - Fecha estimada: <b>{{ $fecha_estimada }}</b>
+                        <br><br>
+                        @foreach ($staff->subjects as $subject)
                             @php $job = App\Models\Job::where('id', $subject->pivot->job_id)->first(); @endphp
                             <b>Función:</b> {{ $job->description }} - <i>"{{ $subject->description }}" (Cód {{ $subject->code }})</i>
                             <table class="table">
@@ -93,14 +156,14 @@
                                     <th>Convenio colectivo de trabajo</th>
                                 </tr> 
                                 <tr>
-                                    <td>{{ $subject->pivot->start_date }}</td>
-                                    <td>{{ $subject->pivot->end_date }}</td>
+                                    <td>@if($subject->pivot->start_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->start_date)) }} @endif</td>
+                                    <td>@if($subject->pivot->end_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->end_date)) }} @endif</td>
                                     <td>{{ $subject->pivot->resolution_number }}</td>
                                     <td>{{ $subject->pivot->plant_type }}</td>
                                 </tr>   
                             </table>
                             <br>
-                          @endforeach
+                        @endforeach
                           
                           {{--Remuneracion bruta<br>
                           <table class="table">
