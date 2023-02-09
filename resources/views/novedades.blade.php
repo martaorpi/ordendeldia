@@ -731,11 +731,11 @@
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>
-                                                                        @if($staff_job->subject->id === 286)
+                                                                        {{--@if($staff_job->subject->id === 286)--}}
                                                                             {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff->weekly_hours}} Hs. Cat.)
-                                                                        @else
+                                                                        {{--@else
                                                                             {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}} - {{$staff->weekly_hours}} Hs. Cat.)
-                                                                        @endif
+                                                                        @endif--}}
                                                                     </td>
                                                                     <td>
                                                                         @if($staff_job->plant_type == 'PRIVADA') 
