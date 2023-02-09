@@ -133,7 +133,7 @@
                                 if($jubilacion_x_edad > $jubilacion_x_aportes){
                                     $jubilacion = $jubilacion_x_edad;
                                     $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->date_birth))."+".$age+$jubilacion." year"));
-                                }elseif($jubilacion_x_edad < $jubilacion_x_aportes){
+                                }else{
                                     $jubilacion = $jubilacion_x_aportes;
                                     if($staff->start_contributions != Null){
                                         $fecha_estimada = date("d-m-Y", strtotime(date("Y-m-d", strtotime($staff->start_contributions))."+".$contributions+$jubilacion." year"));
