@@ -219,7 +219,7 @@
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>
-                                                                        @if($staff_subject->subject->id == 286)    
+                                                                        @if($staff_subject->subject->description == 'SOE')    
                                                                             {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}})
                                                                         @else
                                                                             {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})
