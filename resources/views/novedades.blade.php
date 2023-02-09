@@ -219,11 +219,9 @@
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>
-                                                                        @if($staff_subject->subject->description == 'SOE')    
+                                                                        
                                                                             {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}})
-                                                                        @else
-                                                                            {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})
-                                                                        @endif
+                                                                        
                                                                     </td>
                                                                     <td>@if($staff_subject->plant_type == 'PRIVADA') X @endif</td>
                                                                     <td>@if($staff_subject->plant_type == 'SUPLENTE SPEP') X @endif</td>
