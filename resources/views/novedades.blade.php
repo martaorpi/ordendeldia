@@ -219,9 +219,11 @@
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>
-                                                                        
+                                                                        {{--@if($staff_subject->subject->description == 'SOE')   --}}
                                                                             {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}})
-                                                                        
+                                                                        {{--@else
+                                                                            {{$staff_subject->staff->name}} ({{$staff_subject->subject->description}} - {{$staff_subject->subject->career->short_name}})
+                                                                        @endif--}}
                                                                     </td>
                                                                     <td>@if($staff_subject->plant_type == 'PRIVADA') X @endif</td>
                                                                     <td>@if($staff_subject->plant_type == 'SUPLENTE SPEP') X @endif</td>
@@ -537,11 +539,11 @@
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>
-                                                                        @if($staff_job->subject->id === 286)
+                                                                        {{--@if($staff_job->subject->id === 286)--}}
                                                                             {{$staff_job->staff->name}} ({{$staff_job->subject->description}})
-                                                                        @else
+                                                                        {{--@else
                                                                             {{$staff_job->staff->name}} ({{$staff_job->subject->description}} - {{$staff_job->subject->career->short_name}})
-                                                                        @endif                                                                        
+                                                                        @endif--}}                                                                        
                                                                     </td>
                                                                     <td>@if($staff_job->plant_type == 'PRIVADA') {{$staff_job->weekly_hours}} @endif</td>
                                                                     <td>@if($staff_job->plant_type == 'SUPLENTE SPEP') {{$staff_job->weekly_hours}} @endif</td>
