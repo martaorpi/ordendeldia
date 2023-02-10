@@ -50,9 +50,9 @@ class Controller extends BaseController
         $input['status'] = 'Solicitado';
         
         $condition = ["user_id" => auth()->user()->id];
-        $student = Student::updateOrCreate($condition,$input);
 
         if($request->hasFile('files')){
+            $student = Student::updateOrCreate($condition,$input);
             $files = $request->file('files');
             $folder = 'public/uploads/'.$request->dni;
             if (!file_exists($folder)) {

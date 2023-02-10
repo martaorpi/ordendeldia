@@ -339,7 +339,7 @@
     
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
-                    <input type="file" class="form-control-file" name="files[]" multiple>
+                    <input type="file" class="form-control-file" name="files[]" multiple >
                     @php 
                         $file_calificaion_estudiante = $estudiante->documentation->where('description', 'Certificado de Estudios')->last()->src;
                         $file = explode('/',$file_calificaion_estudiante);
