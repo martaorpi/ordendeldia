@@ -113,25 +113,25 @@
                         <hr>
                     </div>
                     @php
-                        $documentation[0] = $entry->documentation->where('description', 'Certificado de Estudios')->last();
-                        $documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
-                        $documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
+                        $documentation = $entry->documentation;
+                        //$documentation[0] = $entry->documentation->where('description', 'Certificado de Estudios')->last();
+                        //$documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
+                        //$documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
                     @endphp
-                    <br><br><br><br>
-  
+                    <br>
+                    <div class="col-sm-12" align="center">
+                        <h5>Certificado de Estudios</h5>
+                    </div>
+                    <br>
                     @foreach ($documentation as $document)
-                      @if ($document)
-                        <div class="col-sm-4 p-2" align="center">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    {{ $document->description }}
-                                </div>   
-                                <div class="col-sm-12">
-                                    <a href="{{ url($document->src) }}" target="_blank">{{ $document->src }}</a>
-                                </div>   
-                            </div>   
-                        </div>                            
-                      @endif
+                        @php
+                            $file = explode('/',$document->src);        
+                        @endphp
+                        @if ($document)
+                            <div class="col-sm-4 p-2" align="center">
+                                <a href="{{ url($document->src) }}" target="_blank">{{ $file[3] }}</a>  
+                            </div>                            
+                        @endif
                     @endforeach
                     
                     <div class="col-sm-12">
