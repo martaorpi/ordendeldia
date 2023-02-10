@@ -334,17 +334,20 @@
         <div class="form-group row">
             <div class="col-12 col-lg-8">
                 <label>1- Certificados de Estudios Secundarios (copia) o constancia de finalización de estudios sin adeudar materias.</label><br>
-                <small><b>Adjunte un único archivo</b></small>
+                {{--<small><b>Adjunte un único archivo</b></small>--}}
             </div>
     
             <div class="col-12 col-lg-4">
                 @if ($estudiante)
                     <input type="file" class="form-control-file" name="files[]" multiple >
-                    @php 
-                        $file_calificaion_estudiante = $estudiante->documentation->where('description', 'Certificado de Estudios')->last()->src;
-                        $file = explode('/',$file_calificaion_estudiante);
-                    @endphp
-                    <a href="{{ $file_calificaion_estudiante }}">{{ $file[3] }}</a>
+                    @foreach ($estudiante->documentation as $doc)
+                        @php 
+                            //$file_calificaion_estudiante = $estudiante->documentation->where('description', 'Certificado de Estudios')->last()->src;
+                            //$file_calificaion_estudiante = $doc->src;
+                            $file = explode('/',$doc->src);
+                        @endphp
+                        <a href="{{ $doc->src }}">{{ $file[3] }}</a><br>
+                    @endforeach
                 @else
                     <input type="file" class="form-control-file" name="files[]" multiple value="{{ old('files[]') }}" required>
                 @endif

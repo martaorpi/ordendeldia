@@ -64,7 +64,7 @@ class Controller extends BaseController
                 copy($file->getRealPath(),$folder."/".$filename);
                 $inputFile['student_id'] = $student->id;
                 $inputFile['src'] = $folder."/".$filename;
-                $inputFile['description'] = $input['description'.$key];
+                $inputFile['description'] = $input['description0'].$key;
 
                 Documentation::create($inputFile);
             }
