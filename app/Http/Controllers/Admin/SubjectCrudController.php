@@ -225,4 +225,10 @@ class SubjectCrudController extends CrudController
 
         CRUD::setShowContentClass('col-12 mx-auto mt-3');
     }
+
+    public function getSubjects($id,$id2)
+    {
+        $subjects = \App\Models\Subject::where('career_id', $id2)->get();
+        return $subjects;
+    }
 }

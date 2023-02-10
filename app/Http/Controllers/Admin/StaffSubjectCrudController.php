@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StaffSubjectRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use \App\Models\StaffSubject;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class StaffSubjectCrudController
@@ -115,5 +118,25 @@ class StaffSubjectCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function storeSubjects($id ,Request $request){
+        if(isset($request)){
+            $input = $request->all();
+            $input['staff_id'] = $id;
+            $input['user_id'] = Auth::id();
+            $staff_subject = StaffSubject::create($input);
+            
+            if($staff_subject){
+                return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
+            }
+        }
+    }
+
+    protected function deleteSubjects($id ,Request $request){
+        $subject = StaffSubject::where('id', '=', $request->id)->first();
+        if($subject->delete()){
+            return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
+        }
     }
 }

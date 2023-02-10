@@ -69,6 +69,10 @@ Route::group([
     Route::get('staff/{id}/get_discounts', 'DiscountCrudController@getDiscounts');
     Route::post('staff/{id}/delete_discounts', 'StaffDiscountCrudController@deleteDiscounts');
     Route::post('discount/{id}/delete_staff', 'StaffDiscountCrudController@deleteStaff');
+
+    Route::post('staff/{id}/subjects', 'StaffSubjectCrudController@storeSubjects');
+    Route::get('staff/{id}/get_subjects/{id2}', 'SubjectCrudController@getSubjects');
+    Route::post('staff/{id}/delete_subjects', 'StaffSubjectCrudController@deleteSubjects');
     
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('staff', 'StaffCrudController');
