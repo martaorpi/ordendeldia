@@ -128,7 +128,7 @@ class StaffSubjectCrudController extends CrudController
             $staff_subject = StaffSubject::create($input);
             
             if($staff_subject){
-                return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
+                return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects_staff' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
             }
         }
     }
@@ -136,7 +136,7 @@ class StaffSubjectCrudController extends CrudController
     protected function deleteSubjects($id ,Request $request){
         $subject = StaffSubject::where('id', '=', $request->id)->first();
         if($subject->delete()){
-            return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
+            return view('vendor.backpack.licenses_in_staff.subjects_items', ['subjects_staff' => StaffSubject::where('staff_id', $id)->with('subject')->get()]);
         }
     }
 }

@@ -3,8 +3,8 @@
 </div>
 
 <div class="col-12" id="response_subjects">
-  @if (count($subjects) > 0)
-    @include('vendor.backpack.licenses_in_staff.subjects_items', ['subjects' => $subjects])
+  @if (count($subjects_staff) > 0)
+    @include('vendor.backpack.licenses_in_staff.subjects_items', ['subjects_staff' => $subjects_staff])
   @endif
 </div>
 
