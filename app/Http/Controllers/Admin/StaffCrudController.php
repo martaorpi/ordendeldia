@@ -257,7 +257,7 @@ class StaffCrudController extends CrudController
             'name'  => 'start_date',
             'label' => 'Fecha Alta',
             'type' => 'date',
-            'value' => Now(),
+            //'value' => Now(),
             'wrapper'   => [
                 'class' => 'form-group col-12 col-lg-3'
             ],
