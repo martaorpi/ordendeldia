@@ -77,13 +77,13 @@ class StaffCrudController extends CrudController
         CRUD::column('institutional_mail')->label('Correo Institucional');
         CRUD::column('start_date')->label('Fecha Alta');
         CRUD::column('weekly_hours')->label('Horas semanales');
-        CRUD::addColumn([
+        /*CRUD::addColumn([
             'label' => 'Asignaturas',
             'type' => 'relationship',
             'name' => 'subjects', // the method that defines the relationship in your Model
             'entity' => 'subjects', // the method that defines the relationship in your Model
             'attribute' => 'description',
-        ]);
+        ]);*/
         CRUD::column('status')->label('Estado');
         CRUD::column('observations')->label('Observaciones');
 
@@ -270,7 +270,7 @@ class StaffCrudController extends CrudController
                 'class' => 'form-group col-12 col-lg-2'
             ],
         ]);
-        CRUD::addField([
+        /*CRUD::addField([
             'label' => 'Asignaturas',
             'type' => 'select2_multiple',
             'name' => 'subjects', // the method that defines the relationship in your Model
@@ -279,7 +279,7 @@ class StaffCrudController extends CrudController
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
             'inline_create' => ['entity' => 'subject'],
             'ajax' => true,
-        ]);
+        ]);*/
         CRUD::addField([
             'name'  => 'status',
             'label' => 'Estado',
