@@ -2,8 +2,8 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 bg-white border-b border-gray-200 row">
-                  <div class="col-2">
-                      <img src="images/user.png" alt="">
+                  <div class="col-2 text-center pt-3 pl-4">
+                      <img src="/images/user2.png" alt="" width="150">
                   </div>
                   <div class="col-10">
                       <h5 class="mt-4">{{ $staff->name }} </h5>
@@ -156,7 +156,11 @@
                                     <th>Convenio colectivo de trabajo</th>
                                 </tr> 
                                 <tr>
-                                    <td>@if($subject->pivot->start_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->start_date)) }} @endif</td>
+                                    <td>
+                                        @if ($subject->pivot->subject_id == 0)
+                                            {{ date("d-m-Y", strtotime($staff->start_date)) }}
+                                        @elseif($subject->pivot->start_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->start_date)) }} @endif
+                                    </td>
                                     <td>@if($subject->pivot->end_date != Null) {{ date("d-m-Y", strtotime($subject->pivot->end_date)) }} @endif</td>
                                     <td>{{ $subject->pivot->resolution_number }}</td>
                                     <td>{{ $subject->pivot->plant_type }}</td>
