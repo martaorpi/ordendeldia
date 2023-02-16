@@ -42,6 +42,22 @@ class Subject extends Model
     {
         return $this->belongsToMany(\App\Models\Staff::class, 'staff_subjects');
     }
+    public function sworn_declaration_item()
+    {
+        return $this->hasMany(\App\Models\SwornDeclarationItem::class);
+    }
+    public function correlative()
+    {
+        return $this->hasMany(\App\Models\Correlative::class);
+    }
+    public function study_plan()
+    {
+        return $this->belongsTo(\App\Models\StudyPlan::class);
+    }
+    public function exam_table()
+    {
+        return $this->hasMany(\App\Models\ExamTable::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

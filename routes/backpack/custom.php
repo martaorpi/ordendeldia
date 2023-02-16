@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrderCrudController;
 
 // --------------------------
 // Custom Backpack Routes
@@ -39,7 +40,7 @@ Route::group([
     Route::get('exam-table/act_pdf/{id}', 'ExamTableCrudController@act_pdf');
     Route::get('exam-table/act_pdf_reg/{id}', 'ExamTableCrudController@act_pdf_reg');
     Route::crud('exam-shift', 'ExamShiftCrudController');
-    Route::get('sworn-declaration/{id}/get_subjects', 'SwornDeclarationCrudController@getSubjects');
+    Route::get('sworn-declaration/{id}/get_subjects2', 'SwornDeclarationCrudController@getSubjects');
     Route::post('sworn-declaration/{id}/delete_subject', 'SwornDeclarationCrudController@deleteSubject');
     Route::crud('regularity', 'RegularityCrudController');
     Route::post('sworn-declaration/{id}/sworn-declaration-item', 'SwornDeclarationCrudController@storeSwornDeclarationItems');
@@ -48,7 +49,18 @@ Route::group([
         return response()->json($subject);
     });
     
-}); 
+});
+
+Route::group([
+    'namespace'  => 'App\Http\Controllers\Admin',
+    'prefix'     => config('backpack.base.route_prefix', 'admin'),
+    'middleware' => array_merge(
+        (array) config('backpack.base.web_middleware', 'web'),
+        (array) config('backpack.base.middleware_key', 'admin')
+    ),
+], function () { 
+    OrderCrudController::routes();
+});
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),

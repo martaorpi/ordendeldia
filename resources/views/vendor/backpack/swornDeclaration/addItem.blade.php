@@ -44,7 +44,7 @@
   }
     const getSubjects = async () =>{
       try {
-        const url = "get_subjects";
+        const url = "get_subjects2";
         const response = await fetch (url);
         const result = await response.json();
 
@@ -55,11 +55,11 @@
       }
     }
 
-    /*getSubjects().then( data => {
+    getSubjects().then( data => {
       let optionsHTML = ""
       data.map(element => {
         optionsHTML += '<option value="'+element.id+'">'+element.description+'</option>'
-      });*/
+      });
       wrapper.innerHTML =
         `<div class="row" align="left">
           <div class="col-12">
@@ -90,7 +90,7 @@
           </div>
 
         </div>`;
-    //});
+    });
 
     function selectSubject(){
       subjectId = document.getElementById("subject").value;

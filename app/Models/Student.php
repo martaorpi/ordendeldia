@@ -134,6 +134,11 @@ class Student extends Model implements Auditable
         return $this->belongsTo(\App\Models\Location::class, 'location_legal_id');
     }
 
+    public function study_plan()
+    {
+        return $this->belongsTo(\App\Models\StudyPlan::class);
+    }
+
     public function documentation()
     {
         return $this->hasMany(\App\Models\Documentation::class);

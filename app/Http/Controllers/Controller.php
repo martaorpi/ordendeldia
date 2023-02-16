@@ -19,7 +19,9 @@ use App\Models\StaffSubject;
 use App\Models\StaffLicense;
 use App\Models\Staff;
 use App\Models\Job;
+use App\Models\Order;
 use App\Models\License;
+use App\Models\ExamStudent;
 use DB;
 
 use App\Http\Requests\StudentRequestFrontend;
@@ -275,7 +277,7 @@ class Controller extends BaseController
     { 
         $data = array();
         $jobs = StaffSubject::select('job_id', DB::raw('count(*) as total'))->groupBy('job_id')->get();
-        $staff = App\Models\Staff::where('status', 'Activo')->get();
+        $staff = Staff::where('status', 'Activo')->get();
         $priv_gral = 0;                                
         $sup_spep_gral = 0;                                
         $tit_spep_gral = 0;  
@@ -334,5 +336,4 @@ class Controller extends BaseController
         return (new FastExcel($data))->download('licencias_por_planta.xlsx');
     }
 
-    
 }

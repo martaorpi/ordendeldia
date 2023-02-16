@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('/dashboard-2023', function () {
     //return view('errors/403');
 })->middleware(['auth','verified'])->name('dashboard-2023');
 
+Route::get('/pagos', function () {
+    return view('payments');
+    //return view('errors/403');
+})->middleware(['auth','verified'])->name('pagos');
+
 require __DIR__.'/auth.php';
 
 Route::post('formulario-inscripcion', [Controller::class, 'studentUpdateOrCreate']);
@@ -56,3 +62,5 @@ Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);
 
 Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
+
+StudentController::routes();

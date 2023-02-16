@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\TariffCategory;
 
 class Career extends Model
 {
@@ -32,6 +33,21 @@ class Career extends Model
      *
      * @var array
      */
+    public function getStudentTuitionAttribut(){
+        return 200;
+    }
+
+    public function getEntrantTuitionAttribut(){
+        return TariffCategory::where('reference_id', $this->id)
+            ->where('model', $this)
+            ->where('type', 'Matrícula')
+            ->pluck('amount')->latest()->take(1)->first();
+    }
+
+    public function getDutyAttribut(){
+        return 200;
+    }
+    
     protected $casts = [
         'id' => 'integer',
     ];

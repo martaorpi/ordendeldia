@@ -210,7 +210,7 @@ class SwornDeclarationCrudController extends CrudController
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)->where('quarterly_period',1)->get();
         }elseif($dj->type == 'Cursado Regular'){
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)
-                ->whereHas('correlative', function ($q){$q
+                /*->whereHas('correlative', function ($q){$q
                     ->where('condition', 'Cursado')
                     ->where('correlativity_type', 'Fuerte')
                     ->whereHas('sworn_declaration_item', function ($q){$q
@@ -229,11 +229,11 @@ class SwornDeclarationCrudController extends CrudController
                             ->orWhere('date_to', '>=', date('Y-m-d'));
                         });
                     });
-                })
+                })*/
                 ->get();
         }elseif($dj->type == 'Examen Regular'){
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)
-                ->whereHas('sworn_declaration_item', function ($q){$q
+                /*->whereHas('sworn_declaration_item', function ($q){$q
                     ->whereHas('regularity', function ($q){$q
                         ->where('date_from', '<', date('Y-m-d'))
                         ->orWhere('date_to', '>', date('Y-m-d'));
@@ -259,7 +259,8 @@ class SwornDeclarationCrudController extends CrudController
                         });
                     });
                 })
-                ->with('exam_table')
+                ->with('exam_table')*/
+                ->whereHas('exam_table', function ($q){$q->where('current', 1);})
                 ->get();
         }elseif($dj->type == 'Examen Libre'){
             $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)

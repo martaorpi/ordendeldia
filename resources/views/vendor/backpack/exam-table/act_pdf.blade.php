@@ -38,10 +38,14 @@ if($condicion == 'regulares'){
         ->where('condition_exam', 'Libre')
         //->innerJoin('alumnos', 'alumnos.id = alumnos_has_examenes.id_alumno')
         //->orderBy('alumnos.apellido','asc')
-        ->all();
+        ->join('sworn_declaration_items', 'sworn_declaration_items.id', 'exam_students.sworn_declaration_item_id')
+        ->join('sworn_declarations', 'sworn_declarations.id', 'sworn_declaration_items.sworn_declaration_id')
+        ->join('students', 'students.id', 'sworn_declarations.student_id')
+        ->orderBy('students.last_name','asc')
+        ->get();
 }
 
-if($exam_table->subject->study_plan->educative_offer_id == 1){
+if($exam_table->subject->career_id == 1){
     switch($exam_table->subject->annual_period){
         case 1: $curso = '1er AÑO';break;
         case 2: $curso = '2do AÑO';break;
@@ -172,7 +176,7 @@ switch(date("m", strtotime($exam_table->date))){
                         <td align="center"><?= $alumno->oral_qualification ?></td>
                         <td align="center"><?= $letra_oral ?></td>
                         <td align="center"><?= $alumno->average?></td>
-                        <td align="center"><?//= $letra_promedio?></td>
+                        <td align="center"><?= $letra_promedio?></td>
                     </tr>
                 <?php //endif;
             endforeach; 
@@ -192,7 +196,7 @@ switch(date("m", strtotime($exam_table->date))){
             <?php } ?>
         </tbody>
     </table>
-    <p>Se hace constar que de un total de: (<?= count($alumnos)?>) <?= letra(count($alumnos))?> alumnos resultaron:</p>
+    <p>Se hace constar que de un total de: (<?= count($alumnos)?>) <?php if(count($alumnos) >0 ){ echo letra(count($alumnos)); }?> alumnos resultaron:</p>
     <p>Aprobados: ________________________, Desaprobados: ________________________ y Ausentes: ________________________.</p>
     <br><br>
     <table width="100%">
