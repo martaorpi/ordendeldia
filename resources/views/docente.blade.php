@@ -6,7 +6,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 row">
                     <div class="col-2">
-                        <img src="https://devweb.com.ar/ismp.academico/images/user2.png" alt="">
+                        <img src="../../images/user.png" alt="">
                     </div>
                     <div class="col-10">
                         <h1>Nombre</h1><br>
