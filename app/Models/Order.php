@@ -23,4 +23,14 @@ class Order extends Model
     protected $casts = [
         'state' => OrderState::class,
     ];
+
+    public function tariff_category()
+    {
+        return $this->belongsTo(\App\Models\TariffCategory::class, 'tariff_account_id');
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(\App\Models\Student::class);
+    }
 }
