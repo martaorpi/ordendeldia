@@ -187,4 +187,10 @@ class StaffLicenseCrudController extends CrudController
             return view('vendor.backpack.staff_in_licenses.licenses_items', ['staff' => StaffLicense::where('license_id', $id)->with('staff')->get()]);
         }
     }
+
+    protected function getLicenses($id){
+        $licenses = \App\Models\StaffLicense::where('staff_id', $id)->get();
+        //return $licenses;
+        return view('vendor.backpack.licenses_in_staff.licenses_staff', ['staff' => StaffLicense::where('staff_id', $id)->with('staff')->get()]);
+    }
 }
