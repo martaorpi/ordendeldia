@@ -83,7 +83,7 @@ class StudentController extends BaseController
         Route::group([
             'middleware' => ['auth','verified']
         ], function () {
-            Route::get('/estudiantes/{id}/ordenes', [self::class, 'ordersPerStudent']);
+            Route::get('/estudiantes/{id}/ordenes', [self::class, 'ordersPerStudent'])->name('student.orders');
             Route::get('/estudiantes/ordenes/{order}', [self::class, 'order'])->name('order');
             Route::get('/estudiantes/ordenes/{order}/pago', [self::class, 'pay'])->name('pay');
             Route::get('/estudiantes/exams', [self::class, 'examenes']);

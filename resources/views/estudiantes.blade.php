@@ -1,6 +1,6 @@
 <div class="card-deck">
     <div class="card border-danger mb-3" >
-        <a href="/estudiantes/{{auth()->user()->student[0]->id}}/ordenes" class="text-decoration-none">
+        <a href="{{ route('student.orders', auth()->user()->student[0]->id ) }}" class="text-decoration-none">
             <div class="card-header">PAGOS</div>
             <div class="card-body text-danger">
                 <p class="card-title">Sistema Arancelario</p>                
