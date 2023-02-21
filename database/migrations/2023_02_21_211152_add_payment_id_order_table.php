@@ -15,7 +15,7 @@ class AddPaymentIdOrderTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('tariff_account_id');
-            $table->integer('payment_id');
+            $table->integer('payment_id')->nullable();
         });
     }
 
