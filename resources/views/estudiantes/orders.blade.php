@@ -34,7 +34,7 @@
                               <td>{{ $order->created_at }}</td>
                               <td><span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span></td>
                               <td>
-                                 <a href="{{ route('order', $order->id ) }}" class="btn btn-primary">Ver orden</a>
+                                  <a href="{{ route('order', $order->id ) }}" class="btn btn-primary">Ver orden</a>
                               </td>
                             </tr>
                           @endforeach
