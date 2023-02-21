@@ -15,7 +15,7 @@
         $item->unit_price = $order->amount;
 
         $preference->back_urls = array(
-            "success" => route('pay', $order),
+            "success" => route('pay', $order),//TODO: esto es solo para probar el webhook despues deletear
             "failure" => "http://www.tu-sitio/failure",
             "pending" => "http://www.tu-sitio/pending"
         );

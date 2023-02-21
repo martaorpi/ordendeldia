@@ -141,8 +141,6 @@ class OrderCrudController extends CrudController
         try {
             $student = Student::find($id);
 
-
-
             Order::create([
                 'student_id' => $id,
                 'tariff_account_id' => 1,

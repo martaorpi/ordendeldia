@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Student;
+use App\Models\Order;
 
 use App\Mail\StudentsMailable;
 use Illuminate\Support\Facades\Mail;
@@ -28,7 +29,19 @@ class StudentObserver
      * @return void
      */
     public function updated(Student $student)
-    {
+    {        
+        if($student->status == "Aprobado"){
+            try {  
+                Order::create([
+                    'student_id' => $student->id,
+                    'description' => 'Matricula',
+                    'amount' => $student->career->amount,
+                ]);
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
+
         if($student->status == "Inscripto"){
 
             $studentsMail = new StudentsMailable;

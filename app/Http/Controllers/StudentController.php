@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\ExamStudent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use DB;
+use App\States\Order\Paid;
 use Illuminate\Support\Facades\Http;
 
 class StudentController extends BaseController
@@ -71,8 +71,7 @@ class StudentController extends BaseController
         $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
         
         if ($response->status == "approved"){
-            $order->state->transitionTo(\App\States\Order\Paid::class);
-
+            !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
             return redirect()->route("order", $order->id);
         }
         return $response->status;
@@ -85,7 +84,7 @@ class StudentController extends BaseController
         ], function () {
             Route::get('/estudiantes/{id}/ordenes', [self::class, 'ordersPerStudent'])->name('student.orders');
             Route::get('/estudiantes/ordenes/{order}', [self::class, 'order'])->name('order');
-            Route::get('/estudiantes/ordenes/{order}/pago', [self::class, 'pay'])->name('pay');
+            Route::get('/estudiantes/ordenes/{order}/pago', [self::class, 'pay'])->name('pay');//TODO: esto es solo para probar el webhook despues deletear
             Route::get('/estudiantes/exams', [self::class, 'examenes']);
             Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
         });
