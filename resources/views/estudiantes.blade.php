@@ -7,7 +7,7 @@
             </div>
         </a>
     </div>
-
+    
     <div class="card border-danger mb-3" >
         <a href="/estudiantes/exams" class="text-decoration-none">
             <div class="card-header">INSCRIPCIÓN A EXAMEN</div>
