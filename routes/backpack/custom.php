@@ -99,5 +99,5 @@ Route::group([
     Route::get('staff/calculator', 'StaffCrudController@calculator');
 
     Route::get('staff/calculator_pdf/{param}', 'StaffCrudController@calculator_pdf');
+    Route::crud('order', 'OrderCrudController');
 }); // this should be the absolute last line of this file
-

@@ -32,7 +32,7 @@ class OrderCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Order::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/order');
-        CRUD::setEntityNameStrings('order', 'orders');
+        CRUD::setEntityNameStrings('Orden', 'ordenes');
     }
 
     /**
@@ -43,13 +43,25 @@ class OrderCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('student_id');
-        CRUD::column('tariff_account_id');
-        CRUD::column('state');
-        CRUD::column('amount');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-        CRUD::column('deleted_at');
+        CRUD::enableResponsiveTable();
+        CRUD::enableExportButtons();
+
+        CRUD::addColumn([
+            'name'=> 'student',
+            'label'=> 'Estudiante',
+            'type' => "relationship",
+            'attribute' => "full_name",
+        ]);
+
+        CRUD::addColumn([
+            'name'=> 'tariff_category',
+            'label'=> 'Categoría Arancelaria',
+            'type' => "relationship",
+            'attribute' => "description",
+        ]);
+        
+        CRUD::column('state')->label('Estado');
+        CRUD::column('amount')->label('Monto');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -68,15 +80,45 @@ class OrderCrudController extends CrudController
     {
         CRUD::setValidation(OrderRequest::class);
 
-        CRUD::field('student_id');
-        CRUD::field('tariff_account_id');
-        CRUD::field('amount');
+        CRUD::addField([
+            'label' => 'Estudiante',
+            'type' => 'relationship',
+            'name' => 'student_id', // the method that defines the relationship in your Model
+            'entity' => 'student', // the method that defines the relationship in your Model
+            'attribute' => 'full_name', // foreign key attribute that is shown to user
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-6',
+            ],
+        ]);
+
+        CRUD::addField([
+            'label' => 'Categoría Arancelaria',
+            'type' => 'relationship',
+            'name' => 'tariff_account_id', // the method that defines the relationship in your Model
+            'entity' => 'tariff_category', // the method that defines the relationship in your Model
+            'attribute' => 'description', // foreign key attribute that is shown to user
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-6',
+            ],
+        ]);
+        
+        CRUD::addField([
+            'label' => 'Monto',
+            'type' => 'number',
+            'attributes' => ['step' => 0.01],
+            'name' => 'amount', // the method that defines the relationship in your Model
+            'wrapper'   => [
+                'class' => 'col-12 col-lg-6'
+            ],
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+        CRUD::setCreateContentClass('col-12 mx-auto mt-3');
+        CRUD::setEditContentClass('col-12 mx-auto mt-3');
     }
 
     /**
