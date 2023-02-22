@@ -41,20 +41,13 @@ class StudentCrudController extends CrudController
         $this->crud->orderBy('id', 'ASC');
 
         $this->crud->addColumn([
-            'name'=> 'created_at',
-            'label'=> 'Alta',
-            'type'  => 'date',
-            'format'   => 'l',
+            'name'=> 'last_name',
+            'label'=> 'Apellido',
         ]);
 
         $this->crud->addColumn([
             'name'=> 'first_name',
             'label'=> 'Nombre',
-        ]);
-
-        $this->crud->addColumn([
-            'name'=> 'last_name',
-            'label'=> 'Apellido',
         ]);
 
         $this->crud->addColumn([
@@ -67,6 +60,18 @@ class StudentCrudController extends CrudController
             'label'=> 'Carrera',
             'type' => "relationship",
             'attribute' => "short_name",
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'cell_phone',
+            'label'=> 'Tel. Cel.',
+        ]);
+
+        $this->crud->addColumn([
+            'name'=> 'created_at',
+            'label'=> 'Alta',
+            'type'  => 'date',
+            'format'   => 'l',
         ]);
 
         $this->crud->addColumn([
