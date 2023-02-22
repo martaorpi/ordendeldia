@@ -34,6 +34,7 @@ class StaffLicenseCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/staff-license');
         CRUD::setEntityNameStrings('licencia', 'licencias');
         //$this->crud->setListView('vendor/backpack/inc/licenses_items');
+        CRUD::setCreateView('vendor/backpack/staff_licenses/create');
     }
 
     /**
@@ -44,21 +45,46 @@ class StaffLicenseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('staff_id');
-        CRUD::column('license_id');
-        CRUD::column('requested_days');
-        CRUD::column('application_date');
-        CRUD::column('authorized_date');
-        CRUD::column('start_date');
-        CRUD::column('end_date');
-        CRUD::column('user_id');
-        CRUD::column('status');
+        CRUD::removeButton('update');
+        CRUD::removeButton('delete');
+        CRUD::removeButton('show');
+        //CRUD::column('staff_id');
+        CRUD::column('license_id')->label('Licencia');
+        CRUD::column('requested_days')->label('Días Solicitados');
+        CRUD::column('application_date')->label('Fecha Solicitud');
+        CRUD::column('authorized_date')->label('Fecha Autorización');
+        CRUD::column('start_date')->label('Fecha Inicio');
+        CRUD::column('end_date')->label('Fecha Fin');
+        //CRUD::column('user_id');
+        CRUD::column('status')->label('Estado');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+        /************* FILTROS *************/
+
+        CRUD::addFilter([
+            'name'  => 'staff_id',
+            'type'  => 'select2',
+            'label' => 'Personal'
+        ], function() {
+            return \App\Models\Staff::all()->pluck('name', 'id')->toArray();
+        }, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'staff_id', $value);
+        });
+
+        CRUD::addFilter([
+            'name'  => 'status',
+            'type'  => 'dropdown',
+            'label' => 'Estado'
+        ], [
+            'Solicitada' => 'Solicitada',
+            'Autorizada'=> 'Autorizada',
+            'En Curso' => 'En Curso',
+            'Rechazada' => 'Rechazada',
+        ]);
     }
 
     /**
@@ -67,11 +93,28 @@ class StaffLicenseCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    /*protected function setupCreateOperation()
+    protected function setupCreateOperation()
     {
         CRUD::setValidation(StaffLicenseRequest::class);
 
-        CRUD::field('id');
+        CRUD::addField([
+            'type' => 'number',
+            'name' => 'staff_id',
+            'value' => 75,
+            'attributes' => [
+                'hidden' => 'hidden',
+            ],
+        ]);
+
+        CRUD::addField([
+            'type' => 'number',
+            'name' => 'user_id',
+            'value' => auth()->user()->id,
+            'attributes' => [
+                'hidden' => 'hidden',
+            ],
+        ]);
+
         CRUD::field('staff_id');
         CRUD::field('license_id');
         CRUD::field('requested_days');
@@ -79,13 +122,19 @@ class StaffLicenseCrudController extends CrudController
         CRUD::field('authorized_date');
         CRUD::field('start_date');
         CRUD::field('end_date');
-        CRUD::field('user_id');
-        CRUD::field('status');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
-
-        
-    }*/
+        CRUD::addField([
+            'name'  => 'status',
+            'label' => 'Estado',
+            'type' => 'enum',
+            'value' => 'Solicitado',
+            'wrapper'   => [
+                'class' => 'form-group col-12 col-lg-3'
+            ],
+            'attributes' => [
+                'disabled' => 'disabled',
+            ],
+        ]);
+    }
 
     /**
      * Define what happens when the Update operation is loaded.

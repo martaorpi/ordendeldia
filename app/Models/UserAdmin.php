@@ -49,4 +49,9 @@ class UserAdmin extends Authenticatable
     {
         return $this->hasMany(\App\Models\Log::class);
     }
+
+    public function staff()
+    {
+        return $this->belongsTo(\App\Models\Staff::class);
+    }
 }
