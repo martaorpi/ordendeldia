@@ -7,7 +7,7 @@
 
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
-
+        
         // Crea un ítem en la preferencia
         $item = new MercadoPago\Item();
         $item->title = $order->description;
@@ -15,12 +15,12 @@
         $item->unit_price = $order->amount;
 
         $preference->back_urls = array(
-            "success" => route('pay', $order),//TODO: esto es solo para probar el webhook despues deletear
+            "success" => route('order', $order->id),//TODO: esto es solo para probar el webhook despues deletear
             "failure" => "http://www.tu-sitio/failure",
             "pending" => "http://www.tu-sitio/pending"
         );
         $preference->auto_return = "approved";
-
+        $preference->external_reference: $order->id,
 
         $preference->items = array($item);
         $preference->save();

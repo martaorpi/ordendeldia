@@ -14,7 +14,7 @@ class WebhookController extends Controller
         $payment_id = $request['data']['id'];
         $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
         
-        $order = Order::find(2);
+        $order = Order::find($response->external_reference);
         $order->description = $request->all;
         $order->save();
 
@@ -25,6 +25,6 @@ class WebhookController extends Controller
         }
        // return $response->status;
 
-        //return 200;
+       response()->json(['success' => 'success'], 200);
     }
 }
