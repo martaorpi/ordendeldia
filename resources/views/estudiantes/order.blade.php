@@ -20,7 +20,7 @@
             "pending" => "http://www.tu-sitio/pending"
         );
         $preference->auto_return = "approved";
-        $preference->external_reference: $order->id,
+        $preference->external_reference = $order->id;
 
         $preference->items = array($item);
         $preference->save();
