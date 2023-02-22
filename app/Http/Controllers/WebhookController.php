@@ -15,18 +15,16 @@ class WebhookController extends Controller
         $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
         
         $order = Order::find(2);
-        !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
-
-        $order->description = $request->all();
+        $order->description = $request->all;
         $order->save();
 
-        /*if ($response->status == "approved"){
+        if ($response->status == "approved"){
             !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
 
             //return redirect()->route("order", $order->id);
-        }*/
+        }
        // return $response->status;
 
-        return 200;
+        //return 200;
     }
 }
