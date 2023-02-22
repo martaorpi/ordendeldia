@@ -18,6 +18,7 @@ class Order extends Model
         'description',
         'state',
         'amount',
+        'payment_id',
     ];
 
     protected $casts = [
