@@ -12,7 +12,7 @@ class WebhookController extends Controller
     public function __invoke(Request $request)
     {
         $payment_id = $request['data']['id'];
-        $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=" . config('services.mercadopago.token')));
+        $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
         
         $order = Order::find($response->external_reference);
         $order->payment_id = $payment_id;
@@ -21,7 +21,7 @@ class WebhookController extends Controller
         if ($response->status == "approved"){
             !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
         }
-
-        response()->json(['success' => 'success'], 200);
+        
+       response()->json(['success' => 'success'], 200);
     }
 }
