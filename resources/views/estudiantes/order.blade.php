@@ -14,12 +14,12 @@
         $item->quantity = 1;
         $item->unit_price = $order->amount;
 
-        $preference->back_urls = array(
+        /*$preference->back_urls = array(
             "success" => route('order', $order->id),
             "failure" => route('order', $order->id),
             "pending" => route('order', $order->id)
         );
-        $preference->auto_return = "approved";
+        $preference->auto_return = "approved";*/
         $preference->external_reference = $order->id;
 
         $preference->items = array($item);
