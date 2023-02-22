@@ -15,7 +15,7 @@ class Order extends Model
 
     protected $fillable = [
         'student_id',
-        'tariff_account_id',
+        'description',
         'state',
         'amount',
     ];

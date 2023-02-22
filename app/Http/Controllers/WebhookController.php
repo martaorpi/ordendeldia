@@ -21,6 +21,5 @@ class WebhookController extends Controller
             return redirect()->route("order", $order->id);
         }
         return $response->status;
-        
     }
 }
