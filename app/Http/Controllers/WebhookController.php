@@ -17,6 +17,9 @@ class WebhookController extends Controller
         $order = Order::find(2);
         !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
 
+        $order->description = $payment_id;
+        $order->save();
+
         /*if ($response->status == "approved"){
             !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
 
