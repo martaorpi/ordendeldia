@@ -15,9 +15,9 @@
         $item->unit_price = $order->amount;
 
         $preference->back_urls = array(
-            "success" => route('order', $order->id),//TODO: esto es solo para probar el webhook despues deletear
-            "failure" => "http://www.tu-sitio/failure",
-            "pending" => "http://www.tu-sitio/pending"
+            "success" => route('order', $order->id),
+            "failure" => route('order', $order->id),
+            "pending" => route('order', $order->id)
         );
         $preference->auto_return = "approved";
         $preference->external_reference = $order->id;
