@@ -12,17 +12,27 @@ class WebhookController extends Controller
     public function __invoke(Request $request)
     {
         $payment_id = $request['data']['id'];
-        $response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
+        //$response = json_decode(Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149"));
         
-        $order = Order::find("2");
-        $order->payment_id = $response->external_reference;
-        $order->save();
 
-        if ($response->status == "approved"){
+        Http::async()->get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-6091462099911216-022015-618419610b93c8431b635e6a46e8bb80-1314495149")->then(function ($response) {
+            $json_data = json_decode($response);
+
+            $order = Order::find($json_data->external_reference);
+            $order->payment_id = 5555555;
+            $order->save();
+
+        });
+        
+
+
+
+
+        /*if ($response->status == "approved"){
             !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
 
             //return redirect()->route("order", $order->id);
-        }
+        }*/
        // return $response->status;
 
        response()->json(['success' => 'success'], 200);
