@@ -34,6 +34,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <p class="h3 text-center">ORDEN DE PAGO</p>
+                    {{$order}}
                     <span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span>
                 </div>
             </div>
