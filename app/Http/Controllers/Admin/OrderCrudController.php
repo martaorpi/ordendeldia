@@ -6,9 +6,7 @@ use App\Http\Requests\OrderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
-use App\Models\Order;
 use App\Models\Student;
-use App\Models\Career;
 
 /**
  * Class OrderCrudController
@@ -137,15 +135,11 @@ class OrderCrudController extends CrudController
 
     }
 
-    public function createOrder($id){
+    public function createOrder(Student $student){
         try {
-            $student = Student::find($id);
+            $student->status = "Aprobado";
+            $student->save();
 
-            Order::create([
-                'student_id' => $id,
-                'tariff_account_id' => 1,
-                'amount' => 5000,
-            ]);
         } catch (\Throwable $th) {
             return $th;
         }
@@ -153,6 +147,6 @@ class OrderCrudController extends CrudController
 
     public static function routes()
     {
-        Route::post('createOrder/{id}', [self::class, 'createOrder']);
+        Route::post('createOrder/{student}', [self::class, 'createOrder']);
     }
 }
