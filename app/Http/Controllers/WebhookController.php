@@ -23,7 +23,6 @@ class WebhookController extends Controller
             if ($response->status == 'approved'){
                 !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
             }
-            //TODO:enviar mail
 
         } catch (\Throwable $th) {
             throw $th;

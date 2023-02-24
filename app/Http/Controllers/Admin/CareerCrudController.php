@@ -85,29 +85,97 @@ class CareerCrudController extends CrudController
         CRUD::setValidation(CareerRequest::class);
 
         CRUD::addField(
-        [   // Enum
+        [
             'name'  => 'short_name',
             'label' => 'Nombre Corto',
         ]);
 
         CRUD::addField(
-        [   // Enum
+        [
             'name'  => 'amount',
             'label' => 'Monto',
         ]);
 
         CRUD::addField(
-        [   // Enum
+        [
             'name'  => 'available_space',
             'label' => 'Cupos',
         ]);
 
         CRUD::addField(
-        [   // Enum
+        [
             'name'  => 'status',
             'label' => 'Estado',
             'type'  => 'enum'
         ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_1',
+            'label' => 'Enero',
+        ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_2',
+            'label' => 'Febrero',
+        ]);
+        CRUD::addField(
+        [
+            'name'  => 'month_3',
+            'label' => 'Marzo',
+        ]);
+        
+        CRUD::addField(
+        [
+            'name'  => 'month_4',
+            'label' => 'Abril',
+        ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_5',
+            'label' => 'Mayo',
+        ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_6',
+            'label' => 'Junio',
+        ]);
+        CRUD::addField(
+        [
+            'name'  => 'month_7',
+            'label' => 'Julio',
+        ]);
+        CRUD::addField(
+        [
+            'name'  => 'month_8',
+            'label' => 'Agosto',
+        ]);
+        CRUD::addField(
+        [
+            'name'  => 'month_9',
+            'label' => 'Septiembre',
+        ]);
+        
+        CRUD::addField(
+        [
+            'name'  => 'month_10',
+            'label' => 'Octubre',
+        ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_11',
+            'label' => 'Noviembre',
+        ]);
+
+        CRUD::addField(
+        [
+            'name'  => 'month_12',
+            'label' => 'Diciembre',
+        ]);       
 
         //CRUD::setFromDb(); // fields
 

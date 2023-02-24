@@ -20,6 +20,7 @@ Route::group([
     Route::post('student/{id}/custom_email', 'StudentCrudController@customEmail');
     Route::post('student/{id}/check_status', 'StudentCrudController@checkStatus');
     Route::get('student/mass_check', 'StudentCrudController@massCheck');
+    Route::get('student/generate_monthly_orders', 'StudentCrudController@generateMonthlyOrders');
     Route::post('student/{id}/sign_on', 'StudentCrudController@signOn'); 
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('staff', 'StaffCrudController');
