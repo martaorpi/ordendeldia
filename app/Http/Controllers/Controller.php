@@ -37,7 +37,7 @@ class Controller extends BaseController
         //$estudiante = Student::where('user_id', auth()->user()->id)->first();
         $input = $request->all();
 
-   
+        $input['study_plan_id'] = $request->career_id;
         if($request->nationality_id != 1){
             $input['province_id'] = 0;
             $input['department_id'] = 0;

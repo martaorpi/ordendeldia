@@ -10,20 +10,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  const wrapper = document.createElement('div');
+  const wrapper_subjects = document.createElement('div');
   let subjectId = 0;
 
   function addItem() {
     swal({
       title: "Asignatura",
       buttons: ["Cancelar", "Añadir"],
-      content: wrapper,     
+      content: wrapper_subjects,     
     }).then((value) => {
       if (value) {
         $.post('sworn-declaration-item', {
           "subject_id": subjectId, 
           "commission": $('#comision').val(),
-          //"condition": $('#condicion').val(),
           "status": $('#estado').val(),
         }).done(function(data){
           swal("Agregado con exito", {
@@ -35,14 +34,14 @@
           swal("Completar todos los campos obligatorios", {
             icon: "error",
           }).then((value) => {;
-            //$('#response_antecedentes_familiares').html(data)
+
           })
             console.log(error)
         })
-      }          
+      }       
     })
   }
-    const getSubjects = async () =>{
+    const getSubjects2 = async () =>{
       try {
         const url = "get_subjects2";
         const response = await fetch (url);
@@ -51,16 +50,15 @@
         return result
       }catch ( error ){
         console.log( error );
-        //return categories;
       }
     }
 
-    getSubjects().then( data => {
+    getSubjects2().then( data => {
       let optionsHTML = ""
       data.map(element => {
         optionsHTML += '<option value="'+element.id+'">'+element.description+'</option>'
       });
-      wrapper.innerHTML =
+      wrapper_subjects.innerHTML =
         `<div class="row" align="left">
           <div class="col-12">
             <div class="form-group">

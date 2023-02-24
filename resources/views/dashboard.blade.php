@@ -8,7 +8,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (count(auth()->user()->student) > 0)
-                        @if (auth()->user()->student[0]->status == 'Inscripto')
+                        @if (auth()->user()->student[0]->status == 'Inscripto' || auth()->user()->student[0]->status == 'Aprobado')
                             @include('estudiantes')
                         @else
                             @include('ingresantes')

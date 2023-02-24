@@ -58,15 +58,15 @@ class ExamTableCrudController extends CrudController
             'entity' => 'exam_shift', // the method that defines the relationship in your Model
             'attribute' => 'full_name',
         ]);
-        CRUD::addColumn([
+        /*CRUD::addColumn([
             'label' => 'Plan de Estudio',
             'type' => 'relationship',
             'name' => 'subject', // the method that defines the relationship in your Model
             'entity' => 'subject.study_plan', // the method that defines the relationship in your Model
             'attribute' => 'description',
-        ]);
+        ]);*/
         CRUD::column('subject_id')->label('Asignatura');
-        CRUD::column('commission')->label('Comisión');
+        //CRUD::column('commission')->label('Comisión');
         CRUD::column('date')->label('Fecha');
         CRUD::column('hour')->label('Hora');
         //CRUD::column('max_date')->label('Fecha Tope');
@@ -75,11 +75,11 @@ class ExamTableCrudController extends CrudController
             'type'    => 'closure',
             'label'   => 'Vigente',
             'function' => function($entry) {
-                switch ($entry->special) {
-                    case 0: $special = 'NO'; break;
-                    case 1: $special = 'SI'; break;
+                switch ($entry->current) {
+                    case 0: $current = 'NO'; break;
+                    case 1: $current = 'SI'; break;
                 }               
-                return $special;
+                return $current;
             }
         ]);
         //CRUD::column('previous_table_id')->label('Mesa Anterior');

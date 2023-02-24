@@ -71,6 +71,7 @@ Route::group([
 ], function () { // custom admin routes
     Route::post('staff/{id}/licenses', 'StaffLicenseCrudController@storeLicenses');
     Route::get('staff/{id}/get_licenses', 'LicenseCrudController@getLicenses');
+    Route::get('staff/{id}/licenses_staff', 'StaffLicenseCrudController@getLicenses');
     Route::post('staff/{id}/delete_licenses', 'StaffLicenseCrudController@deleteLicenses');
     Route::post('license/{id}/staff-licenses', 'StaffLicenseCrudController@storeLicenses2');
     Route::get('license/{id}/get_staff', 'StaffCrudController@getStaff');
