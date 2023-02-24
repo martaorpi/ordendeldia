@@ -194,12 +194,14 @@ class StudentCrudController extends CrudController
 
         foreach ($students as $student) {
             try {
-                Order::create([
-                    'student_id' => $student->id,
-                    'description' => 'Mensual',
-                    'amount' => $student->career["month_$month_number"],
-                ]);
-
+                if( empty(Order::where('student_id', $student->id)->where('description', "Mensual_$month_number")->get()->toArray()) ){
+                
+                    Order::create([
+                        'student_id' => $student->id,
+                        'description' => "Mensual_$month_number",
+                        'amount' => $student->career["month_$month_number"],
+                    ]);
+                }
             } catch (\Throwable $th) {
                 throw $th;
             }
