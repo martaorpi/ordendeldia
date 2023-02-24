@@ -232,7 +232,7 @@ class SwornDeclarationCrudController extends CrudController
                 })*/
                 ->get();
         }elseif($dj->type == 'Examen Regular'){
-            $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)
+            $subjects = \App\Models\Subject::where('study_plan_id',2)//$dj->student->study_plan->id)
                 /*->whereHas('sworn_declaration_item', function ($q){$q
                     ->whereHas('regularity', function ($q){$q
                         ->where('date_from', '<', date('Y-m-d'))

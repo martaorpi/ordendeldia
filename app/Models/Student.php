@@ -25,6 +25,7 @@ class Student extends Model implements Auditable
     protected $fillable = [
         'user_id',
         'career_id',
+        'study_plan_id',
         'cycle_id',
         'nationality_id',
         'province_id',
