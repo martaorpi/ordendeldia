@@ -1,4 +1,3 @@
- 
 <x-app-layout>
     <x-slot name="header"></x-slot>
     <div class="py-6">
@@ -35,9 +34,7 @@
                               <td>{{ $order->created_at }}</td>
                               <td><span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span></td>
                               <td>
-                                  <form>
-                                      <button type="submit" class="btn btn-primary">Pagar</button>
-                                  </form>
+                                 <a href="order/{{$order->id}}" class="btn btn-primary">Ver orden</a>
                               </td>
                             </tr>
                           @endforeach
