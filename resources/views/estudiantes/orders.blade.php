@@ -1,9 +1,6 @@
 <x-app-layout>
     <x-slot name="header"></x-slot>
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 h4">
-          Carrera: {{ auth()->user()->student[0]->career->title }}
-        </div> 
+    <div class="py-6"> 
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
