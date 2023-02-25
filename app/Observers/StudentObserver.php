@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Student;
-use App\Models\Order;
+use App\Models\EnrollmentOrder;
 
 use App\Mail\StudentsMailable;
 use Illuminate\Support\Facades\Mail;
@@ -32,7 +32,7 @@ class StudentObserver
     {        
         if($student->status == "Aprobado"){
             try {  
-                Order::create([
+                EnrollmentOrder::create([
                     'student_id' => $student->id,
                     'description' => 'Matricula',
                     'amount' => $student->career->amount,

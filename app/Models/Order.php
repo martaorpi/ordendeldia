@@ -13,6 +13,8 @@ class Order extends Model
     use HasFactory;
     use HasStates;
 
+    protected $table = 'orders';
+    
     protected $fillable = [
         'student_id',
         'description',
@@ -20,7 +22,24 @@ class Order extends Model
         'amount',
         'payment_id',
         'payment_type',
+        'type',
+        'expiration_at',
     ];
+
+    public function scopeMonthly($query)
+    {
+        return $query->where('type', MonthlyOrder::class);
+    }
+
+    public function scopeEnrollment($query)
+    {
+        return $query->where('type', EnrollmentOrder::class);
+    }
+
+    public function scopeExtra($query)
+    {
+        return $query->where('type', Extra::class);
+    }
 
     protected $casts = [
         'state' => OrderState::class,

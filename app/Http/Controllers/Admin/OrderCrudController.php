@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
+use App\Models\MonthlyOrder;
 
 /**
  * Class OrderCrudController
@@ -135,7 +136,7 @@ class OrderCrudController extends CrudController
 
     }
 
-    public function createOrder(Student $student){
+    public function aprobeStudent(Student $student){
         try {
             $student->status = "Aprobado";
             $student->save();
@@ -145,8 +146,33 @@ class OrderCrudController extends CrudController
         }
     }
 
+    public function generateMonthlyOrders(){
+
+        $month_number = date('n');
+
+        $students = Student::where('status', 'Inscripto')
+            ->where('cycle_id', 2) //TODO:  cambiar a variable
+            ->get();
+
+        foreach ($students as $student) {
+            try {
+                if( empty($this->crud->model::monthly()->where('student_id', $student->id)->where('description', "Mensual_$month_number")->get()->toArray()) ){
+                
+                    MonthlyOrder::create([
+                        'student_id' => $student->id,
+                        'description' => "Mensual_$month_number",
+                        'amount' => $student->career["month_$month_number"],
+                    ]);
+                }
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
+    }
+
     public static function routes()
     {
-        Route::post('createOrder/{student}', [self::class, 'createOrder']);
+        Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
+        Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO boton para generar mensualmente
     }
 }

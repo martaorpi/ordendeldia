@@ -7,7 +7,6 @@ use App\Http\Requests\StudentRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use \App\Models\Log;
-use \App\Models\Order;
 
 use App\Mail\StudentsMailable;
 use Illuminate\Support\Facades\Mail;
@@ -182,30 +181,6 @@ class StudentCrudController extends CrudController
             $student->response = $this->checkStatus($student->id);
         }
         return $students;
-    }
-
-    public function generateMonthlyOrders(){
-
-        $month_number = date('n');
-
-        $students = $this->crud->model::where('status', 'Inscripto')
-            ->where('cycle_id', 2) //TODO:  cambiar a variable
-            ->get();
-
-        foreach ($students as $student) {
-            try {
-                if( empty(Order::where('student_id', $student->id)->where('description', "Mensual_$month_number")->get()->toArray()) ){
-                
-                    Order::create([
-                        'student_id' => $student->id,
-                        'description' => "Mensual_$month_number",
-                        'amount' => $student->career["month_$month_number"],
-                    ]);
-                }
-            } catch (\Throwable $th) {
-                throw $th;
-            }
-        }
     }
     
     public function checkStatus($id){
