@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\ModelStates\HasStates;
 use App\States\Order\OrderState;
+use App\States\Order\Paid;
 use App\States\Order\Pending;
 
 class Order extends Model
@@ -45,6 +46,11 @@ class Order extends Model
     public function scopePending($query)
     {
         return $query->where('state', Pending::class);
+    }
+
+    public function scopePaid($query)
+    {
+        return $query->where('state', Paid::class);
     }
 
     protected $casts = [
