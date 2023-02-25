@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\MonthlyOrder;
+use App\States\Order\Expired;
 
 /**
  * Class OrderCrudController
@@ -156,7 +157,7 @@ class OrderCrudController extends CrudController
 
         foreach ($students as $student) {
             try {
-                if( empty($this->crud->model::monthly()->where('student_id', $student->id)->where('description', "Mensual_$month_number")->get()->toArray()) ){
+                if( empty($this->crud->model::monthly()->pending()->where('student_id', $student->id)->where('description', "Mensual_$month_number")->get()->toArray()) ){
                 
                     MonthlyOrder::create([
                         'student_id' => $student->id,
@@ -170,9 +171,17 @@ class OrderCrudController extends CrudController
         }
     }
 
+    public function expiredOrders(){
+
+        foreach ( $this->crud->model::pending()->where('expiration_at', '<=', date('Y-m-d H:i:s'))->get() as $order) {
+            !$order->state->canTransitionTo(Expired::class) ?: $order->state->transitionTo(Expired::class);
+        }
+    }
+
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO boton para generar mensualmente
+        Route::get('expire_orders', [self::class, 'expiredOrders']);
     }
 }
