@@ -27,23 +27,71 @@
     @endphp
     <x-slot name="header"></x-slot>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 h4">
-            Carrera: {{ auth()->user()->student[0]->career->title }}
-        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <p class="h3 text-center">ORDEN DE PAGO</p>
-                    {{$order}}
-                    <span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span>
+                    <div class="max-w-7xl mx-auto sm:px-4 lg:px-4 h4">
+                        Carrera: {{ auth()->user()->student[0]->career->title }}
+                    </div>
+                    <div class="col-12 text-center">
+                        <b class="text-grey h4">ORDEN DE PAGO</b>
+                        <span class="ml-3 badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td width="25"></td>
+                            <td width="20">
+                                Apellido y Nombre
+                                <div class="h5">{{ $order->student->last_name }}, {{ $order->student->first_name }}</div>
+                            </td>
+                            <td width="20">
+                                DNI
+                                <div class="h5">{{ $order->student->dni }}</div>
+                            </td>
+                            <td width="25"></td>
+                        </tr>
+
+                        <tr>
+                            <td width="25"></td>
+                            <td width="20">
+                                Fecha Generada
+                                <div class="h5">{{ $order->created_at }}</div>
+                            </td>
+                            <td width="20">
+                                Fecha Vencimiento
+                                <div class="h5"></div>
+                            </td>
+                            <td width="25"></td>
+                        </tr>
+
+                        <tr>
+                            <td width="25"></td>
+                            <td width="20">
+                                Tipo
+                                <div class="h5">{{ $order->description }}</div>
+                            </td>
+                            <td width="20">
+                                Monto
+                                <div class="h5">${{ $order->amount }}</div>
+                            </td>
+                            <td width="25"></td>
+                        </tr>
+                    </table>
+                    
+                </div>
+
+                <div class="float-left">
+                    <a href="" class="btn btn-success">Imprimir</a>
+                </div>
+
+                <div class="float-right">
+                    @if ($order->state == "App\\States\\Order\\Pending")
+                        <div class="cho-container"></div>
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="float-right">
-            @if ($order->state == "App\\States\\Order\\Pending")
-                <div class="cho-container"></div>
-            @endif
-        </div>
+        
     </div>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
