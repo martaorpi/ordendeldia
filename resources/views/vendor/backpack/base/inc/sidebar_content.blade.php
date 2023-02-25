@@ -68,6 +68,7 @@
         <ul class="nav-dropdown-items">
             <li class='nav-item'><a class='nav-link' href='{{ backpack_url('tariff-category') }}'><i class='nav-icon la la-question'></i> Categorías Arancelarias</a></li>
             <li class='nav-item'><a class='nav-link' href='{{ backpack_url('order') }}'><i class='nav-icon la la-question'></i> Órdenes de Pago</a></li>
+            <li class='nav-item'><a class='nav-link' href='{{ backpack_url('metricas') }}'><i class='nav-icon la la-question'></i> Metricas</a></li>
         </ul>
     </li>
 
@@ -81,6 +82,5 @@
         </ul>
     </li>
 @endif
-
 
 {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff-license') }}'><i class='nav-icon la la-question'></i> Staff licenses</a></li>--}}

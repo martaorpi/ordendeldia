@@ -30,53 +30,62 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="max-w-7xl mx-auto sm:px-4 lg:px-4 h4">
-                        Carrera: {{ auth()->user()->student[0]->career->title }}
-                    </div>
                     <div class="col-12 text-center">
                         <b class="text-grey h4">ORDEN DE PAGO</b>
                         <span class="ml-3 badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span>
                     </div>
-                    <table class="table">
-                        <tr>
-                            <td width="25"></td>
-                            <td width="20">
-                                Apellido y Nombre
-                                <div class="h5">{{ $order->student->last_name }}, {{ $order->student->first_name }}</div>
-                            </td>
-                            <td width="20">
-                                DNI
-                                <div class="h5">{{ $order->student->dni }}</div>
-                            </td>
-                            <td width="25"></td>
-                        </tr>
+                    @if($order->student)
+                        <table class="table mt-4">
+                            <tr>
+                                <td width="25"></td>
+                                <td width="20">
+                                    Apellido y Nombre
+                                    <div class="h5">{{ $order->student->last_name }}, {{ $order->student->first_name }}</div>
+                                </td>
+                                <td width="20">
+                                    DNI
+                                    <div class="h5">{{ $order->student->dni }}</div>
+                                </td>
+                                <td width="25"></td>
+                            </tr>
 
-                        <tr>
-                            <td width="25"></td>
-                            <td width="20">
-                                Fecha Generada
-                                <div class="h5">{{ $order->created_at }}</div>
-                            </td>
-                            <td width="20">
-                                Fecha Vencimiento
-                                <div class="h5"></div>
-                            </td>
-                            <td width="25"></td>
-                        </tr>
+                            <tr>
+                                <td width="25"></td>
+                                <td width="20">
+                                    Carrera
+                                    <div class="h5">{{ $order->student->career->title }}</div>
+                                </td>
+                                <td width="20"></td>
+                                <td width="25"></td>
+                            </tr>
 
-                        <tr>
-                            <td width="25"></td>
-                            <td width="20">
-                                Tipo
-                                <div class="h5">{{ $order->description }}</div>
-                            </td>
-                            <td width="20">
-                                Monto
-                                <div class="h5">${{ $order->amount }}</div>
-                            </td>
-                            <td width="25"></td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <td width="25"></td>
+                                <td width="20">
+                                    Fecha Generada
+                                    <div class="h5">{{ date('d/m/Y', strtotime($order->created_at)) }}</div>
+                                </td>
+                                <td width="20">
+                                    Fecha Vencimiento
+                                    <div class="h5">{{ date('d/m/Y', strtotime($order->expiration_at)) }}</div>
+                                </td>
+                                <td width="25"></td>
+                            </tr>
+
+                            <tr>
+                                <td width="25"></td>
+                                <td width="20">
+                                    Descripción
+                                    <div class="h5">{{ $order->description }}</div>
+                                </td>
+                                <td width="20">
+                                    Monto
+                                    <div class="h5">${{ $order->amount }}</div>
+                                </td>
+                                <td width="25"></td>
+                            </tr>
+                        </table>
+                    @endif
                     
                 </div>
 
