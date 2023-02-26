@@ -18,7 +18,7 @@
 @endphp
 
 <div class="container">
-    {{count($totals)}}<br>
+    {{$total_paied}}<br>
     <div class="row">
         <div class="col-12 mt-3 mb-1">
             <h4 class="text-uppercase">Minimal Statistics Cards</h4>

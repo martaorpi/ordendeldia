@@ -306,8 +306,8 @@ class OrderCrudController extends CrudController
         $total_pending = 0;
         for ($i=1; $i <= 12; $i++) { 
             $totals[$i] = $this->getTotalAmountMonthly($i);
-            $total_paied += $totals[$i]['paied'];
-            $total_pending += $totals[$i]['pending'];
+            $total_paied += $totals[$i]["paid"];
+            $total_pending += $totals[$i]["pending"];
         }
 
         $totals = json_encode($totals);
