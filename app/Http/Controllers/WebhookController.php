@@ -18,6 +18,8 @@ class WebhookController extends Controller
             $order = Order::find($response->external_reference);
             $order->payment_id = $payment_id;
             $order->payment_type = 'mercadopago';
+            $order->payed_at = date("Y-m-d H:i:s");
+
             $order->save();
 
             if ($response->status == 'approved'){

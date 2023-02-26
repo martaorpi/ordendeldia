@@ -302,13 +302,17 @@ class OrderCrudController extends CrudController
 
     public function metrics(){
         $totals = [];
+        $total_paied = 0;
+        $total_pending = 0;
         for ($i=1; $i <= 12; $i++) { 
             $totals[$i] = $this->getTotalAmountMonthly($i);
+            $total_paied += $totals[$i]["paid"];
+            $total_pending += $totals[$i]["pending"];
         }
 
         //$totals = json_encode($totals);
 
-        return view('metrics', compact('totals'));
+        return view('metrics', compact('totals', 'total_paied', 'total_pending'));
     }
 
     public function getTotalAmountMonthly($month_number){
