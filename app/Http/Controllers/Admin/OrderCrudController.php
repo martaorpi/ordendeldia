@@ -90,7 +90,7 @@ class OrderCrudController extends CrudController
         CRUD::column('amount')->label('Monto');
 
         CRUD::addColumn([
-            'name'=> 'expiration_at',
+            'name'=> 'expired_at',
             'label'=> 'Vencimiento',
             'type'  => 'date',
             'format'   => 'l',
@@ -138,14 +138,14 @@ class OrderCrudController extends CrudController
 
         CRUD::addFilter([
             'type'  => 'date_range',
-            'name'  => 'expiration_at',
+            'name'  => 'expired_at',
             'label' => 'Vencimiento'
         ],
         false,
         function ($value) { // if the filter is active, apply these constraints
             $dates = json_decode($value);
-            $this->crud->addClause('where', 'expiration_at', '>=', $dates->from);
-            $this->crud->addClause('where', 'expiration_at', '<=', $dates->to . ' 23:59:59');
+            $this->crud->addClause('where', 'expired_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'expired_at', '<=', $dates->to . ' 23:59:59');
         });
 
         CRUD::addFilter([
@@ -216,7 +216,7 @@ class OrderCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'expiration_at',
+            'name'  => 'expired_at',
             'label' => 'Vencimiento',
             'type' => 'date',
             'wrapper'   => [
@@ -295,7 +295,7 @@ class OrderCrudController extends CrudController
 
     public function expiredOrders(){
 
-        foreach ( $this->crud->model::pending()->where('expiration_at', '<=', date('Y-m-d H:i:s'))->get() as $order) {
+        foreach ( $this->crud->model::pending()->where('expired_at', '<=', date('Y-m-d H:i:s'))->get() as $order) {
             !$order->state->canTransitionTo(Expired::class) ?: $order->state->transitionTo(Expired::class);
         }
     }

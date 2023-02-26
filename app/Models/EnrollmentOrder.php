@@ -10,7 +10,7 @@ class EnrollmentOrder extends Order
         parent::boot();
 
         static::creating(function ($order){
-            $order->expiration_at = date("Y-m-d H:i:s" ,strtotime(date("Y-m-d H:i:s")."+ 1 days"));
+            $order->expired_at = date("Y-m-d H:i:s" ,strtotime(date("Y-m-d H:i:s")."+ 1 days"));
             $order->type = EnrollmentOrder::class;
         });
     }

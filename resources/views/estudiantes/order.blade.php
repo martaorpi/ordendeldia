@@ -67,7 +67,7 @@
                                 </td>
                                 <td width="20">
                                     Fecha Vencimiento
-                                    <div class="h5">{{ date('d/m/Y', strtotime($order->expiration_at)) }}</div>
+                                    <div class="h5">{{ date('d/m/Y', strtotime($order->expired_at)) }}</div>
                                 </td>
                                 <td width="25"></td>
                             </tr>

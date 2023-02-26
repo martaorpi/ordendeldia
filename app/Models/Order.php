@@ -25,7 +25,7 @@ class Order extends Model
         'payment_id',
         'payment_type',
         'type',
-        'expiration_at',
+        'expired_at',
     ];
 
     public function scopeMonthly($query)
