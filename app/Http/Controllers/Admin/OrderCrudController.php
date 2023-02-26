@@ -53,21 +53,110 @@ class OrderCrudController extends CrudController
             'attribute' => "full_name",
         ]);
 
-        CRUD::addColumn([
+        /*CRUD::addColumn([
             'name'=> 'tariff_category',
             'label'=> 'Categoría Arancelaria',
             'type' => "relationship",
             'attribute' => "description",
+        ]);*/
+        
+        CRUD::addColumn([
+            'name'    => 'state',
+            'type'    => 'closure',
+            'label'   => 'Estado',
+            'function' => function($entry) {
+                switch ($entry->state) {
+                    case 'App\States\Order\Pending': $state = 'Pendiente'; break;
+                    case 'App\States\Order\Paid': $state = 'Pagado'; break;
+                }               
+                return $state;
+            }
+        ]);
+
+        CRUD::addColumn([
+            'name'    => 'type',
+            'type'    => 'closure',
+            'label'   => 'Tipo',
+            'function' => function($entry) {
+                switch ($entry->type) {
+                    case 'App\Models\Order': $type = 'Matricula'; break;
+                    case 'App\Models\MonthlyOrder': $type = 'Cuota Mensual'; break;
+                    case 'App\Models\ExtraOrder': $type = 'Otro'; break;
+                }               
+                return $type;
+            }
         ]);
         
-        CRUD::column('state')->label('Estado');
         CRUD::column('amount')->label('Monto');
+
+        CRUD::addColumn([
+            'name'=> 'expiration_at',
+            'label'=> 'Vencimiento',
+            'type'  => 'date',
+            'format'   => 'l',
+        ]);
+
+        CRUD::addColumn([
+            'name'=> 'created_at',
+            'label'=> 'Creacion',
+            'type'  => 'date',
+            'format'   => 'l',
+        ]);
+
+        /*CRUD::addColumn([
+            'name'=> 'updated_at',
+            'label'=> 'Pago',
+            'type'  => 'date',
+            'format'   => 'l',
+        ]);*/
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+        CRUD::addFilter([
+            'name'  => 'state',
+            'type'  => 'dropdown',
+            'label' => 'Estado'
+        ], [
+            'App\States\Order\Pending' => 'Pendiente',
+            'App\States\Order\Paid'=> 'Pagado',
+        ]);
+
+        /*CRUD::addFilter([
+            'type'  => 'date_range',
+            'name'  => 'updated_at',
+            'label' => 'Pago'
+        ],
+        false,
+        function ($value) { // if the filter is active, apply these constraints
+            $dates = json_decode($value);
+            $this->crud->addClause('where', 'updated_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'updated_at', '<=', $dates->to . ' 23:59:59');
+        });*/
+
+        CRUD::addFilter([
+            'type'  => 'date_range',
+            'name'  => 'expiration_at',
+            'label' => 'Vencimiento'
+        ],
+        false,
+        function ($value) { // if the filter is active, apply these constraints
+            $dates = json_decode($value);
+            $this->crud->addClause('where', 'expiration_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'expiration_at', '<=', $dates->to . ' 23:59:59');
+        });
+
+        CRUD::addFilter([
+            'name'  => 'type',
+            'type'  => 'dropdown',
+            'label' => 'Tipo'
+        ], [
+            'App\Models\Order' => 'Matricula',
+            'App\Models\MonthlyOrder'=> 'Cuota Mensual',
+            'App\Models\ExtraOrder'=> 'Otro',
+        ]);
     }
 
     /**
@@ -91,7 +180,7 @@ class OrderCrudController extends CrudController
             ],
         ]);
 
-        CRUD::addField([
+        /*CRUD::addField([
             'label' => 'Categoría Arancelaria',
             'type' => 'relationship',
             'name' => 'tariff_account_id', // the method that defines the relationship in your Model
@@ -99,6 +188,39 @@ class OrderCrudController extends CrudController
             'attribute' => 'description', // foreign key attribute that is shown to user
             'wrapper'   => [
                 'class' => 'form-group col-12 col-lg-6',
+            ],
+        ]);*/
+
+        CRUD::addField([
+            'name'        => 'state',
+            'label'       => "Estado",
+            'type'        => 'select_from_array',
+            'options'     => ['App\States\Order\Pending' => 'Pendiente', 'App\States\Order\Paid' => 'Pagado'],
+            'allows_null' => false,
+            'default'     => '',
+            'wrapper'   => [
+                'class' => 'col-12 col-lg-6'
+            ],
+        ]);
+
+        CRUD::addField([
+            'name'        => 'type',
+            'label'       => "Tipo",
+            'type'        => 'select_from_array',
+            'options'     => ['App\Models\Order' => 'Matricula', 'App\Models\MonthlyOrder' => 'Cuota Mensual', 'App\Models\ExtraOrder' => 'Otro'],
+            'allows_null' => false,
+            'default'     => '',
+            'wrapper'   => [
+                'class' => 'col-12 col-lg-6'
+            ],
+        ]);
+
+        CRUD::addField([
+            'name'  => 'expiration_at',
+            'label' => 'Vencimiento',
+            'type' => 'date',
+            'wrapper'   => [
+                'class' => 'col-12 col-lg-6'
             ],
         ]);
         
@@ -108,7 +230,7 @@ class OrderCrudController extends CrudController
             'attributes' => ['step' => 0.01],
             'name' => 'amount', // the method that defines the relationship in your Model
             'wrapper'   => [
-                'class' => 'col-12 col-lg-6'
+                'class' => 'col-12 col-lg-6 mt-3'
             ],
         ]);
 

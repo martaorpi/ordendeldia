@@ -66,9 +66,9 @@
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-calendar"></i> Tesorería</a>
         <ul class="nav-dropdown-items">
-            <li class='nav-item'><a class='nav-link' href='{{ backpack_url('tariff-category') }}'><i class='nav-icon la la-question'></i> Categorías Arancelarias</a></li>
-            <li class='nav-item'><a class='nav-link' href='{{ backpack_url('order') }}'><i class='nav-icon la la-question'></i> Órdenes de Pago</a></li>
-            <li class='nav-item'><a class='nav-link' href='{{ backpack_url('metricas') }}'><i class='nav-icon la la-question'></i> Metricas</a></li>
+            <li class='nav-item'><a class='nav-link' href="{{ backpack_url('tariff-category') }}"><i class='nav-icon la la-question'></i> Categorías Arancelarias</a></li>
+            <li class='nav-item'><a class='nav-link' href="{{ backpack_url('order') }}"><i class='nav-icon la la-question'></i> Órdenes de Pago</a></li>
+            <li class='nav-item'><a class='nav-link' href="{{ backpack_url('metrics_orders') }}"><i class='nav-icon la la-question'></i> Metricas</a></li>
         </ul>
     </li>
 
