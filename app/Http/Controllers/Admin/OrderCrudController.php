@@ -179,14 +179,39 @@ class OrderCrudController extends CrudController
     }
 
     public function metrics(){
-        return view('metrics');
+        $totals = [];
+        for ($i=1; $i <= 12; $i++) { 
+            $totals[$i] = $this->getTotalAmountMonthly($i);
+        }
+
+        $totals = json_encode($totals);
+
+        return view('metrics', compact('totals'));
+    }
+
+    public function getTotalAmountMonthly($month_number){
+
+        $query = $this->crud->model::monthly()
+            ->where('description', "Mensual_$month_number")
+            ->selectRaw('SUM( amount ) AS total');
+
+        return array(
+            "paid" =>  $query
+                ->paid()
+                ->get()
+                ->pluck('total')[0],
+            "pending" =>  $query
+                ->pending()
+                ->get()
+                ->pluck('total')[0],
+        );
     }
 
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
-        Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO boton para generar mensualmente
+        Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
-        Route::get('metricas', [self::class, 'metrics']);
+        Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
     }
 }
