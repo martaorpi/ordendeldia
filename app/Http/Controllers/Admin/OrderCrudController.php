@@ -306,15 +306,16 @@ class OrderCrudController extends CrudController
             $totals[$i] = $this->getTotalAmountMonthly($i);
         }
 
-        $totals = json_encode($totals);
+        //$totals = json_encode($totals);
 
         return view('metrics', compact('totals'));
     }
 
     public function getTotalAmountMonthly($month_number){
 
-        $query = $this->crud->model::monthly()
-            ->where('description', "Mensual_$month_number")
+        $query = $this->crud->model::whereMonth('paied_at', '=', $month_number)
+            //->where('description', "Mensual_$month_number")
+            //->orwhere('description', "Matricula")
             ->selectRaw('SUM( amount ) AS total');
 
         return array(
