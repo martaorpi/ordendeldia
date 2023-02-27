@@ -44,7 +44,7 @@ class SwornDeclarationItem extends Model
     }
     public function exam_student()
     {
-        return $this->hasMany(\App\Models\ExamStudent::class);
+        return $this->belongsTo(\App\Models\ExamStudent::class);
     }
     public function regularity()
     {

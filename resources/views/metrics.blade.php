@@ -17,8 +17,7 @@
     {{$totals[2]['paid']}}<br>
     <div class="row">
         <div class="col-12 mt-3 mb-1">
-            <h4 class="text-uppercase">Minimal Statistics Cards</h4>
-            <p>Statistics on minimal cards.</p>
+            <h4 class="text-uppercase">Métricas de Pago</h4>
         </div>
     </div>
 
@@ -45,7 +44,11 @@
         </div>
     </div>
 
-    <div class="row">
+    
+    
+    
+    
+    {{--<div class="row">
         <div class="col-xl-3 col-sm-6 col-12"> 
             <div class="card">
                 <div class="card-content">
@@ -358,7 +361,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 </div>
 

@@ -25,9 +25,9 @@ class ExamInscriptionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'exam_table_id' => 'required',
-            'student_id' => 'required',
-            'condition' => 'required'
+            //'exam_table_id' => 'required',
+            //'student_id' => 'required',
+            //'condition' => 'required'
         ];
     }
 

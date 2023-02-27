@@ -14,6 +14,9 @@ use App\States\Order\Paid;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
+use App\Models\SwornDeclaration;
+use App\Models\SwornDeclarationItem;
+use App\Models\ExamStudent;
 use App\States\Order\Pending;
 use \PDF;
 
@@ -35,6 +38,10 @@ class StudentController extends BaseController
 
     public function examenes(){
         return view('estudiantes/exams');
+    }
+
+    public function exam_inscription(){
+        //return view('estudiantes/exams');
     }
 
     public function reinscripciones(){
@@ -69,6 +76,28 @@ class StudentController extends BaseController
 
     }
 
+    public function insc($mesa){
+        $input2['student_id'] = 19;
+        $input2['cycle_id'] = 2;
+        $input2['quarterly_period'] = 1;//presentismo
+        $input2['date'] = date('Y-m-d');
+        $input2['type'] = 'Examen Regular';
+        $input2['status'] = 'Estado1';
+        $input1 = SwornDeclaration::create($input2);
+
+        $input['sworn_declaration_id'] = $input1->id;
+        $input['subject_id'] = 3;
+        $input['status'] = 'Estado1';
+        $input3 = SwornDeclarationItem::create($input);
+
+        $input4['sworn_declaration_item_id'] = $input3->id;
+        $input4['student_id'] = 19;
+        $input4['exam_table_id'] = $mesa;
+        $input4['condition_exam'] = 'Regular';
+        ExamStudent::create($input4);
+        return view('estudiantes/exams');
+    }
+
     public static function routes()
     {
         Route::group([
@@ -78,7 +107,9 @@ class StudentController extends BaseController
             Route::get('/estudiantes/ordenes/{order}', [self::class, 'order'])->name('order');
             Route::get('/estudiantes/ordenes/{order}/pago', [self::class, 'pay'])->name('pay');//TODO: esto es solo para probar el webhook despues deletear
             Route::get('/estudiantes/exams', [self::class, 'examenes']);
+            Route::get('/estudiantes/exam_inscription', [self::class, 'exam_inscription']);
             Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
+            Route::get('/estudiantes/insc/{mesa}', [self::class, 'insc']);
             Route::get('/estudiantes/generate_payment/{order}', [self::class, 'generatePayment'])->name('generate_payment');//TODO: cambiar por post
         });
     }
