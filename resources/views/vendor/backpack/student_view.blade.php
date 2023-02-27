@@ -206,7 +206,7 @@
 
       id= <?= json_encode($entry->id)?>;
 
-      $.post(`admin/create_order/${id}`).done(function (result, status, xhr) {
+      $.post(`create_order/${id}`).done(function (result, status, xhr) {
         swal("Documentacion Aprobada y orden de pago generada", "ISMP admin", {
           icon: type,
         }).then((value) => {;
