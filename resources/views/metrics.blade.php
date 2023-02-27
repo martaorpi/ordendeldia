@@ -27,7 +27,7 @@
                     <div class="card-body cleartfix">
                         <div class="media align-items-stretch">
                             <div class="align-self-center">
-                                <h1 class="mr-2">${{ number_format($total_paied, 2) }}</h1>
+                                <h1 class="mr-2">${{ number_format($total_paid, 2) }}</h1>
                             </div>
                             <div class="media-body">
                                 <h4>Ordenes Pagadas</h4>

@@ -16,7 +16,7 @@ class AddTypeToOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->string('type')->default('App\\\Models\\\Order');
             $table->timestamp('expirated_at')->nullable();
-            $table->timestamp('paied_at')->nullable();
+            $table->timestamp('paid_at')->nullable();
         });
     }
 
@@ -30,7 +30,7 @@ class AddTypeToOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('type');
             $table->dropColumn('expirated_at');
-            $table->dropColumn('paied_at');
+            $table->dropColumn('paid_at');
         });
     }
 }
