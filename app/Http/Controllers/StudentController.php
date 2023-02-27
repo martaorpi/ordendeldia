@@ -13,19 +13,22 @@ use Illuminate\Http\Request;
 use App\States\Order\Paid;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Payment;
+use App\States\Order\Pending;
+use \PDF;
 
 class StudentController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function ordersPerStudent(Student $student){
-        (!Auth::user() || Auth::user()->id != $student->user_id) ? abort(403) : null;
+        //(!Auth::user() || Auth::user()->id != $student->user_id) ? abort(403) : null;
 
         return view('estudiantes/orders', ['orders' => Order::where('student_id', $student->id)->get()]); 
     }
 
     public function order(Order $order){
-        (!Auth::user() || Auth::user()->id != $order->student_id) ? abort(403) : null;
+        //(!Auth::user() || Auth::user()->id != $order->student_id) ? abort(403) : null;
 
         return view('estudiantes/order', compact('order'));
     }
@@ -49,6 +52,23 @@ class StudentController extends BaseController
         return $response->status;
     }
 
+    public function generatePayment(Order $order){
+
+        if($order->state == Pending::class){
+            $payment = Payment::create();
+            $order->payment_id = $payment->id;
+            $order->payment_type = 'BSE';
+            $order->save();
+        }
+
+        $pdf = PDF::loadView('estudiantes.pdf_coupon', [
+            "order" => $order,
+            "payment" => $payment,
+        ]);
+        return $pdf->stream('Cupon BSE.pdf');
+
+    }
+
     public static function routes()
     {
         Route::group([
@@ -59,6 +79,7 @@ class StudentController extends BaseController
             Route::get('/estudiantes/ordenes/{order}/pago', [self::class, 'pay'])->name('pay');//TODO: esto es solo para probar el webhook despues deletear
             Route::get('/estudiantes/exams', [self::class, 'examenes']);
             Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
+            Route::get('/estudiantes/generate_payment/{order}', [self::class, 'generatePayment'])->name('generate_payment');//TODO: cambiar por post
         });
     }
 }

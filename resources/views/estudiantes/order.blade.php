@@ -89,15 +89,15 @@
                     
                 </div>
 
-                <div class="float-left">
-                    <a href="" class="btn btn-success">Generar Cupón BSE</a>
-                </div>
+                @if ($order->state == "App\\States\\Order\\Pending" && $order->payment_id == null)
+                    <div class="float-left">
+                        <a href="{{ route('generate_payment', $order->id) }}" class="btn btn-success">Generar Cupón BSE</a>
+                    </div>
 
-                <div class="float-right">
-                    @if ($order->state == "App\\States\\Order\\Pending")
+                    <div class="float-right">
                         <div class="cho-container"></div>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
         
