@@ -8,10 +8,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\MonthlyOrder;
+use App\Models\Order;
 use App\Models\Payment;
 use App\States\Order\Expired;
-use App\States\Order\Pending;
-
+use App\States\Order\Paid;
+use FontLib\TrueType\Collection;
+use Illuminate\Http\Request;
 
 /**
  * Class OrderCrudController
@@ -341,6 +343,34 @@ class OrderCrudController extends CrudController
         return view('payment_coupon');
     }
 
+    public function cupons(Request $request){
+        $rows = explode("\r\n1", $request->txt);
+        $keys = explode("\t", $rows[0]);
+
+        $txtArray = array();
+
+        for ($i=1; $i < count($rows) ; $i++) {
+            array_push ($txtArray, array_combine($keys, explode("\t", $rows[$i])));
+        }
+
+        foreach ($txtArray as $e) {
+            $payment = Payment::where('barcode', $e['codbarra'])->with('order')->get();
+
+            $payments = array();
+
+            if(!$payment->isEmpty()){
+
+                $order = $this->crud->model::find($payment[0]->order[0]->id);
+                !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
+                $order->payed_at = date("Y-m-d H:i:s");
+
+                array_push($payments, array("order_id" => $order->id, "payment_id" => $payment[0]->id ));
+            };
+        }
+
+        return $payments;
+    }
+
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
@@ -348,5 +378,7 @@ class OrderCrudController extends CrudController
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
         Route::get('payment_coupon', [self::class, 'paymentCoupon'])->name('payment_coupon');
+
+        Route::post('payment_coupon', [self::class, 'cupons']);
     }
 }

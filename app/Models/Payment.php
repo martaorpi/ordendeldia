@@ -23,4 +23,9 @@ class Payment extends Model
             $payment->barcode = $codebar;
         });
     }
+
+    public function order()
+    {
+        return $this->hasMany(\App\Models\Order::class);
+    }
 }
