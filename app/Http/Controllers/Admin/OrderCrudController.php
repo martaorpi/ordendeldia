@@ -154,6 +154,18 @@ class OrderCrudController extends CrudController
         });
 
         CRUD::addFilter([
+            'type'  => 'date_range',
+            'name'  => 'paid_at',
+            'label' => 'Pago'
+        ],
+        false,
+        function ($value) { // if the filter is active, apply these constraints
+            $dates = json_decode($value);
+            $this->crud->addClause('where', 'paid_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'paid_at', '<=', $dates->to . ' 23:59:59');
+        });
+
+        CRUD::addFilter([
             'name'  => 'type',
             'type'  => 'dropdown',
             'label' => 'Tipo'
