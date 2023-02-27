@@ -264,8 +264,9 @@ class OrderCrudController extends CrudController
 
     }
 
-    public function aprobeStudent(Student $student){
+    public function aprobeStudent($student_id){
         try {
+            $student = Student::find($student_id);
             $student->status = "Aprobado";
             $student->save();
 
@@ -370,7 +371,7 @@ class OrderCrudController extends CrudController
 
     public static function routes()
     {
-        Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
+        Route::post('createOrder/{student_id}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
