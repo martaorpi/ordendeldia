@@ -315,6 +315,7 @@ class OrderCrudController extends CrudController
             $total_pending += $totals[$i]["pending"];
         }
 
+
         //$totals = json_encode($totals);
 
         return view('metrics', compact('totals', 'total_paied', 'total_pending'));

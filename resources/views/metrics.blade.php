@@ -27,11 +27,31 @@
                     <div class="card-body cleartfix">
                         <div class="media align-items-stretch">
                             <div class="align-self-center">
-                                <h1 class="mr-2">${{ number_format($total_paied, 2) }}</h1>
+                                <h1 class="mr-2">${{ number_format($totals[1]['paid'], 2) }}</h1>
                             </div>
                             <div class="media-body">
-                                <h4>Ordenes Pagadas</h4>
-                                <span>Monto Total</span>
+                                <h4>Enero</h4>
+                                <span>Monto Total Ordenes Pagadas</span>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="icon-wallet success font-large-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body cleartfix">
+                        <div class="media align-items-stretch">
+                            <div class="align-self-center">
+                                <h1 class="mr-2">${{ number_format($totals[2]['paid'], 2) }}</h1>
+                            </div>
+                            <div class="media-body">
+                                <h4>Febrero</h4>
+                                <span>Monto Total Ordenes Pagadas</span>
                             </div>
                             <div class="align-self-center">
                                 <i class="icon-wallet success font-large-2"></i>
