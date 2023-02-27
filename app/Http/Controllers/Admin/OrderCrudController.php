@@ -384,7 +384,7 @@ class OrderCrudController extends CrudController
 
     public static function routes()
     {
-        Route::post('{student_id}/create_order', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
+        Route::post('student/{student_id}/create_order', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
