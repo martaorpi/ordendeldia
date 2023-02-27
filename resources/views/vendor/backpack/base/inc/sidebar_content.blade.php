@@ -69,6 +69,7 @@
             <li class='nav-item'><a class='nav-link' href="{{ backpack_url('tariff-category') }}"><i class='nav-icon la la-question'></i> Categorías Arancelarias</a></li>
             <li class='nav-item'><a class='nav-link' href="{{ backpack_url('order') }}"><i class='nav-icon la la-question'></i> Órdenes de Pago</a></li>
             <li class='nav-item'><a class='nav-link' href="{{ backpack_url('metrics_orders') }}"><i class='nav-icon la la-question'></i> Metricas</a></li>
+            <li class='nav-item'><a class='nav-link' href="{{ backpack_url('payment_coupon') }}"><i class='nav-icon la la-question'></i> BSE</a></li>
         </ul>
     </li>
 

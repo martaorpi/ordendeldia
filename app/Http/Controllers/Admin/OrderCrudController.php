@@ -334,11 +334,16 @@ class OrderCrudController extends CrudController
         );
     }
 
+    public function payment_coupon(){
+        return view('payment_coupon');
+    }
+
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
+        Route::get('payment_coupon', [self::class, 'payment_coupon'])->name('payment_coupon');
     }
 }
