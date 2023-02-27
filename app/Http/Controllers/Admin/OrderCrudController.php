@@ -8,7 +8,10 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\MonthlyOrder;
+use App\Models\Payment;
 use App\States\Order\Expired;
+use App\States\Order\Pending;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class OrderCrudController
@@ -333,11 +336,24 @@ class OrderCrudController extends CrudController
         );
     }
 
+    public function generatePayment($order_id){
+        $order = $this->crud->model::find($order_id);
+
+        if($order->state == Pending::class){
+            $payment = Payment::create();
+            $order->payment_id = $payment->id;
+            $order->payment_type = 'BSE';
+            $order->save();
+        }
+    }
+
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
+        Route::get('generate_payment/{order_id}', [self::class, 'generatePayment']);
+
     }
 }

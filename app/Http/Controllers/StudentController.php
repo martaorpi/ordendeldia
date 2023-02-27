@@ -25,6 +25,8 @@ class StudentController extends BaseController
     }
 
     public function order(Order $order){
+        (!Auth::user() || Auth::user()->id != $order->student_id) ? abort(403) : null;
+
         return view('estudiantes/order', compact('order'));
     }
 

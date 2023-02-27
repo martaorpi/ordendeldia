@@ -74,7 +74,7 @@ class CorrelativeCrudController extends CrudController
             },
             function($value) { // if the filter is active
 
-                $this->crud->query = $this->crud->query->whereHas('subject.career', function ($query) use ($value) {
+                $this->crud->query = $this->crud->query->whereHas('subject.career', function ($query) use ($value) { //TODO: recordar
                     $query->where('id', $value);
                 });
             }
