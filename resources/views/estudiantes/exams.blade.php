@@ -99,7 +99,7 @@
                                       <button type="submit" class="btn btn-primary">Inscribir</button>
                                   </form>--}}
                                   @if ($subject->sworn_declaration_item[0]->exam_student[0]->sworn_declaration_item_id == 13)
-                                    <a href="prueba" class="btn btn-primary">Inscribir</a>      
+                                    <a href="prueba" class="btn btn-primary">Inscribirme</a>      
                                   @else
                                         <b>Nro de Inscripción: {{$subject->sworn_declaration_item[0]->exam_student[0]->id}}</b>
                                   @endif

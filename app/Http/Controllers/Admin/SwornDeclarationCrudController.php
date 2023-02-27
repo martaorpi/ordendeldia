@@ -316,6 +316,7 @@ class SwornDeclarationCrudController extends CrudController
                 $exam_table = \App\Models\ExamTable::where('subject_id',$item->subject_id)->orderBy('date','DESC')->first();
                 $input3['exam_table_id'] = $exam_table->id;
                 $input3['condition_exam'] = 'Regular';
+                $input3['student_id'] = $item->sworn_declaration->student_id;
                 ExamStudent::create($input3);
             }
             if($item->sworn_declaration->type == 'Examen Libre'){
