@@ -25,13 +25,13 @@ class StudentController extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function ordersPerStudent(Student $student){
-        //(!Auth::user() || Auth::user()->id != $student->user_id) ? abort(403) : null;
+        (!Auth::user() || Auth::user()->id != $student->user_id) ? abort(403) : null;
 
         return view('estudiantes/orders', ['orders' => Order::where('student_id', $student->id)->get()]); 
     }
 
     public function order(Order $order){
-        //(!Auth::user() || Auth::user()->id != $order->student_id) ? abort(403) : null;
+        (!Auth::user() || Auth::user()->id != $order->student->user_id) ? abort(403) : null;
 
         return view('estudiantes/order', compact('order'));
     }

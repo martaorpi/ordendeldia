@@ -18,7 +18,7 @@ class WebhookController extends Controller
             $order = Order::find($response->external_reference);
             $order->payment_id = $payment_id;
             $order->payment_type = 'mercadopago';
-            $order->payed_at = date("Y-m-d H:i:s");
+            $order->payed_at = date("Y-m-d H:i:s");//TODO:deberia estar en la transicion
 
             $order->save();
 
