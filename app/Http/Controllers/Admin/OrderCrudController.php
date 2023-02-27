@@ -332,10 +332,7 @@ class OrderCrudController extends CrudController
                 ->paid()
                 ->get()
                 ->pluck('total')[0],
-            "pending" =>  $query
-                ->pending()
-                ->get()
-                ->pluck('total')[0],
+            "pending" => 0,
         );
     }
 

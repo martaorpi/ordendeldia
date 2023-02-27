@@ -14,7 +14,6 @@
 @endphp
 
 <div class="container">
-    {{$totals[2]['paid']}}<br>
     <div class="row">
         <div class="col-12 mt-3 mb-1">
             <h4 class="text-uppercase">Métricas de Pago</h4>
@@ -28,7 +27,7 @@
                     <div class="card-body cleartfix">
                         <div class="media align-items-stretch">
                             <div class="align-self-center">
-                                <h1 class="mr-2">$36,000.00</h1>
+                                <h1 class="mr-2">${{ number_format($total_paied, 2) }}</h1>
                             </div>
                             <div class="media-body">
                                 <h4>Ordenes Pagadas</h4>
