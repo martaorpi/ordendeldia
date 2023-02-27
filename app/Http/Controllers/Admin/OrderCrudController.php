@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\MonthlyOrder;
 use App\States\Order\Expired;
+use \PDF;
 
 /**
  * Class OrderCrudController
@@ -338,6 +339,14 @@ class OrderCrudController extends CrudController
         return view('payment_coupon');
     }
 
+    public function pdf_coupon(){
+        $pdf = PDF::loadView('vendor.backpack.estudiantes.pdf_coupon', [
+            //"id" => $id,
+            //"condicion" => 'Libres',
+        ]);
+        return $pdf->stream('Cupon BSE.pdf');
+    }
+
     public static function routes()
     {
         Route::post('createOrder/{student}', [self::class, 'aprobeStudent']);//TODO: mover a estudiantes crud controllers
@@ -345,5 +354,6 @@ class OrderCrudController extends CrudController
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
         Route::get('payment_coupon', [self::class, 'payment_coupon'])->name('payment_coupon');
+        Route::get('pdf_coupon', [self::class, 'pdf_coupon'])->name('pdf_coupon');
     }
 }

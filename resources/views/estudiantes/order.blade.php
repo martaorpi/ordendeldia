@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="float-left">
-                    <a href="" class="btn btn-success">Imprimir</a>
+                    <a href="" class="btn btn-success">Generar Cupón BSE</a>
                 </div>
 
                 <div class="float-right">
@@ -114,7 +114,7 @@
             },
             render: {
                 container: '.cho-container',
-                label: 'Pagar',
+                label: 'Pagar con Mercado Pago',
             }
         });
     </script>
