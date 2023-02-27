@@ -11,7 +11,7 @@ use App\Models\MonthlyOrder;
 use App\Models\Payment;
 use App\States\Order\Expired;
 use App\States\Order\Pending;
-use Illuminate\Support\Facades\Auth;
+use \PDF;
 
 /**
  * Class OrderCrudController
@@ -93,7 +93,7 @@ class OrderCrudController extends CrudController
         CRUD::column('amount')->label('Monto');
 
         CRUD::addColumn([
-            'name'=> 'expired_at',
+            'name'=> 'expirated_at',
             'label'=> 'Vencimiento',
             'type'  => 'date',
             'format'   => 'l',
@@ -141,14 +141,14 @@ class OrderCrudController extends CrudController
 
         CRUD::addFilter([
             'type'  => 'date_range',
-            'name'  => 'expired_at',
+            'name'  => 'expirated_at',
             'label' => 'Vencimiento'
         ],
         false,
         function ($value) { // if the filter is active, apply these constraints
             $dates = json_decode($value);
-            $this->crud->addClause('where', 'expired_at', '>=', $dates->from);
-            $this->crud->addClause('where', 'expired_at', '<=', $dates->to . ' 23:59:59');
+            $this->crud->addClause('where', 'expirated_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'expirated_at', '<=', $dates->to . ' 23:59:59');
         });
 
         CRUD::addFilter([
@@ -219,7 +219,7 @@ class OrderCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'expired_at',
+            'name'  => 'expirated_at',
             'label' => 'Vencimiento',
             'type' => 'date',
             'wrapper'   => [
@@ -298,7 +298,7 @@ class OrderCrudController extends CrudController
 
     public function expiredOrders(){
 
-        foreach ( $this->crud->model::pending()->where('expired_at', '<=', date('Y-m-d H:i:s'))->get() as $order) {
+        foreach ( $this->crud->model::pending()->where('expirated_at', '<=', date('Y-m-d H:i:s'))->get() as $order) {
             !$order->state->canTransitionTo(Expired::class) ?: $order->state->transitionTo(Expired::class);
         }
     }
@@ -313,15 +313,16 @@ class OrderCrudController extends CrudController
             $total_pending += $totals[$i]["pending"];
         }
 
-        $totals = json_encode($totals);
+        //$totals = json_encode($totals);
 
         return view('metrics', compact('totals', 'total_paied', 'total_pending'));
     }
 
     public function getTotalAmountMonthly($month_number){
 
-        $query = $this->crud->model::monthly()
-            ->where('description', "Mensual_$month_number")
+        $query = $this->crud->model::whereMonth('paied_at', '=', $month_number)
+            //->where('description', "Mensual_$month_number")
+            //->orwhere('description', "Matricula")
             ->selectRaw('SUM( amount ) AS total');
 
         return array(
@@ -346,6 +347,17 @@ class OrderCrudController extends CrudController
             $order->save();
         }
     }
+    public function payment_coupon(){
+        return view('payment_coupon');
+    }
+
+    public function pdf_coupon(){
+        $pdf = PDF::loadView('vendor.backpack.estudiantes.pdf_coupon', [
+            //"id" => $id,
+            //"condicion" => 'Libres',
+        ]);
+        return $pdf->stream('Cupon BSE.pdf');
+    }
 
     public static function routes()
     {
@@ -355,5 +367,7 @@ class OrderCrudController extends CrudController
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
         Route::get('generate_payment/{order_id}', [self::class, 'generatePayment']);
 
+        Route::get('payment_coupon', [self::class, 'payment_coupon'])->name('payment_coupon');
+        Route::get('pdf_coupon', [self::class, 'pdf_coupon'])->name('pdf_coupon');
     }
 }

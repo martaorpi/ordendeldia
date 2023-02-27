@@ -44,6 +44,13 @@ class ExamInscriptionsCrudController extends CrudController
         CRUD::enableResponsiveTable();
         CRUD::enableExportButtons();
         CRUD::removeButton('create');
+        /*$this->crud->addClause('whereHas', 'sworn_declaration_item', function($query) {
+            $query->whereHas('sworn_declaration', function($query) {
+                $query->whereHas('student', function($query) {
+                    //$query->where('students.id', 'sworn_declaration.student_id');
+                });
+            });
+        });*/
 
         CRUD::addColumn([
             'label' => 'Mesa de Examen',

@@ -10,15 +10,11 @@
 @section('content')
 
 @php
-//$mounth = date('m');
-/*for($i=1;$i<=length($totals);$i++){
-    echo $i;
-}*/
-//echo count($totals);
+
 @endphp
 
 <div class="container">
-    {{$total_paied}}<br>
+    {{$totals[2]['paid']}}<br>
     <div class="row">
         <div class="col-12 mt-3 mb-1">
             <h4 class="text-uppercase">Minimal Statistics Cards</h4>
