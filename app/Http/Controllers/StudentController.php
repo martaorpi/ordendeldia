@@ -98,6 +98,28 @@ class StudentController extends BaseController
         return view('estudiantes/exams');
     }
 
+    public function reinsc($mat){
+        $input2['student_id'] = 19;
+        $input2['cycle_id'] = 2;
+        $input2['quarterly_period'] = 1;//presentismo
+        $input2['date'] = date('Y-m-d');
+        $input2['type'] = 'Cursado Regular';
+        $input2['status'] = 'Estado1';
+        $input1 = SwornDeclaration::create($input2);
+
+        $input['sworn_declaration_id'] = $input1->id;
+        $input['subject_id'] = $mat;
+        $input['status'] = 'Estado1';
+        SwornDeclarationItem::create($input);
+
+        /*$input4['sworn_declaration_item_id'] = $input3->id;
+        $input4['student_id'] = 19;
+        $input4['exam_table_id'] = $mesa;
+        $input4['condition_exam'] = 'Regular';
+        ExamStudent::create($input4);*/
+        return view('estudiantes/re-registrations');
+    }
+
     public static function routes()
     {
         Route::group([
@@ -110,6 +132,7 @@ class StudentController extends BaseController
             Route::get('/estudiantes/exam_inscription', [self::class, 'exam_inscription']);
             Route::get('/estudiantes/re-registrations', [self::class, 'reinscripciones']);
             Route::get('/estudiantes/insc/{mesa}', [self::class, 'insc']);
+            Route::get('/estudiantes/reinsc/{mat}', [self::class, 'reinsc']);
             Route::get('/estudiantes/generate_payment/{order}', [self::class, 'generatePayment'])->name('generate_payment');//TODO: cambiar por post
         });
     }

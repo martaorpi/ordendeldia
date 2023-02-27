@@ -121,7 +121,7 @@ class ExamInscriptionsCrudController extends CrudController
     {
         CRUD::setValidation(ExamInscriptionsRequest::class);
 
-        /*CRUD::addField([
+        CRUD::addField([
             'label' => 'Mesa de Examen',
             'type' => 'relationship',
             'name' => 'exam_table_id', // the method that defines the relationship in your Model
@@ -133,8 +133,8 @@ class ExamInscriptionsCrudController extends CrudController
             'attributes' => [
                 'disabled' => 'disabled',
             ],
-        ]);*/
-        CRUD::addField([
+        ]);
+        /*CRUD::addField([
             'label' => 'Mesa de Examen',
             'type' => 'number',
             'name' => 'exam_table_id', // the method that defines the relationship in your Model
@@ -145,7 +145,7 @@ class ExamInscriptionsCrudController extends CrudController
             'attributes' => [
                 'disabled' => 'disabled',
             ],
-        ]);
+        ]);*/
         CRUD::addField([
             'label' => 'Estudiante',
             'type' => 'number',
