@@ -21,40 +21,47 @@ p{
 </style>
 
 <div class="acta">
-    <div align="center">
-        <h2>CUPON DE PAGO</h2>
-    </div>
+    <table width="100%" id="cabecera">
+        <tr>
+            <td align="left"><img src="images/logo2.png" width="50" height="60"></td>
+            <td align="left">
+                <h2>CUPON DE PAGO</h2>
+                <h3>Instituto de Estudios Superiores "SAN MARTIN DE PORRES"</h3>
+            </td>
+        </tr>
+    </table>
+    <br><br>
     @if($order->student)
         <table width="100%" id="cabecera" border=0>
             <tr>
                 <td width="10"></td>
                 <td width="30">
-                    <h5>Apellido y Nombre</h5>
-                    <h3>{{ $order->student->last_name }}, {{ $order->student->first_name }}</h3>
+                    <h4>Apellido y Nombre</h4>
+                    <h2>{{ $order->student->last_name }}, {{ $order->student->first_name }}</h2>
                 </td>
                 <td width="30">
-                    <h5>DNI</h5>
-                    <h3>{{ $order->student->dni }}</h3>
+                    <h4>DNI</h4>
+                    <h2>{{ $order->student->dni }}</h2>
                 </td>
                 <td width="30">
-                    <h5>Carrera</h5>
-                    <h3>{{ $order->student->career->title }}</h3>
+                    <h4>Carrera</h4>
+                    <h2>{{ $order->student->career->title }}</h2>
                 </td>
             </tr>
 
             <tr>
                 <td width="10"></td>
                 <td width="30">
-                    <h5>Fecha Vencimiento</h5>
-                    <h3>{{ date('d/m/Y', strtotime($order->expirated_at)) }}</h3>
+                    <h4>Fecha Vencimiento</h4>
+                    <h2>{{ date('d/m/Y', strtotime($order->expirated_at)) }}</h2>
                 </td>
                 <td width="30">
-                    <h5>Descripción</h5>
-                    <h3>{{ $order->description }}</h3>
+                    <h4>Descripción</h4>
+                    <h2>{{ $order->description }}</h2>
                 </td>
                 <td width="30">
-                    <h5>Monto</h5>
-                    <h3>${{ $order->amount }}</h3>
+                    <h4>Monto</h4>
+                    <h2>${{ $order->amount }}</h2>
                 </td>
             </tr>
         </table>
