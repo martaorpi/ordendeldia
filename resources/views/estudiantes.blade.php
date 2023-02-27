@@ -43,7 +43,7 @@ Carrera: {{ auth()->user()->student[0]->career->title }}
 </div>
 
 @if (auth()->user()->student[0]->status != 'Aprobado')
-    <div class="card-deck">
+    {{--<div class="card-deck">
         <div class="card border-danger mb-3" >
             <a href="#" class="text-decoration-none">
                 <div class="card-header">HISTORIAL ACADÉMICO</div>
@@ -70,5 +70,5 @@ Carrera: {{ auth()->user()->student[0]->career->title }}
                 </div>
             </a>
         </div>
-    </div>
+    </div>--}}
 @endif
