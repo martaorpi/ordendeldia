@@ -59,12 +59,20 @@ class ExamInscriptionsCrudController extends CrudController
             'entity' => 'exam_table.subject', // the method that defines the relationship in your Model
             'attribute' => 'description',
         ]);
-        CRUD::addColumn([
+        /*CRUD::addColumn([
             'label' => 'Estudiante',
             'type' => 'relationship',
             'name' => 'sworn_declaration_item_id', // the method that defines the relationship in your Model
             'entity' => 'sworn_declaration_item.sworn_declaration.student', // the method that defines the relationship in your Model
             'attribute' => 'student_id',
+        ]);*/
+
+        CRUD::addColumn([
+            'label' => 'Estudiante',
+            'type' => 'relationship',
+            'name' => 'student_id', // the method that defines the relationship in your Model
+            'entity' => 'student', // the method that defines the relationship in your Model
+            'attribute' => 'full_name',
         ]);
 
         CRUD::column('sworn_declaration_item_id')->label('Item DJ');
@@ -91,6 +99,16 @@ class ExamInscriptionsCrudController extends CrudController
                 CRUD::addClause('where', 'exam_table_id', $value);
             }
         );
+
+        $this->crud->addFilter([
+            'name'  => 'student_id',
+            'type'  => 'select2',
+            'label' => 'Estudiante'
+        ], function() {
+            return \App\Models\Student::all()->pluck('full_name', 'id')->toArray();
+        }, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'student_id', $value);
+        });
     }
 
     /**

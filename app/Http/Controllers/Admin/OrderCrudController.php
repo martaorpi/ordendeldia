@@ -11,7 +11,7 @@ use App\Models\MonthlyOrder;
 use App\Models\Payment;
 use App\States\Order\Expired;
 use App\States\Order\Pending;
-use \PDF;
+
 
 /**
  * Class OrderCrudController
@@ -337,26 +337,8 @@ class OrderCrudController extends CrudController
         );
     }
 
-    public function generatePayment($order_id){
-        $order = $this->crud->model::find($order_id);
-
-        if($order->state == Pending::class){
-            $payment = Payment::create();
-            $order->payment_id = $payment->id;
-            $order->payment_type = 'BSE';
-            $order->save();
-        }
-    }
-    public function payment_coupon(){
+    public function paymentCoupon(){
         return view('payment_coupon');
-    }
-
-    public function pdf_coupon(){
-        $pdf = PDF::loadView('vendor.backpack.estudiantes.pdf_coupon', [
-            //"id" => $id,
-            //"condicion" => 'Libres',
-        ]);
-        return $pdf->stream('Cupon BSE.pdf');
     }
 
     public static function routes()
@@ -365,9 +347,6 @@ class OrderCrudController extends CrudController
         Route::get('generate_monthly_orders', [self::class, 'generateMonthlyOrders']);//TODO: boton para generar mensualmente
         Route::get('expire_orders', [self::class, 'expiredOrders']);
         Route::get('metrics_orders', [self::class, 'metrics'])->name('metrics_orders');
-        Route::get('generate_payment/{order_id}', [self::class, 'generatePayment']);
-
-        Route::get('payment_coupon', [self::class, 'payment_coupon'])->name('payment_coupon');
-        Route::get('pdf_coupon', [self::class, 'pdf_coupon'])->name('pdf_coupon');
+        Route::get('payment_coupon', [self::class, 'paymentCoupon'])->name('payment_coupon');
     }
 }

@@ -48,6 +48,10 @@ class ExamInscriptions extends Model
     {
         return $this->belongsTo(\App\Models\SwornDeclarationItem::class);
     }
+    public function student()
+    {
+        return $this->belongsTo(\App\Models\Student::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
