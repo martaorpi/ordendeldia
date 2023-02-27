@@ -307,23 +307,23 @@ class OrderCrudController extends CrudController
 
     public function metrics(){
         $totals = [];
-        $total_paied = 0;
+        $total_paid = 0;
         $total_pending = 0;
         for ($i=1; $i <= 12; $i++) { 
             $totals[$i] = $this->getTotalAmountMonthly($i);
-            $total_paied += $totals[$i]["paid"];
+            $total_paid += $totals[$i]["paid"];
             $total_pending += $totals[$i]["pending"];
         }
 
 
         //$totals = json_encode($totals);
 
-        return view('metrics', compact('totals', 'total_paied', 'total_pending'));
+        return view('metrics', compact('totals', 'total_paid', 'total_pending'));
     }
 
     public function getTotalAmountMonthly($month_number){
 
-        $query = $this->crud->model::whereMonth('paied_at', '=', $month_number)
+        $query = $this->crud->model::whereMonth('paid_at', '=', $month_number)
             //->where('description', "Mensual_$month_number")
             //->orwhere('description', "Matricula")
             ->selectRaw('SUM( amount ) AS total');
@@ -360,7 +360,7 @@ class OrderCrudController extends CrudController
 
                 $order = $this->crud->model::find($payment[0]->order[0]->id);
                 !$order->state->canTransitionTo(Paid::class) ?: $order->state->transitionTo(Paid::class);
-                $order->payed_at = date("Y-m-d H:i:s");
+                $order->paid_at = date("Y-m-d H:i:s");
 
                 array_push($payments, array("order_id" => $order->id, "payment_id" => $payment[0]->id ));
             };
