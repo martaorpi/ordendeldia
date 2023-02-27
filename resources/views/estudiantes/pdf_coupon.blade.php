@@ -15,9 +15,9 @@ p{
 #cabecera, #cabecera th, #cabecera td {
     /*border: 1px solid black;*/
     font-size: 13px;
-    
 }
 #tr_extra{line-height: 1.2em;}
+#nombre{text-transform: uppercase;}
 </style>
 
 <div class="acta">
@@ -37,15 +37,15 @@ p{
                 <td width="10"></td>
                 <td width="30">
                     <h4>Apellido y Nombre</h4>
-                    <h2>{{ $order->student->last_name }}, {{ $order->student->first_name }}</h2>
+                    <h3 id="nombre">{{ $order->student->last_name }}, {{ $order->student->first_name }}</h3>
                 </td>
                 <td width="30">
                     <h4>DNI</h4>
-                    <h2>{{ $order->student->dni }}</h2>
+                    <h3>{{ $order->student->dni }}</h3>
                 </td>
                 <td width="30">
                     <h4>Carrera</h4>
-                    <h2>{{ $order->student->career->title }}</h2>
+                    <h3>{{ $order->student->career->title }}</h3>
                 </td>
             </tr>
 
@@ -53,15 +53,15 @@ p{
                 <td width="10"></td>
                 <td width="30">
                     <h4>Fecha Vencimiento</h4>
-                    <h2>{{ date('d/m/Y', strtotime($order->expirated_at)) }}</h2>
+                    <h3>{{ date('d/m/Y', strtotime($order->expirated_at)) }}</h3>
                 </td>
                 <td width="30">
                     <h4>Descripción</h4>
-                    <h2>{{ $order->description }}</h2>
+                    <h3>{{ $order->description }}</h3>
                 </td>
                 <td width="30">
                     <h4>Monto</h4>
-                    <h2>${{ $order->amount }}</h2>
+                    <h3>${{ $order->amount }}</h3>
                 </td>
             </tr>
         </table>
