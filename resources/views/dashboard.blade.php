@@ -1,4 +1,4 @@
-<title>ePorres</title>
+<title>Orden del Dia</title>
 <x-app-layout>
     <x-slot name="header"></x-slot>
 

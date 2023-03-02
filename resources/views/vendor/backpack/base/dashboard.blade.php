@@ -53,64 +53,31 @@
 
 @section('content')
 
-@php
-    /*$widgets['before_content'][] = [
-        'type'        => 'jumbotron',
-        'heading'     => trans('backpack::base.welcome'),
-        'content'     => trans('backpack::base.use_sidebar'),
-        'button_link' => backpack_url('logout'),
-        'button_text' => trans('backpack::base.logout'),
-    ];*/
-    $carreras = App\Models\Career::get();
-@endphp
-
 <div class="container">
     <div class="row">
-        @foreach ($carreras as $carrera)
-          @php
-              $inscriptos = App\Models\Student::where('career_id',$carrera->id)->where('cycle_id',2)->whereIn('status', ['Inscripto','Inscripto'])->count();
-              //$ingresos_carrera = $inscriptos->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
-          @endphp
-          <div class="col-md-4">
-            <div class="card-counter primary">
-                <i class="fa fa-code-fork"></i>                
-                <span class="count-numbers text-center"><small>Inscriptos</small><br>{{ $inscriptos }}</span>
-                <span class="count-numbers2 text-center"><small>Disponible</small><br>{{ $carrera->available_space - $inscriptos }}</span>
-                <span class="count-name">{{$carrera->short_name}}</span>
-            </div>
+      <form method="post" action="{{ url('formulario-inscripcion') }}" class="" enctype="multipart/form-data">
+          <div class="form-group row">
+              <div class="col-12">
+                  <b>Adjunte el archivo PDF del Orden del Día:</b>
+              </div>
           </div>
-            {{--@foreach ($ingresos_carrera as $cupo)
-                @if ($cupo->career_id == $carrera->id)
-                    <div class="col-md-3">
-                        <div class="card-counter primary">
-                            <i class="fa fa-code-fork"></i>
-                            <span class="count-numbers">{{$carrera->available_space - $cupo->total}}</span>
-                            <span class="count-numbers2">{{$cupo->total}}</span>
-                            <span class="count-name">{{$carrera->short_name}}</span>
-                        </div>
-                    </div>
-                @endif
-            @endforeach--}}
-            
-      @endforeach
-    </div>
-<br><br><br>
-    <div class="row">
-      @foreach ($carreras as $carrera)
-        @php
-            $inscriptos = App\Models\Student::where('career_id',$carrera->id)->where('cycle_id',2)->whereIn('status', ['Aprobado','Solicitado','En Revisión'])->count();
-            //$ingresos_carrera = $inscriptos->select('career_id', DB::raw('count(*) as total'))->groupBy('career_id')->get();
-        @endphp
-        <div class="col-md-4">
-          <div class="card-counter primary">
-              <i class="fa fa-code-fork"></i>                
-              <span class="count-numbers text-center"><small>Solicitudes</small><br>{{ $inscriptos }}</span>
-              <span class="count-name">{{$carrera->short_name}}</span>
-          </div>
-        </div>
-    @endforeach
-  </div>
-</div>
 
+          <div class="form-group row">
+              <div class="col-12">
+                  <input type="file" class="form-control-file" name="files[]" multiple >
+                  <input type="hidden" value="Certificado de Estudios" name="description0">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <div class="col-12">
+                  <hr class="linea_bordo">
+              </div>
+          </div>
+          <button type="submit" class="btn btn_bordo text-white btn-block" disabled="true" id="btn-actualizar">Enviar</button>
+
+      </form>
+    </div>
+</div>
 
 @endsection
