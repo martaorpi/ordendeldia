@@ -37,7 +37,7 @@ class Controller extends BaseController
         //$estudiante = Student::where('user_id', auth()->user()->id)->first();
         $input = $request->all();
 
-   
+        $input['study_plan_id'] = $request->career_id;
         if($request->nationality_id != 1){
             $input['province_id'] = 0;
             $input['department_id'] = 0;
@@ -52,9 +52,9 @@ class Controller extends BaseController
         $input['status'] = 'Solicitado';
         
         $condition = ["user_id" => auth()->user()->id];
+        $student = Student::updateOrCreate($condition,$input);
 
         if($request->hasFile('files')){
-            $student = Student::updateOrCreate($condition,$input);
             $files = $request->file('files');
             $folder = 'public/uploads/'.$request->dni;
             if (!file_exists($folder)) {
@@ -66,7 +66,7 @@ class Controller extends BaseController
                 copy($file->getRealPath(),$folder."/".$filename);
                 $inputFile['student_id'] = $student->id;
                 $inputFile['src'] = $folder."/".$filename;
-                $inputFile['description'] = $input['description0'].$key;
+                $inputFile['description'] = $input['description'.$key];
 
                 Documentation::create($inputFile);
             }

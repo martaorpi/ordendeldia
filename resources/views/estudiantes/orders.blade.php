@@ -1,10 +1,6 @@
- 
 <x-app-layout>
     <x-slot name="header"></x-slot>
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 h4">
-          Carrera: {{ auth()->user()->student[0]->career->title }}
-        </div> 
+    <div class="py-6"> 
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -35,9 +31,7 @@
                               <td>{{ $order->created_at }}</td>
                               <td><span class="badge bg-{{$order->state->color()}}">{{ $order->state->name() }}</span></td>
                               <td>
-                                  <form>
-                                      <button type="submit" class="btn btn-primary">Pagar</button>
-                                  </form>
+                                  <a href="{{ route('order', $order->id ) }}" class="btn btn-primary">Ver orden</a>
                               </td>
                             </tr>
                           @endforeach

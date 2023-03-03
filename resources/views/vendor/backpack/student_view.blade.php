@@ -114,25 +114,25 @@
                         <hr>
                     </div>
                     @php
-                        $documentation = $entry->documentation;
-                        //$documentation[0] = $entry->documentation->where('description', 'Certificado de Estudios')->last();
-                        //$documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
-                        //$documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
+                        $documentation[0] = $entry->documentation->where('description', 'Certificado de Estudios')->last();
+                        $documentation[1] = $entry->documentation->where('description', 'Fotocopia de DNI')->last();
+                        $documentation[2] = $entry->documentation->where('description', 'Foto Carnet')->last();
                     @endphp
-                    <br>
-                    <div class="col-sm-12" align="center">
-                        <h5>Certificado de Estudios</h5>
-                    </div>
-                    <br>
+                    <br><br><br><br>
+  
                     @foreach ($documentation as $document)
-                        @php
-                            $file = explode('/',$document->src);        
-                        @endphp
-                        @if ($document)
-                            <div class="col-sm-4 p-2" align="center">
-                                <a href="{{ url($document->src) }}" target="_blank">{{ $file[3] }}</a>  
-                            </div>                            
-                        @endif
+                      @if ($document)
+                        <div class="col-sm-4 p-2" align="center">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{ $document->description }}
+                                </div>   
+                                <div class="col-sm-12">
+                                    <a href="{{ url($document->src) }}" target="_blank">{{ $document->src }}</a>
+                                </div>   
+                            </div>   
+                        </div>                            
+                      @endif
                     @endforeach
                     
                     <div class="col-sm-12">
@@ -206,8 +206,8 @@
 
       id= <?= json_encode($entry->id)?>;
 
-      $.post(`/admin/createOrder/${id}`).done(function (result, status, xhr) {
-        swal("Estudiante inscripto", "ISMP admin", {
+      $.post(`create_order`).done(function (result, status, xhr) {
+        swal("Documentacion Aprobada y orden de pago generada", "ISMP admin", {
           icon: type,
         }).then((value) => {;
           console.log(value);

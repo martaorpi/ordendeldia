@@ -1,26 +1,5 @@
 @php
-    $subjects = \App\Models\Subject::where('study_plan_id',auth()->user()->student[0]->study_plan->id)
-        /*->whereHas('correlative', function ($q){$q
-            ->where('condition', 'Cursado')
-            ->where('correlativity_type', 'Fuerte')
-            ->whereHas('sworn_declaration_item', function ($q){$q
-                ->whereHas('exam_student', function ($q){$q
-                    ->where('approved',1)
-                    ->orWhere('promotion',1);
-                });
-            });
-        })
-        ->orWhereHas('correlative', function ($q){$q
-            ->where('condition', 'Cursado')
-            ->where('correlativity_type', 'Débil')
-            ->whereHas('sworn_declaration_item', function ($q){$q
-                ->whereHas('regularity', function ($q){$q
-                    ->where('date_from', '<=', date('Y-m-d'))
-                    ->orWhere('date_to', '>=', date('Y-m-d'));
-                });
-            });
-        })*/
-        ->get();
+    $subjects = \App\Models\Subject::where('study_plan_id',auth()->user()->student[0]->study_plan->id)->get();
 @endphp
 <x-app-layout>
     <x-slot name="header"></x-slot>
@@ -45,6 +24,11 @@
                         </thead>
                         <tbody>
                           @foreach ($subjects as $subject)
+                            @php
+                                //$mesa = \App\Models\ExamTable::where('subject_id',$subject->id)->first();
+                                //$insc = \App\Models\SwornDeclaration::where('type','Cursado Regular')->first();
+                                $insc2 = \App\Models\SwornDeclarationItem::where('subject_id',$subject->id)->first();
+                            @endphp
                             <tr>
                               <th scope="row">{{ $subject->id }}</th>
                               @if ($subject->career_id == 1)
@@ -72,11 +56,12 @@
                               @endif
                               
                               <td>
-                                  {{--<form>
-                                      <button type="submit" class="btn btn-primary">Inscribir</button>
-                                  </form>--}}
-
-                                    <a href="prueba" class="btn btn-primary">Inscribir</a>      
+                                  @if (!$insc2)
+                                    <a href="reinsc/{{$subject->id}}" class="btn btn-primary">Inscribirme</a>      
+                                  @else
+                                        <b>Nro de Inscripción: {{$insc2->id}}</b>
+                                  @endif
+                                          
                                   
                               </td>
                             </tr>

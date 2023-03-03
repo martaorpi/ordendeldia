@@ -356,7 +356,7 @@ class StudentCrudController extends CrudController
                         <tr>
                             <td>
                                 <div style="background: linear-gradient(178deg, #e12503 0%, #85060c 100%); padding: 20px 0px 10px 0; text-align: center; color: #fff; font-size: 12px;">
-                                    <p>Copyright &copy; '.date("Y").' <b>Relaciones Publicas Policiales</b> Todos los derechos reservados.</p>
+                                    <p>Copyright &copy; '.date("Y").' <b>DevWeb</b> Todos los derechos reservados.</p>
                                 </div>
                             </td>
                         </tr>
@@ -379,7 +379,8 @@ class StudentCrudController extends CrudController
         }
     }
 
-    public function signUp($id){  
+    public function signUp($id) 
+    {  
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -448,24 +449,6 @@ class StudentCrudController extends CrudController
         ));
         
         $response = curl_exec($curl);
-
-        $enviado = "Nombre: ".$nombre.",
-            Apellido: ".$apellido.",
-            IdTipoDocumento: ".$idtipodocumento.",
-            NroDocumento: ".$nrodocumento.",
-            FechaNacimiento: ".$fechanacimiento.",
-            EMail: ".$email.",
-            Direccion: ".$direccion.",
-            Sexo: ".$sexo.",
-            IdCarrera: ".$idcarrera.",
-            CicloLectivo : ".$ciclolectivo;
-
-        $log = new Log;
-        $log->user_admin_id = auth()->user()->id;
-        $log->student_id = $id;
-        $log->text = $enviado;
-        $log->type = 'datos enviados';
-        $log->save();
         
         $log = new Log;
         $log->user_admin_id = auth()->user()->id;

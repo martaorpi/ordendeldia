@@ -85,7 +85,7 @@
             <tr>
                 <td>
                     <div style="background: linear-gradient(178deg, #e12503 0%, #85060c 100%); padding: 20px 0px 10px 0; text-align: center; color: #fff; font-size: 12px;">
-                        <p>Copyright &copy; {{date("Y")}} <b>Relaciones Publicas Policiales</b> Todos los derechos reservados.</p>
+                        <p>Copyright &copy; {{date("Y")}} <b>DevWeb</b> Todos los derechos reservados.</p>
                     </div>
                 </td>
             </tr>

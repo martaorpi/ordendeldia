@@ -16,6 +16,7 @@ use App\Http\Controllers\StudentController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebhookController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')
@@ -62,5 +63,7 @@ Route::get('getLocalidades/{id}', [Controller::class, 'getLocalidades']);
 
 Route::get('/novedades/exportar-cant-planta', [Controller::class, 'exportCantPlanta']);
 Route::get('/novedades/exportar-lic-planta', [Controller::class, 'exportLicPlanta']);
+
+Route::post('webhooks', WebhookController::class);
 
 StudentController::routes();

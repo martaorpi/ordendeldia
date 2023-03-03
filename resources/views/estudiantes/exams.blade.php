@@ -1,64 +1,8 @@
 @php
-  /*$dj = \App\Models\SwornDeclaration::where('id',$id)->first();
-  if($dj->type == 'Examen Regular'){*/
+  
       $subjects = \App\Models\Subject::where('study_plan_id',auth()->user()->student[0]->study_plan->id)
-          /*->whereHas('sworn_declaration_item', function ($q){$q
-              ->whereHas('regularity', function ($q){$q
-                  ->where('date_from', '<', date('Y-m-d'))
-                  ->orWhere('date_to', '>', date('Y-m-d'));
-              });
-          })
-          ->whereHas('correlative', function ($q){$q
-              ->where('condition', 'Cursado')
-              ->where('correlativity_type', 'Fuerte')
-              ->whereHas('sworn_declaration_item', function ($q){$q
-                  ->whereHas('exam_student', function ($q){$q
-                      ->where('approved',1)
-                      ->orWhere('promotion',1);
-                  });
-              });
-          })
-          ->orWhereHas('correlative', function ($q){$q
-              ->where('condition', 'Cursado')
-              ->where('correlativity_type', 'Débil')
-              ->whereHas('sworn_declaration_item', function ($q){$q
-                  ->whereHas('regularity', function ($q){$q
-                      ->where('date_from', '<', date('Y-m-d'))
-                      ->orWhere('date_to', '>', date('Y-m-d'));
-                  });
-              });
-          })
-          ->with('exam_table')*/
           ->whereHas('exam_table', function ($q){$q->where('current', 1);})
           ->get();
-  /*}elseif($dj->type == 'Examen Libre'){
-      $subjects = \App\Models\Subject::where('study_plan_id',$dj->student->study_plan->id)
-          ->where('description', 'not like', "sem%")
-          ->where('description', 'not like', "taller%")
-          ->where('description', 'not like', "practica%")
-          ->where('description', 'not like', "práctica%")
-          ->whereHas('correlative', function ($q){$q
-              ->where('condition', 'Cursado')
-              ->where('correlativity_type', 'Fuerte')
-              ->whereHas('sworn_declaration_item', function ($q){$q
-                  ->whereHas('exam_student', function ($q){$q
-                      ->where('approved',1)
-                      ->orWhere('promotion',1);
-                  });
-              });
-          })
-          ->orWhereHas('correlative', function ($q){$q
-              ->where('condition', 'Cursado')
-              ->where('correlativity_type', 'Débil')
-              ->whereHas('sworn_declaration_item', function ($q){$q
-                  ->whereHas('regularity', function ($q){$q
-                      ->where('date_from', '<', date('Y-m-d'))
-                      ->orWhere('date_to', '>', date('Y-m-d'));
-                  });
-              });
-          })
-          ->get();
-  }*/
 @endphp
 <x-app-layout>
     <x-slot name="header"></x-slot>
@@ -87,21 +31,26 @@
                         </thead>
                         <tbody>
                           @foreach ($subjects as $subject)
+                            @php
+                                $mesa = \App\Models\ExamTable::where('subject_id',$subject->id)->first();
+                                $insc = \App\Models\ExamStudent::where('exam_table_id',$mesa->id)->first();
+                            @endphp
                             <tr>
                               <th scope="row">1</th>
                               <td>{{ $subject->description }}</td>
-                              <td>{{ $subject->sworn_declaration_item[0]->exam_student[0]->condition_exam }}</td>
-                              <td>{{ $subject->exam_table[0]->date }}</td>
-                              <td>{{ $subject->exam_table[0]->hour }}</td>
-                              <td>{{ $subject->exam_table[0]->max_date }}</td>
+                              <td>{{-- $subject->sworn_declaration_item[0]->exam_student[0]->condition_exam --}} </td>
+                              <td>@if ($mesa) {{ $subject->exam_table[0]->date }} @endif</td>
+                              <td>@if ($mesa) {{ $subject->exam_table[0]->hour }} @endif</td>
+                              <td>@if ($mesa) {{ $subject->exam_table[0]->max_date }} @endif</td>
                               <td>
                                   {{--<form>
                                       <button type="submit" class="btn btn-primary">Inscribir</button>
                                   </form>--}}
-                                  @if ($subject->sworn_declaration_item[0]->exam_student[0]->sworn_declaration_item_id == 13)
-                                    <a href="prueba" class="btn btn-primary">Inscribir</a>      
+                                  
+                                  @if (!$insc)
+                                    <a href="insc/{{$mesa->id}}" class="btn btn-primary">Inscribirme</a>      
                                   @else
-                                        <b>Nro de Inscripción: {{$subject->sworn_declaration_item[0]->exam_student[0]->id}}</b>
+                                        <b>Nro de Inscripción: {{$insc->id}}</b>
                                   @endif
                               </td>
                             </tr>
