@@ -1,1 +1,0 @@
-<a href="{{ url()->full().'/exportLicense' }} " class="btn btn-xs btn-default"><i class="fa fa-ban"></i> Licencias del mes</a>

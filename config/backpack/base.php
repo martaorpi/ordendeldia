@@ -36,13 +36,21 @@ return [
     // Content of the HTML meta robots tag to prevent indexing and link following
     'meta_robots_content' => 'noindex, nofollow',
 
+    // ---------
+    // DASHBOARD
+    // ---------
+
+    // Show "Getting Started with Backpack" info block?
+    'show_getting_started' => env('APP_ENV') == 'local',
+
     // ------
     // STYLES
     // ------
 
     // CSS files that are loaded in all pages, using Laravel's asset() helper
     'styles' => [
-        'packages/backpack/base/css/bundle.css',
+        'packages/backpack/base/css/bundle.css', // has primary color electric purple (backpack default)
+        // 'packages/backpack/base/css/blue-bundle.css', // has primary color blue
 
         // Here's what's inside the bundle:
         // 'packages/@digitallyhappy/backstrap/css/style.min.css',
@@ -71,7 +79,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>ePORRES</b>admin',
+    'project_logo'   => '<b>PSP</b>-Portal de Sistemas Policiales',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
@@ -105,10 +113,10 @@ return [
     // change background color with bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'DevWeb desarrollo',
+    'developer_name' => 'Dirección de Desarrollo Tecnológico',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => '/',
+    'developer_link' => '#',
 
     // Show powered by Laravel Backpack in the footer? true/false
     'show_powered_by' => false,
@@ -126,7 +134,7 @@ return [
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
         // 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-        // 'https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js',
+        // 'https://unpkg.com/@coreui/coreui@2.1.16/dist/js/coreui.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
         // 'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js'
@@ -178,15 +186,15 @@ return [
     // The web middleware (group) used in all base & CRUD routes
     // If you've modified your "web" middleware group (ex: removed sessions), you can use a different
     // route group, that has all the the middleware listed below in the comments.
-    //'web_middleware' => 'web',
+    'web_middleware' => 'web',
     // Or you can comment the above, and uncomment the complete list below.
-     'web_middleware' => [
-         \App\Http\Middleware\EncryptCookies::class,
-         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-         \Illuminate\Session\Middleware\StartSession::class,
-         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-         \App\Http\Middleware\VerifyCsrfToken::class,
-     ],
+    // 'web_middleware' => [
+    //     \App\Http\Middleware\EncryptCookies::class,
+    //     \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    //     \Illuminate\Session\Middleware\StartSession::class,
+    //     \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+    //     \App\Http\Middleware\VerifyCsrfToken::class,
+    // ],
 
     // Set this to false if you would like to use your own AuthController and PasswordController
     // (you then need to setup your auth routes manually in your routes.php file)
@@ -234,19 +242,16 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    //'user_model_fqn' => config('auth.providers.users.model'),
+    'user_model_fqn' => config('auth.providers.users.model'),
     // 'user_model_fqn' => App\User::class, // works on Laravel <= 7
-    'user_model_fqn' => App\Models\UserAdmin::class, // works on Laravel >= 8
+    // 'user_model_fqn' => App\Models\User::class, // works on Laravel >= 8
 
     // The classes for the middleware to check if the visitor is an admin
     // Can be a single class or an array of classes
     'middleware_class' => [
         App\Http\Middleware\CheckIfAdmin::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
-        //Backpack\Base\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
-
-        
+        // \Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
     ],
 
     // Alias for that middleware
@@ -262,7 +267,6 @@ return [
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.
     'guard' => 'backpack',
-    //'guard' => null,
 
     // The password reset configuration for Backpack.
     // If null, the config.auth.defaults.passwords value will be used.
@@ -271,9 +275,13 @@ return [
     // What kind of avatar will you like to show to the user?
     // Default: gravatar (automatically use the gravatar for their email)
     // Other options:
-    // - placehold (generic image with their first letter)
+    // - null (generic image with their first letter)
     // - example_method_name (specify the method on the User model that returns the URL)
     'avatar_type' => 'gravatar',
+
+    // Gravatar fallback options are 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank'
+    // 'blank' will keep the generic image with the user first letter
+    'gravatar_fallback' => 'blank',
 
     /*
     |--------------------------------------------------------------------------
@@ -291,6 +299,13 @@ return [
     // your namespace would be the one below. IMPORTANT: in this case the namespace ends with a dot.
     // 'view_namespace' => 'vendor.myname.mypackage.',
 
+    // Tell Backpack to look in more places for component views (like widgets)
+    'component_view_namespaces' => [
+        'widgets' => [
+            'backpack::widgets', // falls back to 'resources/views/vendor/backpack/base/widgets'
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | File System
@@ -306,17 +321,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | License Code
+    | Backpack Token Username
     |--------------------------------------------------------------------------
     |
-    | If you, your employer or your client make money by using Backpack, you need
-    | to purchase a license. A license code will be provided after purchase,
-    | which you can put here or in your ENV file in staging & production.
+    | If you have access to closed-source Backpack add-ons, please provide
+    | your token username here, if you're getting yellow alerts on your
+    | admin panel's pages. Normally this is not needed, it is
+    | preferred to add this as an environment variable
+    | (most likely in your .env file).
     |
     | More info and payment form on:
     | https://www.backpackforlaravel.com
     |
     */
 
-    'license_code' => env('BACKPACK_LICENSE', false),
+    'token_username' => env('BACKPACK_TOKEN_USERNAME', false),
 ];

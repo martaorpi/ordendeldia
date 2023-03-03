@@ -5,9 +5,12 @@
 @endphp
 
 @section('title')
-Algo salio mal.
+  Forbidden.
 @endsection
 
 @section('description')
-  No te preocupes, intenta iniciar sesion haciendo <a href="login">click Aqui!!</a>
+  @php
+    $default_error_message = "Please <a href='javascript:history.back()''>go back</a> or return to <a href='".url('')."'>our homepage</a>.";
+  @endphp
+  {!! isset($exception)? ($exception->getMessage()?e($exception->getMessage()):$default_error_message): $default_error_message !!}
 @endsection
