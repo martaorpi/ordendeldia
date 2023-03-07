@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\DocRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DocCrudController
@@ -59,7 +60,14 @@ class DocCrudController extends CrudController
     {
         CRUD::setValidation(DocRequest::class);
 
-        CRUD::field('user_id');
+        CRUD::addField([
+            'type' => 'number',
+            'name' => 'user_id',
+            'value' => auth()->id(),
+            'attributes' => [
+                //'hidden' => 'hidden',
+            ],
+        ]);
         CRUD::addField([
             'label' => "Archivo",
             'name' => "src",
