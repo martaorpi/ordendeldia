@@ -80,10 +80,10 @@ return [
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
     //'project_logo'   => '<b>PSP</b>-Portal de Sistemas Policiales',
-    'project_logo'   => '<b>OD</b>-Orden del Día',
+    'project_logo'   => '<b>Relaciones</b>Policiales',
 
     // Show / hide breadcrumbs on admin panel pages.
-    'breadcrumbs' => true,
+    'breadcrumbs' => false,
 
     // Horizontal navbar classes. Helps make the admin panel look similar to your project's design.
     'header_class' => 'app-header bg-light border-0 navbar',

@@ -41,7 +41,10 @@ class Doc extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -70,7 +73,7 @@ class Doc extends Model
         }
         $filename = $value->getClientOriginalName();
         Storage::disk($disk)->put($destination_path.'/'.$filename, file_get_contents($value));
-        $this->attributes[$attribute_name] = $destination_path.'/'.$filename; 
+        $this->attributes[$attribute_name] = 'uploads/'.$filename; 
     }
     
 }
