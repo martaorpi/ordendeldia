@@ -26,10 +26,12 @@ class DocCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Doc::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/doc');
-        CRUD::setEntityNameStrings('Boletin', 'Boletines');
-        CRUD::setShowView('vendor/backpack/doc/show');
+        $this->crud->setModel(\App\Models\Doc::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/doc');
+        $this->crud->setEntityNameStrings('Boletin', 'Boletines');
+        $this->crud->setShowView('vendor/backpack/doc/show');
+
+        
     }
 
     /**
@@ -40,17 +42,23 @@ class DocCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id')->label('Usuario');
-        CRUD::column('src')->label('Archivo');
-        CRUD::addColumn([
+        if(backpack_user()->hasRole('lector')){
+            $this->crud->removeButton('create');
+            $this->crud->removeButton('delete');
+            $this->crud->removeButton('update');
+        }
+
+        $this->crud->column('user_id')->label('Usuario');
+        $this->crud->column('src')->label('Archivo');
+        $this->crud->addColumn([
             'label' => 'Fecha de Actualización',
             'name' => 'updated_at',
-            'type' => 'date',
+            'type' => 'datetime',
         ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
+         * - $this->crud->column('price')->type('number');
+         * - $this->crud->addColumn(['name' => 'price', 'type' => 'number']); 
          */
     }
 
@@ -62,15 +70,15 @@ class DocCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(DocRequest::class);
+        $this->crud->setValidation(DocRequest::class);
 
-        CRUD::addField([
+        $this->crud->addField([
             'label' => "Archivo",
             'name' => "src",
             'type' => 'upload',
             'upload' => true,
         ]);
-        CRUD::addField([
+        $this->crud->addField([
             'type' => 'number',
             'name' => 'user_id',
             'label' => '',
@@ -85,8 +93,8 @@ class DocCrudController extends CrudController
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
+         * - $this->crud->field('price')->type('number');
+         * - $this->crud->addField(['name' => 'price', 'type' => 'number'])); 
          */
     }
 
@@ -103,9 +111,9 @@ class DocCrudController extends CrudController
 
     protected function setupShowOperation()
     {   
-        CRUD::set('show.setFromDb', false);
+        $this->crud->set('show.setFromDb', false);
 
-        CRUD::setShowContentClass('col-12 mx-auto mt-3');
+        $this->crud->setShowContentClass('col-12 mx-auto mt-3');
     }
 
 }

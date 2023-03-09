@@ -35,19 +35,13 @@ class Doc extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public static function boot()
+    /*public static function boot()
     {
         parent::boot();
-    
         static::deleting(function($obj) {
-            //$disk = config('backpack.base.root_disk_name');
-            //Storage::disk($disk)->delete('public/'.$this->{$attribute_name});
-            parent::boot();
-            static::deleting(function($obj) {
-                Storage::disk('public/uploads')->delete($obj->src);
-            });
+            Storage::disk('uploads')->delete($obj->src);
         });
-    }
+    }*/
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -80,7 +74,7 @@ class Doc extends Model
         $destination_path = "public/uploads"; 
         $attribute_name = "src";
         if ($value==null) {
-            Storage::disk($disk)->delete('public/'.$this->{$attribute_name});
+            Storage::disk($disk)->delete($this->{$attribute_name});
             $this->attributes[$attribute_name] = null;
         }
         $filename = $value->getClientOriginalName();

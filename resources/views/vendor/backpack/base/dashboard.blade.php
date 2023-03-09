@@ -1,9 +1,10 @@
+@extends(backpack_view('blank'))
+
 @php
-$doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
-//echo 'uploads/bol-2020-12-30-firmado.pdf';//$doc->src;
-use Illuminate\Support\Facades\Auth;
-echo backpack_user()->id;
+    $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
 @endphp
+
+@section('content')
 
 <style>
   .app-footer{
@@ -12,6 +13,9 @@ echo backpack_user()->id;
   }
   .app-footer a, .app-header a{
     color:#fff !important;
+  }
+  .app-header .dropdown-menu a{
+    color:#000 !important;
   }
   .app-header{
     background-color: #28166F !important;
@@ -28,6 +32,8 @@ echo backpack_user()->id;
     @endif
   </div>
 </div>
+
+@endsection
 
 @push('after_styles')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/dracula.min.css">
