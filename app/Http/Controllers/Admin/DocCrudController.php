@@ -29,7 +29,8 @@ class DocCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Doc::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/doc');
-        CRUD::setEntityNameStrings('doc', 'docs');
+        CRUD::setEntityNameStrings('Boletin', 'Boletines');
+        CRUD::setShowView('vendor/backpack/doc/show');
     }
 
     /**
@@ -40,9 +41,13 @@ class DocCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
-        CRUD::column('src');
-        
+        CRUD::column('user_id')->label('Usuario');
+        CRUD::column('src')->label('Archivo');
+        CRUD::addColumn([
+            'label' => 'Fecha de Actualización',
+            'name' => 'updated_at',
+            'type' => 'date',
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -61,18 +66,22 @@ class DocCrudController extends CrudController
         CRUD::setValidation(DocRequest::class);
 
         CRUD::addField([
-            'type' => 'number',
-            'name' => 'user_id',
-            'value' => auth()->id(),
-            'attributes' => [
-                //'hidden' => 'hidden',
-            ],
-        ]);
-        CRUD::addField([
             'label' => "Archivo",
             'name' => "src",
             'type' => 'upload',
             'upload' => true,
+        ]);
+        CRUD::addField([
+            'type' => 'number',
+            'name' => 'user_id',
+            'label' => '',
+            'value' => 1,//Auth::user()->id,
+            'attributes' => [
+                'hidden' => 'hidden',
+            ],
+            'wrapper'   => [
+                'class' => 'mt-0 pt-0',
+            ],
         ]);
 
         /**
@@ -92,4 +101,12 @@ class DocCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    protected function setupShowOperation()
+    {   
+        CRUD::set('show.setFromDb', false);
+
+        CRUD::setShowContentClass('col-12 mx-auto mt-3');
+    }
+
 }
