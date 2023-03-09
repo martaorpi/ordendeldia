@@ -64,8 +64,8 @@ class Doc extends Model
     */
     public function setSrcAttribute($value)
     {
-        $disk = config('backpack.base.root_disk_name'); 
-        $destination_path = "public/uploads"; 
+        $disk = "public";//config('backpack.base.root_disk_name'); 
+        $destination_path = "uploads"; 
         $attribute_name = "src";
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
