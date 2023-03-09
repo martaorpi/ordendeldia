@@ -1,8 +1,8 @@
 @php
 $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
 //echo 'uploads/bol-2020-12-30-firmado.pdf';//$doc->src;
-use Illuminate\Support\Facades\Auth;
-echo auth->user()->id;
+//use Illuminate\Support\Facades\Auth;
+//echo backpack_user()->id;
 @endphp
 
 <style>

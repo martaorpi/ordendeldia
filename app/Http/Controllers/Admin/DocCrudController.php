@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\DocRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DocCrudController
@@ -75,7 +74,7 @@ class DocCrudController extends CrudController
             'type' => 'number',
             'name' => 'user_id',
             'label' => '',
-            'value' => 1,//Auth::user()->id,
+            'value' => backpack_user()->id,
             'attributes' => [
                 'hidden' => 'hidden',
             ],
