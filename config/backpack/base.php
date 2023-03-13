@@ -24,24 +24,17 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Orden del dia',
+    'project_name' => 'Portal Denuncias',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
     // The string below will be passed through the url() helper.
     // - default: '' (project root)
     // - alternative: 'admin' (the admin's dashboard)
-    'home_link' => '',
+    'home_link' => '/admin',
 
     // Content of the HTML meta robots tag to prevent indexing and link following
     'meta_robots_content' => 'noindex, nofollow',
-
-    // ---------
-    // DASHBOARD
-    // ---------
-
-    // Show "Getting Started with Backpack" info block?
-    'show_getting_started' => env('APP_ENV') == 'local',
 
     // ------
     // STYLES
@@ -79,11 +72,10 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    //'project_logo'   => '<b>PSP</b>-Portal de Sistemas Policiales',
-    'project_logo'   => '<b>Relaciones</b>Policiales',
+    'project_logo'   => 'portal<b>Denuncias</b>',
 
     // Show / hide breadcrumbs on admin panel pages.
-    'breadcrumbs' => false,
+    'breadcrumbs' => true,
 
     // Horizontal navbar classes. Helps make the admin panel look similar to your project's design.
     'header_class' => 'app-header bg-light border-0 navbar',
@@ -114,7 +106,7 @@ return [
     // change background color with bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Relaciones Publicas Policiales',
+    'developer_name' => 'Secretaria de Seguridad',
 
     // Developer website. Link in footer. Type false if you want to hide it.
     'developer_link' => '#',
@@ -135,7 +127,7 @@ return [
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
         // 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-        // 'https://unpkg.com/@coreui/coreui@2.1.16/dist/js/coreui.min.js',
+        // 'https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
         // 'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js'
@@ -182,7 +174,7 @@ return [
 
     // The prefix used in all base routes (the 'admin' in admin/dashboard)
     // You can make sure all your URLs use this prefix by using the backpack_url() helper instead of url()
-    'route_prefix' => 'info',
+    'route_prefix' => 'admin',
 
     // The web middleware (group) used in all base & CRUD routes
     // If you've modified your "web" middleware group (ex: removed sessions), you can use a different
@@ -252,7 +244,7 @@ return [
     'middleware_class' => [
         App\Http\Middleware\CheckIfAdmin::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        // \Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
+        \Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
     ],
 
     // Alias for that middleware
@@ -267,7 +259,9 @@ return [
 
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => 'backpack',
+
+    'guard' => 'web',
+    //'guard' => null,
 
     // The password reset configuration for Backpack.
     // If null, the config.auth.defaults.passwords value will be used.
@@ -276,13 +270,9 @@ return [
     // What kind of avatar will you like to show to the user?
     // Default: gravatar (automatically use the gravatar for their email)
     // Other options:
-    // - null (generic image with their first letter)
+    // - placehold (generic image with their first letter)
     // - example_method_name (specify the method on the User model that returns the URL)
     'avatar_type' => 'gravatar',
-
-    // Gravatar fallback options are 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank'
-    // 'blank' will keep the generic image with the user first letter
-    'gravatar_fallback' => 'blank',
 
     /*
     |--------------------------------------------------------------------------
@@ -300,13 +290,6 @@ return [
     // your namespace would be the one below. IMPORTANT: in this case the namespace ends with a dot.
     // 'view_namespace' => 'vendor.myname.mypackage.',
 
-    // Tell Backpack to look in more places for component views (like widgets)
-    'component_view_namespaces' => [
-        'widgets' => [
-            'backpack::widgets', // falls back to 'resources/views/vendor/backpack/base/widgets'
-        ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | File System
@@ -322,19 +305,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Backpack Token Username
+    | License Code
     |--------------------------------------------------------------------------
     |
-    | If you have access to closed-source Backpack add-ons, please provide
-    | your token username here, if you're getting yellow alerts on your
-    | admin panel's pages. Normally this is not needed, it is
-    | preferred to add this as an environment variable
-    | (most likely in your .env file).
+    | If you, your employer or your client make money by using Backpack, you need
+    | to purchase a license. A license code will be provided after purchase,
+    | which you can put here or in your ENV file in staging & production.
     |
     | More info and payment form on:
     | https://www.backpackforlaravel.com
     |
     */
 
-    'token_username' => env('BACKPACK_TOKEN_USERNAME', false),
+    'license_code' => env('BACKPACK_LICENSE', false),
 ];
