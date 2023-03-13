@@ -29,8 +29,8 @@
     @if($doc)
       <!--<iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
       <embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
-      <object data="{{asset($doc->src)}}" type="application/pdf">
-        <iframe src="https://docs.google.com/viewer?url={{asset($doc->src)}}&embedded=true"></iframe>
+      <object data="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh">
+        <iframe src="https://docs.google.com/viewer?url={{asset($doc->src)}}&embedded=true" width="100%" style="height:70vh"></iframe>
     </object>
     @else
       <h4 class="mt-5">No hay documentos cargados</h4>
