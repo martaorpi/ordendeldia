@@ -26,38 +26,40 @@
 
 @section('content')
 <div class="row">
-	<div class="{{ $crud->getEditContentClass() }}">
-		<!-- Default box -->
+	<div class="col-12">
+		<div class="{{ $crud->getEditContentClass() }}">
+			<!-- Default box -->
 
-		@include('crud::inc.grouped_errors')
+			@include('crud::inc.grouped_errors')
 
-		  <form method="post"
-		  		action="{{ url($crud->route.'/'.$entry->getKey()) }}"
-				@if ($crud->hasUploadFields('update', $entry->getKey()))
-				enctype="multipart/form-data"
-				@endif
-		  		>
-		  {!! csrf_field() !!}
-		  {!! method_field('PUT') !!}
+			<form method="post"
+					action="{{ url($crud->route.'/'.$entry->getKey()) }}"
+					@if ($crud->hasUploadFields('update', $entry->getKey()))
+					enctype="multipart/form-data"
+					@endif
+					>
+			{!! csrf_field() !!}
+			{!! method_field('PUT') !!}
 
-		  	@if ($crud->model->translationEnabled())
-		    <div class="mb-2 text-right">
-		    	<!-- Single button -->
-				<div class="btn-group">
-				  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    {{trans('backpack::crud.language')}}: {{ $crud->model->getAvailableLocales()[request()->input('locale')?request()->input('locale'):App::getLocale()] }} &nbsp; <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-				  	@foreach ($crud->model->getAvailableLocales() as $key => $locale)
-					  	<a class="dropdown-item" href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?locale={{ $key }}">{{ $locale }}</a>
-				  	@endforeach
-				  </ul>
+				@if ($crud->model->translationEnabled())
+				<div class="mb-2 text-right">
+					<!-- Single button -->
+					<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{trans('backpack::crud.language')}}: {{ $crud->model->getAvailableLocales()[request()->input('locale')?request()->input('locale'):App::getLocale()] }} &nbsp; <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						@foreach ($crud->model->getAvailableLocales() as $key => $locale)
+							<a class="dropdown-item" href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?locale={{ $key }}">{{ $locale }}</a>
+						@endforeach
+					</ul>
+					</div>
 				</div>
-		    </div>
-		    @endif
-			@include('vendor.backpack.doc.viewDoc', ['doc' => \App\Models\Doc::where('id', $entry->id)->first()], ['doc_id' => $entry->id])
-            @include('crud::inc.form_save_buttons')
-		  </form>
+				@endif
+				@include('vendor.backpack.doc.viewDoc', ['doc' => \App\Models\Doc::where('id', $entry->id)->first()], ['doc_id' => $entry->id])
+				@include('crud::inc.form_save_buttons')
+			</form>
+		</div>
 	</div>
 </div>
 @endsection

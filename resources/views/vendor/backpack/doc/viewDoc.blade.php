@@ -3,10 +3,10 @@ $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
 @endphp
 
 <div class="card">
-  <div class="card-body">
+  <div class="card-body" style="height:75vh">
     <div class="row">
       <div class="col-12">
-        <iframe width="100%" height="700" src="{{asset($doc->src)}}" frameborder="0"></iframe>
+        <iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
       </div>
     </div>
 

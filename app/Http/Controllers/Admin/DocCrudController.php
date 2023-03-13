@@ -30,7 +30,7 @@ class DocCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/doc');
         $this->crud->setEntityNameStrings('Boletin', 'Boletines');
         $this->crud->setShowView('vendor/backpack/doc/show');
-
+        $this->crud->setShowContentClass('col-12 mx-auto mt-3');
         
     }
 
@@ -113,7 +113,6 @@ class DocCrudController extends CrudController
     {   
         $this->crud->set('show.setFromDb', false);
 
-        $this->crud->setShowContentClass('col-12 mx-auto mt-3');
     }
 
 }
