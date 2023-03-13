@@ -10,7 +10,7 @@
         "backpack/permissionmanager": "^6.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
-        "laravel/framework": "^9.19",
+        "laravel/framework": "^8.75",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "spatie/laravel-permission": "^5.5"
