@@ -29,7 +29,9 @@
     @if($doc)
       <!--<iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
       <embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
-      <iframe src="http://docs.google.com/gview?url=http://www.snee.com/xml/xslt/sample.doc&embedded=true" style="width:500px; height:500px;" frameborder="0"></iframe>
+      <object data="{{asset($doc->src)}}" type="application/pdf">
+        <iframe src="https://docs.google.com/viewer?url=your_url_to_pdf&embedded=true"></iframe>
+    </object>
     @else
       <h4 class="mt-5">No hay documentos cargados</h4>
     @endif
