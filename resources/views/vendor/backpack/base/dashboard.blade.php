@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.7.570/build/pdf.min.js"></script>
+
 @extends(backpack_view('blank'))
 
 @php
@@ -27,8 +27,9 @@
   <div class="card-body" style="height:80vh">
     <h3>Boletín Policial - Orden del día</h3>
     @if($doc)
-      <iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
-      <!--<embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
+      <!--<iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
+      <embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
+      <iframe src="http://docs.google.com/gview?url=http://www.snee.com/xml/xslt/sample.doc&embedded=true" style="width:500px; height:500px;" frameborder="0"></iframe>
     @else
       <h4 class="mt-5">No hay documentos cargados</h4>
     @endif
