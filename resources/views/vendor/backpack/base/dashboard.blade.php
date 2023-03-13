@@ -1,7 +1,4 @@
-<link href="https://npmcdn.com/pdfjs-dist/web/pdf_viewer.css" rel="stylesheet"/>
-<script src="https://npmcdn.com/pdfjs-dist/web/compatibility.js"></script>
-<script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
-<script src="https://npmcdn.com/pdfjs-dist/web/pdf_viewer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.7.570/build/pdf.min.js"></script>
 @extends(backpack_view('blank'))
 
 @php
