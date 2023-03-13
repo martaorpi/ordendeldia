@@ -9,20 +9,12 @@ use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        //Permission::create(['name' => 'dashboard']);
-        Permission::create(['name' => 'administrar-documentos']);
         Permission::create(['name' => 'administrar-usuarios']);
-        Permission::create(['name' => 'administrar-configuraciones']);
 
-        Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
-        //->givePermissionTo(['publish articles', 'unpublish articles']);
+        Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());;
         
         User::factory()->create([
             'name' => 'admin',

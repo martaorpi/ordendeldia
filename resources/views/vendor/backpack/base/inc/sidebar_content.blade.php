@@ -13,7 +13,7 @@
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('doc') }}"><i class="nav-icon la la-book"></i> Boletines</a></li>
 
-
+@if(backpack_user()->hasRole('admin'))
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cog"></i>Configuración</a>
         <ul class="nav-dropdown-items">
@@ -21,3 +21,4 @@
             <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
         </ul>
     </li>
+@endif
