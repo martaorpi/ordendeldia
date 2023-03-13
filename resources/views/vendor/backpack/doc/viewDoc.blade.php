@@ -6,7 +6,9 @@ $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
   <div class="card-body" style="height:75vh">
     <div class="row">
       <div class="col-12">
-        <iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
+        <object data="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh">
+          <iframe src="https://docs.google.com/viewer?url={{asset($doc->src)}}&embedded=true" width="100%" style="height:70vh"></iframe>
+        </object>
       </div>
     </div>
 
