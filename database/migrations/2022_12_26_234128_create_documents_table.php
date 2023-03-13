@@ -13,25 +13,9 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('dependencies', function (Blueprint $table) {
-            $table->id();
-            $table->string("short_name");
-            $table->text("long_name");
-            $table->text("physical_address")->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+   {
 
-        Schema::create('crimes', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->enum('group', ['Económicos', 'Violencia de Género', 'Robo', 'Judiciales']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('autorities', function (Blueprint $table) {
+        Schema::create('authorities', function (Blueprint $table) {
             $table->id();
             $table->string("first_name");
             $table->string("last_name");
@@ -43,31 +27,27 @@ return new class extends Migration
 
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('crime_id')->nullable();
+            $table->bigInteger('dependence_id')->nullable();
             $table->text("title");
             $table->text("body");
-            $table->enum('type', ['Denuncia', 'Contravención', 'Parte Informativo']);
-            $table->unsignedBigInteger('autority_id')->nullable();
-            $table->text('prosecution')->nullable();
-            $table->unsignedBigInteger('dependency_id')->nullable();
-            $table->foreign('dependency_id')->references('id')->on('dependencies');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->enum('type', ['Denuncia', 'Contravención'])->default('Denuncia');
+            $table->unsignedBigInteger('authority_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('complainant_id')->nullable();
+            $table->bigInteger('victim_id')->nullable();
+            $table->bigInteger('accused_id')->nullable();
             $table->dateTime("event_datetime")->nullable();
             $table->dateTime("completed_at")->nullable();
             $table->string("ex_number")->nullable();
-            $table->unsignedBigInteger('crime_id')->nullable();
-            $table->foreign('crime_id')->references('id')->on('crimes');
-            $table->string("states");
             $table->timestamps();
         });
 
-        Schema::create('documents_has_persons', function (Blueprint $table) {
-            $table->unsignedBigInteger("document_id");
-            $table->unsignedBigInteger("person_id");
-            $table->foreign('document_id')->references('id')->on('documents');
-            $table->foreign('person_id')->references('id')->on('persons');
+        /*Schema::create('document_person', function (Blueprint $table) {
+            $table->bigInteger("document_id");
+            $table->bigInteger("person_id");
             $table->enum('type', ['Denunciante', 'Victima', 'Denunciante/Victima', 'Denunciado']);
-        });
+        });*/
     }
 
     /**
@@ -77,6 +57,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('authorities');
         Schema::dropIfExists('documents');
+        Schema::dropIfExists('documents_has_persons');
     }
 };
