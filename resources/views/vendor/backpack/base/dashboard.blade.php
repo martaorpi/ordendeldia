@@ -1,3 +1,6 @@
+<link href="https://npmcdn.com/pdfjs-dist/web/pdf_viewer.css" rel="stylesheet"/>
+<script src="https://npmcdn.com/pdfjs-dist/web/compatibility.js"></script>
+<script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
 <script src="https://npmcdn.com/pdfjs-dist/web/pdf_viewer.js"></script>
 @extends(backpack_view('blank'))
 
