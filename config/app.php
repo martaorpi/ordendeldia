@@ -208,10 +208,10 @@ return [
     |
     */
 
-    /*'aliases' => Facade::defaultAliases()->merge([
+    'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),*/
-    'aliases' => [
+    ])->toArray(),
+    /*'aliases' => [
         //'cors' => \App\Http\Middleware\Cors::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
@@ -252,6 +252,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-    ],
+    ],*/
 
 ];
