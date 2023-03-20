@@ -21,7 +21,7 @@ class DocCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     *
+     * 
      * @return void
      */
     public function setup()
@@ -31,12 +31,12 @@ class DocCrudController extends CrudController
         $this->crud->setEntityNameStrings('Boletin', 'Boletines');
         $this->crud->setShowView('vendor/backpack/doc/show');
         $this->crud->setShowContentClass('col-12 mx-auto mt-3');
-
+        
     }
 
     /**
      * Define what happens when the List operation is loaded.
-     *
+     * 
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -58,13 +58,13 @@ class DocCrudController extends CrudController
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - $this->crud->column('price')->type('number');
-         * - $this->crud->addColumn(['name' => 'price', 'type' => 'number']);
+         * - $this->crud->addColumn(['name' => 'price', 'type' => 'number']); 
          */
     }
 
     /**
      * Define what happens when the Create operation is loaded.
-     *
+     * 
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -94,13 +94,13 @@ class DocCrudController extends CrudController
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - $this->crud->field('price')->type('number');
-         * - $this->crud->addField(['name' => 'price', 'type' => 'number']));
+         * - $this->crud->addField(['name' => 'price', 'type' => 'number'])); 
          */
     }
 
     /**
      * Define what happens when the Update operation is loaded.
-     *
+     * 
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
@@ -110,18 +110,9 @@ class DocCrudController extends CrudController
     }
 
     protected function setupShowOperation()
-    {
+    {   
         $this->crud->set('show.setFromDb', false);
 
     }
 
-    protected function example()
-    {
-        return view('example');
-    }
-
-    protected function example2()
-    {
-        return view('example2');
-    }
 }
