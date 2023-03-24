@@ -42,7 +42,7 @@ class DocCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        if(!backpack_user()->hasRole('editor') || !backpack_user()->hasRole('admin')){
+        if(!backpack_user()->hasRole('editor') && !backpack_user()->hasRole('admin')){
             $this->crud->removeButton('create');
             $this->crud->removeButton('delete');
             $this->crud->removeButton('update');
@@ -79,11 +79,11 @@ class DocCrudController extends CrudController
             'upload' => true,
         ]);
 
-        $this->crud->addField([
+        /*$this->crud->addField([
             'label' => "Tipo",
             'name' => "type",
             'type' => 'enum',
-        ]);
+        ]);*/
 
         $this->crud->addField([
             'type' => 'number',
