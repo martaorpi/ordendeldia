@@ -42,7 +42,7 @@ class DocCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        if(backpack_user()->hasRole('lector')){
+        if(!backpack_user()->hasRole('lector') && !backpack_user()->hasRole('admin')){
             $this->crud->removeButton('create');
             $this->crud->removeButton('delete');
             $this->crud->removeButton('update');
@@ -54,6 +54,11 @@ class DocCrudController extends CrudController
             'label' => 'Fecha de Actualización',
             'name' => 'updated_at',
             'type' => 'datetime',
+        ]);
+        $this->crud->addColumn([
+            'label' => 'Tipo',
+            'name' => 'type',
+            'type' => 'enum',
         ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -90,7 +95,11 @@ class DocCrudController extends CrudController
                 'class' => 'mt-0 pt-0',
             ],
         ]);
-
+        $this->crud->addField([
+            'label' => "Tipo",
+            'name' => "type",
+            'type' => 'enum',
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - $this->crud->field('price')->type('number');

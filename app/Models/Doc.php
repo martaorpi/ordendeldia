@@ -26,6 +26,7 @@ class Doc extends Model
     protected $fillable = [
         'user_id',
         'src',
+        'type',
     ];
     // protected $hidden = [];
     // protected $dates = [];

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id');
             $table->string("src");
+            $table->enum('type', ['Completo','Estructura','RRHH','Protocolos','Institutos','Judiciales']);
             $table->timestamps();
         });
     }
