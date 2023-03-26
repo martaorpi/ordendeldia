@@ -13,6 +13,8 @@
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('doc') }}"><i class="nav-icon la la-book"></i> Boletines</a></li>
 
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('doc/example') }}"><i class="nav-icon la la-question"></i> Inicio alternativo</a></li>
+
 @if(backpack_user()->hasRole('admin'))
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cog"></i>Configuración</a>
