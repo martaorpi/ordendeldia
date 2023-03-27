@@ -128,66 +128,61 @@
 </style>
 
 @php
-    $doc = App\Models\Doc::where('type','Completo')->orderBy('updated_at', 'desc')->first();
-    $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
-    $doc1 = App\Models\Doc::where('type','Estructura')->orderBy('updated_at', 'desc')->first();
-    $doc2 = App\Models\Doc::where('type','RRHH')->orderBy('updated_at', 'desc')->first();
-    $doc3 = App\Models\Doc::where('type','Protocolos')->orderBy('updated_at', 'desc')->first();
-    $doc4 = App\Models\Doc::where('type','Institutos')->orderBy('updated_at', 'desc')->first();
-    $doc5 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
-    setlocale(LC_ALL,"es_ES");
+    $doc1 = App\Models\Doc::where('type','Completo')->orderBy('updated_at', 'desc')->first();
+    $doc2 = App\Models\Doc::where('type','Estructura')->orderBy('updated_at', 'desc')->first();
+    $doc3 = App\Models\Doc::where('type','RRHH')->orderBy('updated_at', 'desc')->first();
+    $doc4 = App\Models\Doc::where('type','Protocolos')->orderBy('updated_at', 'desc')->first();
+    $doc5 = App\Models\Doc::where('type','Institutos')->orderBy('updated_at', 'desc')->first();
+    $doc6 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
+
+    $date_old = new DateTime();
+    $date_old = $date_old->modify('-24 hours');
+    $date = date('Y-m-d H:i:s');
+    $docs = App\Models\Doc::whereBetween('updated_at', [$date_old, $date])->orderBy('updated_at', 'desc')->get();
+    //$docs2 = App\Models\Doc::select(DB::raw('t.*'))->from(DB::raw('(SELECT * FROM docs ORDER BY updated_at DESC) t'))->groupBy('t.type')->get();
+    $views = 0;
+    $date = '';
+
+    function accion($id){
+        echo $id;
+    }
 @endphp
 
 @section('content')
 
-<div class="tweet-wrap">
-    <div class="tweet-header">
-        <img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">
-        <div class="tweet-header-info">
-            {{--Título 1 <span>dependencia</span><span>. Jun 27</span>--}}
-            Boletin Policial<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
-            <p><a href="{{asset($doc->src)}}" target="blank">{{ $doc->summary }}</a></p>
-        </div>
-    </div>
-    <div class="tweet-info-counts">
-        <div class="comments" title="usuarios que abrieron el documento">
-            <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-            <div class="comment-count">{{ $views }}</div>
-        </div>
-    </div>
-</div>
-
-@php
-for($i=1; $i < 6; $i++){
-    switch($i){
-        case 1: $d = $doc1; break;
-        case 2: $d = $doc2; break;
-        case 3: $d = $doc3; break;
-        case 4: $d = $doc4; break;
-        case 5: $d = $doc5; break;
-    }
-    if($d){
-        $views2 = App\Models\ViewUser::where('doc_id', $d->id)->count();
+@foreach ($docs as $doc)
+    @php
+    $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
+    $date = date('d/m/Y', strtotime($doc->created_at));
+    //$views2 = App\Models\ViewUser::where('doc_id', $doc->id)->count();
     @endphp
-        <div class="tweet-wrap">
-            <div class="tweet-header">
-                <img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">
-                <div class="tweet-header-info">
-                    {{ $d->type }}<span> {{ date('d/m/Y', strtotime($d->created_at)) }}</span>
-                    <p><a href="{{asset($d->src)}}" target="blank">{{ $d->summary }}</a></p>
-                </div>
-            </div>
-            <div class="tweet-info-counts">
-                <div class="comments" title="usuarios que abrieron el documento">
-                    <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    <div class="comment-count">{{ $views2 }}</div>
-                </div>
+
+    @switch($doc->type)
+        @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
+        @case('Estructura') @php $title = 'Estructura Organizacional';@endphp @break;
+        @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
+        @case('Protocolos') @php $title = 'Disposiciones Generales';@endphp @break;
+        @case('Institutos') @php $title = 'Desarrollo Educativo';@endphp @break;
+        @case('Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
+    @endswitch
+
+    <div class="tweet-wrap">
+        <div class="tweet-header">
+            <img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">
+            <div class="tweet-header-info">
+                {{ $title }}<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
+                <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
             </div>
         </div>
-    @php 
-    }
-} 
-@endphp
+        <div class="tweet-info-counts">
+            <div class="comments" title="usuarios que abrieron el documento">
+                <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <div class="comment-count">{{ $views }}</div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 
 {{--<div class="tweet-wrap">
     <div class="tweet-header">
@@ -231,21 +226,6 @@ for($i=1; $i < 6; $i++){
         <input type="radio" name="radio-a" id="check1">
         <label class="accordion-label" for="check1">Boletín Policial - Orden del día</label>
         <div class="accordion-content">
-            @if($doc)
-                {{--<object data="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:60vh">
-                    <iframe src="https://docs.google.com/viewer?url={{asset($doc->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
-                </object>--}}
-                <h5>{{ $doc->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
-            @else
-                <h5>No hay documentos cargados</h5>
-            @endif
-        </div>
-    </div>
-    <div class="accordion">
-        <input type="radio" name="radio-a" id="check2">
-        <label class="accordion-label" for="check2">Estructura Organizacional</label>
-        <div class="accordion-content">
             @if($doc1)
                 <h5>{{ $doc1->summary }}</h5>
                 <a href="{{ backpack_url('doc/'.$doc1->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
@@ -255,8 +235,8 @@ for($i=1; $i < 6; $i++){
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check3">
-        <label class="accordion-label" for="check3">Recursos Humanos</label>
+        <input type="radio" name="radio-a" id="check2">
+        <label class="accordion-label" for="check2">Estructura Organizacional</label>
         <div class="accordion-content">
             @if($doc2)
                 <h5>{{ $doc2->summary }}</h5>
@@ -267,8 +247,8 @@ for($i=1; $i < 6; $i++){
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check4">
-        <label class="accordion-label" for="check4">Protocolos e instructivos</label>
+        <input type="radio" name="radio-a" id="check3">
+        <label class="accordion-label" for="check3">Recursos Humanos</label>
         <div class="accordion-content">
             @if($doc3)
                 <h5>{{ $doc3->summary }}</h5>
@@ -279,8 +259,8 @@ for($i=1; $i < 6; $i++){
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check5">
-        <label class="accordion-label" for="check5">Plan de becas</label>
+        <input type="radio" name="radio-a" id="check4">
+        <label class="accordion-label" for="check4">Disposiciones Generales</label>
         <div class="accordion-content">
             @if($doc4)
                 <h5>{{ $doc4->summary }}</h5>
@@ -291,8 +271,8 @@ for($i=1; $i < 6; $i++){
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check6">
-        <label class="accordion-label" for="check6">Judiciales</label>
+        <input type="radio" name="radio-a" id="check5">
+        <label class="accordion-label" for="check5">Desarrollo Educativo</label>
         <div class="accordion-content">
             @if($doc5)
                 <h5>{{ $doc5->summary }}</h5>
@@ -302,6 +282,25 @@ for($i=1; $i < 6; $i++){
             @endif
         </div>
     </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check6">
+        <label class="accordion-label" for="check6">Disposiciones Judiciales</label>
+        <div class="accordion-content">
+            @if($doc6)
+                <h5>{{ $doc6->summary }}</h5>
+                <a href="{{ backpack_url('doc/'.$doc6->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+            @else
+                <h5>No hay documentos cargados</h5>
+            @endif
+        </div>
+    </div>
 </div>
 
 @endsection
+
+<script>
+    function views(id){
+      //alert('<?php echo accion('+id+'); ?>');
+      document.write('<?php echo accion('+id+'); ?>');
+    }
+</script>

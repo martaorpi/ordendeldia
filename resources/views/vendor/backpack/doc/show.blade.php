@@ -7,8 +7,16 @@
 		App\Models\ViewUser::create(
 			['doc_id' => $doc->id,
 			'user_id' => backpack_user()->id]
-		); 
+		);
 	}
+    switch ($doc->type) {
+        case 'Completo': $title = 'Boletín Policial'; break;
+        case 'Estructura': $title = 'Estructura organizacional'; break;
+        case 'RRHH': $title = 'Recursos Humanos'; break;
+        case 'Protocolos': $title = 'Protocolos e instructivos'; break;
+        case 'Institutos': $title = 'Institutos Policiales'; break;
+        case 'Judiciales': $title = 'Asuntos Judiciales'; break;
+    }
 @endphp
 
 @section('content')
@@ -32,7 +40,7 @@
 
 <div class="card">
   <div class="card-body" style="height:80vh">
-    <h3>Boletín Policial - Orden del día</h3>
+    <h3>{{ $title }}</h3>
     @if($doc)
       <!--<iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
       <embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
