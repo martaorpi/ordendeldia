@@ -21,6 +21,13 @@ return new class extends Migration
             $table->enum('type', ['Completo','Estructura','RRHH','Protocolos','Institutos','Judiciales']);
             $table->timestamps();
         });
+
+        Schema::create('views_users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('user_id');
+            $table->foreignId('doc_id');
+            $table->timestamps();
+        });
     }
 
     /**

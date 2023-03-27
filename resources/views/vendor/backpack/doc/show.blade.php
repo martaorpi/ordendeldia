@@ -2,6 +2,13 @@
 
 @php
     $doc = App\Models\Doc::where('id', $entry->getKey())->first();
+    $view_user = App\Models\ViewUser::where('doc_id', $doc->id)->where('user_id', backpack_user()->id)->first();
+	if(!$view_user){
+		App\Models\ViewUser::create(
+			['doc_id' => $doc->id,
+			'user_id' => backpack_user()->id]
+		); 
+	}
 @endphp
 
 @section('content')
@@ -22,6 +29,7 @@
     color:#fff !important;
   }
 </style>
+
 <div class="card">
   <div class="card-body" style="height:80vh">
     <h3>Boletín Policial - Orden del día</h3>

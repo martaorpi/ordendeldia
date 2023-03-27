@@ -14,4 +14,5 @@ Route::group([
     Route::crud('doc', 'DocCrudController');
     Route::get('doc/example', 'DocCrudController@example');
     Route::get('doc/example2', 'DocCrudController@example2');
+    Route::crud('view-user', 'ViewUserCrudController');
 });
