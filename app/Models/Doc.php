@@ -27,6 +27,7 @@ class Doc extends Model
         'user_id',
         'src',
         'type',
+        'summary',
     ];
     // protected $hidden = [];
     // protected $dates = [];

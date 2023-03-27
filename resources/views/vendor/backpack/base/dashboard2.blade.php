@@ -1,7 +1,8 @@
+
 @extends(backpack_view('blank'))
 
 @php
-    $doc = App\Models\Doc::where('id', $entry->getKey())->first();
+    $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
 @endphp
 
 @section('content')

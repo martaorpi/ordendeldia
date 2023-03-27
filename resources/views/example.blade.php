@@ -128,12 +128,17 @@
 </style>
 
 @php
-    $doc = App\Models\Doc::orderBy('updated_at', 'desc')->first();
+    $doc = App\Models\Doc::where('type','Completo')->orderBy('updated_at', 'desc')->first();
+    $doc1 = App\Models\Doc::where('type','Estructura')->orderBy('updated_at', 'desc')->first();
+    $doc2 = App\Models\Doc::where('type','RRHH')->orderBy('updated_at', 'desc')->first();
+    $doc3 = App\Models\Doc::where('type','Protocolos')->orderBy('updated_at', 'desc')->first();
+    $doc4 = App\Models\Doc::where('type','Institutos')->orderBy('updated_at', 'desc')->first();
+    $doc5 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
 @endphp
 
 @section('content')
 
-<div class="tweet-wrap">
+{{--<div class="tweet-wrap">
     <div class="tweet-header">
         <img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">
         <div class="tweet-header-info">
@@ -170,7 +175,7 @@
             <div class="comment-count">33</div>
         </div>
 
-        {{--<div class="retweets">
+        <div class="retweets">
         <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
         <div class="retweet-count">397</div>
         </div>
@@ -184,9 +189,9 @@
 
         <div class="message">
         <svg class="feather feather-send sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-        </div>--}}
+        </div>
     </div>
-</div>
+</div>--}}
 
 <div class="accordion-wrapper">
     <div class="accordion">
@@ -198,7 +203,7 @@
                     <iframe src="https://docs.google.com/viewer?url={{asset($doc->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
                 </object>
             @else
-                <h4 class="mt-5">No hay documentos cargados</h4>
+                <h4>No hay documentos cargados</h4>
             @endif
         </div>
     </div>
@@ -206,35 +211,65 @@
         <input type="radio" name="radio-a" id="check2">
         <label class="accordion-label" for="check2">Estructura Organizacional</label>
         <div class="accordion-content">
-            <p>archivo1</p>
+            @if($doc1)
+                <object data="{{asset($doc1->src)}}" type="application/pdf" width="100%" style="height:60vh">
+                    <iframe src="https://docs.google.com/viewer?url={{asset($doc1->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
+                </object>
+            @else
+                <h4>No hay documentos cargados</h4>
+            @endif
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check3">
         <label class="accordion-label" for="check3">Recursos Humanos</label>
         <div class="accordion-content">
-            <p>archivo2</p>
+            @if($doc2)
+                <object data="{{asset($doc2->src)}}" type="application/pdf" width="100%" style="height:60vh">
+                    <iframe src="https://docs.google.com/viewer?url={{asset($doc2->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
+                </object>
+            @else
+                <h4>No hay documentos cargados</h4>
+            @endif
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check4">
         <label class="accordion-label" for="check4">Protocolos e instructivos</label>
         <div class="accordion-content">
-            <p>archivo3</p>
+            @if($doc3)
+                <object data="{{asset($doc3->src)}}" type="application/pdf" width="100%" style="height:60vh">
+                    <iframe src="https://docs.google.com/viewer?url={{asset($doc3->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
+                </object>
+            @else
+                <h4>No hay documentos cargados</h4>
+            @endif
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check5">
         <label class="accordion-label" for="check5">Plan de becas</label>
         <div class="accordion-content">
-            <p>archivo4</p>
+            @if($doc4)
+                <object data="{{asset($doc4->src)}}" type="application/pdf" width="100%" style="height:60vh">
+                    <iframe src="https://docs.google.com/viewer?url={{asset($doc4->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
+                </object>
+            @else
+                <h4>No hay documentos cargados</h4>
+            @endif
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check6">
         <label class="accordion-label" for="check6">Judiciales</label>
         <div class="accordion-content">
-            <p>archivo5</p>
+            @if($doc5)
+                <object data="{{asset($doc5->src)}}" type="application/pdf" width="100%" style="height:60vh">
+                    <iframe src="https://docs.google.com/viewer?url={{asset($doc5->src)}}&embedded=true" width="100%" style="height:60vh"></iframe>
+                </object>
+            @else
+                <h4>No hay documentos cargados</h4>
+            @endif
         </div>
     </div>
 </div>

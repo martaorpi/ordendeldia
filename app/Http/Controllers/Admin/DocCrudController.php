@@ -83,13 +83,6 @@ class DocCrudController extends CrudController
             'type' => 'upload',
             'upload' => true,
         ]);
-
-        /*$this->crud->addField([
-            'label' => "Tipo",
-            'name' => "type",
-            'type' => 'enum',
-        ]);*/
-
         $this->crud->addField([
             'type' => 'number',
             'name' => 'user_id',
@@ -101,6 +94,11 @@ class DocCrudController extends CrudController
             'wrapper'   => [
                 'class' => 'mt-0 pt-0',
             ],
+        ]);
+        $this->crud->addField([
+            'label' => "Resumen",
+            'name' => "summary",
+            'type' => 'textarea',
         ]);
         $this->crud->addField([
             'label' => "Tipo",
