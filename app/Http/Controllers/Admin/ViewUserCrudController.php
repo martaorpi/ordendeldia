@@ -28,7 +28,7 @@ class ViewUserCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\ViewUser::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/view-user');
-        CRUD::setEntityNameStrings('view user', 'view users');
+        CRUD::setEntityNameStrings('Auditoria de vista', 'Auditoria de vistas');
     }
 
     /**
