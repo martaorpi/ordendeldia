@@ -136,7 +136,8 @@
     $doc6 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
 
     $date_old = new DateTime();
-    $date_old = $date_old->modify('-24 hours');
+    //$date_old = $date_old->modify('-24 hours');
+    $date_old = $date_old->modify('-5 days');
     $date = date('Y-m-d H:i:s');
     $docs = App\Models\Doc::whereBetween('updated_at', [$date_old, $date])->orderBy('updated_at', 'desc')->get();
     //$docs2 = App\Models\Doc::select(DB::raw('t.*'))->from(DB::raw('(SELECT * FROM docs ORDER BY updated_at DESC) t'))->groupBy('t.type')->get();
@@ -182,7 +183,6 @@
         </div>
     </div>
 @endforeach
-
 
 {{--<div class="tweet-wrap">
     <div class="tweet-header">

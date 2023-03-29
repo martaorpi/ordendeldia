@@ -34,7 +34,14 @@ class ViewUser extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+    public function doc()
+    {
+        return $this->belongsTo(\App\Models\Doc::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
