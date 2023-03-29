@@ -164,7 +164,7 @@
             <p class="ml-3">
                 <a href="{{ asset('files/leyes_provinciales/PROTOCOLO DE REUBICACIÓN DE SECUESTROS DE VEHÍCULOS RELACIONADO A CAUSAS JUDICIALES.pdf')}}" target="blank">*  Protocolo de actuación para reubicación de secuestros o
                     incautos de vehículos vinculados con causas judiciales almacenadas en las dependencias policiales y su anexo I. Aprobado por resolución S.G N° 103/2023.</a><br>
-                <a href="{{ asset('files/leyes_provinciales/PRINCI_1.pdf')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
+                <a href="{{ asset('files/leyes_provinciales/TRABAJO EN LABORATORIO.pdf')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
                 <br><br>
             </p>
         </div>
