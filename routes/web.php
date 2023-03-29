@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/','admin');
 
-/*Route::get('/huellas', function () {
-    return view('huellas.index');
-});*/
+Route::get('admin/digesto', function () {
+    return view('digesto');
+});
 
 

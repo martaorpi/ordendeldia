@@ -134,8 +134,8 @@ class DocCrudController extends CrudController
         return view('example');
     }
 
-    protected function example2()
+    protected function digesto()
     {
-        return view('example2');
+        return view('digesto');
     }
 }
