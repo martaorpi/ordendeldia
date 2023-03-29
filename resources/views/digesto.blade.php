@@ -149,16 +149,23 @@
                 <a href="{{ asset('files/leyes_nacionales/LEY 27279 - PRODUCTOS FITOSANITARIOS.pdf')}}" target="blank">*  Ley Nacional N°27.279 sobre Productos Fitosanitarios y Decreto Reglamentario.</a><br>
                 <a href="{{ asset('files/leyes_nacionales/LEY 25612 - RESIDUOS INDUSTRIALES.pdf')}}" target="blank">*  Ley Nacional N° 25.612 sobre Residuos Industriales y de Actividades de Servicios.</a><br>
                 <a href="{{ asset('files/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">*  Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 26306 - REGIMEN DEL REGISTRO DEL PATRIMONIO CULTURAL.pdf')}}" target="blank">*  Ley Nacional 26.306 Régimen del Registro del Patrimonio cultural.</a><br><br>
+                <a href="{{ asset('files/leyes_nacionales/LEY 26306 - REGIMEN DEL REGISTRO DEL PATRIMONIO CULTURAL.pdf')}}" target="blank">*  Ley Nacional 26.306 Régimen del Registro del Patrimonio cultural.</a>
+                <br><br>
             </p>
             <h5>Normas Provinciales</h5>
             <p class="ml-3">
                 <a href="{{ asset('files/leyes_provinciales/LEY 1734 - CODIGO RURAL DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 1.734, Código Rural de Santiago del Estero.</a><br>
                 <a href="{{ asset('files/leyes_provinciales/LEY 6920 - CODIGO DE PROCEDIMIENTOS MINEROS DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">*  Ley 6.920 Código de procedimientos Mineros.</a><br>
                 <a href="{{ asset('files/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">*  Ley Provincial
-                    N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a><br>
+                    N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a>
+                <br><br>
+            </p>
+            <h5>Protocolos</h5>
+            <p class="ml-3">
                 <a href="{{ asset('files/leyes_provinciales/PROTOCOLO DE REUBICACIÓN DE SECUESTROS DE VEHÍCULOS RELACIONADO A CAUSAS JUDICIALES.pdf')}}" target="blank">*  Protocolo de actuación para reubicación de secuestros o
                     incautos de vehículos vinculados con causas judiciales almacenadas en las dependencias policiales y su anexo I. Aprobado por resolución S.G N° 103/2023.</a><br>
+                <a href="{{ asset('files/leyes_provinciales/PRINCI_1.pdf')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
+                <br><br>
             </p>
         </div>
     </div>
