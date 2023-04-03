@@ -130,7 +130,7 @@
 
 @section('content')
 
-<h3>Normativas Policiales</h3>
+<h3>Digesto Jurídico Policial</h3>
 <div class="accordion-wrapper">
     <div class="accordion">
         <input type="radio" name="radio-a" id="check1">
