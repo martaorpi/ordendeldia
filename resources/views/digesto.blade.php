@@ -50,6 +50,7 @@
         background: white;
         -webkit-transition: all 0.3s;
         transition: all 0.3s;
+        overflow-y: scroll;
     }
     .accordion-content p{
         margin: 0;
@@ -135,7 +136,44 @@
         <input type="radio" name="radio-a" id="check1">
         <label class="accordion-label" for="check1">Normativa Legal General</label>
         <div class="accordion-content">
-            <h5>No hay documentos cargados</h5>
+            <h5>Normativa Nacional e Internacional</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION DE BELEM DO PARA.pdf')}}" target="blank">* Convención de belem do para.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION INTERAMERICANA PARA PREVENIR Y SANCIONAR LA TORTURA.pdf')}}" target="blank">* Convención interamericana para prevenir y sancionar la tortura.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION INTERAMERICANA PARA PREVENIR,  SANCIONAR Y ERRADICAR LA VIOLENCIA CONTRA LA MUJER  - CONVENCION DE BELEM DO PARAL.pdf')}}" target="blank">* Convención interamericana para prevenir, sancionar y erradicar la violencia contra la mujer.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Internacional para la Protección de Todas las personas contra las personas.pdf')}}" target="blank">* Convención internacional para la protección de todas las personas contra las personas.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Principios básicos sobre el empleo de la fuerza y de las armas de fuego de Naciones Unidas.pdf')}}" target="blank">* Principios básicos sobre el empleo de la fuerza y de las armas de fuego de Naciones Unidas.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 24417 CONTRA LA VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley Nacional 24417 de protección contra la violencia familiar.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY Nº 26.485 - VIOLENCIA CONTRA LA MUJER.pdf')}}" target="blank">* Ley Nacional 26485 de protección integral a las mujeres.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 27499 - Micaela.pdf')}}" target="blank">* Ley Nacional 27499 Micaela.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 22172 - COMUNICACION ENTRE TRIBUNALES.pdf')}}" target="blank">* Ley Nacional 22172 Sobre comunicación entre tribunales de la República de distinta jurisdicción territorial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 26743 - Identidad de Genero.pdf')}}" target="blank">* Ley Nacional 26743 de identidad de género.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24.660 - EJECUCION DE LA PENA PRIVATIVA DE LA LIBERTAD.pdf')}}" target="blank">* Ley Nacional 24660 Ejecución de la pena privativa de la libertad.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 26061.pdf')}}" target="blank">*  Ley Nacional 26061 de protección integral de los derechos de las niñas, niños y adolescentes.</a>
+                <br><br>
+            </p>
+            <h5>Normativa Provincial</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LCODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">*  Decreto reglamento 4794 - generalidades para el personal policial.</a>
+                <br><br>
+            </p>
         </div>
     </div>
     <div class="accordion">
@@ -144,49 +182,78 @@
         <div class="accordion-content">
             <h5>Normas Nacionales</h5>
             <p class="ml-3">
-                <a href="{{ asset('files/leyes_nacionales/LEY 25675 - POLITICA AMBIENTAL NACIONAL.pdf')}}" target="blank">* Ley Nacional N° 25.675 De Presupuestos Mínimos Ambientales.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 24051 - RESIDUOS PELIGROSOS.pdf')}}" target="blank">*  Ley Nacional N°24.051 De Residuos Peligrosos.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 20.418 TOLERANCIAS Y LIMITES ADMINISTRATIVOS EN RESIDUOS DE PLAGUICIDAS.pdf')}}" target="blank">*  Ley Nacional Nº 20.418 sobre Tolerancia de Residuos de Plaguicidas.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 27279 - PRODUCTOS FITOSANITARIOS.pdf')}}" target="blank">*  Ley Nacional N°27.279 sobre Productos Fitosanitarios y Decreto Reglamentario.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 25612 - RESIDUOS INDUSTRIALES.pdf')}}" target="blank">*  Ley Nacional N° 25.612 sobre Residuos Industriales y de Actividades de Servicios.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">*  Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
-                <a href="{{ asset('files/leyes_nacionales/LEY 26306 - REGIMEN DEL REGISTRO DEL PATRIMONIO CULTURAL.pdf')}}" target="blank">*  Ley Nacional 26.306 Régimen del Registro del Patrimonio cultural.</a>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 25675 - POLITICA AMBIENTAL NACIONAL.pdf')}}" target="blank">* Ley Nacional N° 25.675 De Presupuestos Mínimos Ambientales.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 24051 - RESIDUOS PELIGROSOS.pdf')}}" target="blank">*  Ley Nacional N°24.051 De Residuos Peligrosos.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 20.418 TOLERANCIAS Y LIMITES ADMINISTRATIVOS EN RESIDUOS DE PLAGUICIDAS.pdf')}}" target="blank">*  Ley Nacional Nº 20.418 sobre Tolerancia de Residuos de Plaguicidas.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 27279 - PRODUCTOS FITOSANITARIOS.pdf')}}" target="blank">*  Ley Nacional N°27.279 sobre Productos Fitosanitarios y Decreto Reglamentario.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 25612 - RESIDUOS INDUSTRIALES.pdf')}}" target="blank">*  Ley Nacional N° 25.612 sobre Residuos Industriales y de Actividades de Servicios.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">*  Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 26306 - REGIMEN DEL REGISTRO DEL PATRIMONIO CULTURAL.pdf')}}" target="blank">*  Ley Nacional 26.306 Régimen del Registro del Patrimonio cultural.</a>
                 <br><br>
             </p>
             <h5>Normas Provinciales</h5>
             <p class="ml-3">
-                <a href="{{ asset('files/leyes_provinciales/LEY 1734 - CODIGO RURAL DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 1.734, Código Rural de Santiago del Estero.</a><br>
-                <a href="{{ asset('files/leyes_provinciales/LEY 6920 - CODIGO DE PROCEDIMIENTOS MINEROS DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">*  Ley 6.920 Código de procedimientos Mineros.</a><br>
-                <a href="{{ asset('files/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">*  Ley Provincial
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 1734 - CODIGO RURAL DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 1.734, Código Rural de Santiago del Estero.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6920 - CODIGO DE PROCEDIMIENTOS MINEROS DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">*  Ley 6.920 Código de procedimientos Mineros.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">*  Ley Provincial
                     N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a>
                 <br><br>
             </p>
-            <h5>Protocolos</h5>
+            {{--<h5>Protocolos</h5>
             <p class="ml-3">
-                <a href="{{ asset('files/leyes_provinciales/PROTOCOLO DE REUBICACIÓN DE SECUESTROS DE VEHÍCULOS RELACIONADO A CAUSAS JUDICIALES.pdf')}}" target="blank">*  Protocolo de actuación para reubicación de secuestros o
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/PROTOCOLO DE REUBICACIÓN DE SECUESTROS DE VEHÍCULOS RELACIONADO A CAUSAS JUDICIALES.pdf')}}" target="blank">*  Protocolo de actuación para reubicación de secuestros o
                     incautos de vehículos vinculados con causas judiciales almacenadas en las dependencias policiales y su anexo I. Aprobado por resolución S.G N° 103/2023.</a><br>
-                <a href="{{ asset('files/leyes_provinciales/PRINCI_1.PDF')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/PRINCI_1.PDF')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
                 <br><br>
-            </p>
+            </p>--}}
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check3">
         <label class="accordion-label" for="check3">Dirección General De Planeamiento</label>
         <div class="accordion-content">
-            <h5>No hay documentos cargados</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito 24449.</a><br>
+                <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo.</a>
+                <br><br>
+            </p>
         </div>
     </div>
-    <div class="accordion">
+    {{--<div class="accordion">
         <input type="radio" name="radio-a" id="check4">
         <label class="accordion-label" for="check4">Dirección General De Policía Comunitaria</label>
+        <div class="accordion-content">
+            <h5>No hay documentos cargados</h5>
+        </div>
+    </div>--}}
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check5">
+        <label class="accordion-label" for="check5">Dirección General De Drogas Peligrosas</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Drogas_Peligrosas/CODIGO PROCESAL PENAL FEDERAL.pdf')}}" target="blank">*  Código procesal penal federal Ley N° 23.984.</a><br>
+                <a href="{{ asset('files/Drogas_Peligrosas/Código Procesal Penal Federal (T.O. 2019) - LEY 27.063.pdf')}}" target="blank">*  Código procesal penal federal Ley N° 27.063.</a><br>
+                <a href="{{ asset('files/Drogas_Peligrosas/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO (1).pdf')}}" target="blank">*  Código procesal penal de la provincia.</a><br>
+                <a href="{{ asset('files/Drogas_Peligrosas/Ley Nacional N° 23737 - TENENCIA Y TRAFICO DE ESTUPEFACIENTES.pdf')}}" target="blank">*  Ley Nacional N° 23737 - Tenencia Y Tráfico De Estupefacientes.</a>
+                <br><br>
+            </p>
+        </div>
+    </div>
+    {{--<div class="accordion">
+        <input type="radio" name="radio-a" id="check5">
+        <label class="accordion-label" for="check5">Dirección General De Asuntos Internos</label>
         <div class="accordion-content">
             <h5>No hay documentos cargados</h5>
         </div>
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check5">
-        <label class="accordion-label" for="check5">Dirección General De Asuntos Internos</label>
+        <label class="accordion-label" for="check5">Dirección General De Administración</label>
         <div class="accordion-content">
             <h5>No hay documentos cargados</h5>
         </div>
@@ -205,6 +272,13 @@
             <h5>No hay documentos cargados</h5>
         </div>
     </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check7">
+        <label class="accordion-label" for="check7">Unidad de Trámite Previsional (UTP)</label>
+        <div class="accordion-content">
+            <h5>No hay documentos cargados</h5>
+        </div>
+    </div>--}}
 </div>
 
 @endsection
