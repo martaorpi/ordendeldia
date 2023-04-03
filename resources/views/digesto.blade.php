@@ -387,8 +387,8 @@
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check13">
-        <label class="accordion-label" for="check13">Departamento de Reconocimiento Médico</label>
+        <input type="radio" name="radio-a" id="check14">
+        <label class="accordion-label" for="check14">Departamento de Reconocimiento Médico</label>
         <div class="accordion-content">
             <p class="ml-3">
                 <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
@@ -403,8 +403,8 @@
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check13">
-        <label class="accordion-label" for="check13">División Prevención y Protección contra el Alcoholismo</label>
+        <input type="radio" name="radio-a" id="check15">
+        <label class="accordion-label" for="check15">División Prevención y Protección contra el Alcoholismo</label>
         <div class="accordion-content">
             <p class="ml-3">
                 <a href="{{ asset('files/Div_Alcoholismo/Ordenanza N° 418-205.pdf')}}" target="blank">* Ordenanza N° 418/05 ciudad de La Banda – Código de Faltas Municipal.</a><br>
@@ -417,8 +417,8 @@
         </div>
     </div>
     <div class="accordion">
-        <input type="radio" name="radio-a" id="check14">
-        <label class="accordion-label" for="check14">Dirección General de Policía Cinetífica</label>
+        <input type="radio" name="radio-a" id="check16">
+        <label class="accordion-label" for="check16">Dirección General de Policía Cinetífica</label>
         <div class="accordion-content">
             <p class="ml-3">
                 <a href="{{ asset('files/Cientifica/Manual_actuacion_lugar_hecho_escena_delito - DGPC.pdf')}}" target="blank">* Manual de actuación en el lugar del hecho y/o escena del delito.</a><br>
