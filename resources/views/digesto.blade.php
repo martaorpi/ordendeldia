@@ -328,7 +328,7 @@
         <label class="accordion-label" for="check9">Departamento de Reconocimiento Ciudadano</label>
         <div class="accordion-content">
             <p class="ml-3">
-                <a href="{{ asset('files/Reconicimiento Ciudadano/Ley 25326 - PROTECCION DATOS PERSONALES.pdf')}}" target="blank">* Ley 25326 de protección de datos personales.</a>
+                <a href="{{ asset('files/Reconocimiento_Ciudadano/Ley 25326 - PROTECCION DATOS PERSONALES.pdf')}}" target="blank">* Ley 25326 de protección de datos personales.</a>
                 <br><br>
             </p>
         </div>
