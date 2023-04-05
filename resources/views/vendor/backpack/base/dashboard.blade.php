@@ -301,5 +301,20 @@
 <script>
     function views(id){
       alert(id)
+      /*$.ajax({
+            url: url,
+            type: "post",
+            dataType: "JSON",
+            data: JSON.stingify(socio),
+            contentType: "application/json",
+            success: function (data) {
+                document.getElementById("id").value = data.content[0].id;
+                document.getElementById("dni").value = data.content[1].dni;
+                document.getElementById("nombre").value = data.content[2].nombre;
+                document.getElementById("apellidos").value = data.content[3].apellidos;
+                document.getElementById("nacimiento").value = data.content[4].nacimiento;
+                document.getElementById("direccion").value = data.content[5].direccion;
+            }
+        });*/
     }
 </script>
