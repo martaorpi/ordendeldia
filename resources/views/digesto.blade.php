@@ -279,12 +279,12 @@
                 <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
                 <a href="{{ asset('files/UTP/Ley 6081 - RATIFICACION    DEL  CONVENIO  DE  TRANSFERENCIA  DEL  INSTITUTO  DE SEGURIDAD SOCIAL  DE  LA PROVINCIA DE SANTIAGO DEL ESTERO, ETC. A LA NACION.pdf')}}" target="blank">* Ley N° 6081 Santiago ratifícase el convenio de transferencia del sistema provincial de previsión social de la provincia de Santiago del Estero a la Nación y su complementario.</a><br>
-                <a href="" target="blank">* Decreto N° 646/2009 aprobación de acta complementaria.</a><br>
+                <a href="{{ asset('files/UTP/DECRETO 646 AÑO 2009 ACTA COMPLEMENTARIA.pdf')}}" target="blank">* Decreto N° 646/2009 aprobación de acta complementaria.</a><br>
                 <a href="{{ asset('files/UTP/Decreto 30-2010 - Santiago del Estero acepta Acta Complementaria.pdf')}}" target="blank">* Decreto 30/2010 - Santiago del Estero acepta acta complementaria..</a><br>
-                <a href="" target="blank">* Ley Nacional N° 21965 de Policía Federal Argentina.</a><br>
+                <a href="{{ asset('files/UTP/LEY 21965 POLICIA FEDERAL.pdf')}}" target="blank">* Ley Nacional N° 21965 de Policía Federal Argentina.</a><br>
                 <a href="{{ asset('files/UTP/Ley 26.657 - Ley de Salud Mental.pdf')}}" target="blank">* Ley Nacional N° 26657 - Ley de Salud Mental.</a><br>
-                <a href="{{ asset('files/UTP/DICTADO DE SENTENCIA - CASAGRANDE OCTAVIA Y OTROS C ANSES Y OTROS S REAJUSTES VARIOS - UTP.pdf')}}" target="blank">* Dictado de sentencia caso CASAGRANDE "EXPTE N° 44515/2013 CASAGRANDE OCTAVIO Y OTROS C/ANSES Y OTRO S/REAJUSTES VARIOS.</a><br>
-                <a href="{{ asset('files/UTP/Dictado de Sentencia Caso LEGUIZAMÓN OSCAR ISMAEL C ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S REAJUSTES VARIOS.pdf')}}" target="blank">* Dictado de sentencia caso LEGUIZAMÓN OSCAR ISMAEL C/ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S/ REAJUSTES VARIOS.</a><br>
+                <a href="{{ asset('files/UTP/DICTADO DE SENTENCIA - CASAGRANDE OCTAVIA Y OTROS C ANSES Y OTROS S REAJUSTES VARIOS - UTP 1.pdf')}}" target="blank">* Dictado de sentencia caso CASAGRANDE "EXPTE N° 44515/2013 CASAGRANDE OCTAVIO Y OTROS C/ANSES Y OTRO S/REAJUSTES VARIOS.</a><br>
+                <a href="{{ asset('files/UTP/Dictado de Sentencia Caso LEGUIZAMÓN OSCAR ISMAEL C ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S REAJUSTES VARIOS 1.pdf')}}" target="blank">* Dictado de sentencia caso LEGUIZAMÓN OSCAR ISMAEL C/ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S/ REAJUSTES VARIOS.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a><br>
                 <a href="{{ asset('files/UTP/REGLAMENTO - INSTRUCTIVO DE TRABAJO - UTP.pdf')}}" target="blank">* Resolución de ANSES N° 540/07 pautas para creación de U.T.P. y lineamientos de trabajo.</a>
                 <br><br>
@@ -317,8 +317,8 @@
                 <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
-                <a href="{{ asset('files/Asunots_Judiciales/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 7344 mecanismo provincial de prev. de la tortura y otros tratos o penas crueles, inhumanos o degradantes de la prov. de Santiago del Estero.</a><br>
-                <a href="{{ asset('files/Asunots_Judiciales/Provincial/LEY 6.308 - VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Código de faltas provincial.</a>
+                <a href="{{ asset('files/Asuntos_Judiciales/Provincial/Ley provincial 7344 - Prevencion contra la tortura.pdf')}}" target="blank">* Ley 7344 mecanismo provincial de prev. de la tortura y otros tratos o penas crueles, inhumanos o degradantes de la prov. de Santiago del Estero.</a><br>
+                <a href="{{ asset('files/Asuntos_Judiciales/Provincial/LEY 6.308 - VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley 6308 Violencia Familiar.</a>
                 <br><br>
             </p>
         </div>
@@ -341,7 +341,7 @@
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY Nº 26.485 - VIOLENCIA CONTRA LA MUJER.pdf')}}" target="blank">* Ley Nacional 26485 de protección integral a las mujeres.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 27499 - Micaela.pdf')}}" target="blank">* Ley Nacional 27499 Micaela.</a><br>
                 <a href="{{ asset('files/Santiago_A/Ley 7032.pdf')}}" target="blank">* Ley Provincial 7032 prevención, sanción y erradicación de la violencia contra las mujeres.</a><br>
-                <a href="{{ asset('files/Santiago_A/CONVENIO ENTRE MINISTERIO DE JUSTICIA Y DDHH Y EL MINISTERIO DE SEG Y CULTO - OF SGO ACOMPAÑA.pdf')}}" target="blank">* Convenio entre Ministerio de Justicia y DDHH y el Ministerio de Seguridad y culto.</a>
+                {{--<a href="{{ asset('files/Santiago_A/CONVENIO ENTRE MINISTERIO DE JUSTICIA Y DDHH Y EL MINISTERIO DE SEG Y CULTO - OF SGO ACOMPAÑA.pdf')}}" target="blank">* Convenio entre Ministerio de Justicia y DDHH y el Ministerio de Seguridad y culto.</a>--}}
                 <br><br>
             </p>
         </div>
@@ -364,7 +364,6 @@
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
-                <a href="" target="blank">* Reglas mínimas para el tratamiento de los reclusos.</a><br>
                 <a href="{{ asset('files/CUD/Reglamento General de Procesados.pdf')}}" target="blank">* Reglamento general de procesados - Decreto N° 303/96 modificado por Decreto N° 1464/07.</a><br>
                 <a href="{{ asset('files/CUD/Reglamento de las Modalidades Básicas de la Ejecución Penal.pdf')}}" target="blank">* Reglamento de las modalidades básicas de la ejecución penal - Decreto N° 396/99.</a><br>
                 <a href="{{ asset('files/CUD/Reglamento de Disciplina para los Internos.pdf')}}" target="blank">* Reglamento de disciplina para los internos - Decreto N° 18/97.</a><br>
@@ -410,7 +409,7 @@
                 <a href="{{ asset('files/Div_Alcoholismo/Ordenanza N° 418-205.pdf')}}" target="blank">* Ordenanza N° 418/05 ciudad de La Banda – Código de Faltas Municipal.</a><br>
                 <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a><br>
                 <a href="{{ asset('files/Div_Alcoholismo/Ley provincial n 4547 VENTA Y-O EXPENDIO DE BEBIDAS ALCOHOLICAS AL MENUDEO.pdf')}}" target="blank">* Ley provincial n° 4547 venta y/o expendio bebidas alcohólicas al menudeo de la provincia y su decreto reglamentario.</a><br>
-                <a href="{{ asset('files/Div_Alcoholismo/Ley N 7163 - Prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs.pdf')}}" target="blank">* Ley provincial n° 7163 – prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs.</a><br>
+                <a href="{{ asset('files/Div_Alcoholismo/Ley N 7163 - Prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs..pdf')}}" target="blank">* Ley provincial n° 7163 – prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
                 <br><br>
             </p>
