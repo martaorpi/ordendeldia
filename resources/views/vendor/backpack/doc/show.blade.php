@@ -2,13 +2,6 @@
 
 @php
     $doc = App\Models\Doc::where('id', $entry->getKey())->first();
-    $view_user = App\Models\ViewUser::where('doc_id', $doc->id)->where('user_id', backpack_user()->id)->first();
-	if(!$view_user){
-		App\Models\ViewUser::create(
-			['doc_id' => $doc->id,
-			'user_id' => backpack_user()->id]
-		);
-	}
     switch ($doc->type) {
         case 'Completo': $title = 'Boletín Policial'; break;
         case 'Estructura': $title = 'Estructura organizacional'; break;

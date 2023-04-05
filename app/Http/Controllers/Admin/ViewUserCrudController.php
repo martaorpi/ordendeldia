@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ViewUserRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-
+use \App\Models\Doc;
+use \App\Models\ViewUser;
 /**
  * Class ViewUserCrudController
  * @package App\Http\Controllers\Admin
@@ -82,5 +83,19 @@ class ViewUserCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function addViewsUsers($id)
+    {
+        $doc = Doc::where('id', $id)->first();
+        $view_user = ViewUser::where('doc_id', $doc->id)->where('user_id', backpack_user()->id)->first();
+        if(!$view_user){
+            ViewUser::create(
+                ['doc_id' => $doc->id,
+                'user_id' => backpack_user()->id]
+            );
+        }
+        $views = ViewUser::where('doc_id', $doc->id)->count();
+        return $views;
     }
 }

@@ -178,7 +178,7 @@
         <div class="tweet-info-counts">
             <div class="comments" title="usuarios que abrieron el documento">
                 <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <div class="comment-count">{{ $views }}</div>
+                <div class="comment-count" id="views">{{ $views }}</div>
             </div>
         </div>
     </div>
@@ -228,7 +228,7 @@
         <div class="accordion-content">
             @if($doc1)
                 <h5>{{ $doc1->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc1->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc1->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc1->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -240,7 +240,7 @@
         <div class="accordion-content">
             @if($doc2)
                 <h5>{{ $doc2->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc2->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc2->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc2->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -252,7 +252,7 @@
         <div class="accordion-content">
             @if($doc3)
                 <h5>{{ $doc3->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc3->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc3->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc3->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -264,7 +264,7 @@
         <div class="accordion-content">
             @if($doc4)
                 <h5>{{ $doc4->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc4->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc4->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc4->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -276,7 +276,7 @@
         <div class="accordion-content">
             @if($doc5)
                 <h5>{{ $doc5->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc5->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc5->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc5->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -288,7 +288,7 @@
         <div class="accordion-content">
             @if($doc6)
                 <h5>{{ $doc6->summary }}</h5>
-                <a href="{{ backpack_url('doc/'.$doc6->id.'/show') }}" class="btn btn-xs btn-primary">Ver Documento</a>
+                <a href="{{ backpack_url('doc/'.$doc6->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc6->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
@@ -300,21 +300,15 @@
 
 <script>
     function views(id){
-      alert(id)
-      /*$.ajax({
-            url: url,
-            type: "post",
-            dataType: "JSON",
-            data: JSON.stingify(socio),
-            contentType: "application/json",
-            success: function (data) {
-                document.getElementById("id").value = data.content[0].id;
-                document.getElementById("dni").value = data.content[1].dni;
-                document.getElementById("nombre").value = data.content[2].nombre;
-                document.getElementById("apellidos").value = data.content[3].apellidos;
-                document.getElementById("nacimiento").value = data.content[4].nacimiento;
-                document.getElementById("direccion").value = data.content[5].direccion;
+        $.ajax({
+            url: 'view-user/addViewsUsers/'+id,
+            type: "GET",
+            data : {"_token":"{{ csrf_token() }}"},
+            dataType: "json",
+            success:function(data)
+            {
+                document.getElementById('views').innerHTML = data;
             }
-        });*/
+        });
     }
 </script>

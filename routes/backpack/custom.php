@@ -13,6 +13,6 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('doc', 'DocCrudController');
     Route::get('doc/example', 'DocCrudController@example');
-    Route::get('doc/example2', 'DocCrudController@example2');
+    Route::get('view-user/addViewsUsers/{id}', 'ViewUserCrudController@addViewsUsers');
     Route::crud('view-user', 'ViewUserCrudController');
 });
