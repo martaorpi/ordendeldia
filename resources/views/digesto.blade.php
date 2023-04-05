@@ -138,7 +138,7 @@
         <div class="accordion-content">
             <h5>Normativa Nacional e Internacional</h5>
             <p class="ml-3">
-                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION DE BELEM DO PARA.pdf')}}" target="blank">* Convención de belem do para.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION INTERAMERICANA PARA PREVENIR Y SANCIONAR LA TORTURA.pdf')}}" target="blank">* Convención interamericana para prevenir y sancionar la tortura.</a><br>
@@ -148,7 +148,7 @@
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
-                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial de la Nación.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 24417 CONTRA LA VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley Nacional 24417 de protección contra la violencia familiar.</a><br>
@@ -242,7 +242,7 @@
         <label class="accordion-label" for="check5">Dirección General de Asuntos Internos</label>
         <div class="accordion-content">
             <p class="ml-3">
-                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito 24449.</a><br>
@@ -297,7 +297,7 @@
         <div class="accordion-content">
             <h5>Normativa Nacional</h5>
             <p class="ml-3">
-                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION DE BELEM DO PARA.pdf')}}" target="blank">* Convención de belem do para.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
@@ -425,6 +425,102 @@
                 <a href="{{ asset('files/Cientifica/Guía para el relevamiento y conservación de la evidencia.pdf')}}" target="blank">* Guía para el relevamiento y conservación de la evidencia.</a>
                 <br><br>
             </p>
+        </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check17">
+        <label class="accordion-label" for="check17">Escuela de Cadetes "Cnel. Lorenzo Lugones"</label>
+        <div class="accordion-content">
+            <h5>Normativa Internacional</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Escuela_Cadetes/Internacional/Declaración Americana.pdf')}}" target="blank">* Declaración americana de derechos y deberes del hombre.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Internacional/Declaración Universal.pdf')}}" target="blank">* Declaración universal de derechos humanos.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Internacional/Pacto Internacional.pdf')}}" target="blank">* Pacto internacional de derechos civiles y políticos.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Internacional/Código de Conducta.pdf')}}" target="blank">* Código de conducta para los funcionarios encargados de hacer cumplir la ley (adoptado por la Asamblea General de las Naciones Unidas en su Resolución 34/169, del 17 de diciembre de 1979).</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Internacional/Principio bsco sobre el empleo de la fuerza.pdf')}}" target="blank">* Principios básicos sobre el empleo de la fuerza y armas de fuego por los funcionarios encargados de hacer cumplir ley. VIII Congreso de las Naciones Unidas sobre prevención del delito y tratamiento del delincuente, La Habana (Cuba) del 27 de agosto al 7 de septiembre de 1990.</a>
+                <br><br>
+            </p>
+            <h5>Normativa Nacional</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial de la Nación.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/CODIGO PROCESAL PENAL DE LA NACION.pdf')}}" target="blank">* Código Procesal Penal de la Nación.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley de Responsabilidad Estatal N° 26944.pdf')}}" target="blank">* Ley de Responsabilidad Estatal N° 26944.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 26743 - Identidad de Genero.pdf')}}" target="blank">* Ley Nacional 26743 de identidad de género.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.655 de Deportes.pdf')}}" target="blank">* Ley N° 20.655 de Deportes.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución 506-13 Cuerpos policiales y fuerza de seguridad. Pautas de intervención para determinadas situaciones Personas con capacidad mental.pdf')}}" target="blank">* Resolución 506/13 (Cuerpos policiales y fuerza de seguridad. Pautas de intervención para determinadas situaciones) Personas con capacidad mental. Ministerio de Seguridad de la Nación.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución 1181-2011 - Colectivo LGBT.pdf')}}" target="blank">* Resolución 1181/2011 - Colectivo LGBT-- Ministerio de Seguridad de la Nación.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución E- 1149-2017 - Pautas mínimas de actuación para registros personales y detención en la vía publica de personas pertenecientes al colectivo LGBT.pdf')}}" target="blank">* Resolución E- 1149/2017 - (pautas mínimas de actuación para registros personales y detención en la vía pública de personas pertenecientes al colectivo LGBT).</a>
+                <br><br>
+            </p>
+            <h5>Normativa Provincial</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código Procesal Penal de la provincia de Santiago del Estero - Ley N°6941.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                <a href="{{ asset('files/Escuela_Cadetes/Provincial/Ley 6283 ADHESION A LA LEY NACIONAL DE TRANSITO..pdf')}}" target="blank">* Ley Provincial de Transito (Ley N° 6283).</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a>
+                <br><br>
+            </p>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check18">
+            <label class="accordion-label" for="check18">Unidad de Explosivos</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Explosivos/LEY N° 20.429 - LEY NACIONAL DE ARMAS Y EXPLOSIVOS.pdf')}}" target="blank">* Ley Nacional N° 20429 -Ley de armas y explosivos.</a><br>
+                    <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a><br>
+                    <a href="{{ asset('files/Explosivos/Ley Nacional N° 25886 - Delitos Con Armas De Fuego Modificación.pdf')}}" target="blank">* Ley Nacional N° 25886 - delitos con armas de fuego.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check19">
+            <label class="accordion-label" for="check19">División Bomberos</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Bomberos/LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                    <a href="{{ asset('files/Bomberos/DEC. REGLAMENTARIO LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Decreto 351 - Reglamentario Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                    <a href="{{ asset('files/Bomberos/recorte ley 19.587 - PROTECCION CONTRA INCENDIOS.pdf')}}" target="blank">* Capítulo 18 protección contra incendios - LEY 19.587.</a><br>
+                    <a href="" target="blank">* Anexo 7 protección contra incendios – Decreto 351.</a><br>
+                    <a href="{{ asset('files/Bomberos/EDICTO POLICIAL - BOMBEROS.pdf')}}" target="blank">* Edicto policial de seguridad contra incendio del año 1997.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check20">
+            <label class="accordion-label" for="check20">Registro Provincial de Armas (RE.P.AR)</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
+                    <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check21">
+            <label class="accordion-label" for="check21">División homicidios y delitos complejos</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                    <a href="{{ asset('files/Div_Homicidios/LEY 27319 - DELITOS COMPLEJOS.pdf')}}" target="blank">* Ley 27319 de delitos complejos de investigación.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
+                    <a href="{{ asset('files/Div_Homicidios/PROTOCOLO FEDERAL DE INTERVENCIÓN EN LA ESCENA DEL CRIMEN O LUGAR DEL HECHO.pdf')}}" target="blank">* Protocolo federal de intervención en la escena del crimen o lugar del hecho.</a>
+                    <br><br>
+                </p>
+            </div>
         </div>
     </div>
 </div>
