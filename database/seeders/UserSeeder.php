@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         //Permission::create(['name' => 'dashboard']);
-        Permission::create(['name' => 'subir-documentos']);
-        Permission::create(['name' => 'ver-documentos']);
+        //Permission::create(['name' => 'administrar-documentos']);
+        //Permission::create(['name' => 'administrar-usuarios']);
         Permission::create(['name' => 'administrar-configuraciones']);
 
         Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
