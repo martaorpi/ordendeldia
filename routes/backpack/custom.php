@@ -8,7 +8,7 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
 
     ),*/
-    'middleware' => ['web', 'can:administrar-configuraciones'],
+    'middleware' => ['web', 'can:administrar-usuarios'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('doc', 'DocCrudController');
