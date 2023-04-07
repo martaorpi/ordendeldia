@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
    {
 
-        Schema::create('authorities', function (Blueprint $table) {
+        /*Schema::create('authorities', function (Blueprint $table) {
             $table->id();
             $table->string("first_name");
             $table->string("last_name");
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->dateTime("completed_at")->nullable();
             $table->string("ex_number")->nullable();
             $table->timestamps();
-        });
+        });*/
 
         /*Schema::create('document_person', function (Blueprint $table) {
             $table->bigInteger("document_id");
@@ -57,8 +57,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authorities');
+        /*Schema::dropIfExists('authorities');
         Schema::dropIfExists('documents');
-        Schema::dropIfExists('documents_has_persons');
+        Schema::dropIfExists('documents_has_persons');*/
     }
 };

@@ -15,7 +15,7 @@ class UpdateCrimesTable extends Migration
     public function up()
     {
 
-        if (!Schema::hasTable('crimes')){
+        /*if (!Schema::hasTable('crimes')){
 
             Schema::create('crimes', function (Blueprint $table) {
                 $table->id();
@@ -272,7 +272,7 @@ class UpdateCrimesTable extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('dependence_id')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -282,12 +282,12 @@ class UpdateCrimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crimes');
+        /*Schema::dropIfExists('crimes');
         Schema::dropIfExists('dependences');
 
         Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn('crime_id');
             $table->dropColumn('dependence_id');
-        });
+        });*/
     }
 }

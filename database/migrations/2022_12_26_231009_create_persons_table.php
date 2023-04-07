@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        /*Schema::create('persons', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("dni")->nullable();
             $table->string("first_name")->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             //$table->text("extra_information")->nullable();
             $table->softDeletes();
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        //Schema::dropIfExists('persons');
     }
 };
