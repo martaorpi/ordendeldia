@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string("src");
             $table->text("summary");
-            $table->enum('type', ['Completo','Estructura','RRHH','Protocolos','Institutos','Judiciales']);
+            $table->enum('type', ['Completo','Estructura','RRHH','Protocolos','Institutos','Judiciales','Urgentes']);
             $table->timestamps();
         });
 

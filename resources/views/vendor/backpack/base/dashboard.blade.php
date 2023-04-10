@@ -134,6 +134,7 @@
     $doc4 = App\Models\Doc::where('type','Protocolos')->orderBy('updated_at', 'desc')->first();
     $doc5 = App\Models\Doc::where('type','Institutos')->orderBy('updated_at', 'desc')->first();
     $doc6 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
+    $doc7 = App\Models\Doc::where('type','Urgentes')->orderBy('updated_at', 'desc')->first();
 
     $date_old = new DateTime();
     //$date_old = $date_old->modify('-24 hours');
@@ -160,6 +161,7 @@
 
     @switch($doc->type)
         @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
+        @case('Urgentes') @php $title = 'Dispociciones Judiciales Urgentes';@endphp @break;
         @case('Estructura') @php $title = 'Estructura Organizacional';@endphp @break;
         @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
         @case('Protocolos') @php $title = 'Disposiciones Generales';@endphp @break;
@@ -229,6 +231,18 @@
             @if($doc1)
                 <h5>{{ $doc1->summary }}</h5>
                 <a href="{{ backpack_url('doc/'.$doc1->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc1->id}})">Ver Documento</a>
+            @else
+                <h5>No hay documentos cargados</h5>
+            @endif
+        </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check7">
+        <label class="accordion-label" for="check7">Dispociciones Judiciales Urgentes</label>
+        <div class="accordion-content">
+            @if($doc7)
+                <h5>{{ $doc7->summary }}</h5>
+                <a href="{{ backpack_url('doc/'.$doc7->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc7->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif
