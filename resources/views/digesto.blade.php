@@ -246,7 +246,7 @@
                 <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito 24449.</a><br>
-                <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a>
+                <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
                 <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
@@ -285,8 +285,8 @@
                 <a href="{{ asset('files/UTP/Ley 26.657 - Ley de Salud Mental.pdf')}}" target="blank">* Ley Nacional N° 26657 - Ley de Salud Mental.</a><br>
                 <a href="{{ asset('files/UTP/DICTADO DE SENTENCIA - CASAGRANDE OCTAVIA Y OTROS C ANSES Y OTROS S REAJUSTES VARIOS - UTP 1.pdf')}}" target="blank">* Dictado de sentencia caso CASAGRANDE "EXPTE N° 44515/2013 CASAGRANDE OCTAVIO Y OTROS C/ANSES Y OTRO S/REAJUSTES VARIOS.</a><br>
                 <a href="{{ asset('files/UTP/Dictado de Sentencia Caso LEGUIZAMÓN OSCAR ISMAEL C ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S REAJUSTES VARIOS 1.pdf')}}" target="blank">* Dictado de sentencia caso LEGUIZAMÓN OSCAR ISMAEL C/ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S/ REAJUSTES VARIOS.</a><br>
-                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a><br>
-                <a href="{{ asset('files/UTP/REGLAMENTO - INSTRUCTIVO DE TRABAJO - UTP.pdf')}}" target="blank">* Resolución de ANSES N° 540/07 pautas para creación de U.T.P. y lineamientos de trabajo.</a>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a>
+                {{--<a href="{{ asset('files/UTP/REGLAMENTO - INSTRUCTIVO DE TRABAJO - UTP.pdf')}}" target="blank">* Resolución de ANSES N° 540/07 pautas para creación de U.T.P. y lineamientos de trabajo.</a>--}}
                 <br><br>
             </p>
         </div>
@@ -364,10 +364,10 @@
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
                 <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
-                <a href="{{ asset('files/CUD/Reglamento General de Procesados.pdf')}}" target="blank">* Reglamento general de procesados - Decreto N° 303/96 modificado por Decreto N° 1464/07.</a><br>
-                <a href="{{ asset('files/CUD/Reglamento de las Modalidades Básicas de la Ejecución Penal.pdf')}}" target="blank">* Reglamento de las modalidades básicas de la ejecución penal - Decreto N° 396/99.</a><br>
-                <a href="{{ asset('files/CUD/Reglamento de Disciplina para los Internos.pdf')}}" target="blank">* Reglamento de disciplina para los internos - Decreto N° 18/97.</a><br>
-                <a href="{{ asset('files/CUD/Reglamento de Comunicaciones de los Internos.pdf')}}" target="blank">* Reglamento de comunicaciones de los internos - Decreto N° 1136/97..</a>
+                {{--<a href="{{ asset('files/CUD/Reglamento General de Procesados.pdf')}}" target="blank">* Reglamento general de procesados - Decreto N° 303/96 modificado por Decreto N° 1464/07.</a><br>--}}
+                <a href="{{ asset('files/CUD/Reglamento de las Modalidades Básicas de la Ejecución Penal.pdf')}}" target="blank">* Reglamento de las modalidades básicas de la ejecución penal - Decreto N° 396/99.</a>
+                {{--<a href="{{ asset('files/CUD/Reglamento de Disciplina para los Internos.pdf')}}" target="blank">* Reglamento de disciplina para los internos - Decreto N° 18/97.</a><br>
+                <a href="{{ asset('files/CUD/Reglamento de Comunicaciones de los Internos.pdf')}}" target="blank">* Reglamento de comunicaciones de los internos - Decreto N° 1136/97..</a>--}}
                 <br><br>
             </p>
         </div>
@@ -489,7 +489,6 @@
                     <a href="{{ asset('files/Bomberos/LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
                     <a href="{{ asset('files/Bomberos/DEC. REGLAMENTARIO LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Decreto 351 - Reglamentario Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
                     <a href="{{ asset('files/Bomberos/recorte ley 19.587 - PROTECCION CONTRA INCENDIOS.pdf')}}" target="blank">* Capítulo 18 protección contra incendios - LEY 19.587.</a><br>
-                    <a href="" target="blank">* Anexo 7 protección contra incendios – Decreto 351.</a><br>
                     <a href="{{ asset('files/Bomberos/EDICTO POLICIAL - BOMBEROS.pdf')}}" target="blank">* Edicto policial de seguridad contra incendio del año 1997.</a>
                     <br><br>
                 </p>
@@ -518,6 +517,50 @@
                     <a href="{{ asset('files/Div_Homicidios/LEY 27319 - DELITOS COMPLEJOS.pdf')}}" target="blank">* Ley 27319 de delitos complejos de investigación.</a><br>
                     <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
                     <a href="{{ asset('files/Div_Homicidios/PROTOCOLO FEDERAL DE INTERVENCIÓN EN LA ESCENA DEL CRIMEN O LUGAR DEL HECHO.pdf')}}" target="blank">* Protocolo federal de intervención en la escena del crimen o lugar del hecho.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check22">
+            <label class="accordion-label" for="check22">Departamento Trata de Personas</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino. Y sus articulos:<br>
+                        <small class="ml-5">Art. 119 (Abuso sexual)</small><br>
+                        <small class="ml-5">Art 125 bis. (Promoción y facilitación a la prostitución)</small><br>
+                        <small class="ml-5">Art. 131 (Grooming)</small><br>
+                        <small class="ml-5">Art 128. (Material de representación sexual de niños niñas y adolescentes)</small><br>
+                        <small class="ml-5">Art 140. (reducción a la servidumbre).</small>
+                    </a><br>
+                    <a href="{{ asset('files/Trata/LEY 26842 - LEY DE TRATAS.pdf')}}" target="blank">* Ley de tratas.: 26.842.</a><br>
+                    <a href="{{ asset('files/Trata/LEY 25871 - LEY DE MIGRACIONES.pdf')}}" target="blank">* Ley de migraciones, 25.871.</a><br>
+                    <a href="{{ asset('files/Trata/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
+                    <a href="{{ asset('files/Trata/LEY 26061 - LEY DE PROTECCION INTEGRAL DE LOS DERECHOS DE LAS NIÑAS, NIÑOS Y ADOLESCENTES.pdf')}}" target="blank">* Ley de protección integral a las mujeres: 26.485.</a><br>
+                    <a href="{{ asset('files/Trata/PROTOCOLO DE PALERMO.pdf')}}" target="blank">* Protocolo de Palermo: La finalidad del Protocolo de Palermo es: Prevenir y combatir la trata de personas, con especial atención a las mujeres y los niños. Proteger y ayudar a las víctimas de dicha trata, respectando plenamente sus derechos humanos; y. Promover la cooperación entre los Estados Parte para lograr los fines.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check23">
+            <label class="accordion-label" for="check23">Departamento Robo y Hurto</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procesal Penal de la provincia.</a><br>
+                    <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial de la provincia.</a>
+                    <br><br>
+                </p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="radio" name="radio-a" id="check24">
+            <label class="accordion-label" for="check24">Oficina de Convenio Policial</label>
+            <div class="accordion-content">
+                <p class="ml-3">
+                    <a href="{{ asset('files/Convenio/LEY 24059 - LEY DE SEGURIDAD INTERIOR.pdf')}}" target="blank">* Ley N° 24059 – Seguridad Interior.</a>
                     <br><br>
                 </p>
             </div>
