@@ -177,6 +177,46 @@
         </div>
     </div>
     <div class="accordion">
+        <input type="radio" name="radio-a" id="check25">
+        <label class="accordion-label" for="check25">Asesoria Letrada General</label>
+        <div class="accordion-content">
+            <h5>Normativa Nacional</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Nacional/Ley N 20.744 –Ley de Contrato de Trabajo..pdf')}}" target="blank">* Ley N° 20.744 –Ley de Contrato de Trabajo.</a><br>
+                <a href="{{ asset('files/Reconocimiento_Medico/LEY 24557 - RIESGOS DEL TRABAJO.pdf')}}" target="blank">* Ley de Riesgo de Trabajo N° 24.557.</a><br>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Nacional/Ley N 20.596 - Licencia Especial Deportiva.pdf')}}" target="blank">* Ley N°: 20.596. Licencia Especial Deportiva.</a>
+                <br><br>
+            </p>
+            <h5>Normativa Provincial</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley 2297 - Procedimiento Contencioso Administrativo.pdf')}}" target="blank">* Ley N° 2.297 - Procedimiento Contencioso Administrativo.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 6.738  - LEY DE MINISTERIOS.pdf')}}" target="blank">* Ley N°: 6.738 - De Organización de los Ministerios.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/CODIGO PROCESAL PENAL DE LA NACION.pdf')}}" target="blank">* Ley N°: 5.711 - Ley Provincial de Discapacidad.</a><br>
+                <a href="{{ asset('files/UTP/REGIMEN DE JUBILACIONES, RETIROS Y PENSIONES PARA TODO EL PERSONAL DEL ESTADO PROVINCIAL.pdf')}}" target="blank">* Ley 4558 régimen de jubilaciones, retiros y pensiones para todo el personal del estado provincial.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N 4547 - VENTA YO EXPENDIO DE BEBIDAS ALCOHOLICAS AL MENUDEO.pdf')}}" target="blank">* Ley N°: 4.547 - Decreto Reglamentario Serie "A" N°:0056/2.000. Licencia policial para la venta de bebidas alcohólicas al mostrador (adherida Ley Nacional N° 24.788 sobre la prohibición de venta de bebidas alcohólicas a menores que no hubieren cumplido los 18 años de edad).</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY Nº 6452 - MEDIACION.pdf')}}" target="blank">* Ley N°: 6.452. Ley de mediación.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 6.719 - DE ETICA EN EL EJERCICIO DE LA FUNCION PUBLICA.pdf')}}" target="blank">* Ley N°: 6.719. Ley de ética en el ejercicio de la función pública.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 7253 - REGIMEN UNICO DE CONTRATACIONES PUBLICAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley N°: 7253 Registro único de contrataciones públicas y acordadas 09/05 y 14/05 del Honorable Tribunal de Cuentas de la provincia.</a>
+                <br><br>
+            </p>
+            {{--<h5>Circulares, edictos y decretos</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Circular General N°: 05/05 de fecha 05 de Enero de 2.005.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto Serie "A" N°: 704/77. Edicto y reglamento de las actividades de la Agencia de Seguridad en empresas.</a>
+                <br><br>
+            </p>--}}
+        </div>
+    </div>
+    <div class="accordion">
         <input type="radio" name="radio-a" id="check2">
         <label class="accordion-label" for="check2">Dirección General de Policía Ambiental Y Rural</label>
         <div class="accordion-content">
@@ -195,8 +235,7 @@
             <p class="ml-3">
                 <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 1734 - CODIGO RURAL DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 1.734, Código Rural de Santiago del Estero.</a><br>
                 <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6920 - CODIGO DE PROCEDIMIENTOS MINEROS DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 6.920 Código de procedimientos Mineros.</a><br>
-                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">* Ley Provincial
-                    N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a>
+                <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">* Ley Provincial N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a>
                 <br><br>
             </p>
             {{--<h5>Protocolos</h5>
@@ -468,102 +507,102 @@
                 <br><br>
             </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check18">
-            <label class="accordion-label" for="check18">Unidad de Explosivos</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Explosivos/LEY N° 20.429 - LEY NACIONAL DE ARMAS Y EXPLOSIVOS.pdf')}}" target="blank">* Ley Nacional N° 20429 -Ley de armas y explosivos.</a><br>
-                    <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a><br>
-                    <a href="{{ asset('files/Explosivos/Ley Nacional N° 25886 - Delitos Con Armas De Fuego Modificación.pdf')}}" target="blank">* Ley Nacional N° 25886 - delitos con armas de fuego.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check18">
+        <label class="accordion-label" for="check18">Unidad de Explosivos</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Explosivos/LEY N° 20.429 - LEY NACIONAL DE ARMAS Y EXPLOSIVOS.pdf')}}" target="blank">* Ley Nacional N° 20429 -Ley de armas y explosivos.</a><br>
+                <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a><br>
+                <a href="{{ asset('files/Explosivos/Ley Nacional N° 25886 - Delitos Con Armas De Fuego Modificación.pdf')}}" target="blank">* Ley Nacional N° 25886 - delitos con armas de fuego.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check19">
-            <label class="accordion-label" for="check19">División Bomberos</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Bomberos/LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
-                    <a href="{{ asset('files/Bomberos/DEC. REGLAMENTARIO LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Decreto 351 - Reglamentario Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
-                    <a href="{{ asset('files/Bomberos/recorte ley 19.587 - PROTECCION CONTRA INCENDIOS.pdf')}}" target="blank">* Capítulo 18 protección contra incendios - LEY 19.587.</a><br>
-                    <a href="{{ asset('files/Bomberos/EDICTO POLICIAL - BOMBEROS.pdf')}}" target="blank">* Edicto policial de seguridad contra incendio del año 1997.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check19">
+        <label class="accordion-label" for="check19">División Bomberos</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Bomberos/LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                <a href="{{ asset('files/Bomberos/DEC. REGLAMENTARIO LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Decreto 351 - Reglamentario Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                <a href="{{ asset('files/Bomberos/recorte ley 19.587 - PROTECCION CONTRA INCENDIOS.pdf')}}" target="blank">* Capítulo 18 protección contra incendios - LEY 19.587.</a><br>
+                <a href="{{ asset('files/Bomberos/EDICTO POLICIAL - BOMBEROS.pdf')}}" target="blank">* Edicto policial de seguridad contra incendio del año 1997.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check20">
-            <label class="accordion-label" for="check20">Registro Provincial de Armas (RE.P.AR)</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
-                    <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check20">
+        <label class="accordion-label" for="check20">Registro Provincial de Armas (RE.P.AR)</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
+                <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check21">
-            <label class="accordion-label" for="check21">División homicidios y delitos complejos</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
-                    <a href="{{ asset('files/Div_Homicidios/LEY 27319 - DELITOS COMPLEJOS.pdf')}}" target="blank">* Ley 27319 de delitos complejos de investigación.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
-                    <a href="{{ asset('files/Div_Homicidios/PROTOCOLO FEDERAL DE INTERVENCIÓN EN LA ESCENA DEL CRIMEN O LUGAR DEL HECHO.pdf')}}" target="blank">* Protocolo federal de intervención en la escena del crimen o lugar del hecho.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check21">
+        <label class="accordion-label" for="check21">División homicidios y delitos complejos</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                <a href="{{ asset('files/Div_Homicidios/LEY 27319 - DELITOS COMPLEJOS.pdf')}}" target="blank">* Ley 27319 de delitos complejos de investigación.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
+                <a href="{{ asset('files/Div_Homicidios/PROTOCOLO FEDERAL DE INTERVENCIÓN EN LA ESCENA DEL CRIMEN O LUGAR DEL HECHO.pdf')}}" target="blank">* Protocolo federal de intervención en la escena del crimen o lugar del hecho.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check22">
-            <label class="accordion-label" for="check22">Departamento Trata de Personas</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino. Y sus articulos:<br>
-                        <small class="ml-5">Art. 119 (Abuso sexual)</small><br>
-                        <small class="ml-5">Art 125 bis. (Promoción y facilitación a la prostitución)</small><br>
-                        <small class="ml-5">Art. 131 (Grooming)</small><br>
-                        <small class="ml-5">Art 128. (Material de representación sexual de niños niñas y adolescentes)</small><br>
-                        <small class="ml-5">Art 140. (reducción a la servidumbre).</small>
-                    </a><br>
-                    <a href="{{ asset('files/Trata/LEY 26842 - LEY DE TRATAS.pdf')}}" target="blank">* Ley de tratas.: 26.842.</a><br>
-                    <a href="{{ asset('files/Trata/LEY 25871 - LEY DE MIGRACIONES.pdf')}}" target="blank">* Ley de migraciones, 25.871.</a><br>
-                    <a href="{{ asset('files/Trata/LEY 26061 - LEY DE PROTECCION INTEGRAL DE LOS DERECHOS DE LAS NIÑAS, NIÑOS Y ADOLESCENTES.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
-                    <a href="{{ asset('files/Trata/LEY 26485 - LEY DE PROTECCION INTEGRAL A LAS MUJERES.pdf')}}" target="blank">* Ley de protección integral a las mujeres: 26.485.</a><br>
-                    <a href="{{ asset('files/Trata/PROTOCOLO DE PALERMO.pdf')}}" target="blank">* Protocolo de Palermo: La finalidad del Protocolo de Palermo es: Prevenir y combatir la trata de personas, con especial atención a las mujeres y los niños. Proteger y ayudar a las víctimas de dicha trata, respectando plenamente sus derechos humanos; y. Promover la cooperación entre los Estados Parte para lograr los fines.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check22">
+        <label class="accordion-label" for="check22">Departamento Trata de Personas</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino. Y sus articulos:<br>
+                    <small class="ml-5">Art. 119 (Abuso sexual)</small><br>
+                    <small class="ml-5">Art 125 bis. (Promoción y facilitación a la prostitución)</small><br>
+                    <small class="ml-5">Art. 131 (Grooming)</small><br>
+                    <small class="ml-5">Art 128. (Material de representación sexual de niños niñas y adolescentes)</small><br>
+                    <small class="ml-5">Art 140. (reducción a la servidumbre).</small>
+                </a><br>
+                <a href="{{ asset('files/Trata/LEY 26842 - LEY DE TRATAS.pdf')}}" target="blank">* Ley de tratas.: 26.842.</a><br>
+                <a href="{{ asset('files/Trata/LEY 25871 - LEY DE MIGRACIONES.pdf')}}" target="blank">* Ley de migraciones, 25.871.</a><br>
+                <a href="{{ asset('files/Trata/LEY 26061 - LEY DE PROTECCION INTEGRAL DE LOS DERECHOS DE LAS NIÑAS, NIÑOS Y ADOLESCENTES.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
+                <a href="{{ asset('files/Trata/LEY 26485 - LEY DE PROTECCION INTEGRAL A LAS MUJERES.pdf')}}" target="blank">* Ley de protección integral a las mujeres: 26.485.</a><br>
+                <a href="{{ asset('files/Trata/PROTOCOLO DE PALERMO.pdf')}}" target="blank">* Protocolo de Palermo: La finalidad del Protocolo de Palermo es: Prevenir y combatir la trata de personas, con especial atención a las mujeres y los niños. Proteger y ayudar a las víctimas de dicha trata, respectando plenamente sus derechos humanos; y. Promover la cooperación entre los Estados Parte para lograr los fines.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check23">
-            <label class="accordion-label" for="check23">Departamento Robo y Hurto</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procesal Penal de la provincia.</a><br>
-                    <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial de la provincia.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check23">
+        <label class="accordion-label" for="check23">Departamento Robo y Hurto</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procesal Penal de la provincia.</a><br>
+                <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial de la provincia.</a>
+                <br><br>
+            </p>
         </div>
-        <div class="accordion">
-            <input type="radio" name="radio-a" id="check24">
-            <label class="accordion-label" for="check24">Oficina de Convenio Policial</label>
-            <div class="accordion-content">
-                <p class="ml-3">
-                    <a href="{{ asset('files/Convenio/LEY 24059 - LEY DE SEGURIDAD INTERIOR.pdf')}}" target="blank">* Ley N° 24059 – Seguridad Interior.</a>
-                    <br><br>
-                </p>
-            </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check24">
+        <label class="accordion-label" for="check24">Oficina de Convenio Policial</label>
+        <div class="accordion-content">
+            <p class="ml-3">
+                <a href="{{ asset('files/Convenio/LEY 24059 - LEY DE SEGURIDAD INTERIOR.pdf')}}" target="blank">* Ley N° 24059 – Seguridad Interior.</a>
+                <br><br>
+            </p>
         </div>
     </div>
 </div>
