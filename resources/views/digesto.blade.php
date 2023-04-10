@@ -535,7 +535,7 @@
                     </a><br>
                     <a href="{{ asset('files/Trata/LEY 26842 - LEY DE TRATAS.pdf')}}" target="blank">* Ley de tratas.: 26.842.</a><br>
                     <a href="{{ asset('files/Trata/LEY 25871 - LEY DE MIGRACIONES.pdf')}}" target="blank">* Ley de migraciones, 25.871.</a><br>
-                    <a href="{{ asset('files/Trata/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
+                    <a href="{{ asset('files/Trata/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
                     <a href="{{ asset('files/Trata/LEY 26061 - LEY DE PROTECCION INTEGRAL DE LOS DERECHOS DE LAS NIÑAS, NIÑOS Y ADOLESCENTES.pdf')}}" target="blank">* Ley de protección integral a las mujeres: 26.485.</a><br>
                     <a href="{{ asset('files/Trata/PROTOCOLO DE PALERMO.pdf')}}" target="blank">* Protocolo de Palermo: La finalidad del Protocolo de Palermo es: Prevenir y combatir la trata de personas, con especial atención a las mujeres y los niños. Proteger y ayudar a las víctimas de dicha trata, respectando plenamente sus derechos humanos; y. Promover la cooperación entre los Estados Parte para lograr los fines.</a>
                     <br><br>
