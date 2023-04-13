@@ -174,6 +174,11 @@
                 <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a>
                 <br><br>
             </p>
+            <h5>Reglamentos</h5>
+            <p class="ml-3">
+                <a href="{{ asset('files/Normativa_General/Reglamentos/REGLAMENTO GENERAL DE UNIFORMES DE LA POLICÍA DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Reglamento general de uniformes de la policía de la provincia de Santiago del Estero.</a>
+                <br><br>
+            </p>
         </div>
     </div>
     <div class="accordion">
@@ -205,7 +210,9 @@
                 <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N 4547 - VENTA YO EXPENDIO DE BEBIDAS ALCOHOLICAS AL MENUDEO.pdf')}}" target="blank">* Ley N°: 4.547 - Decreto Reglamentario Serie "A" N°:0056/2.000. Licencia policial para la venta de bebidas alcohólicas al mostrador (adherida Ley Nacional N° 24.788 sobre la prohibición de venta de bebidas alcohólicas a menores que no hubieren cumplido los 18 años de edad).</a><br>
                 <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY Nº 6452 - MEDIACION.pdf')}}" target="blank">* Ley N°: 6.452. Ley de mediación.</a><br>
                 <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 6.719 - DE ETICA EN EL EJERCICIO DE LA FUNCION PUBLICA.pdf')}}" target="blank">* Ley N°: 6.719. Ley de ética en el ejercicio de la función pública.</a><br>
-                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 7253 - REGIMEN UNICO DE CONTRATACIONES PUBLICAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley N°: 7253 Registro único de contrataciones públicas y acordadas 09/05 y 14/05 del Honorable Tribunal de Cuentas de la provincia.</a>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 7253 - REGIMEN UNICO DE CONTRATACIONES PUBLICAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley N°: 7253 Registro único de contrataciones públicas.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/ACORDADA N09-2005.pdf')}}" target="blank">* Acordada 09/05 del Honorable Tribunal de cuentas de la provincia.</a><br>
+                <a href="{{ asset('files/Asesoria_Letrada/Provincial/ACORDADA N14-2005.pdf')}}" target="blank">* Acordada 14/05 del Honorable Tribunal de cuentas de la provincia.</a>
                 <br><br>
             </p>
             {{--<h5>Circulares, edictos y decretos</h5>
