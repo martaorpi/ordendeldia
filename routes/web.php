@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
-Route::redirect('/','admin');
+//Route::redirect('/','admin');
 
 Route::get('admin/digesto', function () {
     return view('digesto');

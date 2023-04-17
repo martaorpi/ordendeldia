@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Digesto</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,112 +21,618 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
+        <style>
+            input {
+                position: absolute;
+                opacity: 0;
+                z-index: -1;
+            }
+            .accordion-wrapper {
+                border-radius: 4px;
+                overflow: hidden;
+                box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+                width: 100%;
+                margin:0 auto;
+            }
+            .accordion {
+                width: 100%;
+                color: white;
+                overflow: hidden;
+                margin-bottom: 6px;
+            }
+            .accordion:last-child{margin-bottom: 0;}
+            .accordion-label {
+                display: flex;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                padding: 10px;
+                background: #f1f4f8;
+                font-weight: bold;
+                cursor: pointer;
+                font-size: 16px;
+                color:#222;
+            }
+            .accordion-label:hover {
+                background: #28166f;
+                color:#fff;
+            }
+            .accordion-label::after {
+                content: "\276F";
+                width: 16px;
+                height: 16px;
+                text-align: center;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            .accordion-content {
+                max-height: 0;
+                padding: 0 16px;
+                color: rgba(4,57,94,1);
+                background: white;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+                overflow-y: scroll;
+            }
+            .accordion-content p{
+                margin: 0;
+                color: rgba(4,57,94,.7);
+                font-size: 18px;
+            }
+            input:checked + .accordion-label {
+                background: #cfd9e7;
+                color:#000;
+            }
+            input:checked + .accordion-label::after {
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+            input:checked ~ .accordion-content {
+                max-height: 100vh;
+                padding: 16px;
+            }
+        /*-----------------POST-------------------*/
+            img {max-width:100%;}
+            .avator {
+                border-radius:100px;
+                width:48px;
+                margin-right: 10px;
+            }
+            .tweet-wrap {
+                max-width:100%;
+                background: #fff;
+                margin: 0 auto;
+                margin-top: 10px;
+                border-radius:3px;
+                padding: 20px;
+                border-bottom: 1px solid #e6ecf0;
+                border-top: 1px solid #e6ecf0;
+            }
+            .tweet-header {
+                display: flex;
+                align-items:flex-start;
+                font-size:14px;
+            }
+            .tweet-header-info {font-weight:bold;}
+            .tweet-header-info span {
+                color:#657786;
+                font-weight:normal;
+                margin-left: 5px;
+            }
+            .tweet-header-info p {
+                font-weight:normal;
+                margin-top: 5px;
+            }
+            .tweet-img-wrap {padding-left: 60px;}
+            .tweet-info-counts {
+                display: flex;
+                margin-left: 60px;
+                margin-top: 10px;
+            }
+            .tweet-info-counts div {
+                display: flex;
+                margin-right: 20px;
+            }
+            .tweet-info-counts div svg {
+            color:#657786;
+            margin-right: 10px;
+            }
+            @media screen and (max-width:430px){
+                .tweet-header {flex-direction:column;}
+                .tweet-header img {margin-bottom: 20px;}
+                .tweet-header-info p {margin-bottom: 30px;}
+                .tweet-img-wrap {padding-left: 0;}
+                .tweet-info-counts {
+                    display: flex;
+                    margin-left: 0;
+                }
+                .tweet-info-counts div {margin-right: 10px;}
+            }
+        </style>
+
+        <h3 style="background-color: #28166f;color:#fff; padding: 10px;margin-top:0;" class="m-2 py-5">Digesto Jurídico Policial</h3>
+        <div class="accordion-wrapper">
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check1">
+                <label class="accordion-label" for="check1">Normativa Legal General</label>
+                <div class="accordion-content">
+                    <h5>Normativa Nacional e Internacional</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION DE BELEM DO PARA.pdf')}}" target="blank">* Convención de belem do para.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION INTERAMERICANA PARA PREVENIR Y SANCIONAR LA TORTURA.pdf')}}" target="blank">* Convención interamericana para prevenir y sancionar la tortura.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION INTERAMERICANA PARA PREVENIR,  SANCIONAR Y ERRADICAR LA VIOLENCIA CONTRA LA MUJER.pdf')}}" target="blank">* Convención interamericana para prevenir, sancionar y erradicar la violencia contra la mujer.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Internacional para la Protección de Todas las personas contra las personas.pdf')}}" target="blank">* Convención internacional para la protección de todas las personas contra las personas.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Principios básicos sobre el empleo de la fuerza y de las armas de fuego de Naciones Unidas.pdf')}}" target="blank">* Principios básicos sobre el empleo de la fuerza y de las armas de fuego de Naciones Unidas.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial de la Nación.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 24417 CONTRA LA VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley Nacional 24417 de protección contra la violencia familiar.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY Nº 26.485 - VIOLENCIA CONTRA LA MUJER.pdf')}}" target="blank">* Ley Nacional 26485 de protección integral a las mujeres.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 27499 - Micaela.pdf')}}" target="blank">* Ley Nacional 27499 Micaela.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 22172 - COMUNICACION ENTRE TRIBUNALES.pdf')}}" target="blank">* Ley Nacional 22172 Sobre comunicación entre tribunales de la República de distinta jurisdicción territorial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 26743 - Identidad de Genero.pdf')}}" target="blank">* Ley Nacional 26743 de identidad de género.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24.660 - EJECUCION DE LA PENA PRIVATIVA DE LA LIBERTAD.pdf')}}" target="blank">* Ley Nacional 24660 Ejecución de la pena privativa de la libertad.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 26061.pdf')}}" target="blank">* Ley Nacional 26061 de protección integral de los derechos de las niñas, niños y adolescentes.</a>
+                        <br><br>
+                    </p>
+                    <h5>Normativa Provincial</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a>
+                        <br><br>
+                    </p>
+                    <h5>Reglamentos</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Reglamentos/REGLAMENTO GENERAL DE UNIFORMES DE LA POLICÍA DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Reglamento general de uniformes de la policía de la provincia de Santiago del Estero.</a>
+                        <br><br>
+                    </p>
                 </div>
-            @endif
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                        <g clip-path="url(#clip0)" fill="#EF3B2D">
-                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                        </g>
-                    </svg>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check25">
+                <label class="accordion-label" for="check25">Asesoria Letrada General</label>
+                <div class="accordion-content">
+                    <h5>Normativa Nacional</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Nacional/Ley N 20.744 –Ley de Contrato de Trabajo..pdf')}}" target="blank">* Ley N° 20.744 –Ley de Contrato de Trabajo.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/LEY 24557 - RIESGOS DEL TRABAJO.pdf')}}" target="blank">* Ley de Riesgo de Trabajo N° 24.557.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Nacional/Ley N 20.596 - Licencia Especial Deportiva.pdf')}}" target="blank">* Ley N°: 20.596. Licencia Especial Deportiva.</a>
+                        <br><br>
+                    </p>
+                    <h5>Normativa Provincial</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley 2297 - Procedimiento Contencioso Administrativo.pdf')}}" target="blank">* Ley N° 2.297 - Procedimiento Contencioso Administrativo.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 6.738  - LEY DE MINISTERIOS.pdf')}}" target="blank">* Ley N°: 6.738 - De Organización de los Ministerios.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/LEY PROVINCIAL 5711 - Sistema de Protección Integral del Discapacitado y su Familia.pdf')}}" target="blank">* Ley N°: 5.711 - Ley Provincial de Discapacidad.</a><br>
+                        <a href="{{ asset('files/UTP/REGIMEN DE JUBILACIONES, RETIROS Y PENSIONES PARA TODO EL PERSONAL DEL ESTADO PROVINCIAL.pdf')}}" target="blank">* Ley 4558 régimen de jubilaciones, retiros y pensiones para todo el personal del estado provincial.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N 4547 - VENTA YO EXPENDIO DE BEBIDAS ALCOHOLICAS AL MENUDEO.pdf')}}" target="blank">* Ley N°: 4.547 - Decreto Reglamentario Serie "A" N°:0056/2.000. Licencia policial para la venta de bebidas alcohólicas al mostrador (adherida Ley Nacional N° 24.788 sobre la prohibición de venta de bebidas alcohólicas a menores que no hubieren cumplido los 18 años de edad).</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY Nº 6452 - MEDIACION.pdf')}}" target="blank">* Ley N°: 6.452. Ley de mediación.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 6.719 - DE ETICA EN EL EJERCICIO DE LA FUNCION PUBLICA.pdf')}}" target="blank">* Ley N°: 6.719. Ley de ética en el ejercicio de la función pública.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/Ley N° 7253 - REGIMEN UNICO DE CONTRATACIONES PUBLICAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley N°: 7253 Registro único de contrataciones públicas.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/ACORDADA N09-2005.pdf')}}" target="blank">* Acordada 09/05 del Honorable Tribunal de cuentas de la provincia.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/ACORDADA N14-2005.pdf')}}" target="blank">* Acordada 14/05 del Honorable Tribunal de cuentas de la provincia.</a>
+                        <br><br>
+                    </p>
+                    {{--<h5>Circulares, edictos y decretos</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Circular General N°: 05/05 de fecha 05 de Enero de 2.005.</a><br>
+                        <a href="{{ asset('files/Asesoria_Letrada/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto Serie "A" N°: 704/77. Edicto y reglamento de las actividades de la Agencia de Seguridad en empresas.</a>
+                        <br><br>
+                    </p>--}}
                 </div>
-
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check2">
+                <label class="accordion-label" for="check2">Dirección General de Policía Ambiental Y Rural</label>
+                <div class="accordion-content">
+                    <h5>Normas Nacionales</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 25675 - POLITICA AMBIENTAL NACIONAL.pdf')}}" target="blank">* Ley Nacional N° 25.675 De Presupuestos Mínimos Ambientales.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 24051 - RESIDUOS PELIGROSOS.pdf')}}" target="blank">* Ley Nacional N°24.051 De Residuos Peligrosos.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 20.418 TOLERANCIAS Y LIMITES ADMINISTRATIVOS EN RESIDUOS DE PLAGUICIDAS.pdf')}}" target="blank">* Ley Nacional Nº 20.418 sobre Tolerancia de Residuos de Plaguicidas.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 27279 - PRODUCTOS FITOSANITARIOS.pdf')}}" target="blank">* Ley Nacional N°27.279 sobre Productos Fitosanitarios y Decreto Reglamentario.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 25612 - RESIDUOS INDUSTRIALES.pdf')}}" target="blank">* Ley Nacional N° 25.612 sobre Residuos Industriales y de Actividades de Servicios.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY Nº 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley de Higiene y Seguridad Laboral Nº 19.587.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_nacionales/LEY 26306 - REGIMEN DEL REGISTRO DEL PATRIMONIO CULTURAL.pdf')}}" target="blank">* Ley Nacional 26.306 Régimen del Registro del Patrimonio cultural.</a>
+                        <br><br>
+                    </p>
+                    <h5>Normas Provinciales</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 1734 - CODIGO RURAL DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 1.734, Código Rural de Santiago del Estero.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6920 - CODIGO DE PROCEDIMIENTOS MINEROS DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Ley 6.920 Código de procedimientos Mineros.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/LEY 6321 - NORMAS GENERALES Y METODOLOGIA DE APLICACION PARA LA DEFENSA, CONSERVACION Y MEJORAMIENTO.pdf')}}" target="blank">* Ley Provincial N° 6.321 Normas Generales y Metodologías de Aplicación para la defensa, conservación y mejoramiento del Ambiente y los Recursos Naturales. </a>
+                        <br><br>
+                    </p>
+                    {{--<h5>Protocolos</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/PROTOCOLO DE REUBICACIÓN DE SECUESTROS DE VEHÍCULOS RELACIONADO A CAUSAS JUDICIALES.pdf')}}" target="blank">*  Protocolo de actuación para reubicación de secuestros o
+                            incautos de vehículos vinculados con causas judiciales almacenadas en las dependencias policiales y su anexo I. Aprobado por resolución S.G N° 103/2023.</a><br>
+                        <a href="{{ asset('files/Policia_Ambiental/leyes_provinciales/PRINCI_1.PDF')}}" target="blank">*  Principios generales de trabajo en laboratorio.</a>
+                        <br><br>
+                    </p>--}}
                 </div>
-
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
-
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check3">
+                <label class="accordion-label" for="check3">Dirección General de Planeamiento</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito 24449.</a><br>
+                        <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check4">
+                <label class="accordion-label" for="check4">Dirección General de Drogas Peligrosas</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Drogas_Peligrosas/CODIGO PROCESAL PENAL FEDERAL.pdf')}}" target="blank">* Código procesal penal federal Ley N° 23.984.</a><br>
+                        <a href="{{ asset('files/Drogas_Peligrosas/Código Procesal Penal Federal (T.O. 2019) - LEY 27.063.pdf')}}" target="blank">* Código procesal penal federal Ley N° 27.063.</a><br>
+                        <a href="{{ asset('files/Drogas_Peligrosas/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO (1).pdf')}}" target="blank">* Código procesal penal de la provincia.</a><br>
+                        <a href="{{ asset('files/Drogas_Peligrosas/Ley Nacional N° 23737 - TENENCIA Y TRAFICO DE ESTUPEFACIENTES.pdf')}}" target="blank">* Ley Nacional N° 23737 - Tenencia Y Tráfico De Estupefacientes.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check5">
+                <label class="accordion-label" for="check5">Dirección General de Asuntos Internos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito 24449.</a><br>
+                        <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check6">
+                <label class="accordion-label" for="check6">Dirección General de Seguridad Vial</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Seguridad_Vial/Codigo de Faltas de Transito.pdf')}}" target="blank">* Código de faltas de tránsito de la provincia - reglamentación basada en el decreto de emergencia vial (Dec. Pcial. 372/14).</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check7">
+                <label class="accordion-label" for="check7">Unidad de Trámite Previsional (UTP)</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/UTP/REGIMEN DE JUBILACIONES, RETIROS Y PENSIONES PARA TODO EL PERSONAL DEL ESTADO PROVINCIAL.pdf')}}" target="blank">* Ley 4558 régimen de jubilaciones, retiros y pensiones para todo el personal del estado provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 5873  SALARIAL.pdf')}}" target="blank">* Ley Salarial N° 5873/91.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 2296 - TRAMITE ADMINISTRATIVO.pdf')}}" target="blank">* Ley 2296 - trámite administrativo.</a><br>
+                        <a href="{{ asset('files/UTP/Ley 6081 - RATIFICACION    DEL  CONVENIO  DE  TRANSFERENCIA  DEL  INSTITUTO  DE SEGURIDAD SOCIAL  DE  LA PROVINCIA DE SANTIAGO DEL ESTERO, ETC. A LA NACION.pdf')}}" target="blank">* Ley N° 6081 Santiago ratifícase el convenio de transferencia del sistema provincial de previsión social de la provincia de Santiago del Estero a la Nación y su complementario.</a><br>
+                        <a href="{{ asset('files/UTP/DECRETO 646 AÑO 2009 ACTA COMPLEMENTARIA.pdf')}}" target="blank">* Decreto N° 646/2009 aprobación de acta complementaria.</a><br>
+                        <a href="{{ asset('files/UTP/Decreto 30-2010 - Santiago del Estero acepta Acta Complementaria.pdf')}}" target="blank">* Decreto 30/2010 - Santiago del Estero acepta acta complementaria..</a><br>
+                        <a href="{{ asset('files/UTP/LEY 21965 POLICIA FEDERAL.pdf')}}" target="blank">* Ley Nacional N° 21965 de Policía Federal Argentina.</a><br>
+                        <a href="{{ asset('files/UTP/Ley 26.657 - Ley de Salud Mental.pdf')}}" target="blank">* Ley Nacional N° 26657 - Ley de Salud Mental.</a><br>
+                        <a href="{{ asset('files/UTP/DICTADO DE SENTENCIA - CASAGRANDE OCTAVIA Y OTROS C ANSES Y OTROS S REAJUSTES VARIOS - UTP 1.pdf')}}" target="blank">* Dictado de sentencia caso CASAGRANDE "EXPTE N° 44515/2013 CASAGRANDE OCTAVIO Y OTROS C/ANSES Y OTRO S/REAJUSTES VARIOS.</a><br>
+                        <a href="{{ asset('files/UTP/Dictado de Sentencia Caso LEGUIZAMÓN OSCAR ISMAEL C ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S REAJUSTES VARIOS 1.pdf')}}" target="blank">* Dictado de sentencia caso LEGUIZAMÓN OSCAR ISMAEL C/ADMINISTRACIÓN NACIONAL DE LA SEGURIDAD SOCIAL (ANSES) Y OTRO S/ REAJUSTES VARIOS.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a>
+                        {{--<a href="{{ asset('files/UTP/REGLAMENTO - INSTRUCTIVO DE TRABAJO - UTP.pdf')}}" target="blank">* Resolución de ANSES N° 540/07 pautas para creación de U.T.P. y lineamientos de trabajo.</a>--}}
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check8">
+                <label class="accordion-label" for="check8">Dirección General de Asuntos Judiciales</label>
+                <div class="accordion-content">
+                    <h5>Normativa Nacional</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONVENCION DE BELEM DO PARA.pdf')}}" target="blank">* Convención de belem do para.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 22172 - COMUNICACION ENTRE TRIBUNALES.pdf')}}" target="blank">* Ley Nacional 22172 Sobre comunicación entre tribunales de la República de distinta jurisdicción territorial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 26743 - Identidad de Genero.pdf')}}" target="blank">* Ley Nacional 26743 de identidad de género.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24.660 - EJECUCION DE LA PENA PRIVATIVA DE LA LIBERTAD.pdf')}}" target="blank">* Ley Nacional 24660 Ejecución de la pena privativa de la libertad.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 26061.pdf')}}" target="blank">* Ley Nacional 26061 de protección integral de los derechos de las niñas, niños y adolescentes.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley 24417 CONTRA LA VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley Nacional 24417 de protección contra la violencia familiar.</a>
+                        <br><br>
+                    </p>
+                    <h5>Normativa Provincial</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                        <a href="{{ asset('files/Asuntos_Judiciales/Provincial/Ley provincial 7344 - Prevencion contra la tortura.pdf')}}" target="blank">* Ley 7344 mecanismo provincial de prev. de la tortura y otros tratos o penas crueles, inhumanos o degradantes de la prov. de Santiago del Estero.</a><br>
+                        <a href="{{ asset('files/Asuntos_Judiciales/Provincial/LEY 6.308 - VIOLENCIA FAMILIAR.pdf')}}" target="blank">* Ley 6308 Violencia Familiar.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check9">
+                <label class="accordion-label" for="check9">Departamento de Reconocimiento Ciudadano</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Reconocimiento_Ciudadano/Ley 25326 - PROTECCION DATOS PERSONALES.pdf')}}" target="blank">* Ley 25326 de protección de datos personales.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check10">
+                <label class="accordion-label" for="check10">Oficina Santiago Acompaña</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY Nº 26.485 - VIOLENCIA CONTRA LA MUJER.pdf')}}" target="blank">* Ley Nacional 26485 de protección integral a las mujeres.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 27499 - Micaela.pdf')}}" target="blank">* Ley Nacional 27499 Micaela.</a><br>
+                        <a href="{{ asset('files/Santiago_A/Ley 7032.pdf')}}" target="blank">* Ley Provincial 7032 prevención, sanción y erradicación de la violencia contra las mujeres.</a><br>
+                        {{--<a href="{{ asset('files/Santiago_A/CONVENIO ENTRE MINISTERIO DE JUSTICIA Y DDHH Y EL MINISTERIO DE SEG Y CULTO - OF SGO ACOMPAÑA.pdf')}}" target="blank">* Convenio entre Ministerio de Justicia y DDHH y el Ministerio de Seguridad y culto.</a>--}}
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check11">
+                <label class="accordion-label" for="check11">División Secuestros Judiciales</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Secuestros/Ley 20785 - BIENES OBJETO DE SECUESTRO.pdf')}}" target="blank">* Ley 20785 bienes objeto de secuestro en causas penales. Custodia y disposición.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check12">
+                <label class="accordion-label" for="check12">Centro Único de Detenidos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Declaración Universal de Derechos Humanos y Declaración Americana de los Derechos Hombre.pdf')}}" target="blank">* Declaración universal de derechos humanos y declaración americana de los derechos del hombre.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención sobre los derechos del Niño.pdf')}}" target="blank">* Convención sobre los derechos del niño.</a><br>
+                        {{--<a href="{{ asset('files/CUD/Reglamento General de Procesados.pdf')}}" target="blank">* Reglamento general de procesados - Decreto N° 303/96 modificado por Decreto N° 1464/07.</a><br>--}}
+                        <a href="{{ asset('files/CUD/Reglamento de las Modalidades Básicas de la Ejecución Penal.pdf')}}" target="blank">* Reglamento de las modalidades básicas de la ejecución penal - Decreto N° 396/99.</a>
+                        {{--<a href="{{ asset('files/CUD/Reglamento de Disciplina para los Internos.pdf')}}" target="blank">* Reglamento de disciplina para los internos - Decreto N° 18/97.</a><br>
+                        <a href="{{ asset('files/CUD/Reglamento de Comunicaciones de los Internos.pdf')}}" target="blank">* Reglamento de comunicaciones de los internos - Decreto N° 1136/97..</a>--}}
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check13">
+                <label class="accordion-label" for="check13">Dirección General de Recursos Humanos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTARIO 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Decreto reglamentario 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check14">
+                <label class="accordion-label" for="check14">Departamento de Reconocimiento Médico</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/DEC REGLAMENTO 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Decreto reglamento 4794 - generalidades para el personal policial.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/LEY PROVINCIAL 5711 - Sistema de Protección Integral del Discapacitado y su Familia.pdf')}}" target="blank">* Ley Provincial N° 5711 "Sistema de protección integral del discapacitado y su familia".</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/LEY 24557 - RIESGOS DEL TRABAJO.pdf')}}" target="blank">* Ley de Riesgo de Trabajo N° 24.557.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/Decreto Nacional 659_96 - Tabla de Incapacidades.pdf')}}" target="blank">* Decreto N° 659/1996.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/Ley 24.241 - Sistema Integrado de Jubilaciones y Pensiones.pdf')}}" target="blank">* Ley Previsional N° 24241.</a><br>
+                        <a href="{{ asset('files/Reconocimiento_Medico/Decreto N° 478-98 - SISTEMA INTEGRADO DE JUBILACIONES Y PENSIONES.pdf')}}" target="blank">* Decreto N° 478/98.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check15">
+                <label class="accordion-label" for="check15">División Prevención y Protección contra el Alcoholismo</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Div_Alcoholismo/Ordenanza N° 418-205.pdf')}}" target="blank">* Ordenanza N° 418/05 ciudad de La Banda – Código de Faltas Municipal.</a><br>
+                        <a href="{{ asset('files/Planeamiento/LEY 24788 - LEY NACIONAL DE LUCHA CONTRA EL ALCOHOLISMO.pdf')}}" target="blank">* Ley Nacional de lucha contra el alcoholismo 24788.</a><br>
+                        <a href="{{ asset('files/Div_Alcoholismo/Ley provincial n 4547 VENTA Y-O EXPENDIO DE BEBIDAS ALCOHOLICAS AL MENUDEO.pdf')}}" target="blank">* Ley provincial n° 4547 venta y/o expendio bebidas alcohólicas al menudeo de la provincia y su decreto reglamentario.</a><br>
+                        <a href="{{ asset('files/Div_Alcoholismo/Ley N 7163 - Prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs..pdf')}}" target="blank">* Ley provincial n° 7163 – prohibición de venta, expendio o suministro de bebidas alcohólicas entre las 24 y las 9 hs.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check16">
+                <label class="accordion-label" for="check16">Dirección General de Policía Cinetífica</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Cientifica/Manual_actuacion_lugar_hecho_escena_delito - DGPC.pdf')}}" target="blank">* Manual de actuación en el lugar del hecho y/o escena del delito.</a><br>
+                        <a href="{{ asset('files/Cientifica/Protocolo unificado de los MP de Arg.pdf')}}" target="blank">* Protocolo unificado de los Ministerios Públicos de la República Argentina.</a><br>
+                        <a href="{{ asset('files/Cientifica/Guía para el relevamiento y conservación de la evidencia.pdf')}}" target="blank">* Guía para el relevamiento y conservación de la evidencia.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check17">
+                <label class="accordion-label" for="check17">Escuela de Cadetes "Cnel. Lorenzo Lugones"</label>
+                <div class="accordion-content">
+                    <h5>Normativa Internacional</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Escuela_Cadetes/Internacional/Declaración Americana.pdf')}}" target="blank">* Declaración americana de derechos y deberes del hombre.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Convención Americana sobre Derechos Humanos.pdf')}}" target="blank">* Convención americana sobre derechos humanos (Pacto San José de Costa Rica).</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Internacional/Declaración Universal.pdf')}}" target="blank">* Declaración universal de derechos humanos.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Internacional/Pacto Internacional.pdf')}}" target="blank">* Pacto internacional de derechos civiles y políticos.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Internacional/Código de Conducta.pdf')}}" target="blank">* Código de conducta para los funcionarios encargados de hacer cumplir la ley (adoptado por la Asamblea General de las Naciones Unidas en su Resolución 34/169, del 17 de diciembre de 1979).</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Internacional/Principio bsco sobre el empleo de la fuerza.pdf')}}" target="blank">* Principios básicos sobre el empleo de la fuerza y armas de fuego por los funcionarios encargados de hacer cumplir ley. VIII Congreso de las Naciones Unidas sobre prevención del delito y tratamiento del delincuente, La Habana (Cuba) del 27 de agosto al 7 de septiembre de 1990.</a>
+                        <br><br>
+                    </p>
+                    <h5>Normativa Nacional</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Codigo Civil y Comercial.pdf')}}" target="blank">* Código Civil y Comercial de la Nación.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/CODIGO PROCESAL PENAL DE LA NACION.pdf')}}" target="blank">* Código Procesal Penal de la Nación.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley de Responsabilidad Estatal N° 26944.pdf')}}" target="blank">* Ley de Responsabilidad Estatal N° 26944.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/LEY 24449 - LEY NACIONAL DE TRANSITO.pdf')}}" target="blank">* Ley Nacional de tránsito N° 24449.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Ley Nacional 26743 - Identidad de Genero.pdf')}}" target="blank">* Ley Nacional 26743 de identidad de género.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.655 de Deportes.pdf')}}" target="blank">* Ley N° 20.655 de Deportes.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución 506-13 Cuerpos policiales y fuerza de seguridad. Pautas de intervención para determinadas situaciones Personas con capacidad mental.pdf')}}" target="blank">* Resolución 506/13 (Cuerpos policiales y fuerza de seguridad. Pautas de intervención para determinadas situaciones) Personas con capacidad mental. Ministerio de Seguridad de la Nación.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución 1181-2011 - Colectivo LGBT.pdf')}}" target="blank">* Resolución 1181/2011 - Colectivo LGBT-- Ministerio de Seguridad de la Nación.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Resolución E- 1149-2017 - Pautas mínimas de actuación para registros personales y detención en la vía publica de personas pertenecientes al colectivo LGBT.pdf')}}" target="blank">* Resolución E- 1149/2017 - (pautas mínimas de actuación para registros personales y detención en la vía pública de personas pertenecientes al colectivo LGBT).</a>
+                        <br><br>
+                    </p>
+                    <h5>Normativa Provincial</h5>
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código Procesal Penal de la provincia de Santiago del Estero - Ley N°6941.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a><br>
+                        <a href="{{ asset('files/Escuela_Cadetes/Provincial/Ley 6283 ADHESION A LA LEY NACIONAL DE TRANSITO..pdf')}}" target="blank">* Ley Provincial de Transito (Ley N° 6283).</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4793 - ORGANICA DE LA POLICIA DE LA PROVINCIA.pdf')}}" target="blank">* Ley 4793 - orgánica de la policía de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/LEY 4794 - GENERALIDADES PARA EL PERSONAL POLICIAL.pdf')}}" target="blank">* Ley 4794 - generalidades para el personal policial.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check18">
+                <label class="accordion-label" for="check18">Unidad de Explosivos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Explosivos/LEY N° 20.429 - LEY NACIONAL DE ARMAS Y EXPLOSIVOS.pdf')}}" target="blank">* Ley Nacional N° 20429 -Ley de armas y explosivos.</a><br>
+                        <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a><br>
+                        <a href="{{ asset('files/Explosivos/Ley Nacional N° 25886 - Delitos Con Armas De Fuego Modificación.pdf')}}" target="blank">* Ley Nacional N° 25886 - delitos con armas de fuego.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CODIGO DE FALTAS DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de faltas provincial.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check19">
+                <label class="accordion-label" for="check19">División Bomberos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Bomberos/LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                        <a href="{{ asset('files/Bomberos/DEC. REGLAMENTARIO LEY 19.587 - LEY DE HIGIENE Y SEGURIDAD EN EL TRABAJO.pdf')}}" target="blank">* Decreto 351 - Reglamentario Ley 19.587 - Ley de higiene y seguridad en el trabajo.</a><br>
+                        <a href="{{ asset('files/Bomberos/recorte ley 19.587 - PROTECCION CONTRA INCENDIOS.pdf')}}" target="blank">* Capítulo 18 protección contra incendios - LEY 19.587.</a><br>
+                        <a href="{{ asset('files/Bomberos/EDICTO POLICIAL - BOMBEROS.pdf')}}" target="blank">* Edicto policial de seguridad contra incendio del año 1997.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check20">
+                <label class="accordion-label" for="check20">Registro Provincial de Armas (RE.P.AR)</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Escuela_Cadetes/Nacional/Ley N° 20.429 de Armas y Explosivos.pdf')}}" target="blank">* Ley N° 20.429 de Armas y Explosivos.</a><br>
+                        <a href="{{ asset('files/Explosivos/REGLAMENTO LEY N° 20429.pdf')}}" target="blank">* Decreto 395/75 – Reglamentación Ley 20.429 sobre armas y explosivos.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check21">
+                <label class="accordion-label" for="check21">División homicidios y delitos complejos</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/CONSTITUCION DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Constitución Provincial.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procedimiento Penal.</a><br>
+                        <a href="{{ asset('files/Div_Homicidios/LEY 27319 - DELITOS COMPLEJOS.pdf')}}" target="blank">* Ley 27319 de delitos complejos de investigación.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/Código de conducta para funcionarios encargados de hacer cumplir la ley.pdf')}}" target="blank">* Código de conducta para funcionarios encargados de hacer cumplir la ley.</a><br>
+                        <a href="{{ asset('files/Div_Homicidios/PROTOCOLO FEDERAL DE INTERVENCIÓN EN LA ESCENA DEL CRIMEN O LUGAR DEL HECHO.pdf')}}" target="blank">* Protocolo federal de intervención en la escena del crimen o lugar del hecho.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check22">
+                <label class="accordion-label" for="check22">Departamento Trata de Personas</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino. Y sus articulos:<br>
+                            <small class="ml-5">Art. 119 (Abuso sexual)</small><br>
+                            <small class="ml-5">Art 125 bis. (Promoción y facilitación a la prostitución)</small><br>
+                            <small class="ml-5">Art. 131 (Grooming)</small><br>
+                            <small class="ml-5">Art 128. (Material de representación sexual de niños niñas y adolescentes)</small><br>
+                            <small class="ml-5">Art 140. (reducción a la servidumbre).</small>
+                        </a><br>
+                        <a href="{{ asset('files/Trata/LEY 26842 - LEY DE TRATAS.pdf')}}" target="blank">* Ley de tratas.: 26.842.</a><br>
+                        <a href="{{ asset('files/Trata/LEY 25871 - LEY DE MIGRACIONES.pdf')}}" target="blank">* Ley de migraciones, 25.871.</a><br>
+                        <a href="{{ asset('files/Trata/LEY 26061 - LEY DE PROTECCION INTEGRAL DE LOS DERECHOS DE LAS NIÑAS, NIÑOS Y ADOLESCENTES.pdf')}}" target="blank">* Ley de protección integral de los derechos de niñas niños y adolescentes: 26.061.</a><br>
+                        <a href="{{ asset('files/Trata/LEY 26485 - LEY DE PROTECCION INTEGRAL A LAS MUJERES.pdf')}}" target="blank">* Ley de protección integral a las mujeres: 26.485.</a><br>
+                        <a href="{{ asset('files/Trata/PROTOCOLO DE PALERMO.pdf')}}" target="blank">* Protocolo de Palermo: La finalidad del Protocolo de Palermo es: Prevenir y combatir la trata de personas, con especial atención a las mujeres y los niños. Proteger y ayudar a las víctimas de dicha trata, respectando plenamente sus derechos humanos; y. Promover la cooperación entre los Estados Parte para lograr los fines.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check23">
+                <label class="accordion-label" for="check23">Departamento Robo y Hurto</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CONSTITUCION NACIONAL.pdf')}}" target="blank">* Constitución Nacional Argentina.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Nacional_Internacional/CODIGO PENAL DE LA NACION ARGENTINA.pdf')}}" target="blank">* Código Penal Argentino.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley 6941 - CODIGO PROCESAL PENAL DE LA PROVINCIA DE SANTIAGO DEL ESTERO.pdf')}}" target="blank">* Código de Procesal Penal de la provincia.</a><br>
+                        <a href="{{ asset('files/Normativa_General/Provincial/Ley N° 6910 - CÓDIGO DE PROCEDIMIENTOS  CIVIL Y COMERCIAL.pdf')}}" target="blank">* Código de Procedimiento Civil y Comercial de la provincia.</a>
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="accordion">
+                <input type="radio" name="radio-a" id="check24">
+                <label class="accordion-label" for="check24">Oficina de Convenio Policial</label>
+                <div class="accordion-content">
+                    <p class="ml-3">
+                        <a href="{{ asset('files/Convenio/LEY 24059 - LEY DE SEGURIDAD INTERIOR.pdf')}}" target="blank">* Ley N° 24059 – Seguridad Interior.</a>
+                        <br><br>
+                    </p>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
