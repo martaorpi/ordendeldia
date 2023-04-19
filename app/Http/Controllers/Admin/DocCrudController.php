@@ -56,7 +56,7 @@ class DocCrudController extends CrudController
             'type' => 'datetime',
         ]);
         $this->crud->addColumn([
-            'label' => 'Tipo',
+            'label' => 'Estructura',
             'name' => 'type',
             'type' => 'enum',
         ]);
@@ -101,7 +101,7 @@ class DocCrudController extends CrudController
             'type' => 'textarea',
         ]);
         $this->crud->addField([
-            'label' => "Tipo",
+            'label' => "Estructura",
             'name' => "type",
             'type' => 'enum',
         ]);

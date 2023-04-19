@@ -129,11 +129,11 @@
 
 @php
     $doc1 = App\Models\Doc::where('type','Completo')->orderBy('updated_at', 'desc')->first();
-    $doc2 = App\Models\Doc::where('type','Estructura')->orderBy('updated_at', 'desc')->first();
+    $doc2 = App\Models\Doc::where('type','Estructura Organizacional')->orderBy('updated_at', 'desc')->first();
     $doc3 = App\Models\Doc::where('type','RRHH')->orderBy('updated_at', 'desc')->first();
-    $doc4 = App\Models\Doc::where('type','Protocolos')->orderBy('updated_at', 'desc')->first();
-    $doc5 = App\Models\Doc::where('type','Institutos')->orderBy('updated_at', 'desc')->first();
-    $doc6 = App\Models\Doc::where('type','Judiciales')->orderBy('updated_at', 'desc')->first();
+    $doc4 = App\Models\Doc::where('type','Disposiciones Generales')->orderBy('updated_at', 'desc')->first();
+    $doc5 = App\Models\Doc::where('type','Desarrollo Educativo')->orderBy('updated_at', 'desc')->first();
+    $doc6 = App\Models\Doc::where('type','Disposiciones Judiciales')->orderBy('updated_at', 'desc')->first();
     $doc7 = App\Models\Doc::where('type','Urgentes')->orderBy('updated_at', 'desc')->first();
 
     $date_old = new DateTime();
@@ -162,11 +162,11 @@
     @switch($doc->type)
         @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
         @case('Urgentes') @php $title = 'Dispociciones Judiciales Urgentes';@endphp @break;
-        @case('Estructura') @php $title = 'Estructura Organizacional';@endphp @break;
+        @case('Estructura Organizacional') @php $title = 'Estructura Organizacional';@endphp @break;
         @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
-        @case('Protocolos') @php $title = 'Disposiciones Generales';@endphp @break;
-        @case('Institutos') @php $title = 'Desarrollo Educativo';@endphp @break;
-        @case('Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
+        @case('Disposiciones Generales') @php $title = 'Disposiciones Generales';@endphp @break;
+        @case('Desarrollo Educativo') @php $title = 'Desarrollo Educativo';@endphp @break;
+        @case('Disposiciones Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
     @endswitch
 
     <div class="tweet-wrap">

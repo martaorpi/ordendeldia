@@ -4,11 +4,12 @@
     $doc = App\Models\Doc::where('id', $entry->getKey())->first();
     switch ($doc->type) {
         case 'Completo': $title = 'Boletín Policial'; break;
-        case 'Estructura': $title = 'Estructura organizacional'; break;
+        case 'Estructura Organizacional': $title = 'Estructura Organizacional'; break;
         case 'RRHH': $title = 'Recursos Humanos'; break;
-        case 'Protocolos': $title = 'Protocolos e instructivos'; break;
-        case 'Institutos': $title = 'Institutos Policiales'; break;
-        case 'Judiciales': $title = 'Asuntos Judiciales'; break;
+        case 'Disposiciones Generales': $title = 'Disposiciones Generales'; break;
+        case 'Desarrollo Educativo': $title = 'Desarrollo Educativo'; break;
+        case 'Disposiciones Judiciales': $title = 'Disposiciones Judiciales'; break;
+        case 'Urgentes': $title = 'Disposiciones Judiciales Urgentes'; break;
     }
 @endphp
 
