@@ -149,7 +149,7 @@
         echo $id;
     }
 @endphp
-
+<link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 @section('content')
 
 @foreach ($docs as $doc)
@@ -171,7 +171,10 @@
 
     <div class="tweet-wrap">
         <div class="tweet-header">
-            <img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">
+            {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
+            <div class="text-center mt-3" style="">
+                <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i>
+            </div>
             <div class="tweet-header-info">
                 {{ $title }}<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
                 <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
