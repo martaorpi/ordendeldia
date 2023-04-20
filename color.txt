@@ -1,0 +1,2 @@
+color actual #28166f
+color posible #091929
