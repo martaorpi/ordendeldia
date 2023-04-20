@@ -17,7 +17,7 @@
           {{-- <li class="nav-title">Entries</li> --}}
         </ul>
       </nav>
-      <img src="{{ asset('img/bandera.png') }}" alt="" width="100%" class="mb-0">
+      <img src="{{ asset('img/bandera3.png') }}" alt="" width="100%" class="mb-0">
       {{-- /.sidebar --}}
     </div>
 @endif
