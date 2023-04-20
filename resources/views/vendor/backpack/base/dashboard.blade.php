@@ -32,7 +32,7 @@
         color:#222;
     }
     .accordion-label:hover {
-        background: #28166f;
+        background: #151935;
         color:#fff;
     }
     .accordion-label::after {
@@ -174,13 +174,13 @@
             {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
             <div class="text-center mt-3" style="">
                 @switch($doc->type)
-                    @case('Completo') <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('Urgentes') <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('Estructura Organizacional') <i class="fa-duotone fa-diagram-project fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('RRHH') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
-                    @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #28166f; --fa-secondary-color: #28166f;"></i> @break;
+                    @case('Completo') <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('Urgentes') <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('Estructura Organizacional') <i class="fa-duotone fa-diagram-project fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('RRHH') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                 @endswitch
             </div>
             <div class="tweet-header-info">

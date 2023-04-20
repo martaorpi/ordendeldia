@@ -1,2 +1,3 @@
-color actual #28166f
-color posible #091929
+color anterior #28166f
+color monograma #091929
+color actual #151935

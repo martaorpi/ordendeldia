@@ -54,7 +54,7 @@
                 color:#222;
             }
             .accordion-label:hover {
-                background: #28166f;
+                background: #151935;
                 color:#fff;
             }
             .accordion-label::after {
@@ -150,7 +150,7 @@
             }
         </style>
 
-        <h3 style="background-color: #28166f;color:#fff; padding: 10px;margin-top:0;" class="m-2 py-5">Digesto Jurídico Policial</h3>
+        <h3 style="background-color: #151935;color:#fff; padding: 10px;margin-top:0;" class="m-2 py-5">Digesto Jurídico Policial</h3>
         <div class="accordion-wrapper">
             <div class="accordion">
                 <input type="radio" name="radio-a" id="check1">

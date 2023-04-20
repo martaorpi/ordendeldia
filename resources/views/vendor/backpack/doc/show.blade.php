@@ -17,7 +17,7 @@
 
 <style>
   .app-footer{
-    background-color: #28166F !important;
+    background-color: #151935 !important;
     color:#fff !important;
   }
   .app-footer a, .app-header a{
@@ -27,7 +27,7 @@
     color:#000 !important;
   }
   .app-header{
-    background-color: #28166F !important;
+    background-color: #151935 !important;
     color:#fff !important;
   }
 </style>

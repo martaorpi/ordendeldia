@@ -32,7 +32,7 @@
         color:#222;
     }
     .accordion-label:hover {
-        background: #28166f;
+        background: #151935;
         color:#fff;
     }
     .accordion-label::after {
