@@ -116,7 +116,7 @@
     }
     @media screen and (max-width:430px){
         .tweet-header {flex-direction:column;}
-        .tweet-header img {margin-bottom: 20px;}
+        .tweet-header i {margin-bottom: 20px;}
         .tweet-header-info p {margin-bottom: 30px;}
         .tweet-img-wrap {padding-left: 0;}
         .tweet-info-counts {
