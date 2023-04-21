@@ -153,48 +153,74 @@
 @section('content')
 
 @foreach ($docs as $doc)
-    @php
-    $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
-    $date = date('d/m/Y', strtotime($doc->created_at));
-    //$views2 = App\Models\ViewUser::where('doc_id', $doc->id)->count();
-    @endphp
-
-    @switch($doc->type)
-        @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
-        @case('Urgentes') @php $title = 'Dispociciones Judiciales Urgentes';@endphp @break;
-        @case('Estructura Organizacional') @php $title = 'Estructura Organizacional';@endphp @break;
-        @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
-        @case('Disposiciones Generales') @php $title = 'Disposiciones Generales';@endphp @break;
-        @case('Desarrollo Educativo') @php $title = 'Desarrollo Educativo';@endphp @break;
-        @case('Disposiciones Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
-    @endswitch
-
-    <div class="tweet-wrap">
-        <div class="tweet-header">
-            {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
-            <div class="text-center mt-3" style="">
-                @switch($doc->type)
-                    @case('Completo') <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('Urgentes') <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('Estructura Organizacional') <i class="fa-duotone fa-diagram-project fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('RRHH') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                    @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                @endswitch
+    @if ($doc->type == 'Urgentes')
+        @php
+        $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
+        $date = date('d/m/Y', strtotime($doc->created_at));
+        @endphp
+        <div class="tweet-wrap" style="background: #ffe7a1">
+            <div class="tweet-header">
+                {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
+                <div class="text-center mt-3" style="">
+                    <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i>
+                </div>
+                <div class="tweet-header-info">
+                    Dispociciones Judiciales Urgentes<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
+                    <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
+                </div>
             </div>
-            <div class="tweet-header-info">
-                {{ $title }}<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
-                <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
+            <div class="tweet-info-counts">
+                <div class="comments" title="usuarios que abrieron el documento">
+                    <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <div class="comment-count" id="views{{$doc->id}}">{{ $views }}</div>
+                </div>
             </div>
         </div>
-        <div class="tweet-info-counts">
-            <div class="comments" title="usuarios que abrieron el documento">
-                <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <div class="comment-count" id="views{{$doc->id}}">{{ $views }}</div>
+    @endif
+@endforeach
+
+@foreach ($docs as $doc)
+    @if ($doc->type != 'Urgentes')
+        @php
+        $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
+        $date = date('d/m/Y', strtotime($doc->created_at));
+        @endphp
+
+        @switch($doc->type)
+            @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
+            @case('Estructura Organizacional') @php $title = 'Estructura Organizacional';@endphp @break;
+            @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
+            @case('Disposiciones Generales') @php $title = 'Disposiciones Generales';@endphp @break;
+            @case('Desarrollo Educativo') @php $title = 'Desarrollo Educativo';@endphp @break;
+            @case('Disposiciones Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
+        @endswitch
+
+        <div class="tweet-wrap">
+            <div class="tweet-header">
+                {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
+                <div class="text-center mt-3" style="">
+                    @switch($doc->type)
+                        @case('Completo') <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Estructura Organizacional') <i class="fa-duotone fa-diagram-project fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('RRHH') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                    @endswitch
+                </div>
+                <div class="tweet-header-info">
+                    {{ $title }}<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
+                    <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
+                </div>
+            </div>
+            <div class="tweet-info-counts">
+                <div class="comments" title="usuarios que abrieron el documento">
+                    <svg class="feather feather-message-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <div class="comment-count" id="views{{$doc->id}}">{{ $views }}</div>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 @endforeach
 
 {{--<div class="tweet-wrap">
@@ -247,7 +273,7 @@
             @endif
         </div>
     </div>
-    <div class="accordion">
+    {{--<div class="accordion">
         <input type="radio" name="radio-a" id="check7">
         <label class="accordion-label" for="check7">Dispociciones Judiciales Urgentes</label>
         <div class="accordion-content">
@@ -258,7 +284,7 @@
                 <h5>No hay documentos cargados</h5>
             @endif
         </div>
-    </div>
+    </div>--}}
     <div class="accordion">
         <input type="radio" name="radio-a" id="check2">
         <label class="accordion-label" for="check2">Estructura Organizacional</label>
