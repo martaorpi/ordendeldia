@@ -165,7 +165,7 @@
                     <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #dc3545; --fa-secondary-color: #dc3545;"></i>
                 </div>
                 <div class="tweet-header-info">
-                    Dispociciones Judiciales Urgentes<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
+                    Disposiciones Judiciales Urgentes<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
                     <p><a href="{{asset($doc->src)}}" target="blank" onclick="views({{$doc->id}})">{{ $doc->summary }}</a></p>
                 </div>
             </div>
@@ -275,7 +275,7 @@
     </div>
     {{--<div class="accordion">
         <input type="radio" name="radio-a" id="check7">
-        <label class="accordion-label" for="check7">Dispociciones Judiciales Urgentes</label>
+        <label class="accordion-label" for="check7">Disposiciones Judiciales Urgentes</label>
         <div class="accordion-content">
             @if($doc7)
                 <h5>{{ $doc7->summary }}</h5>

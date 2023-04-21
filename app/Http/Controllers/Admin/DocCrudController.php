@@ -73,7 +73,7 @@ class DocCrudController extends CrudController
             'label' => 'Estructura'
         ], [
             'Completo' => 'Completo',
-            'Urgentes'=> 'Dispociciones Judiciales Urgentes',
+            'Urgentes'=> 'Disposiciones Judiciales Urgentes',
             'Estructura Organizacional' => 'Estructura Organizacional',
             'RRHH' => 'RRHH',
             'Disposiciones Generales' => 'Disposiciones Generales',
