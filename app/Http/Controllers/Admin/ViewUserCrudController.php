@@ -40,6 +40,8 @@ class ViewUserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->enableExportButtons();
+
         $this->crud->removeButton('create');
         $this->crud->removeButton('delete');
         $this->crud->removeButton('update');
@@ -53,6 +55,27 @@ class ViewUserCrudController extends CrudController
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
+        $this->crud->addFilter([
+            'name'  => 'user_id',
+            'type'  => 'select2',
+            'label' => 'Usuario'
+        ], function() {
+            return \App\Models\User::all()->pluck('name', 'id')->toArray();
+        }, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'user_id', $value);
+        });
+
+        CRUD::addFilter([
+            'type'  => 'date_range',
+            'name'  => 'created_at',
+            'label' => 'Fecha'
+        ],
+        false,
+        function ($value) { // if the filter is active, apply these constraints
+            $dates = json_decode($value);
+            $this->crud->addClause('where', 'created_at', '>=', $dates->from);
+            $this->crud->addClause('where', 'created_at', '<=', $dates->to . ' 23:59:59');
+        });
     }
 
     /**

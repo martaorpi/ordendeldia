@@ -42,6 +42,8 @@ class DocCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->enableExportButtons();
+
         if(!backpack_user()->hasRole('editor') && !backpack_user()->hasRole('admin')){
             $this->crud->removeButton('create');
             $this->crud->removeButton('delete');
@@ -65,6 +67,19 @@ class DocCrudController extends CrudController
          * - $this->crud->column('price')->type('number');
          * - $this->crud->addColumn(['name' => 'price', 'type' => 'number']);
          */
+        $this->crud->addFilter([
+            'name'  => 'type',
+            'type'  => 'dropdown',
+            'label' => 'Estructura'
+        ], [
+            'Completo' => 'Completo',
+            'Urgentes'=> 'Dispociciones Judiciales Urgentes',
+            'Estructura Organizacional' => 'Estructura Organizacional',
+            'RRHH' => 'RRHH',
+            'Disposiciones Generales' => 'Disposiciones Generales',
+            'Desarrollo Educativo' => 'Desarrollo Educativo',
+            'Disposiciones Judiciales' => 'Disposiciones Judiciales',
+        ]);
     }
 
     /**
