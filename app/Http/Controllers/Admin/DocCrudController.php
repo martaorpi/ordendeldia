@@ -50,18 +50,18 @@ class DocCrudController extends CrudController
             $this->crud->removeButton('update');
         }
 
-        $this->crud->column('user_id')->label('Usuario');
+        $this->crud->addColumn([
+            'label' => 'Estructura',
+            'name' => 'type',
+            'type' => 'enum',
+        ]);
         $this->crud->column('src')->label('Archivo');
         $this->crud->addColumn([
             'label' => 'Fecha de Actualización',
             'name' => 'updated_at',
             'type' => 'datetime',
         ]);
-        $this->crud->addColumn([
-            'label' => 'Estructura',
-            'name' => 'type',
-            'type' => 'enum',
-        ]);
+        $this->crud->column('user_id')->label('Usuario');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - $this->crud->column('price')->type('number');
