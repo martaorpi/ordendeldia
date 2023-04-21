@@ -158,11 +158,11 @@
         $views = App\Models\ViewUser::where('doc_id', $doc->id)->count();
         $date = date('d/m/Y', strtotime($doc->created_at));
         @endphp
-        <div class="tweet-wrap" style="background: #ffe7a1">
+        <div class="tweet-wrap">
             <div class="tweet-header">
                 {{--<img src="{{ asset('img/relaciones.png') }}" alt="" class="avator">--}}
-                <div class="text-center mt-3" style="">
-                    <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i>
+                <div class="text-center mt-3">
+                    <i class="fa-duotone fa-triangle-exclamation fa-2xl avator" style="--fa-primary-color: #dc3545; --fa-secondary-color: #dc3545;"></i>
                 </div>
                 <div class="tweet-header-info">
                     Dispociciones Judiciales Urgentes<span> {{ date('d/m/Y', strtotime($doc->created_at)) }}</span>
