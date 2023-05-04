@@ -134,13 +134,13 @@
     $doc4 = App\Models\Doc::where('type','Disposiciones Generales')->orderBy('updated_at', 'desc')->first();
     $doc5 = App\Models\Doc::where('type','Desarrollo Educativo')->orderBy('updated_at', 'desc')->first();
     $doc6 = App\Models\Doc::where('type','Disposiciones Judiciales')->orderBy('updated_at', 'desc')->first();
-    $doc7 = App\Models\Doc::where('type','Urgentes')->orderBy('updated_at', 'desc')->first();
+    $doc7 = App\Models\Doc::where('type','Eventos Institucionales')->orderBy('updated_at', 'desc')->first();
 
     $date_old = new DateTime();
     //$date_old = $date_old->modify('-24 hours');
-    $date_old = $date_old->modify('-2 days');
+    $date_old = $date_old->modify('-1 days');
     $date = date('Y-m-d H:i:s');
-    $docs = App\Models\Doc::whereBetween('updated_at', [$date_old, $date])->orderBy('updated_at', 'desc')->get();
+    $docs = App\Models\Doc::whereBetween('updated_at', [$date_old, $date])->orderBy('updated_at', 'desc')->orderBy('type', 'asc')->get();
     //$docs2 = App\Models\Doc::select(DB::raw('t.*'))->from(DB::raw('(SELECT * FROM docs ORDER BY updated_at DESC) t'))->groupBy('t.type')->get();
     $views = 0;
     $date = '';
@@ -263,7 +263,7 @@
 <div class="accordion-wrapper mt-3">
     <div class="accordion">
         <input type="radio" name="radio-a" id="check1">
-        <label class="accordion-label" for="check1">Boletín Policial - Orden del día</label>
+        <label class="accordion-label" for="check1">Boletín Policial - Completo</label>
         <div class="accordion-content">
             @if($doc1)
                 <h5>{{ $doc1->summary }}</h5>
@@ -340,6 +340,18 @@
             @if($doc6)
                 <h5>{{ $doc6->summary }}</h5>
                 <a href="{{ backpack_url('doc/'.$doc6->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc6->id}})">Ver Documento</a>
+            @else
+                <h5>No hay documentos cargados</h5>
+            @endif
+        </div>
+    </div>
+    <div class="accordion">
+        <input type="radio" name="radio-a" id="check7">
+        <label class="accordion-label" for="check7">Eventos Institucionales</label>
+        <div class="accordion-content">
+            @if($doc7)
+                <h5>{{ $doc7->summary }}</h5>
+                <a href="{{ backpack_url('doc/'.$doc7->id.'/show') }}" class="btn btn-xs btn-primary" onclick="views({{$doc7->id}})">Ver Documento</a>
             @else
                 <h5>No hay documentos cargados</h5>
             @endif

@@ -93,7 +93,7 @@ class DocCrudController extends CrudController
         $this->crud->setValidation(DocRequest::class);
 
         $this->crud->addField([
-            'label' => "Archivo (<small>solo PDF</small>)",
+            'label' => "Archivo (<small>solo JPG,JPEG,PNG,PDF</small>)",
             'name' => "src",
             'type' => 'upload',
             'upload' => true,

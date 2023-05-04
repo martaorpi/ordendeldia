@@ -14,9 +14,7 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('doc') }}"><i class="nav-icon la la-book"></i> Boletines</a></li>
 
 {{--<li class="nav-item"><a class="nav-link" href="{{ backpack_url('doc/example') }}"><i class="nav-icon la la-question"></i> Inicio alternativo</a></li>--}}
-@if (backpack_user()->id == 7915 || backpack_user()->hasRole('admin'))
-    <li class='nav-item'><a class='nav-link' href='{{ backpack_url('digesto') }}'><i class='nav-icon la la-balance-scale'></i> Digesto Jurídico</a></li>
-@endif
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('digesto') }}'><i class='nav-icon la la-balance-scale'></i> Digesto Jurídico</a></li>
 
 @if(backpack_user()->hasRole('admin'))
     <li class='nav-item'><a class='nav-link' href='{{ backpack_url('view-user') }}'><i class='nav-icon la la-question'></i> Auditoría de Vistas</a></li>

@@ -26,7 +26,7 @@ class DocRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-            "src" => "required|mimes:pdf",
+            "src" => "required|mimes:jpeg,png,jpg,pdf",
             //"src" => "mimes:pdf",
             "summary" => "required"
         ];
