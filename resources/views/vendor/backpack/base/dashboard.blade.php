@@ -193,6 +193,7 @@
             @case('Disposiciones Generales') @php $title = 'Disposiciones Generales';@endphp @break;
             @case('Desarrollo Educativo') @php $title = 'Desarrollo Educativo';@endphp @break;
             @case('Disposiciones Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
+            @case('Eventos Institucionales') @php $title = 'Eventos Institucionales';@endphp @break;
         @endswitch
 
         <div class="tweet-wrap">
@@ -206,6 +207,7 @@
                         @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Eventos Institucionales') <i class="fa-duotone fa-calendar-days fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                     @endswitch
                 </div>
                 <div class="tweet-header-info">
