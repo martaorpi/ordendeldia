@@ -24,7 +24,8 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Orden del dia',
+    'project_name' => 'Boletin Policial
+    ',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?

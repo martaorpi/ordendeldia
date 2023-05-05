@@ -25,7 +25,7 @@
 </style>
 <div class="card">
   <div class="card-body" style="height:80vh">
-    <h3>Boletín Policial - Orden del día</h3>
+    <h3>Boletín Policial - Boletin Policial</h3>
     @if($doc)
       <!--<iframe width="100%" style="height:70vh" src="{{asset($doc->src)}}" frameborder="0"></iframe>
       <embed src="{{asset($doc->src)}}" type="application/pdf" width="100%" style="height:70vh" />-->
