@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::redirect('/','admin');
+Route::redirect('/','admin');
 
-Route::get('admin/digesto', function () {
+/*Route::get('admin/digesto', function () {
     return view('digesto');
-});
+});*/
 
 
