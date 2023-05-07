@@ -26,6 +26,7 @@ class DocCrudController extends CrudController
      */
     public function setup()
     {
+        $this->crud->getTitle('Boletín Policial');
         $this->crud->setModel(\App\Models\Doc::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/doc');
         $this->crud->setEntityNameStrings('Boletin', 'Boletines');
