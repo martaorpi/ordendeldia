@@ -463,7 +463,7 @@
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check16">
-        <label class="accordion-label" for="check16">Dirección General de Policía Cinetífica</label>
+        <label class="accordion-label" for="check16">Dirección General de Policía Científica</label>
         <div class="accordion-content">
             <p class="ml-3">
                 <a href="{{ asset('files/Cientifica/Manual_actuacion_lugar_hecho_escena_delito - DGPC.pdf')}}" target="blank">* Manual de actuación en el lugar del hecho y/o escena del delito.</a><br>
@@ -475,7 +475,7 @@
     </div>
     <div class="accordion">
         <input type="radio" name="radio-a" id="check17">
-        <label class="accordion-label" for="check17">Escuela de Cadetes "Cnel. Lorenzo Lugones"</label>
+        <label class="accordion-label" for="check17">Escuela de Cadetes "Coronel Lorenzo Lugones"</label>
         <div class="accordion-content">
             <h5>Normativa Internacional</h5>
             <p class="ml-3">

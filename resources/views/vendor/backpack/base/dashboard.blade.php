@@ -130,7 +130,7 @@
 @php
     $doc1 = App\Models\Doc::where('type','Completo')->orderBy('updated_at', 'desc')->first();
     $doc2 = App\Models\Doc::where('type','Estructura Organizacional')->orderBy('updated_at', 'desc')->first();
-    $doc3 = App\Models\Doc::where('type','RRHH')->orderBy('updated_at', 'desc')->first();
+    $doc3 = App\Models\Doc::where('type','Recursos Humanos')->orderBy('updated_at', 'desc')->first();
     $doc4 = App\Models\Doc::where('type','Disposiciones Generales')->orderBy('updated_at', 'desc')->first();
     $doc5 = App\Models\Doc::where('type','Desarrollo Educativo')->orderBy('updated_at', 'desc')->first();
     $doc6 = App\Models\Doc::where('type','Disposiciones Judiciales')->orderBy('updated_at', 'desc')->first();
@@ -189,7 +189,7 @@
         @switch($doc->type)
             @case('Completo') @php $title = 'Boletín Policial';@endphp @break;
             @case('Estructura Organizacional') @php $title = 'Estructura Organizacional';@endphp @break;
-            @case('RRHH') @php $title = 'Recursos Humanos';@endphp @break;
+            @case('Recursos Humanos') @php $title = 'Recursos Humanos';@endphp @break;
             @case('Disposiciones Generales') @php $title = 'Disposiciones Generales';@endphp @break;
             @case('Desarrollo Educativo') @php $title = 'Desarrollo Educativo';@endphp @break;
             @case('Disposiciones Judiciales') @php $title = 'Disposiciones Judiciales';@endphp @break;
@@ -203,7 +203,7 @@
                     @switch($doc->type)
                         @case('Completo') <i class="fa-duotone fa-notes fa-rotate-180 fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Estructura Organizacional') <i class="fa-duotone fa-diagram-project fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
-                        @case('RRHH') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
+                        @case('Recursos Humanos') <i class="fa-duotone fa-users fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Disposiciones Generales') <i class="fa-duotone fa-file-invoice fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Desarrollo Educativo') <i class="fa-duotone fa-graduation-cap fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;
                         @case('Disposiciones Judiciales') <i class="fa-duotone fa-scale-unbalanced-flip fa-2xl avator" style="--fa-primary-color: #151935; --fa-secondary-color: #151935;"></i> @break;

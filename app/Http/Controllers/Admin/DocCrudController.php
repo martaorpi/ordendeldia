@@ -75,7 +75,7 @@ class DocCrudController extends CrudController
             'Completo' => 'Completo',
             'Urgentes'=> 'Disposiciones Judiciales Urgentes',
             'Estructura Organizacional' => 'Estructura Organizacional',
-            'RRHH' => 'RRHH',
+            'Recursos Humanos' => 'Recursos Humanos',
             'Disposiciones Generales' => 'Disposiciones Generales',
             'Desarrollo Educativo' => 'Desarrollo Educativo',
             'Disposiciones Judiciales' => 'Disposiciones Judiciales',

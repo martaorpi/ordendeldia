@@ -5,7 +5,7 @@
     switch ($doc->type) {
         case 'Completo': $title = 'Boletín Policial'; break;
         case 'Estructura Organizacional': $title = 'Estructura Organizacional'; break;
-        case 'RRHH': $title = 'Recursos Humanos'; break;
+        case 'Recursos Humanos': $title = 'Recursos Humanos'; break;
         case 'Disposiciones Generales': $title = 'Disposiciones Generales'; break;
         case 'Desarrollo Educativo': $title = 'Desarrollo Educativo'; break;
         case 'Disposiciones Judiciales': $title = 'Disposiciones Judiciales'; break;
