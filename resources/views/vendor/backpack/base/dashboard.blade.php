@@ -1,5 +1,5 @@
 @extends(backpack_view('blank'))
-
+<title>Boletín Policial</title>
 <style>
     input {
         position: absolute;
